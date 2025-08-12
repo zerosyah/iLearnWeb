@@ -3,3 +3,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.trapzoid {
+    width: 350px;
+    height: 500px;
+    clip-path: polygon(
+        0px 0%,
+        calc(100% - 0px) 0%,
+        90% 100%,
+        0% 100%
+    );
+    background-image: url("./assets/Heros/Hero_1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
