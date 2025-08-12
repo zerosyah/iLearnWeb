@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { TextInput, Button } from "flowbite-react";
 import { HiMail, HiLockClosed } from "react-icons/hi";
-import { FaFacebook, FaInstagram, FaTwitter, FaFacebookMessenger, FaWhatsapp } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import { LiaFlagUsaSolid } from "react-icons/lia";
 import { useNavigate, Link } from "react-router-dom";
 import {
@@ -167,6 +167,7 @@ function SignIn() {
                 disabled={loading}
                 type="submit"
                 outline={false}
+                onClick={handleSubmit}
               >
                 {"Login"}
               </Button>
@@ -176,6 +177,9 @@ function SignIn() {
                   <span className="cursor-pointer text-blue-600">Sign up</span>
                 </Link>
               </p>
+              {
+                error && <p className="text-xs text-red-600">{error.message}</p>
+              }
             </div>
             <div className="mt-[30px] flex flex-row items-center justify-center gap-4">
               <FaFacebook
