@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { TextInput, Button } from "flowbite-react";
 import { HiMail, HiLockClosed } from "react-icons/hi";
 import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
-import { LiaFlagUsaSolid } from "react-icons/lia";
+import { LiaFlagUsaSolid, LiaChevronDownSolid } from "react-icons/lia";
 import { useNavigate, Link } from "react-router-dom";
 import {
   signInStart,
@@ -15,6 +15,7 @@ function SignIn() {
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [visible, setVisible] = useState(false);
 
   const { loading, error, currentUser } = useSelector(
     (state: any) => state.user,
@@ -60,6 +61,8 @@ function SignIn() {
       if (data.success === false) {
         // dispatch sign in failure action
         dispatch(signInFailure(data));
+        setVisible(true);
+        setTimeToExit();
       } else {
         // dispatch sign in pass action
         dispatch(signInSuccess(data.user));
@@ -75,22 +78,33 @@ function SignIn() {
       }
     } catch (error) {
       dispatch(signInFailure(error));
+      setVisible(true);
+      setTimeToExit();
     }
   };
   const linkTree = (link: string) => {
     return window.open(link);
   }
 
+  const setTimeToExit = () => {
+    setTimeout(() => {
+      setVisible(false);
+    }, 3000);
+  }
+
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
-      <div className="flex w-[700px] rounded-[10px] border p-[10px]">
+      <div className="main"></div>
+      <div className="z-10 flex w-[700px] rounded-[10px] border bg-white/80 p-[10px] shadow-lg backdrop-blur-md">
         <div className="trapzoid rounded-[5px] px-[10px]">
           <div className="flex flex-row items-center justify-between py-[10px] ">
-            <span className="rounded-full font-bold text-white">iLearnWeb</span>
+            <span className="rounded-full font-popins text-[28px] font-bold text-white">
+              iLearnWeb
+            </span>
             <div className="flex flex-row gap-[10px] text-white">
               <Button
                 size={"xs"}
-                className="rounded-full text-lg"
+                className="rounded-full font-popins text-[18px]"
                 gradientDuoTone={"tealToLime"}
                 onClick={() => navigate("/signup")}
                 //outline={true}
@@ -99,7 +113,7 @@ function SignIn() {
               </Button>
               <Button
                 size={"xs"}
-                className="rounded-full text-lg"
+                className="rounded-full font-popins text-[18px]"
                 gradientDuoTone={"purpleToBlue"}
                 onClick={() =>
                   linkTree(
@@ -115,16 +129,16 @@ function SignIn() {
         </div>
         <div className="flex w-[350px] flex-col items-center">
           <div className="flex flex-row items-center justify-between gap-[100px] px-[10px] py-[10px]">
-            <h1 className="text-lg font-bold">Sompukwane</h1>
-            <span className="text-md cursor-pointer rounded-full border bg-gray-600 px-[10px] font-semibold text-white flex flex-row items-center">
-              <LiaFlagUsaSolid size={20} />
+            <h1 className="font-popins text-[20px] font-bold">Sompukwane</h1>
+            <span className="font-robot flex cursor-pointer flex-row items-center rounded-full border bg-blue-600 px-[10px] text-[16px] font-semibold text-white">
               Eng
+              <LiaChevronDownSolid size={18} className="ml-[5px]" />
             </span>
           </div>
           <div className="mt-[20px] w-[280px] items-center justify-center text-center">
             <div className="">
-              <h1 className="text-3xl font-bold">Hi, Friend!</h1>
-              <p className="text-xs">Welcome to iLearnWeb</p>
+              <h1 className="font-popins text-[28px] font-bold">Hi, Friend!</h1>
+              <p className="font-robot text-[16px]">Welcome to iLearnWeb</p>
             </div>
             <div className="mt-[30px] flex flex-col items-center justify-center gap-4">
               <TextInput
@@ -134,7 +148,7 @@ function SignIn() {
                 placeholder="Email"
                 required
                 onChange={handleChange}
-                className="w-full items-center"
+                className="font-robot w-full items-center text-[14px]"
               />
               <TextInput
                 id="Password"
@@ -143,18 +157,18 @@ function SignIn() {
                 placeholder="Password"
                 required
                 onChange={handleChange}
-                className="w-full items-center"
+                className="font-robot w-full items-center text-[14px]"
               />
               <div className="">
-                <p className="z-30 cursor-pointer bg-white text-xs text-orange-600">
+                <hr className="relative top-[10px] z-0 w-[200px]" />
+                <p className="font-robot relative z-10 cursor-pointer text-[14px] text-orange-600">
                   Forgot password?
                 </p>
-                <hr className="relative -top-[7px] w-[150px]" />
               </div>
 
               <Button
                 gradientDuoTone="pinkToOrange"
-                className="w-full uppercase"
+                className="w-full font-popins text-[16px] font-semibold uppercase"
                 disabled={loading}
                 //type="submit"
                 outline={true}
@@ -163,7 +177,7 @@ function SignIn() {
               </Button>
               <Button
                 gradientDuoTone="tealToLime"
-                className="w-full uppercase"
+                className="w-full font-popins text-[16px] font-semibold uppercase"
                 disabled={loading}
                 type="submit"
                 outline={false}
@@ -171,23 +185,29 @@ function SignIn() {
               >
                 {"Login"}
               </Button>
-              <p className="text-xs">
+              <p className="relative -top-[10px] text-xs">
                 I don't have an account,{" "}
                 <Link to="/signup">
-                  <span className="cursor-pointer text-blue-600">Sign up</span>
+                  <span className="font-robot cursor-pointer text-[12px] text-blue-600">
+                    Sign up
+                  </span>
                 </Link>
               </p>
-              {
-                error && <p className="text-xs text-red-600">{error.message}</p>
-              }
+              {visible && (
+                <p className="relative -top-[10px] text-xs text-red-600 transition-all duration-300 ease-in-out">
+                  {error.message}
+                </p>
+              )}
             </div>
-            <div className="mt-[30px] flex flex-row items-center justify-center gap-4">
+            <div className="relative top-[10px] flex flex-row items-center justify-center gap-4">
               <FaFacebook
                 size={25}
                 className="cursor-pointer text-blue-600"
-                onClick={() => {linkTree(
-                  "https://web.facebook.com/profile.php?id=100083533804483",
-                );}}
+                onClick={() => {
+                  linkTree(
+                    "https://web.facebook.com/profile.php?id=100083533804483",
+                  );
+                }}
               />
               <FaInstagram size={25} className="cursor-pointer text-pink-600" />
               <FaTwitter size={25} className="cursor-pointer text-sky-600" />
