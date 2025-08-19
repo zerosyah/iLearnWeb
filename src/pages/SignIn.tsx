@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { TextInput, Button } from "flowbite-react";
 import { HiMail, HiLockClosed } from "react-icons/hi";
 import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
-import { LiaFlagUsaSolid, LiaChevronDownSolid } from "react-icons/lia";
+import { LiaChevronDownSolid } from "react-icons/lia";
 import { useNavigate, Link } from "react-router-dom";
 import {
   signInStart,
