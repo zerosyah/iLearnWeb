@@ -15,6 +15,7 @@ export default {
         popins: ["Poppins", "sans-serif"],
         pacifico: ["Pacifico", "cursive"],
         bigelowRules: ["Bigelow Rules", "cursive"],
+        robot: ["Roboto", "sans-serif"],
       },
     },
   },
