@@ -85,7 +85,7 @@ export default function Header() {
   
   return (
     <Navbar
-      className="absolute left-0 right-0 top-0 z-20 w-full border-b-2"
+      className="absolute left-0 right-0 top-0 z-20 items-center w-full border-b-2"
       style={{
         background: "transparent",
       }}
@@ -95,7 +95,7 @@ export default function Header() {
         to="/"
         className="self-center whitespace-nowrap text-[32px] font-semibold dark:text-white sm:text-xl"
       >
-        <span className="font-bigelowRules pl-5 text-5xl  font-bold drop-shadow-[0px_0px_10px_rgba(0,0,0,3)]">
+        <span className="pl-5 font-bebasNeue bg-clip-text bg-gradient-to-tr from-yellow-300 to-green-400 text-[30px]  font-bold drop-shadow-[0px_0px_10px_rgba(0,0,0,3)]">
           sompukwane
         </span>
       </Link>
@@ -111,8 +111,7 @@ export default function Header() {
           onChange={(e) => setSearchTerm(e.target.value)}
           style={{
             background: "transparent",
-            borderColor: "black",
-            color: "black",
+            color: "white",
           }}
         />
       </form>
@@ -205,11 +204,11 @@ export default function Header() {
       <Navbar.Toggle />
 
       {/* Collapse */}
-      <Navbar.Collapse className="text-[32px] font-bold">
+      <Navbar.Collapse className="absolute md:relative right-[10px] top-[80px] md:top-0 w-fit rounded-[10px] text-[18px] font-bold text-white backdrop-blur-md py-[10px]">
         <Navbar.Link as={"div"}>
           <Link
             to="/stuff"
-            className="font-popins text-[20px] font-bold uppercase text-black"
+            className="font-popins text-[16px] font-semibold uppercase text-black"
           >
             Stuff
           </Link>
@@ -217,7 +216,7 @@ export default function Header() {
         <Navbar.Link as={"div"}>
           <Link
             to="/department"
-            className="font-popins text-[20px] font-bold uppercase text-black"
+            className="font-popins text-[16px] font-semibold uppercase text-black"
           >
             Department
           </Link>
@@ -225,7 +224,7 @@ export default function Header() {
         <Navbar.Link as={"div"}>
           <Link
             to="/contact"
-            className="font-popins text-[20px] font-bold uppercase text-black"
+            className="font-popins text-[16px] font-semibold uppercase text-black"
           >
             contact
           </Link>
