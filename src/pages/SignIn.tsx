@@ -95,7 +95,7 @@ function SignIn() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
       <div className="main"></div>
-      <div className="z-10 flex w-[700px] rounded-[10px] border bg-white/80 p-[10px] shadow-lg backdrop-blur-md">
+      <div className="z-10 hidden w-[700px] rounded-[10px] border bg-white/80 p-[10px] shadow-lg backdrop-blur-md md:flex">
         <div className="trapzoid rounded-[5px] px-[10px]">
           <div className="flex flex-row items-center justify-between py-[10px] ">
             <span className="rounded-full font-popins text-[28px] font-bold text-white">
@@ -130,7 +130,7 @@ function SignIn() {
         <div className="flex w-[350px] flex-col items-center">
           <div className="flex flex-row items-center justify-between gap-[100px] px-[10px] py-[10px]">
             <h1 className="font-popins text-[20px] font-bold">Sompukwane</h1>
-            <span className="font-robot flex cursor-pointer flex-row items-center rounded-full border bg-blue-600 px-[10px] text-[16px] font-semibold text-white">
+            <span className="flex cursor-pointer flex-row items-center rounded-full border bg-blue-600 px-[10px] font-robot text-[16px] font-semibold text-white">
               Eng
               <LiaChevronDownSolid size={18} className="ml-[5px]" />
             </span>
@@ -148,7 +148,7 @@ function SignIn() {
                 placeholder="Email"
                 required
                 onChange={handleChange}
-                className="font-robot w-full items-center text-[14px]"
+                className="w-full items-center font-robot text-[14px]"
               />
               <TextInput
                 id="Password"
@@ -157,11 +157,11 @@ function SignIn() {
                 placeholder="Password"
                 required
                 onChange={handleChange}
-                className="font-robot w-full items-center text-[14px]"
+                className="w-full items-center font-robot text-[14px]"
               />
               <div className="">
                 <hr className="relative top-[10px] z-0 w-[200px]" />
-                <p className="font-robot relative z-10 cursor-pointer text-[14px] text-orange-600">
+                <p className="relative z-10 cursor-pointer font-robot text-[14px] text-orange-600">
                   Forgot password?
                 </p>
               </div>
@@ -188,7 +188,7 @@ function SignIn() {
               <p className="relative -top-[10px] text-xs">
                 I don't have an account,{" "}
                 <Link to="/signup">
-                  <span className="font-robot cursor-pointer text-[12px] text-blue-600">
+                  <span className="cursor-pointer font-robot text-[12px] text-blue-600">
                     Sign up
                   </span>
                 </Link>
@@ -215,6 +215,57 @@ function SignIn() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="absolute flex flex-col gap-[10px] rounded-[10px] border p-[10px] text-center shadow-md backdrop-blur-md md:hidden bg-white/60">
+        <div className="h-[80px] w-[80px] self-center rounded-full bg-red-700"></div>
+        <div className="">
+          <p className="font-popins text-[28px] font-semibold">Hello, Friend</p>
+          <p className="font-robot text-[12px]">learning made easy</p>
+        </div>
+        <div className="">
+          <form action="" className="flex flex-col gap-4">
+            <TextInput
+              id="Email"
+              type="email"
+              icon={HiMail}
+              placeholder="Email"
+              required
+              onChange={handleChange}
+              className="w-full font-popins text-[16px] font-semibold uppercase"
+            />
+            <TextInput
+              id="Password"
+              type="password"
+              icon={HiLockClosed}
+              placeholder="Password"
+              required
+              onChange={handleChange}
+              className="w-full font-popins text-[16px] font-semibold uppercase"
+            />
+
+            <div className="w-full text-center items-center self-center flex flex-col justify-center">
+              <Button
+                gradientDuoTone="tealToLime"
+                className="uppercase w-full"
+                disabled={loading}
+                type="submit"
+              >
+                {"Continue with Google"}
+              </Button>
+              <p className="font-robot text-[14px] pt-[10px] font-semibold text-orange-600 ">forgot password</p>
+            </div>
+            <Button
+              gradientDuoTone="pinkToOrange"
+              className="uppercase"
+              disabled={loading}
+              type="submit"
+              outline={true}
+            >
+              {loading ? "Loading..." : "Sign In"}
+            </Button>
+          </form>
+        </div>
+        <div className=""></div>
       </div>
     </main>
   );
