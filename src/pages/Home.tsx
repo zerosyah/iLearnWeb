@@ -5,6 +5,10 @@ import Hero from "../assets/Heros/Hero_1.jpg"
 import Header from "../components/Header";
 import { Button, Carousel } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
+import Class_1 from "../assets/Heros/Class_1.jpg"
+import Class_2 from "../assets/Heros/Class_2.jpg"
+import Class_3 from "../assets/Heros/Class_3.jpg"
+import Class_4 from "../assets/Heros/Class_4.jpg"
 
 
 export default function Home() {
@@ -25,7 +29,7 @@ export default function Home() {
           <h1 className="text-wrap bg-gradient-to-r from-yellow-300 to-green-400 bg-clip-text text-center font-bebasNeue text-[40px] font-bold uppercase text-transparent drop-shadow-[5px_5px_0px_rgba(0,0,0,3)] md:ml-10 md:text-[102px]">
             sompukwane secondary school
           </h1>
-          <div className="flex items-center justify-center relative top-[40px] md:top-[200px]">
+          <div className="relative top-[40px] flex items-center justify-center md:top-[200px]">
             <Button
               gradientDuoTone={"tealToLime"}
               outline
@@ -64,35 +68,39 @@ export default function Home() {
           </div>
           <div className="px-[10px] transition-all duration-500 ease-in-out">
             <img
-              src="https://i.pinimg.com/736x/d1/24/37/d124377275763f1644c8f97efd8fdb89.jpg"
+              src={Class_1}
               alt="photo"
-              className="w-fit rounded-[10px] transition-all duration-500 ease-in-out md:h-[303px] md:w-[407px]"
+              className="w-fit rounded-[10px] transition-all duration-500 object-contain ease-in-out md:h-[303px] md:w-[407px]"
             />
           </div>
         </div>
       </section>
-      <section className="hidden h-fit py-[10px] items-center justify-evenly bg-[#D9D9D9] md:flex">
+      <section className="hidden h-fit items-center justify-evenly bg-[#D9D9D9] py-[10px] md:flex">
         <div className="">
           <img
-            src="https://i.pinimg.com/736x/b1/32/86/b13286837396ba5f03bedc551d701954.jpg"
+            src={Class_2}
             alt="photo 2"
-            className=" h-[253px] w-[407px] object-fill rounded-[10px] "
+            className=" h-[253px] w-[407px] object-fill rounded-[10px]"
           />
-          <p className="pt-2 font-robot text-[12px] text-black">Student Meeting</p>
+          <p className="pt-2 font-robot text-[12px] text-black">
+            Student Meeting
+          </p>
         </div>
         <div className="">
           <img
-            src="https://i.pinimg.com/736x/52/cb/c7/52cbc79ccaadce4e326f8227fdd41f12.jpg"
+          src={Class_3}
             alt="PHOTO 3"
-            className="h-[253px] w-[407px] rounded-[10px] "
+            className="h-[253px] w-[407px] object-fill rounded-[10px] "
           />
-          <p className="pt-2 font-robot text-[12px] object-fill text-black">Mathematics</p>
+          <p className="object-fill pt-2 font-robot text-[12px] text-black">
+            Mathematics
+          </p>
         </div>
         <div className="">
           <img
-            src="https://i.pinimg.com/1200x/e4/5b/9c/e45b9cb765df30c0c694806539ba6bf5.jpg"
+            src={Class_4}
             alt=""
-            className="h-[253px] w-[407px] object-fill rounded-[10px] "
+            className="h-[253px] w-[407px] rounded-[10px] object-fill "
           />
           <p className="pt-2 font-robot text-[12px] text-black">Sciences</p>
         </div>
@@ -120,12 +128,12 @@ export default function Home() {
         <h1 className="text-wrap py-5 text-center font-popins  text-[30px] font-semibold uppercase text-black underline ">
           Student Support Program
         </h1>
-        <div className="flex flex-col items-center justify-evenly gap-[20px] pb-[10px] text-center md:text-start md:flex-row md:gap-0 md:pb-0 ">
+        <div className="flex flex-col items-center justify-evenly gap-[20px] pb-[10px] text-center md:flex-row md:gap-0 md:pb-0 md:text-start ">
           <div className="px-[10px] transition-all duration-500 ease-in-out md:px-0">
             <img
               src="https://i.pinimg.com/1200x/d9/89/88/d9898815d05b547c499cb55a8b6856cb.jpg"
               alt="photo"
-              className="h-[253px] w-full object-fill rounded-[10px] md:w-[407px]"
+              className="h-[253px] w-full rounded-[10px] object-fill md:w-[407px]"
             />
           </div>
           <div className="h-fit text-wrap px-[10px] font-robot text-[12px] text-black transition-all duration-500 ease-in-out md:w-[407px] md:px-0 md:text-[14px]">
@@ -158,15 +166,15 @@ export default function Home() {
         </div>
       </section>
       <section className="h-fit bg-[#D9D9D9] py-[10px] md:h-fit">
-        <h1 className="px-[10px] text-center font-popins text-[30px] font-semibold text-black underline md:px-0 uppercase md:pb-[20px]">
+        <h1 className="px-[10px] text-center font-popins text-[30px] font-semibold uppercase text-black underline md:px-0 md:pb-[20px]">
           Explore our School Sport Activities
         </h1>
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8  text-center md:text-start">
+        <div className="flex flex-col items-center justify-center gap-8 text-center  md:flex-row md:text-start">
           <div className="px-[10px] transition-all duration-500 ease-in-out md:px-0">
             <img
               src="https://i.pinimg.com/1200x/fe/35/83/fe358315ebc20446ba4823dddd729e9a.jpg"
               alt="photo"
-              className="h-[253px] w-full object-fill rounded-[10px] md:w-[407px]"
+              className="h-[253px] w-full rounded-[10px] object-fill md:w-[407px]"
             />
           </div>
           <div className="">
@@ -191,7 +199,7 @@ export default function Home() {
         </div>
       </section>
       <section className="gap flex h-fit flex-col bg-[#FFFFFF] py-[10px] md:h-fit">
-        <h1 className="text-center font-popins font-semibold uppercase text-[30px] text-black underline pb-[10px]">
+        <h1 className="pb-[10px] text-center font-popins text-[30px] font-semibold uppercase text-black underline">
           Spacial Events
         </h1>
         <div className="flex flex-col items-center justify-evenly gap-[10px] md:flex-row">
