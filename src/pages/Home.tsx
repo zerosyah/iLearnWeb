@@ -9,6 +9,10 @@ import Class_1 from "../assets/Heros/Class_1.jpg"
 import Class_2 from "../assets/Heros/Class_2.jpg"
 import Class_3 from "../assets/Heros/Class_3.jpg"
 import Class_4 from "../assets/Heros/Class_4.jpg"
+import Special from "../assets/Heros/Special_1.jpg"
+import Sport_Boys_Team from "../assets/Heros/Sport_Boys_Team.jpg"
+import Activity_1 from "../assets/Heros/Activity_1.jpg"
+import Activity_2 from "../assets/Heros/Activity_2.jpg"
 
 
 export default function Home() {
@@ -108,17 +112,17 @@ export default function Home() {
       <section className="h-[450px] items-center justify-evenly bg-[#D9D9D9] md:hidden">
         <Carousel className="h-full w-full px-[10px]">
           <img
-            src="https://i.pinimg.com/736x/b1/32/86/b13286837396ba5f03bedc551d701954.jpg"
+            src={Class_2}
             alt="photo 2"
             className="h-[400px] rounded-[10px] object-cover "
           />
           <img
-            src="https://i.pinimg.com/736x/52/cb/c7/52cbc79ccaadce4e326f8227fdd41f12.jpg"
+            src={Class_3}
             alt="PHOTO 3"
             className="h-[400px] rounded-[10px] object-cover "
           />
           <img
-            src="https://i.pinimg.com/1200x/e4/5b/9c/e45b9cb765df30c0c694806539ba6bf5.jpg"
+            src={Class_4}
             alt=""
             className="h-[400px] rounded-[10px] object-cover "
           />
@@ -131,9 +135,9 @@ export default function Home() {
         <div className="flex flex-col items-center justify-evenly gap-[20px] pb-[10px] text-center md:flex-row md:gap-0 md:pb-0 md:text-start ">
           <div className="px-[10px] transition-all duration-500 ease-in-out md:px-0">
             <img
-              src="https://i.pinimg.com/1200x/d9/89/88/d9898815d05b547c499cb55a8b6856cb.jpg"
+              src={Special}
               alt="photo"
-              className="h-[253px] w-full rounded-[10px] object-fill md:w-[407px]"
+              className="h-[253px] w-full rounded-[10px] object-cover md:w-[407px]"
             />
           </div>
           <div className="h-fit text-wrap px-[10px] font-robot text-[12px] text-black transition-all duration-500 ease-in-out md:w-[407px] md:px-0 md:text-[14px]">
@@ -172,9 +176,9 @@ export default function Home() {
         <div className="flex flex-col items-center justify-center gap-8 text-center  md:flex-row md:text-start">
           <div className="px-[10px] transition-all duration-500 ease-in-out md:px-0">
             <img
-              src="https://i.pinimg.com/1200x/fe/35/83/fe358315ebc20446ba4823dddd729e9a.jpg"
+              src={Sport_Boys_Team}
               alt="photo"
-              className="h-[253px] w-full rounded-[10px] object-fill md:w-[407px]"
+              className="h-[253px] w-full rounded-[10px] object-cover md:w-[407px]"
             />
           </div>
           <div className="">
@@ -218,16 +222,16 @@ export default function Home() {
           </div>
           <div className="px-[10px] md:px-0">
             <img
-              src="https://i.pinimg.com/1200x/28/79/9b/28799b4d1eee7c8aaf3e19cbbc53076d.jpg"
+              src={Activity_1}
               alt="photo"
-              className="h-[303px] w-full rounded-[10px] md:w-[407px] "
+              className="h-[303px] w-full rounded-[10px] object-cover md:w-[407px] "
             />
           </div>
           <div className="px-[10px] md:px-0">
             <img
-              src="https://i.pinimg.com/736x/54/a2/46/54a24661be4a7648c0ba22412dae8eec.jpg"
+              src={Activity_2}
               alt="photo"
-              className="h-[303px] w-full rounded-[10px]  md:w-[407px] "
+              className="h-[303px] w-full rounded-[10px]  md:w-[407px] object-cover "
             />
           </div>
         </div>
