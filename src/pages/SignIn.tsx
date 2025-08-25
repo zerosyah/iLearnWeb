@@ -10,6 +10,7 @@ import {
   signInFailure,
 } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import Icon from "../assets/Heros/icon.jpg"
 
 function SignIn() {
   const [formData, setFormData] = useState({});
@@ -41,7 +42,11 @@ function SignIn() {
     try {
       // dispatch sign in start action
       dispatch(signInStart());
+      console.log("starting: loading...", formData);
+      
 
+      console.log("sending request...");
+      
       // api request to sign in
       const res = await fetch(
         "https://auth-service-cexj.onrender.com/api/auth/login",
@@ -53,6 +58,7 @@ function SignIn() {
           body: JSON.stringify(formData),
         },
       );
+      console.log("request sent...");
 
       // take response from the backend and convert it to JSON
       const data = await res.json();
@@ -63,6 +69,7 @@ function SignIn() {
         dispatch(signInFailure(data));
         setVisible(true);
         setTimeToExit();
+        return;
       } else {
         // dispatch sign in pass action
         dispatch(signInSuccess(data.user));
@@ -92,6 +99,8 @@ function SignIn() {
     }, 3000);
   }
 
+  //console.log("data: ", formData);
+  
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
       <div className="main"></div>
@@ -179,11 +188,10 @@ function SignIn() {
                 gradientDuoTone="tealToLime"
                 className="w-full font-popins text-[16px] font-semibold uppercase"
                 disabled={loading}
-                type="submit"
                 outline={false}
                 onClick={handleSubmit}
               >
-                {"Login"}
+                {loading ? "Loading..." : "Sign In"}
               </Button>
               <p className="relative -top-[10px] text-xs">
                 I don't have an account,{" "}
@@ -217,7 +225,9 @@ function SignIn() {
         </div>
       </div>
       <div className="absolute flex flex-col gap-[10px] rounded-[10px] border p-[10px] text-center shadow-md backdrop-blur-md md:hidden bg-white/60">
-        <div className="h-[80px] w-[80px] self-center rounded-full bg-red-700"></div>
+        <div className="h-[80px] w-[80px] self-center rounded-full bg-red-700">
+          <img src={Icon} alt="icon" className="h-full w-full rounded-full object-cover"/>
+        </div>
         <div className="">
           <p className="font-popins text-[28px] font-semibold">Hello, Friend</p>
           <p className="font-robot text-[12px]">learning made easy</p>
@@ -258,7 +268,7 @@ function SignIn() {
               gradientDuoTone="pinkToOrange"
               className="uppercase"
               disabled={loading}
-              type="submit"
+              onClick={handleSubmit}
               outline={true}
             >
               {loading ? "Loading..." : "Sign In"}
