@@ -241,7 +241,7 @@ function SignIn() {
             className="h-full w-full rounded-full object-cover"
           />
         </div>
-        <div className="absolute border p-[5px] rounded-[10px] right-[10px] bg-gradient-to-t from-purple-600 to-blue-600 hover:from-cyan-600 hover:to-pink-600 text-white" onClick={(e: any) => navigate("/signup")}>
+        <div className="absolute border p-[5px] rounded-[10px] right-[10px] bg-gradient-to-t from-purple-600 to-blue-600 hover:from-cyan-600 hover:to-pink-600 text-white" onClick={() => navigate("/signup")}>
           <FaUserPlus size={20} />
         </div>
         <div className="relative flex flex-col items-center justify-center h-fit mb-[10px]">
