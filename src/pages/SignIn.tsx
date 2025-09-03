@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { TextInput, Button } from "flowbite-react";
 import { HiMail, HiLockClosed } from "react-icons/hi";
-import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+  FaWhatsapp,
+  FaUserPlus,
+} from "react-icons/fa";
 import { LiaChevronDownSolid } from "react-icons/lia";
 import { useNavigate, Link } from "react-router-dom";
 import {
@@ -13,7 +19,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Icon from "../assets/Heros/icon.jpg"
 
 function SignIn() {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    Email: "",
+    Password: "",
+  });
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
@@ -187,7 +196,7 @@ function SignIn() {
               <Button
                 gradientDuoTone="tealToLime"
                 className="w-full font-popins text-[16px] font-semibold uppercase"
-                disabled={loading}
+                disabled={loading || !formData.Email || !formData.Password}
                 outline={false}
                 onClick={handleSubmit}
               >
@@ -224,13 +233,20 @@ function SignIn() {
           </div>
         </div>
       </div>
-      <div className="absolute flex flex-col gap-[10px] rounded-[10px] border p-[10px] text-center shadow-md backdrop-blur-md md:hidden bg-white/60">
+      <div className="absolute flex flex-col gap-[10px] rounded-[10px] border bg-white/60 p-[10px] text-center shadow-md backdrop-blur-md md:hidden">
         <div className="h-[80px] w-[80px] self-center rounded-full bg-red-700">
-          <img src={Icon} alt="icon" className="h-full w-full rounded-full object-cover"/>
+          <img
+            src={Icon}
+            alt="icon"
+            className="h-full w-full rounded-full object-cover"
+          />
         </div>
-        <div className="">
-          <p className="font-popins text-[28px] font-semibold">Hello, Friend</p>
-          <p className="font-robot text-[12px]">learning made easy</p>
+        <div className="absolute border p-[5px] rounded-[10px] right-[10px] bg-gradient-to-t from-purple-600 to-blue-600 hover:from-cyan-600 hover:to-pink-600 text-white" onClick={(e: any) => navigate("/signup")}>
+          <FaUserPlus size={20} />
+        </div>
+        <div className="relative flex flex-col items-center justify-center h-fit mb-[10px]">
+          <p className="font-popins text-[28px] font-semibold">iLearn-Web</p>
+          <p className="font-pacifico text-[12px] absolute text-center bottom-[-10px]">learning made easy</p>
         </div>
         <div className="">
           <form action="" className="flex flex-col gap-4">
@@ -253,16 +269,18 @@ function SignIn() {
               className="w-full font-popins text-[16px] font-semibold uppercase"
             />
 
-            <div className="w-full text-center items-center self-center flex flex-col justify-center">
+            <div className="flex w-full flex-col items-center justify-center self-center text-center">
               <Button
                 gradientDuoTone="tealToLime"
-                className="uppercase w-full"
+                className="w-full uppercase"
                 disabled={loading}
                 type="submit"
               >
                 {"Continue with Google"}
               </Button>
-              <p className="font-robot text-[14px] pt-[10px] font-semibold text-orange-600 ">forgot password</p>
+              <p className="pt-[10px] font-robot text-[14px] font-semibold text-orange-600 ">
+                forgot password
+              </p>
             </div>
             <Button
               gradientDuoTone="pinkToOrange"
@@ -273,6 +291,25 @@ function SignIn() {
             >
               {loading ? "Loading..." : "Sign In"}
             </Button>
+            {visible && (
+              <p className="relative -top-[10px] text-xs text-red-600 transition-all duration-300 ease-in-out">
+                {error.message}
+              </p>
+            )}
+            <div className="relative top-[10px] flex flex-row items-center justify-center gap-4">
+              <FaFacebook
+                size={25}
+                className="cursor-pointer text-blue-600"
+                onClick={() => {
+                  linkTree(
+                    "https://web.facebook.com/profile.php?id=100083533804483",
+                  );
+                }}
+              />
+              <FaInstagram size={25} className="cursor-pointer text-pink-600" />
+              <FaTwitter size={25} className="cursor-pointer text-sky-600" />
+              <FaWhatsapp size={25} className="cursor-pointer text-green-600" />
+            </div>
           </form>
         </div>
         <div className=""></div>
