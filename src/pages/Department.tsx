@@ -1,5 +1,6 @@
 
 import { Card } from "flowbite-react";
+import Header from "../components/Header";
 
 export default function Department() {
   const subjects = [
@@ -32,7 +33,7 @@ export default function Department() {
       subjects[5],
       subjects[6],
       subjects[17],
-      subjects[17]+1,
+      subjects[17],
     ],
     Grade9: [
       subjects[0],
@@ -43,7 +44,7 @@ export default function Department() {
       subjects[5],
       subjects[6],
       subjects[17],
-      subjects[17]+2,
+      subjects[17],
     ],
     grade10_science: [
       subjects[0],
@@ -78,16 +79,14 @@ export default function Department() {
   };
   return (
     <div className="flex flex-col gap-0">
-      <div className="text-center text-4xl font-semibold my-2 mb-7">
-        <h1>Departments</h1>
-      </div>
-      <div className="self-center flex flex-col gap-4 md:flex-row justify-evenly flex-wrap mb-4">
+      <Header />
+      <div className="self-center relative md:top-[70px] top-[80px] flex flex-col gap-4 md:flex-row justify-evenly flex-wrap mb-4">
         {/*Grade 8 */}
         <Card>
           <h2 className="text-center dark:text-white text-black font-semibold ">GRADE 8:</h2>
           <ul className="">
-            {grade["Grade8"].map((subject) => (
-              <li key={subject}>{subject}</li>
+            {grade["Grade8"].map((subject, index) => (
+              <li key={index}>{subject}</li>
             ))}
           </ul>
         </Card>

@@ -3,6 +3,7 @@ import { TextInput, Button } from "flowbite-react";
 import { HiMail, HiUser, HiLockClosed } from "react-icons/hi";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Header from "../components/Header";
 
 function SignUp() {
     const [formData, setFormData] = useState({})
@@ -53,7 +54,8 @@ function SignUp() {
     }
   return (
     <div className="parent">
-      <div className="main-child flex flex-col items-center gap-6 px-5 pt-10 md:flex-row md:pt-20">
+      <Header />
+      <div className="main-child flex relative pb-[10px] top-[80px] md:top-[70px] flex-col items-center gap-6 px-5 pt-10 md:flex-row md:pt-20">
         <div className="child w-full">
           <div className="">
             <h1 className="text-3xl font-bold">Hello, Friend!</h1>
