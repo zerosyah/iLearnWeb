@@ -1,14 +1,12 @@
 //import React from "react";
 import { Card } from "flowbite-react";
-
+import Header from "../components/Header";
 export default function Contact() {
   return (
     <div className="flex flex-col gap-4">
-      <div className="text-4xl self-center my-4">
-        <h1>Contact</h1>
-      </div>
+      <Header />
 {/*School Info */}
-      <div className="flex flex-col gap-4 self-center md:flex-row">
+      <div className="flex relative top-[80px] md:top-[70px] flex-col gap-4 self-center md:flex-row">
 
         {/*School Info */}
         <div>
