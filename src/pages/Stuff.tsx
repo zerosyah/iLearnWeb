@@ -53,7 +53,7 @@ export default function Stuff() {
     },
   ]
   return (
-    <div className="flex flex-col justify-evenly flex-wrap">
+    <div className="flex flex-col justify-evenly flex-wrap bg-[#FFFFFF]">
       <Header />
 
       <div className="flex relative top-[80px] md:top-[70px] flex-wrap gap-4 mx-[10px] justify-evenly my-2">
@@ -61,7 +61,7 @@ export default function Stuff() {
         {/*General Teacher*/}
         {
           staff.map(({ id, Subject, description, link }) => (
-            <Card className={`max-w-sm 0verflow-hidden transition-transform duration-700 transform  `} onMouseEnter={() => setIsHovered(Subject)} onMouseLeave={() => setIsHovered("")} imgSrc={logo} horizontal key={id} >
+            <Card className={`max-w-sm 0verflow-hidden bg-[#D9D9D9] transition-transform duration-700 transform  `} onMouseEnter={() => setIsHovered(Subject)} onMouseLeave={() => setIsHovered("")} imgSrc={logo} horizontal key={id} >
           <h5 className={`text-[20px] font-semibold font-popins tracking-tight text-gray-900 dark:text-white ${isHovered === Subject ? "-mt-5 duration-700 ease-in-out": "mt-0"}`}>
             {Subject}
           </h5>
