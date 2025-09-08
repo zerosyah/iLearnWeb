@@ -78,11 +78,11 @@ export default function Department() {
     ],
   };
   return (
-    <div className="flex flex-col gap-0">
+    <div className="flex flex-col gap-0 bg-[#FFFFFF]">
       <Header />
       <div className="self-center relative md:top-[70px] top-[80px] flex flex-col gap-4 md:flex-row justify-evenly flex-wrap mb-4">
         {/*Grade 8 */}
-        <Card>
+        <Card className="bg-[#D9D9D9]">
           <h2 className="text-center dark:text-white text-black font-semibold ">GRADE 8:</h2>
           <ul className="">
             {grade["Grade8"].map((subject, index) => (
@@ -92,7 +92,7 @@ export default function Department() {
         </Card>
 
         {/*Grade 9 */}
-        <Card>
+        <Card className="bg-[#D9D9D9]">
           <h2 className="text-center text-black font-semibold dark:text-white">GRADE 9:</h2>
           <ul className="">
             {grade["Grade9"].map((subject) => (
@@ -102,7 +102,7 @@ export default function Department() {
         </Card>
 
         {/*Grade 10 Commerse */}
-        <Card>
+        <Card className="bg-[#D9D9D9]">
           <h2 className=" font-semibold text-center ">Grade 10:</h2>
           <span className=" italic text-center">Commerce</span>
           <ul className="">
@@ -113,7 +113,7 @@ export default function Department() {
         </Card>
 
         {/*Grade 10 drama */}
-        <Card>
+        <Card className="bg-[#D9D9D9]">
           <h2 className="font-semibold text-center">Grade 10:</h2>
           <span className="italic text-center">Genaral</span>
           <ul className="">
@@ -124,7 +124,7 @@ export default function Department() {
         </Card>
 
         {/*Grade 10 science */}
-        <Card>
+        <Card className="bg-[#D9D9D9]">
           <h2 className="font-semibold text-center">Grade 10:</h2>
           <span className="italic text-center">Science</span>
           <ul className="">
@@ -137,7 +137,7 @@ export default function Department() {
         {/**grade11 */}
 
         {/*Grade 11 drama */}
-        <Card>
+        <Card className="bg-[#D9D9D9]">
           <h2 className="font-semibold text-center">Grade 11:</h2>
           <span className="italic text-center">Genaral</span>
           <ul className="">
@@ -148,7 +148,7 @@ export default function Department() {
         </Card>
 
         {/*Grade 11 science */}
-        <Card>
+        <Card className="bg-[#D9D9D9]">
           <h2 className="font-semibold text-center">Grade 11:</h2>
           <span className="italic text-center">Science</span>
           <ul className="">
@@ -159,7 +159,7 @@ export default function Department() {
         </Card>
 
         {/*Grade 11 commerce */}
-        <Card>
+        <Card className="bg-[#D9D9D9]">
           <h2 className="font-semibold text-center">Grade 11:</h2>
           <span className="italic text-center">Commerse</span>
           <ul className="">
@@ -170,7 +170,7 @@ export default function Department() {
         </Card>
 
         {/*Grade 12 drama */}
-        <Card>
+        <Card className="bg-[#D9D9D9]">
           <h2 className="font-semibold text-center">Grade 12:</h2>
           <span className="italic text-center">Genaral</span>
           <ul className="">
@@ -181,7 +181,7 @@ export default function Department() {
         </Card>
 
         {/*Grade 12 science */}
-        <Card>
+        <Card className="bg-[#D9D9D9]">
           <h2 className="font-semibold text-center">Grade 12:</h2>
           <span className="italic text-center">Science</span>
           <ul className="">
@@ -192,7 +192,7 @@ export default function Department() {
         </Card>
 
         {/*Grade 12 commerce */}
-        <Card>
+        <Card className="bg-[#D9D9D9]">
           <h2 className="font-semibold text-center">Grade 12:</h2>
           <span className="italic text-center">Commerse</span>
           <ul className="">
