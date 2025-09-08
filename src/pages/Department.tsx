@@ -102,7 +102,7 @@ export default function Department() {
         </Card>
 
         {/*Grade 10 Commerse */}
-        <Card>
+        <Card className="bg-[#D9D9D9]">
           <h2 className=" font-semibold text-center ">Grade 10:</h2>
           <span className=" italic text-center">Commerce</span>
           <ul className="">
@@ -124,7 +124,7 @@ export default function Department() {
         </Card>
 
         {/*Grade 10 science */}
-        <Card>
+        <Card className="bg-[#D9D9D9]">
           <h2 className="font-semibold text-center">Grade 10:</h2>
           <span className="italic text-center">Science</span>
           <ul className="">
@@ -137,7 +137,7 @@ export default function Department() {
         {/**grade11 */}
 
         {/*Grade 11 drama */}
-        <Card>
+        <Card className="bg-[#D9D9D9]">
           <h2 className="font-semibold text-center">Grade 11:</h2>
           <span className="italic text-center">Genaral</span>
           <ul className="">
@@ -159,7 +159,7 @@ export default function Department() {
         </Card>
 
         {/*Grade 11 commerce */}
-        <Card>
+        <Card className="bg-[#D9D9D9]">
           <h2 className="font-semibold text-center">Grade 11:</h2>
           <span className="italic text-center">Commerse</span>
           <ul className="">
@@ -170,7 +170,7 @@ export default function Department() {
         </Card>
 
         {/*Grade 12 drama */}
-        <Card>
+        <Card className="bg-[#D9D9D9]">
           <h2 className="font-semibold text-center">Grade 12:</h2>
           <span className="italic text-center">Genaral</span>
           <ul className="">
@@ -181,7 +181,7 @@ export default function Department() {
         </Card>
 
         {/*Grade 12 science */}
-        <Card>
+        <Card className="bg-[#D9D9D9]">
           <h2 className="font-semibold text-center">Grade 12:</h2>
           <span className="italic text-center">Science</span>
           <ul className="">
@@ -192,7 +192,7 @@ export default function Department() {
         </Card>
 
         {/*Grade 12 commerce */}
-        <Card>
+        <Card className="bg-[#D9D9D9]">
           <h2 className="font-semibold text-center">Grade 12:</h2>
           <span className="italic text-center">Commerse</span>
           <ul className="">
