@@ -53,29 +53,50 @@ export default function Stuff() {
     },
   ]
   return (
-    <div className="flex flex-col justify-evenly flex-wrap">
+    <div className="flex flex-col flex-wrap justify-evenly bg-[#FFFFFF]">
       <Header />
 
-      <div className="flex relative top-[80px] md:top-[70px] flex-wrap gap-4 mx-[10px] justify-evenly my-2">
-
+      <div className="relative top-[80px] mx-[10px] my-2 flex flex-wrap justify-evenly gap-4 md:top-[70px] ">
         {/*General Teacher*/}
-        {
-          staff.map(({ id, Subject, description, link }) => (
-            <Card className={`max-w-sm 0verflow-hidden transition-transform duration-700 transform  `} onMouseEnter={() => setIsHovered(Subject)} onMouseLeave={() => setIsHovered("")} imgSrc={logo} horizontal key={id} >
-          <h5 className={`text-[20px] font-semibold font-popins tracking-tight text-gray-900 dark:text-white ${isHovered === Subject ? "-mt-5 duration-700 ease-in-out": "mt-0"}`}>
-            {Subject}
-          </h5>
-          <motion.p className="font-robot text-[16px] text-gray-700 dark:text-gray-400" {...(isHovered === Subject ? { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { duration: 0.5 } } : { initial: { opacity: 1 }, animate: { opacity: 0 }, transition: { duration: 0.5 } })}>
-            {description}
-          </motion.p>
-          <button className={`bg-blue-500 hover:bg-blue-700 font-robot text-white font-bold py-2 px-4 rounded opacity-0 ease-in-out transition-opacity duration-700 ${isHovered === Subject ? "opacity-100 translate-y-4": "translate-y-0"}`}>
-            <Link to={link} className="">
-              view
-            </Link>
-          </button>
-        </Card> 
-          ))
-        } 
+        {staff.map(({ id, Subject, description, link }) => (
+          <Card
+            className={`0verflow-hidden max-w-sm transform bg-[#D9D9D9] transition-transform duration-700  `}
+            onMouseEnter={() => setIsHovered(Subject)}
+            onMouseLeave={() => setIsHovered("")}
+            imgSrc={logo}
+            horizontal
+            key={id}
+          >
+            <h5
+              className={`font-popins text-[20px] font-semibold tracking-tight text-gray-900 dark:text-white ${isHovered === Subject ? "-mt-5 duration-700 ease-in-out" : "mt-0"}`}
+            >
+              {Subject}
+            </h5>
+            <motion.p
+              className="font-robot text-[16px] text-gray-700 dark:text-gray-400"
+              {...(isHovered === Subject
+                ? {
+                    initial: { opacity: 0 },
+                    animate: { opacity: 1 },
+                    transition: { duration: 0.5 },
+                  }
+                : {
+                    initial: { opacity: 1 },
+                    animate: { opacity: 0 },
+                    transition: { duration: 0.5 },
+                  })}
+            >
+              {description}
+            </motion.p>
+            <button
+              className={`rounded bg-blue-500 px-4 py-2 font-robot font-bold text-white opacity-0 transition-opacity duration-700 ease-in-out hover:bg-blue-700 ${isHovered === Subject ? "translate-y-4 opacity-100" : "translate-y-0"}`}
+            >
+              <Link to={link} className="">
+                view
+              </Link>
+            </button>
+          </Card>
+        ))}
       </div>
     </div>
   );

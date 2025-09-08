@@ -17,7 +17,7 @@ import {
 } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Icon from "../assets/Heros/icon.jpg"
-import Header from "../components/Header";
+//import Header from "../components/Header";
 
 function SignIn() {
   const [formData, setFormData] = useState({
@@ -113,7 +113,6 @@ function SignIn() {
   
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
-      <Header />
       <div className="main"></div>
       <div className="z-10 hidden w-[700px] rounded-[10px] border bg-white/80 p-[10px] shadow-lg backdrop-blur-md md:flex">
         <div className="trapzoid rounded-[5px] px-[10px]">

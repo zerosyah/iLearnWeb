@@ -3,14 +3,14 @@ import { Card } from "flowbite-react";
 import Header from "../components/Header";
 export default function Contact() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 bg-[#FFFFFF]">
       <Header />
 {/*School Info */}
       <div className="flex relative top-[80px] md:top-[70px] flex-col gap-4 self-center md:flex-row">
 
         {/*School Info */}
         <div>
-          <Card className="max-w-sm">
+          <Card className="max-w-sm  bg-[#D9D9D9]">
             <h2 className="text-2xl font-semibold text-center">School Info:</h2>
             <h4 className="">
               <span className=" font-bold ">Name: </span>{" "}
@@ -41,7 +41,7 @@ export default function Contact() {
 
 {/*Principal Info */}
         <div>
-          <Card className="max-w-sm">
+          <Card className="max-w-sm bg-[#D9D9D9]">
             <h2 className="text-2xl font-semibold text-center">Principal Info:</h2>
             <h4 className="">
               <span className=" font-bold ">Name: </span>{" "}
@@ -71,7 +71,7 @@ export default function Contact() {
         </div>
 {/*Dept Info */}
         <div>
-          <Card className="max-w-sm">
+          <Card className="max-w-sm bg-[#D9D9D9]">
             <h2 className="text-2xl font-semibold text-center">Dept Info:</h2>
             <h4 className="">
               <span className=" font-bold ">Name: </span>{" "}
@@ -102,7 +102,7 @@ export default function Contact() {
 
 {/*HOD Info */}
         <div>
-          <Card className="max-w-sm">
+          <Card className="max-w-sm bg-[#D9D9D9]">
             <h2 className="text-2xl font-semibold text-center">HOD Info:</h2>
             <h4 className="">
               <span className=" font-bold ">Name: </span>{" "}

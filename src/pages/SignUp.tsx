@@ -1,4 +1,4 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { TextInput, Button } from "flowbite-react";
 import { HiMail, HiUser, HiLockClosed } from "react-icons/hi";
 import { useNavigate, Link } from "react-router-dom";
@@ -6,56 +6,58 @@ import { useSelector } from "react-redux";
 import Header from "../components/Header";
 
 function SignUp() {
-    const [formData, setFormData] = useState({})
-    // @ts-ignore
-    const [loading, setLoading] = useState(false)
-    // @ts-ignore
-    const [error, setError] = useState(false)
-  const navigate = useNavigate()
+  const [formData, setFormData] = useState<object>({});
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
+  const navigate = useNavigate();
   const { currentUser } = useSelector((state: any) => state.user);
   useEffect(() => {
-      if (currentUser) {
-    navigate("/dashboard?tab=dash")
-  }
-  }, [])
-
-    // onchange event handler
-    const handleChange = (e: any) =>{
-        setFormData({...formData, [e.target.id]: e.target.value})
+    if (currentUser) {
+      navigate("/dashboard?tab=dash");
     }
-    
-    // onsubmit event handler
-    const handleSubmit = async (e: any) => {
-        e.preventDefault()
-        try{
-            setLoading(true)
-            setError(false)
-            const res = await fetch("/api/auth/register", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(formData),
-            });
-            const data = await res.json();
-            setLoading(false)
+  }, []);
 
-            if(data.success === false){
-                setError(true)
-                return
-            }else{
-                navigate("/signin")
-            }
-            
-        }catch(error){
-            setError(true)
-            setLoading(false)
-        }
+  // onchange event handler
+  const handleChange = (e: any) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  // onsubmit event handler
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      setError(false);
+      const res = await fetch(
+        "https://auth-service-cexj.onrender.com/api/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        },
+      );
+      const data = await res.json();
+      if (data.success === false) {
+        setLoading(false);
+        setError(true);
+        setMessage(data.message);
+        return;
+      }
+      setLoading(false);
+      setError(false);
+      navigate("/signin");
+    } catch (error) {
+      setError(true);
+      setLoading(false);
     }
+  };
   return (
     <div className="parent">
       <Header />
-      <div className="main-child flex relative pb-[10px] top-[80px] md:top-[70px] flex-col items-center gap-6 px-5 pt-10 md:flex-row md:pt-20">
+      <div className="main-child relative top-[80px] flex flex-col items-center gap-6 px-5 pb-[10px] pt-10 md:top-[20px] md:flex-row md:pt-20">
         <div className="child w-full">
           <div className="">
             <h1 className="text-3xl font-bold">Hello, Friend!</h1>
@@ -129,13 +131,31 @@ function SignUp() {
                 required
                 onChange={handleChange}
               />
-              <Button
-                gradientDuoTone="tealToLime"
-                type="submit"
-                className="uppercase"
-              >
-                Submit
-              </Button>
+              {error && (
+                <div className="text-center text-red-600">
+                  <p>{message}</p>
+                </div>
+              )}
+              {loading ? (
+                <Button
+                  gradientDuoTone="tealToLime"
+                  type="submit"
+                  className="uppercase"
+                  onClick={handleSubmit}
+                  disabled={true}
+                >
+                  loading please wait...
+                </Button>
+              ) : (
+                <Button
+                  gradientDuoTone="tealToLime"
+                  type="submit"
+                  className="uppercase"
+                  onClick={handleSubmit}
+                >
+                  Submit
+                </Button>
+              )}
             </form>
           </div>
         </div>
