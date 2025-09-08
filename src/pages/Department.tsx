@@ -82,7 +82,7 @@ export default function Department() {
       <Header />
       <div className="self-center relative md:top-[70px] top-[80px] flex flex-col gap-4 md:flex-row justify-evenly flex-wrap mb-4">
         {/*Grade 8 */}
-        <Card className="bg-[#D9D9D9]>
+        <Card className="bg-[#D9D9D9]">
           <h2 className="text-center dark:text-white text-black font-semibold ">GRADE 8:</h2>
           <ul className="">
             {grade["Grade8"].map((subject, index) => (
