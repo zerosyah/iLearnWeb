@@ -1,16 +1,34 @@
-import React from 'react'
+import React from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+//import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 function LiveEventCard() {
-    const [isTrue, setIsTrue] = React.useState<boolean>(true);
-    const [isTrueNext, setIsTrueNext] = React.useState<boolean>(false);
-    const [isTrueDeadline, setIsTrueDeadline] = React.useState<boolean>(false);
+  const [isTrue, setIsTrue] = React.useState<boolean>(true);
+  const [isTrueNext, setIsTrueNext] = React.useState<boolean>(false);
+  //const [isTrueDeadline, setIsTrueDeadline] = React.useState<boolean>(false);
+  const data = [
+    {
+      subject: "English Assignment 1 - Ms. Nkosi",
+      time: "08:00 - 09:00",
+      location: "Grade 10A",
+    },
+    {
+      subject: "Mathematics Exam - Ms. Nkosi",
+      time: "09:00 - 10:00",
+      location: "Grade 10B",
+    },
+    {
+      subject: "Science Project - Mr. Smith",
+      time: "10:00 - 11:00",
+      location: "Grade 10C",
+    }
+  ]
   return (
-    <section className="bg-[#9c27b0] rounded-[10px] text-white w-full h-full p-[10px]">
+    <section className="h-full w-full rounded-[10px] bg-[#9c27b0] p-[10px] text-white">
       <section className="flex h-full w-full flex-col gap-[10px] rounded-[10px] ">
         <div className="self-center">
-          <Stack direction={"row"} spacing={2} className="flex justify-center">
+          <Stack direction={"row"} spacing={1} className="flex justify-center">
             <Button
               variant="contained"
               color={isTrue ? "secondary" : "primary"}
@@ -18,7 +36,7 @@ function LiveEventCard() {
               onClick={() => {
                 setIsTrue(true);
                 setIsTrueNext(false);
-                setIsTrueDeadline(false);
+                //setIsTrueDeadline(false);
               }}
             >
               Live
@@ -30,27 +48,15 @@ function LiveEventCard() {
               onClick={() => {
                 setIsTrueNext(true);
                 setIsTrue(false);
-                setIsTrueDeadline(false);
+                //setIsTrueDeadline(false);
               }}
             >
-              Upcoming
-            </Button>
-            <Button
-              variant="contained"
-              color={isTrueDeadline ? "secondary" : "primary"}
-              size="small"
-              onClick={() => {
-                setIsTrueDeadline(true);
-                setIsTrueNext(false);
-                setIsTrue(false);
-              }}
-            >
-              Deadlines
+              Alert
             </Button>
           </Stack>
         </div>
         {isTrue && (
-          <div className="">
+          <div className="transition-all duration-500 ease-in-out">
             <Stack direction={"column"} spacing={-0.5} className="">
               <h2 className="font-popins text-[16px] font-semibold">
                 Subject:
@@ -89,9 +95,50 @@ function LiveEventCard() {
             </Stack>
           </div>
         )}
+        {isTrueNext && (
+          <Stack direction={"column"} spacing={1}>
+            {data.map((item, index) => (
+              <Stack
+                direction={"row"}
+                spacing={1}
+                className=""
+                sx={{
+                  borderWidth: 1,
+                  borderColor: "gray",
+                  borderStyle: "solid",
+                  padding: "1px",
+                  borderRadius: "10px",
+                  boxShadow: 3,
+                  width: "100%",
+                  height: "44px",
+                  overflow: "hidden",
+
+                }}
+                key={index}
+              >
+                <div className="h-[40px] w-[40px] rounded-[10px] border"></div>
+                <Stack direction={"column"} spacing={-0.5} className="w-full" sx={{ overflow: "hidden", textOverflow: "ellipsis", }}>
+                  <h2 className="font-popins text-[14px] font-semibold">
+                    {item.subject}
+                  </h2>
+                  <Stack
+                    direction={"row"}
+                    spacing={1}
+                    sx={{ flexWrap: "nowrap" }}
+                  >
+                    <h2 className="font-robot text-[12px]">{ item.time }</h2>
+                    <h2 className=" font-robot text-[12px]">
+                      { item.location }
+                    </h2>
+                  </Stack>
+                </Stack>
+              </Stack>
+            ))}
+          </Stack>
+        )}
       </section>
     </section>
   );
 }
 
-export default LiveEventCard
+export default LiveEventCard;

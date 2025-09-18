@@ -13,7 +13,7 @@
 //import logo from "../assets/image2.jpg";
 //import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-//import { FaLongArrowAltRight } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 //import { MdOutlineReadMore } from "react-icons/md";
 //import CircularProgress from "@mui/joy/CircularProgress";
 import DashChart from "./DashChart";
@@ -21,6 +21,9 @@ import DashChart from "./DashChart";
 import DashInput from "./DashInput";
 //import OverallPerfomanceCard from "./OverallPerfomanceCard";
 import LiveEventCard from "./LiveEventCard";
+import { Button, Stack } from "@mui/material";
+import { useState } from "react";
+import OverallPerfomanceCard from "./OverallPerfomanceCard";
 
 
 export default function DashComponent() {
@@ -149,6 +152,32 @@ export default function DashComponent() {
     }
   ]
 
+  const [count, setCount] = useState<number>(1)
+  const [actualCount, setActualCount] = useState<number>(0)
+  const handleNavigateNext = () => {  
+    setCount((prev) => prev + 1)
+    let value = count
+    if (value > 1) {
+      setActualCount((prev) => prev + 1)
+    }
+    console.log("value: ", value);
+    if (count > 1) {
+      setCount(0)
+    }
+    return;
+  }
+
+  const handleNavigatePrev = () => {
+    setCount((prev) => prev - 1)
+    if (count < 0) {
+      setCount(1)
+    }
+    return;
+  }
+
+  console.log(count);
+  console.log(actualCount);
+  
   return (
     <section className="flex h-fit w-full justify-between gap-[10px] p-[10px]">
       {/* Right Section */}
@@ -189,7 +218,7 @@ export default function DashComponent() {
         </section>
         {/* second section */}
         <section className="mb-[10px] flex h-[250px] w-full gap-[10px]">
-          <section className="h-full hidden md:inline w-full rounded-[10px] bg-[#D9D9D9] p-[10px] md:w-[65%] ">
+          <section className="hidden h-full w-full rounded-[10px] bg-[#D9D9D9] p-[10px] md:inline md:w-[65%] ">
             <h1 className="font-popins text-[18px] font-bold uppercase text-black underline  ">
               Mark's Performance:
             </h1>
@@ -199,17 +228,44 @@ export default function DashComponent() {
               </div>
             </div>
           </section>
-          <section className="rounded-[10px] w-full bg-[#D9D9D9] md:h-full md:w-[35%]">
-            <LiveEventCard />
+          <section className="w-full rounded-[10px] bg-[#D9D9D9] md:h-full md:w-[35%]">
+            <Stack className="" direction={"row"} sx={{ justifyContent: "space-between", position: "relative"}} >
+              <Button variant="contained" color="warning" size="large"
+                sx={{ position: "absolute", left: "10px", marginTop: "10px" }}
+                onClick={handleNavigatePrev}>
+                <FaChevronLeft />
+              </Button>
+              <Button variant="contained" color="success" size="large"
+                sx={{ position: "absolute", right: "10px", marginTop: "10px", width: "40px" }}
+              onClick={handleNavigateNext}>
+                <FaChevronRight />
+              </Button>
+            </Stack>
+            {
+              count === -1 && (<div className="flex h-full w-full items-center justify-center">
+                <h1 className="">Under Maintaince</h1>
+              </div>)
+            }
+            {
+              count === 0 && <LiveEventCard />
+            }
+            {
+              count === 1 && <OverallPerfomanceCard />
+            }
+            {
+              count === 2 && (
+                <div className="flex h-full w-full items-center justify-center">
+                  <h1 className="">Under Maintaince</h1>
+                </div>
+              )
+            }
           </section>
         </section>
         {/* third section */}
-        <section className="h-[100px] w-full rounded-[10px] border bg-[#D9D9D9]">
-          
-        </section>
+        <section className="h-[100px] w-full rounded-[10px] border bg-[#D9D9D9]"></section>
       </section>
       {/* Timetable Left Section */}
-      <section className="hidden h-[572px] w-[25%] flex-col gap-[1%] rounded-[10px] border overflow-y-scroll md:inline-block ">
+      <section className="hidden h-[572px] w-[25%] flex-col gap-[1%] overflow-y-scroll rounded-[10px] border md:inline-block ">
         <div className="flex w-full flex-col overflow-y-scroll rounded-[10px] p-2  shadow-sm shadow-white scrollbar-hide">
           <div className="flex h-fit w-full items-baseline justify-between border-b-4 border-pink-500 pb-2">
             <div className="">
@@ -220,16 +276,29 @@ export default function DashComponent() {
             </div>
           </div>
           {events.map((item: any, index: number) => (
-            <div className={`flex border-b-4 border-${item.bColor}-500 py-2 px-[10px] overflow-x-hidden `} key={index}>
+            <div
+              className={`flex border-b-4 border-${item.bColor}-500 overflow-x-hidden px-[10px] py-2 `}
+              key={index}
+            >
               <span className="flex h-fit flex-col items-center border-l-4 border-r-4 border-gray-500 px-4 font-bebasNeue text-2xl ">
-                <h1 className="font-popins text-xl">{ new Date(item.date).toLocaleDateString("default", {month: "short"}) }</h1>
-                <h1 className={`text-4xl text-${item.bColor}-500`}>{ new Date(item.date).toLocaleDateString("default", {day: "numeric"}) }</h1>
+                <h1 className="font-popins text-xl">
+                  {new Date(item.date).toLocaleDateString("default", {
+                    month: "short",
+                  })}
+                </h1>
+                <h1 className={`text-4xl text-${item.bColor}-500`}>
+                  {new Date(item.date).toLocaleDateString("default", {
+                    day: "numeric",
+                  })}
+                </h1>
               </span>
               <span className="flex flex-col pl-4">
                 <h1 className="font-popins text-xl text-gray-600">
                   {item.time}
                 </h1>
-                <h1 className="font-bebasNeue text-4xl whitespace-nowrap">{ item.subject }</h1>
+                <h1 className="whitespace-nowrap font-bebasNeue text-4xl">
+                  {item.subject}
+                </h1>
               </span>
             </div>
           ))}
