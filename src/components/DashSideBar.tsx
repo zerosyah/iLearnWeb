@@ -2,13 +2,13 @@ import { Sidebar } from "flowbite-react";
 import { HiArrowRight, HiDocumentText, HiOutlineUserGroup, HiUser } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-Sidebar;
+import { GiHamburgerMenu } from "react-icons/gi";
 import { signOut } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 // @ts-ignore
 import { MdEmojiEvents } from "react-icons/md";
 import { FaClipboardCheck } from "react-icons/fa6";
-import { FaRegCalendarCheck, FaCalculator } from "react-icons/fa";
+import { FaRegCalendarCheck, FaCalculator, } from "react-icons/fa";
 import { TiMessages } from "react-icons/ti";
 import { BiMessageSquareDetail } from "react-icons/bi";
 
@@ -38,8 +38,10 @@ export default function DashSideBar() {
       console.log(error);
     }
   };
+  //const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <Sidebar className="rounded-[10px] " style={{borderRadius: "10px"}}>
+    <Sidebar className="rounded-[10px] absolute z-10 h-fit w-fit border shadow-md bg-[#D9D9D9]" collapseBehavior="collapse" collapsed>
+      <Sidebar.Collapse icon={GiHamburgerMenu}>
       <Sidebar.Items>
         <Sidebar.ItemGroup className="flex flex-col gap-1">
           <Link to="/dashboard?tab=profile">
@@ -49,6 +51,7 @@ export default function DashSideBar() {
               label={currentUser.Role === "admin" ? "Admin" : "Student"}
               labelColor="dark"
               as="div"
+              
             >
               Profile
             </Sidebar.Item>
@@ -124,6 +127,7 @@ export default function DashSideBar() {
           </Sidebar.Item>
         </Sidebar.ItemGroup>
       </Sidebar.Items>
+      </Sidebar.Collapse>
     </Sidebar>
   );
 }

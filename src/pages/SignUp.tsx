@@ -29,16 +29,13 @@ function SignUp() {
     try {
       setLoading(true);
       setError(false);
-      const res = await fetch(
-        "https://auth-service-cexj.onrender.com/api/auth/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+      const res = await fetch("https://api.ilearn.club/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify(formData),
+      });
       const data = await res.json();
       if (data.success === false) {
         setLoading(false);
