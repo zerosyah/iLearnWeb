@@ -1,0 +1,10 @@
+services: 
+  - type: static
+    name: ilearnweb
+    env: static
+    buildCommand: npm run build
+    startPublicPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

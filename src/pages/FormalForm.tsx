@@ -42,7 +42,7 @@ export default function FormalForm() {
     try {
       setLoading(true);
       setError(false);
-      const res = await fetch(`/data/student/form/:${currentUser._id}`, {
+      const res = await fetch(`https://api.ilearn.club/data/student/form/:${currentUser._id}`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -67,7 +67,7 @@ export default function FormalForm() {
 
   //const [stream, setStream] = useState("");
   return (
-    <main className="main flex w-full flex-col gap-4 p-4">
+    <main className="flex w-full flex-col gap-4 p-4">
       <form className="form flex w-full flex-col gap-4 rounded-lg border-2 p-2">
         <div className="rounded-lg border-2 bg-gray-500/40 p-2 text-lg font-bold uppercase shadow-lg shadow-black">
           <h1>Student Information</h1>
