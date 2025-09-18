@@ -59,7 +59,7 @@ function SignIn() {
       
       // api request to sign in
       const res = await fetch(
-        "https://auth-service-cexj.onrender.com/api/auth/login",
+        "https://api.ilearn.club/auth/login",
         {
           method: "POST",
           headers: {
@@ -250,7 +250,7 @@ function SignIn() {
           <p className="font-pacifico text-[12px] absolute text-center bottom-[-10px]">learning made easy</p>
         </div>
         <div className="">
-          <form action="" className="flex flex-col gap-4">
+          <form className="flex flex-col gap-4">
             <TextInput
               id="Email"
               type="email"
