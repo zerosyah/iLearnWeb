@@ -1,17 +1,13 @@
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { SelectChangeEvent } from "@mui/material/Select";
 import React from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 
 function OverallPerfomanceCard() {
-  const [year, setYear] = React.useState<string>("");
 
   // Function to handle the change of the year
-  const handleChange = (event: SelectChangeEvent) => {
-    setYear(event.target.value as string);
-  };
   // value controlls the value of the chart and the end angle
   //const value = 300;
 
