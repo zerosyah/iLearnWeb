@@ -1,9 +1,9 @@
-services: 
+services:
   - type: static
-    name: ilearnweb
+    name: ilearn-web
     env: static
     buildCommand: npm run build
-    startPublicPath: dist
+    staticPublishPath: dist
     routes:
       - type: rewrite
         source: /*
