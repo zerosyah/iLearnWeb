@@ -13,7 +13,7 @@ function OverallPerfomanceCard() {
     setYear(event.target.value as string);
   };
   // value controlls the value of the chart and the end angle
-  const value = 300;
+  //const value = 300;
 
   // Data for the chart
   const list = [
