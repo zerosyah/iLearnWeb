@@ -2,9 +2,6 @@ import { PieChart } from "@mui/x-charts/PieChart";
 
 function OverallPerfomanceCard() {
 
-  // Function to handle the change of the year
-  // value controlls the value of the chart and the end angle
-
   // Data for the chart
   const list = [
     {
