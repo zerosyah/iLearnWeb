@@ -24,6 +24,7 @@ import LiveEventCard from "./LiveEventCard";
 import { Button, Stack } from "@mui/material";
 import { useState } from "react";
 import OverallPerfomanceCard from "./OverallPerfomanceCard";
+import DashAttendanceCard from "./DashAttendanceCard";
 
 
 export default function DashComponent() {
@@ -184,14 +185,14 @@ export default function DashComponent() {
       <section className="flex w-[75%] flex-col gap-[10px] rounded-[10px] md:inline-block ">
         {/* first section */}
         <section className="mb-[10px] flex flex-col gap-[10px] md:flex-row">
-          <div className="flex w-full flex-col items-center justify-center overflow-auto rounded-[10px] border bg-[#D9D9D9] p-[10px] text-center md:h-[200px] md:w-[25%] md:justify-between md:overflow-hidden ">
+          <div className="flex w-full flex-col items-center justify-center overflow-auto rounded-[10px] border bg-[#D9D9D9] p-[10px] text-center md:h-fit md:w-[25%] md:justify-between md:overflow-hidden ">
             <div className="">
-              <h1 className="font-robot text-[18px] font-bold text-black">
+              <h1 className="font-inter text-[22px] font-semibold text-[#222222]">
                 {"Siyabonga Shezi"}
               </h1>
-              <p className="font-popins text-[12px] text-black">Grade: 10</p>
+              <p className="font-inter text-[14px] font-medium text-[#555555]">Grade: 10</p>
             </div>
-            <div className="mt-[5px] flex h-[200px] w-[200px] rounded-full border-[10px] md:h-[130px] md:w-[130px]">
+            <div className="mt-[5px] flex h-[200px] w-[200px] rounded-full border-[2px] md:h-[130px] md:w-[130px]">
               <img
                 src="https://i.pinimg.com/736x/49/3c/e7/493ce760bc067f2530d73365ace0d66c.jpg"
                 alt="Profile Picture"
@@ -201,7 +202,7 @@ export default function DashComponent() {
           </div>
           <div className="h-[200px] w-full overflow-auto rounded-[10px] border bg-[#D9D9D9] p-[10px] md:w-[80%]">
             <div className="">
-              <h1 className="font-robot text-[18px] font-bold">
+              <h1 className="font-inter text-[18px] font-semibold text-[#222222]">
                 Bio $ Other Details
               </h1>
             </div>
@@ -218,9 +219,9 @@ export default function DashComponent() {
         </section>
         {/* second section */}
         <section className="mb-[10px] flex h-[250px] w-full gap-[10px]">
-          <section className="hidden h-full w-full rounded-[10px] bg-[#D9D9D9] p-[10px] md:inline md:w-[65%] ">
-            <h1 className="font-popins text-[18px] font-bold uppercase text-black underline  ">
-              Mark's Performance:
+          <section className="hidden h-full w-full rounded-[10px] bg-[#D9D9D9] p-[10px] md:inline md:max-w-[63.7%] md:min-w-[63.7%] ">
+            <h1 className="font-inter text-[18px] font-semibold text-[#222222]">
+              Mark's Performance
             </h1>
             <div className="flex items-start justify-start">
               <div className="">
@@ -228,41 +229,52 @@ export default function DashComponent() {
               </div>
             </div>
           </section>
-          <section className="w-full rounded-[10px] bg-[#D9D9D9] md:h-full md:w-[35%]">
-            <Stack className="" direction={"row"} sx={{ justifyContent: "space-between", position: "relative"}} >
-              <Button variant="contained" color="warning" size="large"
+          <section className="w-full rounded-[10px] bg-[#D9D9D9] md:h-full md:max-w-[35%] md:min-w-[35%]">
+            <Stack
+              className=""
+              direction={"row"}
+              sx={{ justifyContent: "space-between", position: "relative" }}
+            >
+              <Button
+                variant="contained"
+                color="warning"
+                size="large"
                 sx={{ position: "absolute", left: "10px", marginTop: "10px" }}
-                onClick={handleNavigatePrev}>
+                onClick={handleNavigatePrev}
+              >
                 <FaChevronLeft />
               </Button>
-              <Button variant="contained" color="success" size="large"
-                sx={{ position: "absolute", right: "10px", marginTop: "10px", width: "40px" }}
-              onClick={handleNavigateNext}>
+              <Button
+                variant="contained"
+                color="success"
+                size="large"
+                sx={{
+                  position: "absolute",
+                  right: "10px",
+                  marginTop: "10px",
+                  width: "40px",
+                }}
+                onClick={handleNavigateNext}
+              >
                 <FaChevronRight />
               </Button>
             </Stack>
-            {
-              count === -1 && (<div className="flex h-full w-full items-center justify-center">
+            {count === -1 && <DashAttendanceCard/>}
+            {count === 0 && <LiveEventCard />}
+            {count === 1 && <OverallPerfomanceCard />}
+            {count === 2 && (
+              <div className="flex h-full w-full items-center justify-center">
                 <h1 className="">Under Maintaince</h1>
-              </div>)
-            }
-            {
-              count === 0 && <LiveEventCard />
-            }
-            {
-              count === 1 && <OverallPerfomanceCard />
-            }
-            {
-              count === 2 && (
-                <div className="flex h-full w-full items-center justify-center">
-                  <h1 className="">Under Maintaince</h1>
-                </div>
-              )
-            }
+              </div>
+            )}
           </section>
         </section>
         {/* third section */}
-        <section className="h-[100px] w-full rounded-[10px] border bg-[#D9D9D9]"></section>
+        <section className="h-[100px] w-full rounded-[10px] border bg-[#D9D9D9]">
+          <div className="flex h-full w-full items-center justify-center">
+            <h1 className="text-[20px] font-bebasNeue text-cyan-600">Under Maintaince</h1>
+          </div>
+        </section>
       </section>
       {/* Timetable Left Section */}
       <section className="hidden h-[572px] w-[25%] flex-col gap-[1%] overflow-y-scroll rounded-[10px] border md:inline-block ">

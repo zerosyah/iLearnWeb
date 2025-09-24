@@ -17,6 +17,7 @@ export default {
         bigelowRules: ["Bigelow Rules", "cursive"],
         robot: ["Roboto", "sans-serif"],
         pacifico: ["Pacifico", "cursive"],
+        inter: ["Inter"],
       },
     },
   },
