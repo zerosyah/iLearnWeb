@@ -1,19 +1,9 @@
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import React from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 
 function OverallPerfomanceCard() {
-  const [year, setYear] = React.useState<string>("");
 
   // Function to handle the change of the year
-  const handleChange = (event: SelectChangeEvent) => {
-    setYear(event.target.value as string);
-  };
   // value controlls the value of the chart and the end angle
-  const value = 300;
 
   // Data for the chart
   const list = [
@@ -26,7 +16,7 @@ function OverallPerfomanceCard() {
     },
     {
       label: "Group b",
-      value: 90,
+      value: 30,
       color: "#00C49F",
       id: 1,
       years: 2022,
@@ -49,7 +39,7 @@ function OverallPerfomanceCard() {
     width: 250,
     height: 200,
     hideLegend: true,
-    hideTitle: true,
+    hideTitle: false,
   };
   return (
     <section className="flex h-full w-full flex-col items-center rounded-[10px] p-[10px]">
@@ -69,7 +59,7 @@ function OverallPerfomanceCard() {
               cornerRadius: 10,
               startAngle: 0,
               endAngle: 360,
-              arcLabelRadius: 0,
+              arcLabelRadius: 10,
               arcLabelMinAngle: 100,
               cy: 90,
               cx: 70,

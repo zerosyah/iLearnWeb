@@ -250,7 +250,7 @@ function SignIn() {
           <p className="font-pacifico text-[12px] absolute text-center bottom-[-10px]">learning made easy</p>
         </div>
         <div className="">
-          <form className="flex flex-col gap-4">
+          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <TextInput
               id="Email"
               type="email"
@@ -287,7 +287,7 @@ function SignIn() {
               gradientDuoTone="pinkToOrange"
               className="uppercase"
               disabled={loading}
-              onClick={handleSubmit}
+              type="submit"
               outline={true}
             >
               {loading ? "Loading..." : "Sign In"}

@@ -25,7 +25,7 @@ function LiveEventCard() {
     }
   ]
   return (
-    <section className="h-full w-full rounded-[10px] bg-[#9c27b0] p-[10px] text-white">
+    <section className="h-full w-full rounded-[10px] p-[10px] text-white">
       <section className="flex h-full w-full flex-col gap-[10px] rounded-[10px] ">
         <div className="self-center">
           <Stack direction={"row"} spacing={1} className="flex justify-center">
@@ -58,26 +58,36 @@ function LiveEventCard() {
         {isTrue && (
           <div className="transition-all duration-500 ease-in-out">
             <Stack direction={"column"} spacing={-0.5} className="">
-              <h2 className="font-popins text-[16px] font-semibold">
+              <h2 className="font-inter text-[16px] font-medium text-[#222222]">
                 Subject:
               </h2>
-              <p className="font-robot text-[14px]">Mathematics</p>
+              <p className="font-inter text-[14px]  text-[#555555]">
+                Mathematics
+              </p>
             </Stack>
             <Stack direction={"column"} spacing={-0.5} className="">
-              <h2 className="font-popins text-[16px] font-semibold">
+              <h2 className="font-inter text-[16px] font-medium text-[#222222]">
                 Teacher:
               </h2>
-              <p className="font-robot text-[14px]">Ms. Nkosi</p>
+              <p className="font-inter text-[14px]  text-[#555555]">
+                Ms. Nkosi
+              </p>
             </Stack>
             <Stack direction={"column"} spacing={-0.5} className="">
-              <h2 className="font-popins text-[16px] font-semibold">Time:</h2>
-              <p className="font-robot text-[14px]">08:00 - 09:00</p>
+              <h2 className="font-inter text-[16px] font-medium text-[#222222]">
+                Time:
+              </h2>
+              <p className="font-inter text-[14px]  text-[#555555]">
+                08:00 - 09:00
+              </p>
             </Stack>
-            <Stack direction={"row"} spacing={1} className="">
-              <h2 className="font-popins text-[16px] font-semibold">
+            <Stack direction={"row"} spacing={1} className="" alignItems={"center"}>
+              <h2 className="font-inter text-[16px] font-medium text-[#222222]">
                 Location:
               </h2>
-              <p className="font-robot text-[16px] italic">Grade 10A</p>
+              <p className="font-inter text-[14px]  text-[#555555]">
+                Grade 10A
+              </p>
             </Stack>
             <Stack
               direction={"column"}
@@ -112,13 +122,17 @@ function LiveEventCard() {
                   width: "100%",
                   height: "44px",
                   overflow: "hidden",
-
                 }}
                 key={index}
               >
                 <div className="h-[40px] w-[40px] rounded-[10px] border"></div>
-                <Stack direction={"column"} spacing={-0.5} className="w-full" sx={{ overflow: "hidden", textOverflow: "ellipsis", }}>
-                  <h2 className="font-popins text-[14px] font-semibold">
+                <Stack
+                  direction={"column"}
+                  spacing={-0.5}
+                  className="w-full"
+                  sx={{ overflow: "hidden", textOverflow: "ellipsis" }}
+                >
+                  <h2 className="font-inter text-[14px] font-semibold">
                     {item.subject}
                   </h2>
                   <Stack
@@ -126,10 +140,8 @@ function LiveEventCard() {
                     spacing={1}
                     sx={{ flexWrap: "nowrap" }}
                   >
-                    <h2 className="font-robot text-[12px]">{ item.time }</h2>
-                    <h2 className=" font-robot text-[12px]">
-                      { item.location }
-                    </h2>
+                    <h2 className="font-robot text-[12px]">{item.time}</h2>
+                    <h2 className=" font-robot text-[12px]">{item.location}</h2>
                   </Stack>
                 </Stack>
               </Stack>
