@@ -59,7 +59,7 @@ function SignIn() {
       
       // api request to sign in
       const res = await fetch(
-        "https://api.ilearn.club/auth/login",
+        "https://auth.ilearn.club/api/auth/login",
         {
           method: "POST",
           headers: {
