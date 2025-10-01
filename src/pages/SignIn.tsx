@@ -62,6 +62,7 @@ function SignIn() {
         "https://auth.ilearn.club/api/auth/login",
         {
           method: "POST",
+credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
