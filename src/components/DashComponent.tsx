@@ -1,5 +1,5 @@
 // import { useEffect, useState } from "react";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 // import { PiStudentBold } from "react-icons/pi";
 // import { HiBookOpen, HiOutlineUserGroup } from "react-icons/hi2";
 // import { SlOptionsVertical } from "react-icons/sl";
@@ -28,64 +28,8 @@ import DashAttendanceCard from "./DashAttendanceCard";
 
 
 export default function DashComponent() {
-  // const [users, setUsers] = useState([]);
-  // // @ts-ignore
-  // const [comments, setComments] = useState([]);
-  // // @ts-ignore
-  // const [posts, setPosts] = useState([]);
-  // // @ts-ignore
-  // const [totalUsers, setTotalUsers] = useState(0);
-  // const [totalComments, setTotalComments] = useState(0);
-  // const [totalPosts, setTotalPosts] = useState(0);
-  // // @ts-ignore
-  // const [lastMonthUsers, setLastMonthUsers] = useState(0);
-  // const { currentUser } = useSelector((state: any) => state.user);
-  // const teacher =
-  //   "https://pikwizard.com/pw/small/fe895262fcddf4c758f76566e0f41103.jpg";
-  // const staff =
-  //   "https://www.shutterstock.com/image-photo/business-team-standing-over-dark-260nw-181166018.jpg";
-  // const student =
-  //   "https://img.pikbest.com/ai/illus_our/20230414/593b2c90239e6d9710e4471b4823d69a.jpg!w700wp";
-  // const mothevent =
-  //   "https://floatiekings.com/cdn/shop/articles/creative-school-event-ideas.jpg?v=1703670883&width=2000";
-  // const tableChamp =
-  //   "https://t4.ftcdn.net/jpg/06/03/94/97/360_F_603949786_1JqD1nWoCDK0Fvo0t2D2dYVMSl0FPiv8.jpg";
-  // const libraryImg =
-  //   "https://png.pngtree.com/thumb_back/fh260/background/20230526/pngtree-an-old-bookcase-in-a-library-image_2642908.jpg";
-  // const [interval, setInterval] = useState("Month");
-
-  // useEffect(() => {
-  //   const fetchUsers = async () => {
-  //     const res = await fetch("/api/user/getUsers?limit=5");
-  //     const data = await res.json();
-  //     if (res.ok) {
-  //       setUsers(data.users);
-  //       setTotalUsers(data.totalUsers);
-  //       setLastMonthUsers(data.lastMonthUsers);
-  //     }
-  //   };
-  //   const fetchComments = async () => {
-  //     const res = await fetch("/api/comment/comments?limit=5");
-  //     const data = await res.json();
-  //     if (res.ok) {
-  //       setComments(data.comments);
-  //       setTotalComments(data.totalComments);
-  //     }
-  //   };
-  //   const fetchPosts = async () => {
-  //     const res = await fetch("/api/post/posts?limit=5");
-  //     const data = await res.json();
-  //     if (res.ok) {
-  //       setPosts(data.posts);
-  //       setTotalPosts(data.totalPosts);
-  //     }
-  //   };
-  //   if (currentUser.isAdmin) {
-  //     fetchUsers();
-  //     fetchComments();
-  //     fetchPosts();
-  //   }
-  // }, [currentUser]);
+  const { currentUser } = useSelector((state: any) => state.user);
+  console.log(currentUser);
 
   const details = [
     {
@@ -112,6 +56,18 @@ export default function DashComponent() {
       label: "Badges",
       value: "5",
     },
+    {
+      label: "Id Number",
+      value: currentUser?.IdNumber,
+    },
+    {
+      label: "Email",
+      value: currentUser?.Email,
+    },
+    {
+      label: "Phone",
+      value: currentUser?.Phone,
+    }
   ];
 
   const events = [
@@ -163,7 +119,7 @@ export default function DashComponent() {
     }
     console.log("value: ", value);
     if (count > 1) {
-      setCount(0)
+      setCount(-1)
     }
     return;
   }
@@ -171,7 +127,7 @@ export default function DashComponent() {
   const handleNavigatePrev = () => {
     setCount((prev) => prev - 1)
     if (count < 0) {
-      setCount(1)
+      setCount(2)
     }
     return;
   }
@@ -185,22 +141,22 @@ export default function DashComponent() {
       <section className="flex w-[75%] flex-col gap-[10px] rounded-[10px] md:inline-block ">
         {/* first section */}
         <section className="mb-[10px] flex flex-col gap-[10px] md:flex-row">
-          <div className="flex w-full flex-col items-center justify-center overflow-auto rounded-[10px] border bg-[#D9D9D9] p-[10px] text-center md:h-fit md:w-[25%] md:justify-between md:overflow-hidden ">
+          <div className="flex w-full flex-col items-center justify-center overflow-auto rounded-[10px] border bg-[#D9D9D9] p-[10px] text-center md:h-[212px] md:w-[25%] md:justify-between md:overflow-y-visible ">
             <div className="">
               <h1 className="font-inter text-[22px] font-semibold text-[#222222]">
-                {"Siyabonga Shezi"}
+                {currentUser?.FirstName + " " + currentUser?.LastName}
               </h1>
               <p className="font-inter text-[14px] font-medium text-[#555555]">Grade: 10</p>
             </div>
             <div className="mt-[5px] flex h-[200px] w-[200px] rounded-full border-[2px] md:h-[130px] md:w-[130px]">
               <img
-                src="https://i.pinimg.com/736x/49/3c/e7/493ce760bc067f2530d73365ace0d66c.jpg"
+                src={currentUser?.ProfilePicture}
                 alt="Profile Picture"
                 className="h-full w-full rounded-full object-cover"
               />
             </div>
           </div>
-          <div className="h-[200px] w-full overflow-auto rounded-[10px] border bg-[#D9D9D9] p-[10px] md:w-[80%]">
+          <div className="h-[212px] md: w-full overflow-auto rounded-[10px] border bg-[#D9D9D9] p-[10px] md:w-[80%]">
             <div className="">
               <h1 className="font-inter text-[18px] font-semibold text-[#222222]">
                 Bio $ Other Details

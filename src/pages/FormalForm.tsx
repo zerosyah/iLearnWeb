@@ -10,6 +10,7 @@ import FormTextInput from "../components/FormTextInput";
 import MultiTextInput from "../components/MultiTextInput";
 
 export default function FormalForm() {
+  const { currentUser } = useSelector((state: any) => state.user);
   const [formData, setFormData] = useState({
     GradeAppliedFor: "",
     BirthDate: new Date(),
@@ -19,10 +20,15 @@ export default function FormalForm() {
     HasDisabilities: false,
     HasSpecialNeeds: false,
     HasMedicalAid: false,
+    _id: currentUser.ID,
+    FirstName: currentUser.FirstName,
+    LastName: currentUser.LastName,
+    Email: currentUser.Email,
+    Phone: currentUser.Phone,
+    IdNumber: currentUser.IdNumber,
   });
 
  // const [selectedDate, setSelectedDate] = useState("");
-  const { currentUser } = useSelector((state: any) => state.user);
   // @ts-ignore
   const [error, setError] = useState(false);
   // @ts-ignore
@@ -34,7 +40,7 @@ export default function FormalForm() {
     setFormData(prevData => ({...prevData, [id]: value}));
   };
 
-  console.log(formData);
+  //console.log(currentUser.ID);
   //console.log(selectedDate);
 
   const handleSubmit = async (e: any) => {
@@ -42,13 +48,17 @@ export default function FormalForm() {
     try {
       setLoading(true);
       setError(false);
-      const res = await fetch(`https://api.ilearn.club/data/student/form/:${currentUser._id}`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
+      const res = await fetch(
+        `https://mark.ilearn.club/data/student/form`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(formData),
         },
-        body: JSON.stringify(formData),
-      });
+      );
       const data = await res.json();
       setLoading(false);
 
@@ -65,10 +75,12 @@ export default function FormalForm() {
     }
   };
 
+  //console.log(formData);
+  
   //const [stream, setStream] = useState("");
   return (
     <main className="flex w-full flex-col gap-4 p-4">
-      <form className="form flex w-full flex-col gap-4 rounded-lg border-2 p-2">
+      <form onSubmit={handleSubmit} className="form flex w-full flex-col gap-4 rounded-lg border-2 p-2">
         <div className="rounded-lg border-2 bg-gray-500/40 p-2 text-lg font-bold uppercase shadow-lg shadow-black">
           <h1>Student Information</h1>
         </div>
@@ -77,22 +89,30 @@ export default function FormalForm() {
             label="First Name"
             id="FirstName"
             handleChange={handleChange}
+            disabled={true}
+            value={currentUser.FirstName}
           />
           <FormTextInput
             label="Last Name"
             id="LastName"
             handleChange={handleChange}
+            disabled={true}
+            value={currentUser.LastName}
           />
-          <FormTextInput label="Email" id="Email" handleChange={handleChange} />
+          <FormTextInput label="Email" id="Email" handleChange={handleChange} disabled={true} value={currentUser.Email} />
           <FormTextInput
             label="Phone Number"
             id="PhoneNumber"
             handleChange={handleChange}
+            disabled={true}
+            value={currentUser.Phone}
           />
           <FormTextInput
             label="Id Number"
             id="IdNumber"
             handleChange={handleChange}
+            disabled={true}
+            value={currentUser.IdNumber}
           />
           <FormTextInput
             label="Gender"
@@ -406,13 +426,11 @@ export default function FormalForm() {
         <Button
           className="text-lg font-bold uppercase"
           gradientDuoTone={"tealToLime"}
-          onClick={handleSubmit}
           outline
           type="submit"
           disabled={loading}
-          onSubmit={handleSubmit}
         >
-          * Submit *
+          {loading ? "Submitting..." : "Submit Application"}
         </Button>
       </form>
     </main>
