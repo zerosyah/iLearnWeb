@@ -17,6 +17,7 @@ import {
 } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Icon from "../assets/Heros/icon.jpg"
+//import Axios from "axios"
 //import Header from "../components/Header";
 
 function SignIn() {
@@ -59,11 +60,14 @@ function SignIn() {
       
       // api request to sign in
       const res = await fetch(
-        "https://api.ilearn.club/auth/login",
+        "https://auth.ilearn.club/api/auth/login",
         {
           method: "POST",
+          credentials: 'include',
           headers: {
-            "Content-Type": "application/json",
+            "accept": "application/json",
+            "Content-Type": "application/json"
+            
           },
           body: JSON.stringify(formData),
         },

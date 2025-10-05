@@ -29,7 +29,7 @@ function SignUp() {
     try {
       setLoading(true);
       setError(false);
-      const res = await fetch("https://api.ilearn.club/auth/register", {
+      const res = await fetch("https://auth.ilearn.club/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
