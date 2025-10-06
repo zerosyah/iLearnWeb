@@ -33,6 +33,9 @@ export default function FormalForm() {
   const [error, setError] = useState(false);
   // @ts-ignore
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [message, setMessage] = useState("");
+
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -60,18 +63,26 @@ export default function FormalForm() {
         },
       );
       const data = await res.json();
-      setLoading(false);
 
       if (data.success === false) {
+        setLoading(false);
         setError(true);
+        setErrorMessage(data.error);
+        setMessage(data.message);
         return;
       } else {
+        setLoading(false);
+        setError(false);
         navigate("/dashboard?tab=dash");
+        return;
       }
     } catch (error) {
       console.log(error);
       setError(true);
       setLoading(false);
+      setErrorMessage(error as string);
+      setMessage("An error occurred. Please try again later.");
+      return;
     }
   };
 
@@ -423,6 +434,10 @@ export default function FormalForm() {
             handleChange={handleChange}
           />
         </section>
+        {
+          error && <p className="text-red-500">{errorMessage}</p>
+          //ror && <p className="text-red-500">{errorMessage}</p>
+        }
         <Button
           className="text-lg font-bold uppercase"
           gradientDuoTone={"tealToLime"}
