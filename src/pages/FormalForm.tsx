@@ -436,7 +436,10 @@ export default function FormalForm() {
         </section>
         {
           error && <p className="text-red-500">{errorMessage}</p>
-          //ror && <p className="text-red-500">{errorMessage}</p>
+        }
+        {
+        error && <p className="text-red-500">{message}</p>
+
         }
         <Button
           className="text-lg font-bold uppercase"
