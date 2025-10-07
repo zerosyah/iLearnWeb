@@ -3,13 +3,15 @@ import { FloatingLabel } from "flowbite-react";
 
 interface FormalFormProps {
   label: string;
-  id: string;
+  id?: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   value?: any
+  type?: any;
+  required?: boolean;
 }
 
-function FormTextInput({ label, id, handleChange, disabled=false, value }: FormalFormProps) {
+function FormTextInput({ label, id, handleChange, disabled=false, value, type, required=false }: FormalFormProps) {
   return (
     <main>
       <div className="flex w-full items-center gap-9 rounded-lg ">
@@ -21,7 +23,8 @@ function FormTextInput({ label, id, handleChange, disabled=false, value }: Forma
           onChange={handleChange}
           disabled={disabled}
           value={value}
-          required
+          required={required}
+          type={type}
         />
       </div>
     </main>

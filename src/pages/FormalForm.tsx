@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import FormTextInput from "../components/FormTextInput";
 import MultiTextInput from "../components/MultiTextInput";
+import MuiSelect from "../components/MuiSelect";
 
 export default function FormalForm() {
   const { currentUser } = useSelector((state: any) => state.user);
@@ -26,6 +27,8 @@ export default function FormalForm() {
     Email: currentUser.Email,
     Phone: currentUser.Phone,
     IdNumber: currentUser.IdNumber,
+    Gender: "",
+    Race: "",
   });
 
  // const [selectedDate, setSelectedDate] = useState("");
@@ -86,7 +89,7 @@ export default function FormalForm() {
     }
   };
 
-  //console.log(formData);
+  console.log(formData);
   
   //const [stream, setStream] = useState("");
   return (
@@ -125,12 +128,9 @@ export default function FormalForm() {
             disabled={true}
             value={currentUser.IdNumber}
           />
-          <FormTextInput
-            label="Gender"
-            id="Gender"
-            handleChange={handleChange}
-          />
-          <FormTextInput label="Race" id="Race" handleChange={handleChange} />
+          <MuiSelect labelId="Gender" id="Gender" label="Gender" options={["Male", "Female"]} onChange={(data: any)=> setFormData({...formData, Gender: data.target.value})} />
+
+          <MuiSelect labelId="Race" id="Race" label="Race" options={["White", "Black", "Coloured", "Indian", "Asian"]} onChange={(data: any)=> setFormData({...formData, Race: data.target.value})} />
           <Datepicker
             onSelectedDateChanged={(date) =>
               setFormData({ ...formData, BirthDate: date })
@@ -141,11 +141,14 @@ export default function FormalForm() {
             label="Country Of Origin"
             id="CountryOfOrigin"
             handleChange={handleChange}
+            required={true}
+            type={"text"}
           />
           <FormTextInput
             label="Nick Name"
             id="NickName"
             handleChange={handleChange}
+            type={"text"}
           />
           <MultiTextInput
             label="Other Names"
@@ -156,6 +159,8 @@ export default function FormalForm() {
             label="Religion"
             id="Religion"
             handleChange={handleChange}
+            type={"text"}
+            required={true}
           />
           <FormTextInput
             label="Physical Address"
@@ -172,11 +177,15 @@ export default function FormalForm() {
             label="Home Number"
             id="HomeNumber"
             handleChange={handleChange}
+            type={"number"}
+            required={true}
           />
           <FormTextInput
             label="Emergency Contact"
             id="EmergencyNumber"
             handleChange={handleChange}
+            type={"number"}
+            required={true}
           />
         </section>
         <div className="rounded-lg border-2 bg-gray-500/40 p-2 text-lg font-bold uppercase shadow-lg shadow-black">
@@ -187,31 +196,42 @@ export default function FormalForm() {
             label="School Name"
             id="PreviousSchoolName"
             handleChange={handleChange}
+            required={true}
+            type={"text"}
           />
           <FormTextInput
             label="School Address"
             id="PreviousSchoolAddress"
             handleChange={handleChange}
+            type={"text"}
+            required={true}
           />
           <FormTextInput
             label="School Principal"
             id="PreviousSchoolPrincipal"
             handleChange={handleChange}
+            type={"text"}
+            required={true}
           />
           <FormTextInput
             label="School Number"
             id="PreviousSchoolNumber"
             handleChange={handleChange}
+            type={"number"}
+            required={true}
           />
           <FormTextInput
             label="Removal Letter"
             id="PreviousSchoolRemovalLetter"
             handleChange={handleChange}
+            type={"text"}
           />
           <FormTextInput
             label="School Country"
             id="PreviousSchoolCountry"
             handleChange={handleChange}
+            type={"text"}
+            required={true}
           />
         </section>
         <div className="rounded-lg border-2 bg-gray-500/40 p-2 text-lg font-bold uppercase shadow-lg shadow-black">
@@ -269,14 +289,16 @@ export default function FormalForm() {
             id="IsRepeating"
           >
             <option value={""}>Are You Repeating Grade</option>
-            <option value={String(true)}>True</option>
-            <option value={"false"}>False</option>
+            <option value={String(true)}>Yes</option>
+            <option value={"false"}>No</option>
           </Select>
 
           <FormTextInput
             label="Course Of Study"
             id="CourseOfStudy"
             handleChange={handleChange}
+            type={"text"}
+            required={true}
           />
         </section>
         <div className="rounded-lg border-2 bg-gray-500/40 p-2 text-lg font-bold uppercase shadow-lg shadow-black">
@@ -390,7 +412,7 @@ export default function FormalForm() {
         </section>
 
         <div className="rounded-lg border-2 bg-gray-500/40 p-2 text-lg font-bold uppercase shadow-lg shadow-black">
-          <h1>Student Medical Information</h1>
+          <h1>Parents Medical Information</h1>
         </div>
         <section className="mt-2 flex w-full flex-wrap gap-4 rounded-lg border p-2">
           <FormTextInput
