@@ -27,13 +27,19 @@ export default function DashSideBar() {
   }, [location.search]);
   const handleSignOutAccount = async () => {
     try {
-      await fetch("/api/auth/logout", {
-        method: "Delete",
+      const res = await fetch("/api/auth/logout", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-      });
-      dispatch(signOut());
+        body: JSON.stringify({ userId: currentUser._id }),
+      })
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data);
+        return
+      }
+      return dispatch(signOut());
     } catch (error) {
       console.log(error);
     }

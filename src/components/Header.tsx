@@ -36,19 +36,21 @@ export default function Header() {
   //const [tab, setTab] = useState("");
 
   // handle logout account
-  const handleLogoutAccount = async () => {
-    // call api
+  const handleSignOutAccount = async () => {
     try {
-      // api requist
-
-      await fetch("/api/auth/logout", {
+      const res = await fetch("/api/auth/logout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ userId: currentUser._id }),
-      })
-      dispatch(signOut());
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data);
+        return;
+      }
+      return dispatch(signOut());
     } catch (error) {
       console.log(error);
     }
@@ -183,7 +185,7 @@ export default function Header() {
             </Link>
             <Dropdown.Item>Settings</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item onClick={handleLogoutAccount}>
+            <Dropdown.Item onClick={handleSignOutAccount}>
               Sign out
             </Dropdown.Item>
           </Dropdown>
