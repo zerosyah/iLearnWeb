@@ -11,7 +11,7 @@ interface FormalFormProps {
   required?: boolean;
 }
 
-function FormTextInput({ label, id, handleChange, disabled=false, value, type, required=false }: FormalFormProps) {
+function FormTextInput({ label, id, handleChange, disabled=false, value, type="text", required=false }: FormalFormProps) {
   return (
     <main>
       <div className="flex w-full items-center gap-9 rounded-lg ">

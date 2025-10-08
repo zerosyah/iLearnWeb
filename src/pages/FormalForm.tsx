@@ -105,6 +105,7 @@ export default function FormalForm() {
             handleChange={handleChange}
             disabled={true}
             value={currentUser.FirstName}
+            type={"text"}
           />
           <FormTextInput
             label="Last Name"
@@ -112,14 +113,16 @@ export default function FormalForm() {
             handleChange={handleChange}
             disabled={true}
             value={currentUser.LastName}
+            type={"text"}
           />
-          <FormTextInput label="Email" id="Email" handleChange={handleChange} disabled={true} value={currentUser.Email} />
+          <FormTextInput label="Email" id="Email" handleChange={handleChange} disabled={true} value={currentUser.Email} type={"email"} />
           <FormTextInput
             label="Phone Number"
             id="PhoneNumber"
             handleChange={handleChange}
             disabled={true}
             value={currentUser.Phone}
+            type={"number"}
           />
           <FormTextInput
             label="Id Number"
@@ -127,6 +130,7 @@ export default function FormalForm() {
             handleChange={handleChange}
             disabled={true}
             value={currentUser.IdNumber}
+            type={"number"}
           />
           <MuiSelect labelId="Gender" id="Gender" label="Gender" options={["Male", "Female"]} onChange={(data: any)=> setFormData({...formData, Gender: data.target.value})} />
 
@@ -262,6 +266,7 @@ export default function FormalForm() {
             label="Highest Grade Passed"
             id="HighestGradePassed"
             handleChange={handleChange}
+            type={"number"}
           />
           <FormTextInput
             label="Reason For Joining"
@@ -272,11 +277,13 @@ export default function FormalForm() {
             label="Year Of Study"
             id="YearOfStudy"
             handleChange={handleChange}
+            type={"number"}
           />
           <FormTextInput
             label="Current Grade"
             id="CurrentGrade"
             handleChange={handleChange}
+            type={"number"}
           />
 
           <Select
@@ -315,8 +322,8 @@ export default function FormalForm() {
             id="HasMedicalConditions"
           >
             <option value={""}>Do you have Medical Conditions</option>
-            <option value={"true"}>True</option>
-            <option value={"false"}>False</option>
+            <option value={"Yes"}>Yes</option>
+            <option value={"No"}>No</option>
           </Select>
 
           {formData.HasMedicalConditions && (
@@ -337,8 +344,8 @@ export default function FormalForm() {
             id="HasAllergies"
           >
             <option value={""}>Do You Have Allergies</option>
-            <option value={"true"}>True</option>
-            <option value={"false"}>False</option>
+            <option value={"Yes"}>Yes</option>
+            <option value={"Yes"}>No</option>
           </Select>
 
           {formData.HasAllergies && (
@@ -359,8 +366,8 @@ export default function FormalForm() {
             id="HasDisabilities"
           >
             <option value={""}>Do You Have Disabilities</option>
-            <option value={"true"}>True</option>
-            <option value={"false"}>False</option>
+            <option value={"Yes"}>Yes</option>
+            <option value={"No"}>No</option>
           </Select>
 
           {formData.HasDisabilities && (
@@ -381,8 +388,8 @@ export default function FormalForm() {
             id="HasSpecialNeeds"
           >
             <option value={""}>Do You have Special Needs</option>
-            <option value={"true"}>True</option>
-            <option value={"false"}>False</option>
+            <option value={"Yes"}>Yes</option>
+            <option value={"No"}>No</option>
           </Select>
 
           <Select
@@ -395,14 +402,15 @@ export default function FormalForm() {
             id="HasMedicalAid"
           >
             <option value={""}>Do You Have Medical Aid</option>
-            <option value={"true"}>True</option>
-            <option value={"false"}>False</option>
+            <option value={"Yes"}>Yes</option>
+            <option value={"No"}>No</option>
           </Select>
 
           <FormTextInput
             label="Medical Aid Nmber"
             id="MedicalAidNumber"
             handleChange={handleChange}
+            type={"number"}
           />
           <FormTextInput
             label="Parental Consent"
@@ -449,6 +457,8 @@ export default function FormalForm() {
             label="Work Number"
             id="ParentWorkNumber"
             handleChange={handleChange}
+            type={"number"}
+            required={true}
           />
           <FormTextInput
             label="Address"
