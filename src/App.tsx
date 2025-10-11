@@ -35,7 +35,9 @@ function App() {
         // search route
         <Route path="/search" element={<Search />} />
         // register route
-        <Route path="/register" element={<FormalForm />} />
+        <Route element={<PrivateRoute/>}>
+          <Route path="/register" element={<FormalForm />} />
+        </Route>
         // contact route
         <Route path="/Contact" element={<Contact />} />
         // private profile route

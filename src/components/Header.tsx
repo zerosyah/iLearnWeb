@@ -38,8 +38,8 @@ export default function Header() {
   // handle logout account
   const handleSignOutAccount = async () => {
     try {
-      const res = await fetch("/api/auth/logout", {
-        method: "POST",
+      const res = await fetch("https://auth.ilearn.club/api/auth/logout", {
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
