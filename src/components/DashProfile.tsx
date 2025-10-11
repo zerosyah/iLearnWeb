@@ -145,7 +145,7 @@ export default function DashProfile() {
         dispatch(updateUserSuccess(data));
         setUpdateSuccess(true);
       }
-    } catch (error) {
+    } catch (error :any) {
       dispatch(updateUserFailure(error));
     }
   };
