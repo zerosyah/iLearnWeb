@@ -201,7 +201,7 @@ export default function Result() {
             
           </div>
           <div className="flex h-fit w-56 items-center justify-center border border-dashed p-1">
-            {searching ? (
+            {searching && formData.studentId !== "" ? (
               <p className="text-lime-400">searching...</p>
             ) : error ? (
               <p className="text-lime-400">{error.message}</p>
