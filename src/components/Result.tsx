@@ -1,4 +1,11 @@
-import { Button, Label, Select, TextInput } from "flowbite-react";
+import {
+  Button,
+  Label,
+  Select,
+  TextInput,
+} from "flowbite-react";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 import { useEffect, useState } from "react";
 import {
   studentSearchStart,
@@ -8,7 +15,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Result() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<any>({
     studentSubject: "",
     studentId: "",
     Grade: "",
@@ -21,6 +28,13 @@ export default function Result() {
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
+  const gradeOptions = [
+    { value: "8", label: "Grade 8" },
+    { value: "9", label: "Grade 9" },
+    { value: "10", label: "Grade 10" },
+    { value: "11", label: "Grade 11" },
+    { value: "12", label: "Grade 12" },
+  ]
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -99,78 +113,26 @@ export default function Result() {
     // @ts-ignore
   }, [formData.studentSubject, formData.studentId, formData.Grade]);
   const subjects = [
-    {
-      subject: "Mathematics",
-      uiName: "Mathematics",
-    },
-    {
-      subject: "English",
-      uiName: "English",
-    },
-    {
-      subject: "IsiZulu",
-      uiName: "IsiZulu",
-    },
-    {
-      subject: "LifeOrientation",
-      uiName: "Life Orientation",
-    },
-    {
-      subject: "CreativeArt",
-      uiName: "Creative Art",
-    },
-    {
-      subject: "Technology",
-      uiName: "Technology",
-    },
-    {
-      subject: "NaturalScience",
-      uiName: "Natural Science",
-    },
-    {
-      subject: "Geography",
-      uiName: "Geography",
-    },
-    {
-      subject: "Drama",
-      uiName: "Drama",
-    },
-    {
-      subject: "History",
-      uiName: "History",
-    },
-    {
-      subject: "LifeSciences",
-      uiName: "Life Sciences",
-    },
-    {
-      subject: "PhysicalSciences",
-      uiName: "Physical Sciences",
-    },
-    {
-      subject: "MathematicsLiteracy",
-      uiName: "Mathematics Literacy",
-    },
-    {
-      subject: "Tourism",
-      uiName: "Tourism",
-    },
-    {
-      subject: "Accounting",
-      uiName: "Accounting",
-    },
-    {
-      subject: "ConsumerStudies",
-      uiName: "Consumer Studies",
-    },
-    {
-      subject: "BusinessStudies",
-      uiName: "Business Studies",
-    },
-    {
-      
-    }
+    { "label": "Mathematics", "value": "Mathematics" },
+    { "label": "English", "value": "English" },
+    { "label": "IsiZulu", "value": "IsiZulu " },
+    { "label": "Life Orientation", "value": "LifeOrientation" },
+    { "label": "Creative Art", "value": "CreativeArt" },
+    { "label": "Technology", "value": "Technology" },
+    { "label": "Natural Science", "value": "NaturalScience" },
+    { "label": "Geography", "value": "Geography" },
+    { "label": "Drama", "value": "Drama" },
+    { "label": "History", "value": "History" },
+    { "label": "Life Sciences", "value": "LifeSciences" },
+    { "label": "Physical Sciences", "value": "PhysicalSciences" },
+    { "label": "Mathematics Literacy", "value": "MathematicsLiteracy" },
+    { "label": "Tourism", "value": "Tourism" },
+    { "label": "Accounting", "value": "Accounting" },
+    { "label": "Consumer Studies", "value": "ConsumerStudies" },
+    { "label": "Business Studies", "value": "BusinessStudies" },
   ]
+  //console.log(formData);
+  
   return (
     <div className="m-4 ">
       <form onSubmit={handleSubmit}>
@@ -178,27 +140,42 @@ export default function Result() {
           <h1>Student Result</h1>
         </div>
         <div className="flex flex-col items-center justify-center gap-4 p-4">
-          <div className="std-id flex flex-col gap-2">
+          <div className="std-id flex flex-col gap-[20px]">
             <TextInput
               id="studentId"
               placeholder="Enter Student ID"
               sizing={"sm"}
               onChange={handleChange}
             />
-            <Select sizing={"sm"} id="Grade" onChange={handleChange}>
-              <option value={"9"}>Grade 9</option>
-              <option value={"10"}>Grade 10</option>
-              <option value={"11"}>Grade 11</option>
-              <option value={"12"}>Grade 12</option>
-            </Select>
-            <Select sizing={"sm"} id="studentSubject" onChange={handleChange}>
-              {
-                subjects.map((subject) => {
-                  return <option className="text-sm" value={subject.subject}>{subject.uiName}</option>;
-                })
-              }
-            </Select>
-            
+            <TextField id="studentId" label="Student ID" variant="outlined" onChange={handleChange} />
+            <Autocomplete
+              value={formData.Grade}
+              onChange={(event: any, value: object) => {
+                event.preventDefault();
+                //@ts-ignore
+                setFormData({ ...formData, Grade: value.value });
+              }}
+              id="sudentGrade"
+              options={gradeOptions}
+              sx={{ width: 300 }}
+              renderInput={(params) => (
+                <TextField {...params} label="Grade" />
+              )}
+            />
+            <Autocomplete
+              value={formData.studentSubject}
+              onChange={(event: any, value: object) => {
+                event.preventDefault();
+                //@ts-ignore
+                setFormData({ ...formData, studentSubject: value.value });
+              }}
+              id="studentSubject"
+              options={subjects}
+              sx={{ width: 300 }}
+              renderInput={(params) => (
+                <TextField {...params} label="Subject" />
+              )}
+            />
           </div>
           <div className="flex h-fit w-56 items-center justify-center border border-dashed p-1">
             {searching && formData.studentId !== "" ? (

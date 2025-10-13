@@ -31,6 +31,7 @@ function SignUp() {
       setError(false);
       const res = await fetch("https://auth.ilearn.club/api/auth/register", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -57,18 +58,17 @@ function SignUp() {
       <div className="main-child relative top-[80px] flex flex-col items-center gap-6 px-5 pb-[10px] pt-10 md:top-[20px] md:flex-row md:pt-20">
         <div className="child w-full">
           <div className="">
-            <h1 className="text-3xl font-bold">Hello, Friend!</h1>
+            <h1 className="text-[28px] font-robot font-bold">Hello, Friend!</h1>
           </div>
           <div className="">
-            <p className="">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem
-              perferendis natus ducimus exercitationem? Pariatur officiis
-              accusamus unde, quam laudantium necessitatibus animi repellendus
-              quasi totam possimus esse beatae atque cum delectus.
+            <p className="font-popins text-[16px]">
+              Create your free account to access personalized lessons, track
+              your progress, and join class activities. It only takes a minute
+              to get started.
             </p>
-            <p className="text-teal-600 ">
+            <p className="text-teal-600 font-popins text-[16px] ">
               have an account?{" "}
-              <Link to="/signin" className="text-blue-500 underline">
+              <Link to="/signin" className="text-blue-500 underline font-popins text-[16px] font-medium">
                 Sign in
               </Link>
             </p>
@@ -98,7 +98,7 @@ function SignUp() {
               />
               <TextInput
                 id="IdNumber"
-                type="text"
+                type="number"
                 icon={HiUser}
                 placeholder="Id Number"
                 required
@@ -106,7 +106,7 @@ function SignUp() {
               />
               <TextInput
                 id="Phone"
-                type="text"
+                type="number"
                 icon={HiUser}
                 placeholder="Phone Number"
                 required
@@ -138,7 +138,6 @@ function SignUp() {
                   gradientDuoTone="tealToLime"
                   type="submit"
                   className="uppercase"
-                  onClick={handleSubmit}
                   disabled={true}
                 >
                   loading please wait...
@@ -148,7 +147,6 @@ function SignUp() {
                   gradientDuoTone="tealToLime"
                   type="submit"
                   className="uppercase"
-                  onClick={handleSubmit}
                 >
                   Submit
                 </Button>
