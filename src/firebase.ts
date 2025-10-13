@@ -7,16 +7,18 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "import.meta.env.VITE_FIREBASE_KEY",
-  authDomain: "mern-auth-55397.firebaseapp.com",
-  projectId: "mern-auth-55397",
-  storageBucket: "mern-auth-55397.appspot.com",
-  messagingSenderId: "461551141578",
-  appId: "1:461551141578:web:d5a458f4b992f72407ea33",
-  measurementId: "G-5ZP6VGY170",
+  apiKey: "AIzaSyB8mJx2t_r5Reaa8DYpU36h666Ixd_zjOE",
+  authDomain: "raq-music-studios.firebaseapp.com",
+  projectId: "raq-music-studios",
+  storageBucket: "raq-music-studios.appspot.com",
+  messagingSenderId: "966787435300",
+  appId: "1:966787435300:web:3e49048c606c38d8ed81b1",
+  measurementId: "G-B9BPKP20M5"
 };
 
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
-// @ts-ignore
+const app = initializeApp(firebaseConfig);
+//@ts-ignore
 const analytics = getAnalytics(app);
+
+export { app, analytics };

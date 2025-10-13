@@ -76,6 +76,17 @@ export default function DashSideBar() {
       <Sidebar.Collapse icon={GiHamburgerMenu}>
         <Sidebar.Items>
           <Sidebar.ItemGroup className="flex flex-col gap-1">
+            <Link to={"/"}>
+              <Sidebar.Item
+                active={tab === "home"}
+                icon={HiHome}
+                label={currentUser.Role === "admin" ? "Admin" : "Student"}
+                labelColor="dark"
+                as="div"
+              >
+                Profile
+              </Sidebar.Item>
+            </Link>
             <Link to="/dashboard?tab=profile">
               <Sidebar.Item
                 active={tab === "profile"}

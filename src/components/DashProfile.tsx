@@ -30,6 +30,8 @@ export default function DashProfile() {
     /*useSelector below */
   }
   const { currentUser, loading, error } = useSelector((state: any) => state.user);
+  console.log(currentUser);
+  
 
   {
     /*fileRef below */
@@ -63,7 +65,7 @@ export default function DashProfile() {
   }
   const handleFileUpload = async (image: any) => {
     const storage = getStorage(app);
-    const fileName = new Date().getTime() + image.name;
+    const fileName = `iLearnWeb/profiles/${currentUser.ID}/` + new Date().getTime() + image.name;
     const storageRef = ref(storage, fileName);
     const uploadTask = uploadBytesResumable(storageRef, image);
     uploadTask.on(
