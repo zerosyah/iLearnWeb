@@ -10,7 +10,7 @@ import { MdEmojiEvents } from "react-icons/md";
 import { FaClipboardCheck } from "react-icons/fa6";
 import { FaRegCalendarCheck, FaCalculator, } from "react-icons/fa";
 import { TiMessages } from "react-icons/ti";
-import { BiMessageSquareDetail } from "react-icons/bi";
+//import { BiMessageSquareDetail } from "react-icons/bi";
 //import Alert from "@mui/material/Alert";
 //import AlertTitle from "@mui/material/AlertTitle";
 //import Stack from "@mui/material/Stack";
@@ -84,24 +84,13 @@ export default function DashSideBar() {
                 labelColor="dark"
                 as="div"
               >
-                Profile
+                Home
               </Sidebar.Item>
             </Link>
             <Link to="/dashboard?tab=profile">
               <Sidebar.Item
                 active={tab === "profile"}
                 icon={HiUser}
-                label={currentUser.Role === "admin" ? "Admin" : "Student"}
-                labelColor="dark"
-                as="div"
-              >
-                Profile
-              </Sidebar.Item>
-            </Link>
-            <Link to={"/"}>
-              <Sidebar.Item
-                active={tab === "home"}
-                icon={HiHome}
                 label={currentUser.Role === "admin" ? "Admin" : "Student"}
                 labelColor="dark"
                 as="div"
@@ -169,12 +158,6 @@ export default function DashSideBar() {
               icon={TiMessages}
             >
               Live Chat
-            </Sidebar.Item>
-            <Sidebar.Item
-              active={tab === "/dashboard?tab=comments"}
-              icon={BiMessageSquareDetail}
-            >
-              Comments
             </Sidebar.Item>
 
             <Sidebar.Item

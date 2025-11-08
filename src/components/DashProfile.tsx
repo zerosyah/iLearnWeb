@@ -30,7 +30,7 @@ export default function DashProfile() {
     /*useSelector below */
   }
   const { currentUser, loading, error } = useSelector((state: any) => state.user);
-  console.log(currentUser);
+  //console.log(currentUser);
   
 
   {
@@ -128,9 +128,10 @@ export default function DashProfile() {
 
       // update user profile
       const res = await fetch(
-        `/api/auth/update/profile/${currentUser.ID}`,
+        `https://auth.ilearn.club/api/auth/update/profile/${currentUser.ID}`,
         {
           method: "PATCH",
+          credentials: "include",
           headers: {
             "content-type": "application/json",
           },
@@ -152,7 +153,7 @@ export default function DashProfile() {
     }
   };
 
-  console.log(currentUser);
+  //console.log(currentUser);
   
   return (
     <div className="mx-auto w-full max-w-lg p-3">

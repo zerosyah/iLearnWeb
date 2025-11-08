@@ -53,10 +53,6 @@ function SignIn() {
     try {
       // dispatch sign in start action
       dispatch(signInStart());
-      console.log("starting: loading...", formData);
-      
-
-      console.log("sending request...");
       
       // api request to sign in
       const res = await fetch(
@@ -71,7 +67,6 @@ function SignIn() {
           body: JSON.stringify(formData),
         },
       );
-      console.log("request sent...");
 
       // take response from the backend and convert it to JSON
       const data = await res.json();
@@ -84,6 +79,12 @@ function SignIn() {
         setTimeToExit();
         return;
       } else {
+        if (!data.user.IsVerified) {
+          dispatch(signInFailure({message: "Please verify your email to continue"}));
+          setVisible(true);
+          setTimeToExit();
+          return 
+        }
         // dispatch sign in pass action
         dispatch(signInSuccess(data.user));
 
@@ -91,10 +92,10 @@ function SignIn() {
         if (!data.user.IsComplete && data.user.Role != "admin") {
           // navigate to user info form
           navigate("/register");
-        } else {
-          // navigate to admin dashbord
-          navigate("/dashboard?tab=dash");
         }
+        
+        // navigate to admin dashbord
+        navigate("/dashboard?tab=dash");
       }
     } catch (error) {
       dispatch(signInFailure(error));
@@ -162,7 +163,7 @@ function SignIn() {
               <h1 className="font-popins text-[28px] font-bold">Hi, Friend!</h1>
               <p className="font-robot text-[16px]">Welcome to iLearnWeb</p>
             </div>
-            <div className="mt-[30px] flex flex-col items-center justify-center gap-4">
+            <form onSubmit={handleSubmit} className="mt-[30px] flex flex-col items-center justify-center gap-4 ">
               <TextInput
                 id="Email"
                 type="email"
@@ -191,7 +192,7 @@ function SignIn() {
               <Button
                 gradientDuoTone="pinkToOrange"
                 className="w-full font-popins text-[16px] font-semibold uppercase"
-                disabled={loading}
+                disabled={true}
                 //type="submit"
                 outline={true}
               >
@@ -200,9 +201,9 @@ function SignIn() {
               <Button
                 gradientDuoTone="tealToLime"
                 className="w-full font-popins text-[16px] font-semibold uppercase"
-                disabled={loading || !formData.Email || !formData.Password}
+                disabled={loading}
                 outline={false}
-                onClick={handleSubmit}
+                type="submit"
               >
                 {loading ? "Loading..." : "Sign In"}
               </Button>
@@ -219,7 +220,7 @@ function SignIn() {
                   {error.message}
                 </p>
               )}
-            </div>
+            </form>
             <div className="relative top-[10px] flex flex-row items-center justify-center gap-4">
               <FaFacebook
                 size={25}
@@ -261,7 +262,7 @@ function SignIn() {
               placeholder="Email"
               required
               onChange={handleChange}
-              className="w-full font-popins text-[16px] font-semibold uppercase"
+              className="w-full md:hidden disabled:open:*: font-popins text-[16px] font-semibold uppercase"
             />
             <TextInput
               id="Password"

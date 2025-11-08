@@ -37,3 +37,11 @@
         background-repeat: no-repeat;
         z-index: 0px;
 }
+.scroll-container {
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+}
+.scroll-container::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
