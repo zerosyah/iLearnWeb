@@ -170,6 +170,7 @@ function SignIn() {
                 icon={HiMail}
                 placeholder="Email"
                 required
+                disabled={loading}
                 onChange={handleChange}
                 className="w-full items-center font-robot text-[14px]"
               />
@@ -179,6 +180,7 @@ function SignIn() {
                 icon={HiLockClosed}
                 placeholder="Password"
                 required
+                disabled={loading}
                 onChange={handleChange}
                 className="w-full items-center font-robot text-[14px]"
               />
@@ -261,6 +263,7 @@ function SignIn() {
               icon={HiMail}
               placeholder="Email"
               required
+              disabled={loading}
               onChange={handleChange}
               className="w-full md:hidden disabled:open:*: font-popins text-[16px] font-semibold uppercase"
             />
@@ -270,6 +273,7 @@ function SignIn() {
               icon={HiLockClosed}
               placeholder="Password"
               required
+              disabled={loading}
               onChange={handleChange}
               className="w-full font-popins text-[16px] font-semibold uppercase"
             />
