@@ -1,15 +1,15 @@
 import { SlOptions } from "react-icons/sl";
-import { HiOutlineSearch } from "react-icons/hi";
-import { Avatar, TextInput } from "flowbite-react";
+//import { HiOutlineSearch } from "react-icons/hi";
+//import { Avatar, TextInput } from "flowbite-react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import DashUserDetails from "./DashUserDetails";
+//import DashUserDetails from "./DashUserDetails";
 import { TextField, Stack, Divider, Button } from "@mui/material";
 import { studentSelected } from "../redux/student/studentSlice";
 
 function DashSearchList({selected}:any) {
   const [users, setUsers] = useState([]);
-  const [selectedUser, setSelectedUser] = useState('');
+  //const [selectedUser, setSelectedUser] = useState('');
   const [clicked, setClicked] = useState<number>()
   const { currentUser } = useSelector((state: any) => state.user);
   const dispatch = useDispatch()
