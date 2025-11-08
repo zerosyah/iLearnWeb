@@ -15,20 +15,19 @@ function OverallPerfomanceCard() {
       label: "Group b",
       value: 30,
       color: "#00C49F",
-      id: 1,
+      id: 2,
       years: 2022,
     },
     {
       label: "Group g",
       value: 90,
       color: "#00FFFE",
-      id: 1,
+      id: 3,
       years: 2024,
     },
   ];
 
   const data = list
-  //console.log(list.map((item)=>item.years === year));
   
   // Settings for the chart
   const settings = {
@@ -38,6 +37,7 @@ function OverallPerfomanceCard() {
     hideLegend: true,
     hideTitle: false,
   };
+  
   return (
     <section className="flex h-full w-full flex-col items-center rounded-[10px] p-[10px]">
       {/* Header of the card */}

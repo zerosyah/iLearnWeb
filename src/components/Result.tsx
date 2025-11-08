@@ -1,8 +1,5 @@
 import {
-  Button,
-  Label,
-  Select,
-  TextInput,
+  Button
 } from "flowbite-react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -20,11 +17,21 @@ export default function Result() {
     studentId: "",
     Grade: "",
   });
+  const [submitForm, setSubmitForm] = useState<any>({
+    Subject: "",
+    Month: "",
+    TestName: "",
+    Mark: "",
+    Total: "",
+    Status: "",
+  })
   const [display, setDisplay] = useState(false);
+  //@ts-ignore
   const [studens, setStudent] = useState([]);
   const dispatch = useDispatch();
-  const { error, searching } = useSelector((state: any) => state.mark);
+  const { error, searching, student } = useSelector((state: any) => state.mark);
   const currentUser = useSelector((state: any) => state.user.currentUser);
+  //const 
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -35,6 +42,11 @@ export default function Result() {
     { value: "11", label: "Grade 11" },
     { value: "12", label: "Grade 12" },
   ]
+  //const currentStudent = useSelector((state:any)=>{state.st.currentStudent})
+  //console.log(currentStudent);
+  
+
+  const months = ["January", "February"]
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -89,21 +101,14 @@ export default function Result() {
         if (data.success === false) {
           dispatch(studentSearchFailure(data));
           setDisplay(false);
-        } else {
-          dispatch(studentSearchSuccess(data));
-          setDisplay(true);
-          setStudent(data.message);
         }
 
-        // if the response from the backend is ok
-        /*if(res.ok){
-          // convert response to json
-          const data = await res.json();
-          setStudent(data.student);
-          setDisplay(true);
-        }*/
+        dispatch(studentSearchSuccess(data));
+        setDisplay(true);
+        setStudent(data.message);
+
       } catch (error) {
-        console.log(error);
+        dispatch(studentSearchFailure(error));
       }
     };
 
@@ -131,7 +136,7 @@ export default function Result() {
     { "label": "Consumer Studies", "value": "ConsumerStudies" },
     { "label": "Business Studies", "value": "BusinessStudies" },
   ]
-  //console.log(formData);
+  //console.log("searching: ", student);
   
   return (
     <div className="m-4 ">
@@ -141,13 +146,15 @@ export default function Result() {
         </div>
         <div className="flex flex-col items-center justify-center gap-4 p-4">
           <div className="std-id flex flex-col gap-[20px]">
-            <TextInput
+            <TextField
               id="studentId"
-              placeholder="Enter Student ID"
-              sizing={"sm"}
+              label="Student ID"
+              variant="outlined"
               onChange={handleChange}
+              size="small"
+              type="text"
+              //required={true}
             />
-            <TextField id="studentId" label="Student ID" variant="outlined" onChange={handleChange} />
             <Autocomplete
               value={formData.Grade}
               onChange={(event: any, value: object) => {
@@ -156,11 +163,10 @@ export default function Result() {
                 setFormData({ ...formData, Grade: value.value });
               }}
               id="sudentGrade"
+              size="small"
               options={gradeOptions}
-              sx={{ width: 300 }}
-              renderInput={(params) => (
-                <TextField {...params} label="Grade" />
-              )}
+              //sx={{ width: 300 }}
+              renderInput={(params) => <TextField {...params} label="Grade"  />}
             />
             <Autocomplete
               value={formData.studentSubject}
@@ -171,120 +177,110 @@ export default function Result() {
               }}
               id="studentSubject"
               options={subjects}
-              sx={{ width: 300 }}
+              size="small"
+              //sx={{ width: 300 }}
               renderInput={(params) => (
-                <TextField {...params} label="Subject" />
+                <TextField {...params} label="Subject"                                               />
               )}
             />
           </div>
           <div className="flex h-fit w-56 items-center justify-center border border-dashed p-1">
-            {searching && formData.studentId !== "" ? (
-              <p className="text-lime-400">searching...</p>
-            ) : error ? (
-              <p className="text-lime-400">{error.message}</p>
-            ) : (
-              <p className="text-lime-400">{studens}</p>
+            {!searching && formData.studentId.length < 0 && (
+              <p className="">Results will Show here!</p>
+            )}
+            {searching && <p className="">Loading please wait...</p>}
+            {!searching && error && student == null && (
+              <p className="">Student Not Found.</p>
+            )}
+            {!searching && student !== null && (
+              <p className="space-x-[10px] font-popins font-medium text-lime-600">
+                {student.message}
+              </p>
             )}
           </div>
-          {display === true && (
+          {!display && (
             <div className="flex flex-col gap-3 border border-dotted p-3 md:flex-row md:items-center md:justify-evenly">
               <div className="flex items-center gap-1">
-                <label htmlFor="subject" className="font-mono font-semibold">
-                  subject:
-                </label>
-                <Select sizing={"sm"} id="subject" onChange={handleChange}>
-                  <option value={"undefined here"}>Select subject</option>
-                  <option value={"Accounting"}>Accounting</option>
-                  <option value={"Bussiness_Studies"}>Business studies</option>
-                  <option value={"Creative_Art"}>Creative Art</option>
-                  <option value={"Drama"}>Drama</option>
-                  <option value={"English"}>English</option>
-                  <option value={"Geography"}>Geography</option>
-                  <option value={"History"}>History</option>
-                  <option value={"IsiZulu"}>IsiZulu</option>
-                  <option value={"Life_Orientation"}>Life Orientation</option>
-                  <option value={"Life_Sciences"}>Life Sciences</option>
-                  <option value={"Mathematics"}>Mathematics</option>
-                  <option value={"Natural_Science"}>Natural Science</option>
-                  <option value={"Physical_Sciences"}>Physical Sciences</option>
-                  <option value={"Technology"}>Technology</option>
-                  <option value={"Tourism"}>Tourism</option>
-                </Select>
+                <Autocomplete
+                  value={formData.Subject}
+                  onChange={(event: any, value: object) => {
+                    event.preventDefault();
+                    //@ts-ignore
+                    setFormData({ ...formData, Subject: value.value });
+                  }}
+                  id="Subject"
+                  options={subjects}
+                  size="small"
+                  sx={{ width: 180 }}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Subject" required={true} />
+                  )}
+                />
               </div>
               <div className="flex items-center gap-1">
-                <label
-                  htmlFor="testMonth"
-                  className="whitespace-nowrap font-mono font-semibold"
-                >
-                  test Month:{" "}
-                </label>
-                <Select sizing={"sm"} id="testMonth" onChange={handleChange}>
-                  <option>Select Month</option>
-                  <option value={"Jan"}>January</option>
-                  <option value={"Feb"}>February</option>
-                  <option value={"Mar"}>March</option>
-                  <option value={"Apr"}>April</option>
-                  <option value={"May"}>May</option>
-                  <option value={"Jun"}>June</option>
-                  <option value={"Jul"}>July</option>
-                  <option value={"Aug"}>August</option>
-                  <option value={"sep"}>September</option>
-                  <option value={"Oct"}>October</option>
-                  <option value={"Nov"}>November</option>
-                  <option value={"Dec"}>December</option>
-                </Select>
+                <Autocomplete
+                  value={submitForm.Month}
+                  onChange={(event: any, value: object) => {
+                    event.preventDefault();
+                    //@ts-ignore
+                    setSubmitForm({ ...submitForm, Month: value });
+                  }}
+                  id="Month"
+                  options={months}
+                  size="small"
+                  sx={{ width: 150 }}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Month" required={true} />
+                  )}
+                />
               </div>
               <div className="flex items-center gap-1">
-                <Label
-                  htmlFor="testName"
-                  className="whitespace-nowrap font-mono font-semibold"
-                >
-                  test Name:
-                </Label>
-                <TextInput
-                  id="testName"
-                  sizing={"xs"}
-                  size={14}
-                  placeholder="TEST NAME"
+                <TextField
+                  id="TestName"
+                  label="TestName"
+                  variant="outlined"
                   onChange={handleChange}
+                  size="small"
+                  type="text"
+                  required={true}
+                  //focused=""
                 />
               </div>
             </div>
           )}
-          {display === true && (
+          {!display && (
             <div className="flex flex-col gap-4 border p-3 md:flex-row md:justify-evenly">
               <div className="flex items-center gap-1">
-                <Label
-                  htmlFor="mark"
-                  className="whitespace-nowrap font-mono font-semibold"
-                >
-                  mark:
-                </Label>
-                <TextInput
-                  id="mark"
-                  sizing={"sm"}
-                  type="number"
+                <TextField
+                  id="Mark"
+                  label="Mark"
+                  variant="outlined"
                   onChange={handleChange}
+                  type="number"
+                  required={true}
+                  size="small"
                 />
               </div>
               <div className="flex items-center gap-1">
-                <Label
-                  htmlFor="status"
-                  className="whitespace-nowrap font-mono font-semibold"
-                >
-                  status:
-                </Label>
-                <TextInput
-                  id="status"
-                  sizing={"sm"}
-                  size={18}
-                  type="text"
-                  onChange={handleChange}
+                <Autocomplete
+                  value={submitForm.Status}
+                  onChange={(event: any, value: object) => {
+                    event.preventDefault();
+                    //@ts-ignore
+                    setSubmitForm({ ...submitForm, Status: value });
+                  }}
+                  id="Status"
+                  options={["Pass", "Fail"]}
+                  size="small"
+                  sx={{ width: 150 }}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Status" required={true} />
+                  )}
                 />
               </div>
             </div>
           )}
-          {display === true && (
+          {!display && (
             <Button
               className="uppercase"
               gradientDuoTone={"tealToLime"}

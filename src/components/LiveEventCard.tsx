@@ -9,23 +9,32 @@ function LiveEventCard() {
   //const [isTrueDeadline, setIsTrueDeadline] = React.useState<boolean>(false);
   const data = [
     {
-      subject: "English Assignment 1 - Ms. Nkosi",
-      time: "08:00 - 09:00",
+      subject: "English",
+      class: "Assignment 1",
+      date: "2025-10-24",
       location: "Grade 10A",
     },
     {
-      subject: "Mathematics Exam - Ms. Nkosi",
-      time: "09:00 - 10:00",
+      subject: "Mathematics",
+      class: "Exam",
+      date: "2025-10-25",
       location: "Grade 10B",
     },
     {
-      subject: "Science Project - Mr. Smith",
-      time: "10:00 - 11:00",
+      subject: "Physical Sciences",
+      class: "Practical",
+      date: "2025-10-26",
       location: "Grade 10C",
-    }
-  ]
+    },
+    {
+      subject: "Accounting",
+      class: "Exam",
+      date: "2025-10-27",
+      location: "Grade 10C",
+    },
+  ];
   return (
-    <section className="h-full w-full rounded-[10px] p-[10px] text-white">
+    <section className="h-full w-full overflow-hidden rounded-[10px] p-[10px] text-white">
       <section className="flex h-full w-full flex-col gap-[10px] rounded-[10px] ">
         <div className="self-center">
           <Stack direction={"row"} spacing={1} className="flex justify-center">
@@ -81,7 +90,12 @@ function LiveEventCard() {
                 08:00 - 09:00
               </p>
             </Stack>
-            <Stack direction={"row"} spacing={1} className="" alignItems={"center"}>
+            <Stack
+              direction={"row"}
+              spacing={1}
+              className=""
+              alignItems={"center"}
+            >
               <h2 className="font-inter text-[16px] font-medium text-[#222222]">
                 Location:
               </h2>
@@ -111,7 +125,7 @@ function LiveEventCard() {
               <Stack
                 direction={"row"}
                 spacing={1}
-                className=""
+                className="hover:cursor-pointer"
                 sx={{
                   borderWidth: 1,
                   borderColor: "gray",
@@ -123,24 +137,24 @@ function LiveEventCard() {
                   height: "44px",
                   overflow: "hidden",
                 }}
-                key={index}
+                key={index + `${item}`}
               >
-                <div className="h-[40px] w-[40px] rounded-[10px] border"></div>
+                <div className="scroll-container h-[40px] w-[40px] rounded-[10px] bg-black p-[10px]"></div>
                 <Stack
                   direction={"column"}
-                  spacing={-0.5}
+                  spacing={0.2}
                   className="w-full"
-                  sx={{ overflow: "hidden", textOverflow: "ellipsis" }}
+                  sx={{textOverflow: "ellipsis" }}
                 >
-                  <h2 className="font-inter text-[14px] font-semibold">
-                    {item.subject}
+                  <h2 className="font-popins text-[14px] font-semibold text-gray-600">
+                    {item.subject} - {item.class}
                   </h2>
                   <Stack
                     direction={"row"}
                     spacing={1}
                     sx={{ flexWrap: "nowrap" }}
                   >
-                    <h2 className="font-robot text-[12px]">{item.time}</h2>
+                    <h2 className="font-robot text-[12px]">{item.date}</h2>
                     <h2 className=" font-robot text-[12px]">{item.location}</h2>
                   </Stack>
                 </Stack>

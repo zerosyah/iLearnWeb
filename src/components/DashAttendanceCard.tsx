@@ -1,33 +1,34 @@
-import { Button, Divider, Stack } from '@mui/material'
-import React from 'react'
+import { Button, Divider, Stack } from "@mui/material";
+import React from "react";
 
 export default function DashAttendanceCard() {
   const [selected, setSelected] = React.useState<string>("weekly");
   const [showPercent, setShowPercent] = React.useState<string>("fraction");
-  const [showDescription, setShowDescription] = React.useState<string>("description")
-    const handleBtn = (value: string) => {
-        //value = selected
-        switch (value) {
-            case "weekly":
-                setSelected("weekly")
-                break;
-            case "monthly":
-                setSelected("monthly")
-                break;
-            case "YTD":
-                setSelected("YTD")
-                break;
-            default:
-                setSelected("weekly")
-                break;
-        }
-  }
-  console.log(showPercent);
-  
+  const [showDescription, setShowDescription] =
+    React.useState<string>("description");
+  const handleBtn = (value: string) => {
+    //value = selected
+    switch (value) {
+      case "weekly":
+        setSelected("weekly");
+        break;
+      case "monthly":
+        setSelected("monthly");
+        break;
+      case "YTD":
+        setSelected("YTD");
+        break;
+      default:
+        setSelected("weekly");
+        break;
+    }
+  };
+  //console.log(showPercent);
+
   return (
     <div className="flex flex-col gap-[20px] p-[10px]">
       <div className="my-[0px]">
-        <h1 className="text-center font-inter text-[18px] text-[#222222]  font-semibold">
+        <h1 className="text-center font-inter text-[18px] font-semibold  text-[#222222]">
           Attendance
         </h1>
       </div>
@@ -43,7 +44,7 @@ export default function DashAttendanceCard() {
           size="small"
           variant={selected === "monthly" ? "outlined" : "contained"}
           onClick={() => handleBtn("monthly")}
-          className='font-inter text-[12px] font-medium'
+          className="font-inter text-[12px] font-medium"
         >
           Monthly
         </Button>
@@ -124,14 +125,16 @@ export default function DashAttendanceCard() {
           >
             {selected === "weekly" && (
               <>
-                <span className="px-[10px] font-bebasNeue text-[25px]">
+                <span className="cursor-pointer px-[10px] font-bebasNeue text-[25px]">
                   80%
                 </span>
               </>
             )}
             {selected === "monthly" && (
               <>
-                <span className="font-bebasNeue text-[25px]">80%</span>
+                <span className="cursor-pointer font-bebasNeue text-[25px]">
+                  80%
+                </span>
               </>
             )}
             {selected === "YTD" && (
@@ -146,13 +149,19 @@ export default function DashAttendanceCard() {
         <Stack direction={"column"}>
           <div className="">
             {showDescription === "description" ? (
-              <p className="font-robot text-[12px] cursor-pointer" onClick={()=>setShowDescription("review")}>
+              <p
+                className="cursor-pointer font-robot text-[12px]"
+                onClick={() => setShowDescription("review")}
+              >
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
                 eius veniam natus repellendus eos consequatur soluta nisi magni
                 consequuntur?
               </p>
             ) : (
-              <p className="font-robot text-[12px] cursor-pointer" onClick={()=>setShowDescription("description")}>
+              <p
+                className="cursor-pointer font-robot text-[12px]"
+                onClick={() => setShowDescription("description")}
+              >
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
                 eius veniam natus repellendus eos consequatur soluta nisi magni
                 consequuntur 2335678?

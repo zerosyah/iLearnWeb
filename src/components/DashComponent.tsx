@@ -29,7 +29,7 @@ import DashAttendanceCard from "./DashAttendanceCard";
 
 export default function DashComponent() {
   const { currentUser } = useSelector((state: any) => state.user);
-  console.log(currentUser);
+  //console.log(currentUser);
 
   const details = [
     {
@@ -107,33 +107,39 @@ export default function DashComponent() {
       time: "15:00 - 17:00",
       bColor: "blue",
     }
-  ]
+  ];
 
-  const [count, setCount] = useState<number>(1)
-  const [actualCount, setActualCount] = useState<number>(0)
-  const handleNavigateNext = () => {  
-    setCount((prev) => prev + 1)
-    let value = count
-    if (value > 1) {
-      setActualCount((prev) => prev + 1)
+  const list = ["live", "attend", "deadline"];
+  const [currentState, setCurrentState] = useState<string>("live");
+  const [currentIndex, setCurrentIndex] = useState<number>(0)
+  const stateTracker = (motion: any) => {
+    let localIndex = currentIndex;
+    if (motion == "next") {
+      list.forEach((stat: string, index: number) => {
+        if (stat == currentState) {
+          //console.log("ts: ", stat, index);
+          localIndex = index + 1;
+          if (localIndex > 2) {
+            localIndex = 0;
+          }
+          setCurrentIndex(localIndex);
+        }
+      });
     }
-    console.log("value: ", value);
-    if (count > 1) {
-      setCount(-1)
+    if (motion == "back") {
+      list.forEach((stat: string, index: number) => {
+        if (stat == currentState) {
+          //console.log("ts: ", stat, index);
+          localIndex = index - 1;
+          if (localIndex < 0) {
+            localIndex = 2;
+          }
+          setCurrentIndex(localIndex);
+        }
+      });
     }
-    return;
-  }
-
-  const handleNavigatePrev = () => {
-    setCount((prev) => prev - 1)
-    if (count < 0) {
-      setCount(2)
-    }
-    return;
-  }
-
-  console.log(count);
-  console.log(actualCount);
+    setCurrentState(list[localIndex])
+  };
   
   return (
     <section className="flex h-fit w-full justify-between gap-[10px] p-[10px]">
@@ -146,9 +152,11 @@ export default function DashComponent() {
               <h1 className="font-inter text-[22px] font-semibold text-[#222222]">
                 {currentUser?.FirstName + " " + currentUser?.LastName}
               </h1>
-              <p className="font-inter text-[14px] font-medium text-[#555555]">Grade: 10</p>
+              <p className="font-inter text-[14px] font-medium text-[#555555]">
+                Grade: 10
+              </p>
             </div>
-            <div className="mt-[5px] flex h-[200px] w-[200px] rounded-full border-[2px] md:h-[130px] md:w-[130px]">
+            <div className="mt-[5px] flex h-[200px] w-[200px] overflow-y-hidden rounded-full border-[2px] md:h-[130px] md:w-[130px]">
               <img
                 src={currentUser?.ProfilePicture}
                 alt="Profile Picture"
@@ -156,7 +164,7 @@ export default function DashComponent() {
               />
             </div>
           </div>
-          <div className="h-[212px] md: w-full overflow-auto rounded-[10px] border bg-[#D9D9D9] p-[10px] md:w-[80%]">
+          <div className="md: scroll-container h-[212px] w-full rounded-[10px] border bg-[#D9D9D9] p-[10px] md:w-[80%]">
             <div className="">
               <h1 className="font-inter text-[18px] font-semibold text-[#222222]">
                 Bio $ Other Details
@@ -175,7 +183,7 @@ export default function DashComponent() {
         </section>
         {/* second section */}
         <section className="mb-[10px] flex h-[250px] w-full gap-[10px]">
-          <section className="hidden h-full w-full rounded-[10px] bg-[#D9D9D9] p-[10px] md:inline md:max-w-[63.7%] md:min-w-[63.7%] ">
+          <section className="hidden h-full w-full rounded-[10px] bg-[#D9D9D9] p-[10px] md:inline md:min-w-[63.7%] md:max-w-[63.7%] ">
             <h1 className="font-inter text-[18px] font-semibold text-[#222222]">
               Mark's Performance
             </h1>
@@ -185,7 +193,7 @@ export default function DashComponent() {
               </div>
             </div>
           </section>
-          <section className="w-full rounded-[10px] bg-[#D9D9D9] md:h-full md:max-w-[35%] md:min-w-[35%]">
+          <section className="w-full rounded-[10px] bg-[#D9D9D9] md:h-full md:min-w-[35%] md:max-w-[35%]">
             <Stack
               className=""
               direction={"row"}
@@ -196,7 +204,9 @@ export default function DashComponent() {
                 color="warning"
                 size="large"
                 sx={{ position: "absolute", left: "10px", marginTop: "10px" }}
-                onClick={handleNavigatePrev}
+                onClick={() => {
+                  stateTracker("back");
+                }}
               >
                 <FaChevronLeft />
               </Button>
@@ -210,31 +220,30 @@ export default function DashComponent() {
                   marginTop: "10px",
                   width: "40px",
                 }}
-                onClick={handleNavigateNext}
+                onClick={() => {
+                  stateTracker("next");
+                }}
               >
                 <FaChevronRight />
               </Button>
             </Stack>
-            {count === -1 && <DashAttendanceCard/>}
-            {count === 0 && <LiveEventCard />}
-            {count === 1 && <OverallPerfomanceCard />}
-            {count === 2 && (
-              <div className="flex h-full w-full items-center justify-center">
-                <h1 className="">Under Maintaince</h1>
-              </div>
-            )}
+            {currentIndex === 2 && <DashAttendanceCard />}
+            {currentIndex === 0 && <LiveEventCard />}
+            {currentIndex === 1 && <OverallPerfomanceCard />}
           </section>
         </section>
         {/* third section */}
         <section className="h-[100px] w-full rounded-[10px] border bg-[#D9D9D9]">
           <div className="flex h-full w-full items-center justify-center">
-            <h1 className="text-[20px] font-bebasNeue text-cyan-600">Under Maintaince</h1>
+            <h1 className="font-bebasNeue text-[20px] text-cyan-600">
+              Under Maintaince
+            </h1>
           </div>
         </section>
       </section>
       {/* Timetable Left Section */}
-      <section className="hidden h-[572px] w-[25%] flex-col gap-[1%] overflow-y-scroll rounded-[10px] border md:inline-block ">
-        <div className="flex w-full flex-col overflow-y-scroll rounded-[10px] p-2  shadow-sm shadow-white scrollbar-hide">
+      <section className="scroll-container hidden h-[572px] w-[25%] flex-col gap-[1%] rounded-[10px] border md:inline-block ">
+        <div className="scroll-container flex w-full flex-col rounded-[10px] p-2  shadow-sm shadow-white scrollbar-hide">
           <div className="flex h-fit w-full items-baseline justify-between border-b-4 border-pink-500 pb-2">
             <div className="">
               <span className="flex flex-col">
@@ -246,7 +255,7 @@ export default function DashComponent() {
           {events.map((item: any, index: number) => (
             <div
               className={`flex border-b-4 border-${item.bColor}-500 overflow-x-hidden px-[10px] py-2 `}
-              key={index}
+              key={index + Math.random() * 23}
             >
               <span className="flex h-fit flex-col items-center border-l-4 border-r-4 border-gray-500 px-4 font-bebasNeue text-2xl ">
                 <h1 className="font-popins text-xl">
