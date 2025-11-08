@@ -9,6 +9,7 @@ import { Stack } from '@mui/material';
 
 export default function DashUser() {
 
+  //@ts-ignore
     const [users, setUsers] = useState([])
     const [selectedStudent, setSelectedStudent] = useState<any>()
     const { currentUser } = useSelector((state: any) => state.user)
