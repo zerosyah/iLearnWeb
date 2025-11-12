@@ -7,7 +7,8 @@ import DashUsers from '../components/DashUsers'
 import DashComponent from '../components/DashComponent'
 import DashUser from '../components/DashUser'
 import Result from '../components/Result'
-import Calculator from '../components/Calculator'
+//import Calculator from '../components/Calculator'
+import UserTable from '../components/UserTable'
 
 
 export default function Dashboard() {
@@ -47,7 +48,7 @@ export default function Dashboard() {
         {/* result */}
         {tab === "result" && <Result/>}
         {/* calculator */}
-        {tab === "calculator" && <Calculator/>}
+        {tab === "calculator" && <UserTable />}
     </div>
   )
 }
