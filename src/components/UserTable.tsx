@@ -49,7 +49,7 @@ export default function UserTable() {
                setLoading(true);
                setError(false);
                const res = await fetch(
-                 "http://127.0.0.1:4001/data/studemt/get/all",
+                 "https://mark-service.onrender.com/data/studemt/get/all",
                  {
                    method: "Get",
                    headers: {
@@ -93,7 +93,7 @@ export default function UserTable() {
           setLoading(true);
           setError(false);
           const res = await fetch(
-            `http://127.0.0.1:4001/data/studemt/applicant/${action.option}`,
+            `https://mark-service.onrender.com/data/studemt/applicant/${action.option}`,
             {
               method: "PATCH",
               headers: {
