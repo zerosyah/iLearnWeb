@@ -1,36 +1,26 @@
 // import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-// import { PiStudentBold } from "react-icons/pi";
-// import { HiBookOpen, HiOutlineUserGroup } from "react-icons/hi2";
-// import { SlOptionsVertical } from "react-icons/sl";
-// import ProgressBar from "@ramonak/react-progress-bar";
-//import {
-  //Table,
-  //Avatar,
-  //List,
- // Dropdown,
-//} from "flowbite-react";
-//import logo from "../assets/image2.jpg";
-//import { CircularProgressbar } from "react-circular-progressbar";
+
 import "react-circular-progressbar/dist/styles.css";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-//import { MdOutlineReadMore } from "react-icons/md";
-//import CircularProgress from "@mui/joy/CircularProgress";
-import DashChart from "./DashChart";
-//import { Label, TextInput } from "flowbite-react";
-import DashInput from "./DashInput";
-//import OverallPerfomanceCard from "./OverallPerfomanceCard";
 import LiveEventCard from "./LiveEventCard";
-import { Button, Stack } from "@mui/material";
+import { Box, Button, Divider, Stack } from "@mui/material";
 import { useState } from "react";
 import OverallPerfomanceCard from "./OverallPerfomanceCard";
 import DashAttendanceCard from "./DashAttendanceCard";
+import { Label } from "flowbite-react";
+import DashRecentCard from "../DashComponents/DashRecentCard";
+import DashSelectOption from "../DashComponents/DashSelectOption";
+import DashProgressCard from "../DashComponents/DashProgressCard";
 
 
 export default function DashComponent() {
   const { currentUser } = useSelector((state: any) => state.user);
-  //console.log(currentUser);
+  // @ts-ignore
+  const [subject, setSubject] = useState<any>("");
+  console.log(currentUser);
 
+  // @ts-ignore
   const details = [
     {
       label: "Course of Study:",
@@ -67,7 +57,7 @@ export default function DashComponent() {
     {
       label: "Phone",
       value: currentUser?.Phone,
-    }
+    },
   ];
 
   const events = [
@@ -106,12 +96,12 @@ export default function DashComponent() {
       date: "2025-09-14",
       time: "15:00 - 17:00",
       bColor: "blue",
-    }
+    },
   ];
 
   const list = ["live", "attend", "deadline"];
   const [currentState, setCurrentState] = useState<string>("live");
-  const [currentIndex, setCurrentIndex] = useState<number>(0)
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const stateTracker = (motion: any) => {
     let localIndex = currentIndex;
     if (motion == "next") {
@@ -138,120 +128,193 @@ export default function DashComponent() {
         }
       });
     }
-    setCurrentState(list[localIndex])
+    setCurrentState(list[localIndex]);
   };
-  
+
+  const progressCardData = [
+    { label: "Trigonometry", BarColor: "cyan", BarNumber: 80, Date: "Oct - Dec 2025", Dot: true },
+    { label: "Algebra", BarColor: "blue", BarNumber: 65, Date: "Jul - Sep 2025", Dot: false },
+    { label: "Calculus", BarColor: "green", BarNumber: 50, Date: "Apr - Jun 2025", Dot: false },
+  ]
+
   return (
-    <section className="flex h-fit w-full justify-between gap-[10px] p-[10px]">
-      {/* Right Section */}
-      <section className="flex w-[75%] flex-col gap-[10px] rounded-[10px] md:inline-block ">
-        {/* first section */}
-        <section className="mb-[10px] flex flex-col gap-[10px] md:flex-row">
-          <div className="flex w-full flex-col items-center justify-center overflow-auto rounded-[10px] border bg-[#D9D9D9] p-[10px] text-center md:h-[212px] md:w-[25%] md:justify-between md:overflow-y-visible ">
-            <div className="">
-              <h1 className="font-inter text-[22px] font-semibold text-[#222222]">
+    <Box
+      component={"section"}
+      className="h-[98vh] w-[100%] justify-between overflow-y-hidden"
+    >
+      <Stack direction={"row"} className="w-[100%]" spacing={1}>
+        {/* Right Section */}
+        <Stack
+          spacing={1}
+          className="flex min-w-[75%] max-w-[75%] flex-col rounded-[10px] md:inline-block "
+        >
+          {/* first section */}
+          <Stack
+            direction={"row"}
+            spacing={2}
+            className="overflow-x-hidden rounded-[10px] bg-primary p-[5px] shadow-sm shadow-black"
+          >
+            <img
+              src={currentUser?.ProfilePicture}
+              alt="Profile Picture"
+              className="h-[50px] w-[50px] rounded-full border border-default object-cover p-[2px]"
+            />
+            <Stack direction={"column"} className="">
+              <h1 className="font-roboto text-[20px] font-semibold text-default">
                 {currentUser?.FirstName + " " + currentUser?.LastName}
               </h1>
-              <p className="font-inter text-[14px] font-medium text-[#555555]">
-                Grade: 10
-              </p>
-            </div>
-            <div className="mt-[5px] flex h-[200px] w-[200px] overflow-y-hidden rounded-full border-[2px] md:h-[130px] md:w-[130px]">
-              <img
-                src={currentUser?.ProfilePicture}
-                alt="Profile Picture"
-                className="h-full w-full rounded-full object-cover"
+              <Stack spacing={1} direction={"row"} className="items-center">
+                <p className="font-inter text-[14px] font-medium text-secondary">
+                  ID: {currentUser?.IdNumber}
+                </p>
+                <Divider orientation="vertical" className="bg-black" />
+                <p className="font-Popins text-[14px] font-medium text-secondary">
+                  Email: {currentUser?.Email}
+                </p>
+                <Divider orientation="vertical" className="bg-black" />
+                <p className="font-inter text-[14px] font-medium text-secondary">
+                  Phone: {currentUser?.Phone}
+                </p>
+                <Divider orientation="vertical" className="bg-black" />
+                <p className="font-inter text-[14px] font-medium text-secondary">
+                  Grade: 10
+                </p>
+              </Stack>
+            </Stack>
+          </Stack>
+          {/* second section */}
+          <Stack spacing={1} direction={"row"} className="mb-[10px] h-[250px]">
+            {/* Progress */}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                width: "30%",
+                //border: "1px solid red",
+                borderRadius: "10px",
+                padding: "10px",
+                gap: "10px",
+              }}
+            >
+              <Label className="font-roboto text-[18px] font-semibold">
+                Progress
+              </Label>
+              <DashSelectOption
+                option="Subject"
+                value={(data: any) => setSubject(data?.Subject)}
+                label="Subject"
               />
-            </div>
-          </div>
-          <div className="md: scroll-container h-[212px] w-full rounded-[10px] border bg-[#D9D9D9] p-[10px] md:w-[80%]">
-            <div className="">
-              <h1 className="font-inter text-[18px] font-semibold text-[#222222]">
-                Bio $ Other Details
+              <Stack
+                spacing={1}
+                className="scroll-container h-[80%] overflow-y-auto rounded-[10px]"
+              >
+                {progressCardData.map((item, index) => (
+                  <DashProgressCard
+                    BarColor={item?.BarColor}
+                    BarNumber={item?.BarNumber}
+                    Date={item?.Date}
+                    label={item?.label}
+                    Dot={item?.Dot}
+                    key={index}
+                  />
+                ))}
+              </Stack>
+            </Box>
+            {/* Recents */}
+            <Stack className="bg-pbase h-full w-[30%] rounded-[10px] p-[10px]">
+              <Stack>
+                <Label className="text-ptxtl font-roboto text-[18px] font-semibold">
+                  Recents
+                </Label>
+              </Stack>
+              <Stack
+                spacing={1}
+                className="scroll-container overflow-y-auto rounded-[10px] "
+              >
+                <DashRecentCard
+                  subject="Mathematics"
+                  date="20 Nov 2025"
+                  results="Passed"
+                  score={93}
+                  total={150}
+                />
+                <DashRecentCard
+                  subject="English"
+                  date="19 Nov 2025"
+                  results="Passed"
+                  score={87}
+                  total={100}
+                />
+                <DashRecentCard
+                  subject="Phsyical Sciences"
+                  date="15 Nov 2025"
+                  results="Failed"
+                  score={23}
+                  total={150}
+                />
+              </Stack>
+            </Stack>
+
+            {/** action card */}
+            <Stack className="bg-sbase w-[40%] rounded-[10px] md:h-full">
+              <Stack
+                className=""
+                direction={"row"}
+                sx={{ justifyContent: "space-between", position: "relative" }}
+              >
+                <Button
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    position: "absolute",
+                    left: "10px",
+                    marginTop: "10px",
+                    backgroundColor: "hsl(182 34% 83%)",
+                  }}
+                  onClick={() => {
+                    stateTracker("back");
+                  }}
+                >
+                  <FaChevronLeft />
+                </Button>
+                <Button
+                  variant="contained"
+                  color="success"
+                  size="large"
+                  sx={{
+                    position: "absolute",
+                    right: "10px",
+                    marginTop: "10px",
+                    width: "40px",
+                    backgroundColor: "hsl(182 34% 83%)",
+                  }}
+                  onClick={() => {
+                    stateTracker("next");
+                  }}
+                >
+                  <FaChevronRight />
+                </Button>
+              </Stack>
+              {currentIndex === 2 && <DashAttendanceCard />}
+              {currentIndex === 0 && <LiveEventCard />}
+              {currentIndex === 1 && <OverallPerfomanceCard />}
+            </Stack>
+          </Stack>
+          {/* third section */}
+          <section className="h-[100px] w-full rounded-[10px] border bg-[#D9D9D9]">
+            <div className="flex h-full w-full items-center justify-center">
+              <h1 className="font-bebasNeue text-[20px] text-cyan-600">
+                Under Maintaince
               </h1>
             </div>
-            <div className="flex flex-wrap justify-start  gap-[10px]">
-              {details.map((item: any) => (
-                <DashInput
-                  key={item.label}
-                  label={item.label}
-                  value={item.value}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-        {/* second section */}
-        <section className="mb-[10px] flex h-[250px] w-full gap-[10px]">
-          <section className="hidden h-full w-full rounded-[10px] bg-[#D9D9D9] p-[10px] md:inline md:min-w-[63.7%] md:max-w-[63.7%] ">
-            <h1 className="font-inter text-[18px] font-semibold text-[#222222]">
-              Mark's Performance
-            </h1>
-            <div className="flex items-start justify-start">
-              <div className="">
-                <DashChart />
-              </div>
-            </div>
           </section>
-          <section className="w-full rounded-[10px] bg-[#D9D9D9] md:h-full md:min-w-[35%] md:max-w-[35%]">
-            <Stack
-              className=""
-              direction={"row"}
-              sx={{ justifyContent: "space-between", position: "relative" }}
-            >
-              <Button
-                variant="contained"
-                color="warning"
-                size="large"
-                sx={{ position: "absolute", left: "10px", marginTop: "10px" }}
-                onClick={() => {
-                  stateTracker("back");
-                }}
-              >
-                <FaChevronLeft />
-              </Button>
-              <Button
-                variant="contained"
-                color="success"
-                size="large"
-                sx={{
-                  position: "absolute",
-                  right: "10px",
-                  marginTop: "10px",
-                  width: "40px",
-                }}
-                onClick={() => {
-                  stateTracker("next");
-                }}
-              >
-                <FaChevronRight />
-              </Button>
-            </Stack>
-            {currentIndex === 2 && <DashAttendanceCard />}
-            {currentIndex === 0 && <LiveEventCard />}
-            {currentIndex === 1 && <OverallPerfomanceCard />}
-          </section>
-        </section>
-        {/* third section */}
-        <section className="h-[100px] w-full rounded-[10px] border bg-[#D9D9D9]">
-          <div className="flex h-full w-full items-center justify-center">
-            <h1 className="font-bebasNeue text-[20px] text-cyan-600">
-              Under Maintaince
-            </h1>
-          </div>
-        </section>
-      </section>
-      {/* Timetable Left Section */}
-      <section className="scroll-container hidden h-[572px] w-[25%] flex-col gap-[1%] rounded-[10px] border md:inline-block ">
-        <div className="scroll-container flex w-full flex-col rounded-[10px] p-2  shadow-sm shadow-white scrollbar-hide">
-          <div className="flex h-fit w-full items-baseline justify-between border-b-4 border-pink-500 pb-2">
-            <div className="">
-              <span className="flex flex-col">
-                <p className="font-popins text-lg text-gray-600">Grade 10</p>
-                <p className="font-bebasNeue text-4xl">Science Timetable</p>
-              </span>
-            </div>
-          </div>
+        </Stack>
+        {/* Timetable Left Section */}
+        <Stack className="scroll-container hidden min-w-[24.2%] max-w-[24.2%] flex-col overflow-y-auto rounded-[10px] bg  md:inline-block ">
+          <Stack className="flex h-fit w-full items-baseline justify-between border-b-4 border-pink-500 pb-2">
+            <p className="font-popins text-lg text-gray-600">Grade 10</p>
+            <p className="font-bebasNeue text-4xl">Science Timetable</p>
+          </Stack>
           {events.map((item: any, index: number) => (
             <div
               className={`flex border-b-4 border-${item.bColor}-500 overflow-x-hidden px-[10px] py-2 `}
@@ -279,39 +342,11 @@ export default function DashComponent() {
               </span>
             </div>
           ))}
-        </div>
-      </section>
+        </Stack>
+      </Stack>
 
       {/* Mobile */}
-    </section>
+    </Box>
   );
 }
-/**
-  <div className="">
-        <div className="bg-gray-200 w-48 px-2 rounded bg-cover" style={{
-          backgroundImage: `url(${logo})`
-        }}>
-          <h3 className="text-white text-1xl font-semibold">Student Attendance</h3>
-          <div className="flex gap-4 items-center mt-2 justify-between">
-            <div className="">
-              <p className="text-xs text-white">Present No.</p>
-              <h2 className="font-semibold text-sm text-white">4782</h2>
-              <p className="text-xs text-white">Absent No.</p>
-              <h2 className="font-semibold text-sm text-white">437</h2>
-            </div>
-            <div className="relative self-center">
-              <CircularProgressbar value={75} text={"75%"} className="text-white" strokeWidth={10} styles={{
-                root:{
-                  width: '60',
-                  height: '60',
-                  position: 'relative',
-                  top: 0,
-                  left: 0,
-                  color: 'white',
-                }
-              }}/>
-            </div>
-          </div>
-        </div>
-      </div>
- */
+

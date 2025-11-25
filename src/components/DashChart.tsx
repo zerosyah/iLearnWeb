@@ -11,7 +11,7 @@ export default function DashChart() {
             id: "series-1",
             data: [10, 5.5, 2, 8.5, 1.5, 5, 9, 6.5, 3.5, 4.5],
             area: true,
-            color: "#fbbf24",
+            color: "#504E76",
             curve: "step",
             label: "Series 1",
           },

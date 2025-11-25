@@ -17,7 +17,9 @@ export default function UserTable() {
     const [error, setError] = useState<boolean>(false);
         // @ts-ignore
     const [message, setMessage] = useState<string>("");
-    const [data, setData] = useState([]);
+  const [data, setData] = useState<any>([]);
+  // @ts-ignore
+  const [results, setResults] = useState([]);
     //const [rows, setRows] = useState<Data[]>([]);
     
     // interface Data {
@@ -84,10 +86,6 @@ export default function UserTable() {
     
     useEffect(() => {
         if (!action) return;
-
-        if (action?.option === "Accept" || action?.option === "Reject") {
-            setData((prev) => prev.filter((_, i) => i !== action?.index));
-      }
       const appliacantAction = async () => {
         try {
           setLoading(true);
@@ -112,21 +110,25 @@ export default function UserTable() {
           }
           setLoading(false);
           setError(false);
-          setData(data.data);
+          setResults(data.data);
         } catch (error: any) {
           setLoading(false);
           setError(true);
           setMessage(error.toString());
         }
       }
+       if (action?.option === "Accept" || action?.option === "Reject") {
+         setData((prev:any) => prev.filter((_:any, i:any) => i !== action?.index));
+       }
       appliacantAction();
+
     }, [action]);
 
 
-    console.log("Data: ", action);
+    console.log("Data: ", data);
     
   return (
-    <section className="">
+    <section className="mt-[30px]">
       <TableContainer component={Paper}>
         <Table
           sx={{ minWidth: 600, maxWidth: 900, margin: "auto" }}
@@ -148,7 +150,10 @@ export default function UserTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data ? (
+            {loading ? (<TableCell>
+              <TableRow>Loading Applicants...</TableRow>
+            </TableCell>) : (
+              data ? (
               data.map((row: any, index: number) => {
                 return (
                   <TableRow
@@ -216,6 +221,7 @@ export default function UserTable() {
                   No Applicants
                 </TableCell>
               </TableRow>
+            )
             )}
           </TableBody>
         </Table>

@@ -9,6 +9,7 @@ import DashUser from '../components/DashUser'
 import Result from '../components/Result'
 //import Calculator from '../components/Calculator'
 import UserTable from '../components/UserTable'
+import DesktopLayout from '../layouts/DesktopLayout'
 
 
 export default function Dashboard() {
@@ -28,27 +29,23 @@ export default function Dashboard() {
   }, [location.search])
   
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
-      
-      {/* sidebar */}
-      <div className='md:w-56 py-[2%] pl-[1%] rounded-[10px]'>
-        <DashSideBar/>
-      </div>
-      
+    <DesktopLayout>
+      <div className="flex flex-col md:flex-row">
         {/* content */}
-        {tab === "profile" && <DashProfile/>}
+        {tab === "profile" && <DashProfile />}
         {/* Posts */}
-        {tab === "posts" && <DashPost/>}
+        {tab === "posts" && <DashPost />}
         {/* all users */}
-        {tab === "users" && <DashUsers/>}
+        {tab === "users" && <DashUsers />}
         {/* dashborad */}
-        {tab === "dash" && <DashComponent/>}
+        {tab === "dash" && <DashComponent />}
         {/*Original userser */}
-        {tab === "search" && <DashUser/>}
+        {tab === "search" && <DashUser />}
         {/* result */}
-        {tab === "result" && <Result/>}
+        {tab === "result" && <Result />}
         {/* calculator */}
         {tab === "calculator" && <UserTable />}
-    </div>
-  )
+      </div>
+    </DesktopLayout>
+  );
 }

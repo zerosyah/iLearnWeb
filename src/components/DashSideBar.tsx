@@ -69,9 +69,8 @@ export default function DashSideBar() {
   //const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <Sidebar
-      className="absolute z-10 h-fit w-fit rounded-[10px] border bg-[#D9D9D9] shadow-md"
-      collapseBehavior="collapse"
-      collapsed
+      className="min-h-[100%] max-h-[100%] overflow-y-hidden min-w-[100%] max-w-[100%] rounded-[10px] bg-primary border"
+      collapseBehavior="hide"
     >
       <Sidebar.Collapse icon={GiHamburgerMenu}>
         <Sidebar.Items>
@@ -80,7 +79,7 @@ export default function DashSideBar() {
               <Sidebar.Item
                 active={tab === "home"}
                 icon={HiHome}
-                label={currentUser.Role === "admin" ? "Admin" : "Student"}
+                //label={currentUser.Role === "admin" ? "Admin" : "Student"}
                 labelColor="dark"
                 as="div"
               >
@@ -92,7 +91,7 @@ export default function DashSideBar() {
                 active={tab === "profile"}
                 icon={HiUser}
                 label={currentUser.Role === "admin" ? "Admin" : "Student"}
-                labelColor="dark"
+                labelColor="red"
                 as="div"
               >
                 Profile
@@ -138,7 +137,7 @@ export default function DashSideBar() {
                   icon={FaRegCalendarCheck}
                   as="div"
                 >
-                  Student details
+                  Students
                 </Sidebar.Item>
               </Link>
             )}
@@ -149,7 +148,7 @@ export default function DashSideBar() {
                   icon={FaCalculator}
                   as="div"
                 >
-                  Student Calculator
+                  Applications
                 </Sidebar.Item>
               </Link>
             )}
