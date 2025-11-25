@@ -1,4 +1,4 @@
-import { Button, Divider, Stack } from "@mui/material";
+import { Box, Button, Divider, Stack } from "@mui/material";
 import React from "react";
 
 export default function DashAttendanceCard() {
@@ -26,7 +26,7 @@ export default function DashAttendanceCard() {
   //console.log(showPercent);
 
   return (
-    <div className="flex flex-col gap-[20px] p-[10px]">
+    <Box component={"section"} className="flex flex-col gap-[20px] p-[10px]">
       <div className="my-[0px]">
         <h1 className="text-center font-inter text-[18px] font-semibold  text-[#222222]">
           Attendance
@@ -175,6 +175,6 @@ export default function DashAttendanceCard() {
           </Stack>
         </Stack>
       </Stack>
-    </div>
+    </Box>
   );
 }
