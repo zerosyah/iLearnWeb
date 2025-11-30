@@ -1,38 +1,29 @@
 import { Box, Stack } from "@mui/material";
 import { PieChart } from "@mui/x-charts/PieChart";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DashSelectOption from "../DashComponents/DashSelectOption";
+import PerfomanceLayout from "../Constants/PerformanceLayout.json";
 
 function OverallPerfomanceCard() {
   // @ ts-ignore
-  const [formData, setFormData] = useState<any>({
-    Subject: "",
-  });
+  const [formData, setFormData] = useState<any>("Mathematics");
+  const [PerfomanceData, setPerfomanceData] = useState<any>([]);
 
-  // Data for the chart
-  const data = [
-    {
-      label: "Term 1",
-      value: 100,
-      color: "#0088FE",
-      id: 1,
-      years: 2023,
-    },
-    {
-      label: "Term 2",
-      value: 30,
-      color: "#00C49F",
-      id: 2,
-      years: 2022,
-    },
-    {
-      label: "Term 3",
-      value: 90,
-      color: "#00FFFE",
-      id: 3,
-      years: 2024,
-    },
-  ];
+  useEffect(() => {
+    if (!PerfomanceLayout) {
+      setPerfomanceData([]);
+      return;
+    }
+    if (formData in PerfomanceLayout) {
+      // @ts-ignore
+      setPerfomanceData(PerfomanceLayout[formData]);
+      return;
+    } else {
+      setPerfomanceData([]);
+    }
+  }, [formData]);
+  console.log("formdata subject: ", formData);
+  console.log("perfomance: ", PerfomanceData);
 
   // Settings for the chart
   const settings = {
@@ -67,24 +58,30 @@ function OverallPerfomanceCard() {
         />
       </Stack>
       <Stack spacing={2} direction={"row"} className="w-full">
-        <PieChart
-          series={[
-            {
-              innerRadius: 45,
-              outerRadius: 65,
-              data,
-              cornerRadius: 10,
-              startAngle: 0,
-              endAngle: 360,
-              arcLabelRadius: 50,
-              arcLabelMinAngle: 0,
-              cy: 75,
-              cx: 40,
-              paddingAngle: 5,
-            },
-          ]}
-          {...settings}
-        />
+        {PerfomanceData.length > 0 ? (
+          <PieChart
+            series={[
+              {
+                innerRadius: 45,
+                outerRadius: 65,
+                data: PerfomanceData,
+                cornerRadius: 10,
+                startAngle: 0,
+                endAngle: 360,
+                arcLabelRadius: 50,
+                arcLabelMinAngle: 0,
+                cy: 75,
+                cx: 40,
+                paddingAngle: 5,
+              },
+            ]}
+            {...settings}
+          />
+        ) : (
+          <h1 className="font-roboto text-[18px] font-semibold text-default">
+            No Data Available
+          </h1>
+        )}
       </Stack>
     </Box>
   );

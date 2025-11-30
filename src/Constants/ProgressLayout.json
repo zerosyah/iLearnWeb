@@ -1,0 +1,94 @@
+{
+  "Mathematics": [
+    {
+      "label": "Algebra",
+      "BarNumber": 50,
+      "BarColor": "blue",
+      "Dot": false,
+      "Date": "2025-11-27"
+    },
+    {
+      "label": "Geometry",
+      "BarNumber": 10,
+      "BarColor": "cyan",
+      "Dot": false,
+      "Date": "2025-11-27"
+    },
+    {
+      "label": "Calculus",
+      "BarNumber": 30,
+      "BarColor": "red",
+      "Dot": false,
+      "Date": "2025-11-27"
+    }
+  ],
+  "English": [
+    {
+      "label": "Comprehension",
+      "BarNumber": 50,
+      "BarColor": "blue",
+      "Dot": false,
+      "Date": "2025-11-27"
+    },
+    {
+      "label": "Vocabulary",
+      "BarNumber": 10,
+      "BarColor": "cyan",
+      "Dot": false,
+      "Date": "2025-11-27"
+    },
+    {
+      "label": "Grammar",
+      "BarNumber": 30,
+      "BarColor": "red",
+      "Dot": false,
+      "Date": "2025-11-27"
+    }
+  ],
+  "Life Sciences": [
+    {
+      "label": "Human Reproduction",
+      "BarNumber": 50,
+      "BarColor": "blue",
+      "Dot": false,
+      "Date": "2025-11-27"
+    },
+    {
+      "label": "Evolution",
+      "BarNumber": 10,
+      "BarColor": "cyan",
+      "Dot": false,
+      "Date": "2025-11-27"
+    },
+    {
+      "label": "Genetics",
+      "BarNumber": 30,
+      "BarColor": "red",
+      "Dot": false,
+      "Date": "2025-11-27"
+    }
+  ],
+  "Life Orientation": [
+    {
+      "label": "Bullying",
+      "BarNumber": 80,
+      "BarColor": "blue",
+      "Dot": false,
+      "Date": "2025-11-27"
+    },
+    {
+      "label": "building community",
+      "BarNumber": 60,
+      "BarColor": "cyan",
+      "Dot": false,
+      "Date": "2025-11-27"
+    },
+    {
+      "label": "selfcare",
+      "BarNumber": 40,
+      "BarColor": "red",
+      "Dot": false,
+      "Date": "2025-11-27"
+    }
+  ]
+}

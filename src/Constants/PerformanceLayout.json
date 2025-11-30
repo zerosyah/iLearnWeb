@@ -1,0 +1,88 @@
+{
+    "Mathematics": [{
+        "label": "Term 1",
+        "value": 70,
+        "color": "#0088FE",
+        "id": 1,
+        "years": 2023
+    }, {
+        "label": "Term 2",
+        "value": 74,
+        "color": "#00C49F",
+        "id": 2,
+        "years": 2023
+    }, {
+        "label": "Term 3",
+        "value": 56,
+        "color": "#FFBB28",
+        "id": 3,
+        "years": 2023
+    }, {
+        "label": "Term 4",
+        "value": 82,
+        "color": "#FF8042",
+        "id": 4,
+        "years": 2023
+    }
+],
+"English": [
+    {
+    "label": "Term 1",
+    "value": 75,
+    "color": "#0088FE",
+    "id": 1,
+    "years": 2023
+}, {
+    "label": "Term 2",
+    "value": 36,
+    "color": "#00C49F",
+    "id": 2,
+    "years": 2023
+}, {
+    "label": "Term 3",
+    "value": 65,
+    "color": "#FFBB28",
+    "id": 3,
+    "years": 2023
+}, {
+    "label": "Term 4",
+    "value": 72,
+    "color": "#FF8042",
+    "id": 4,
+    "years": 2023
+}
+],
+"Life Orientation": [
+    {
+    "label": "Term 1",
+    "value": 90,
+    "color": "#0088FE",
+    "id": 1,
+    "years": 2023
+}, {
+    "label": "Term 2",
+    "value": 84,
+    "color": "#00C49F",
+    "id": 2,
+    "years": 2023
+}, {
+    "label": "Term 3",
+    "value": 78,
+    "color": "#FFBB28",
+    "id": 3,
+    "years": 2023
+}, {
+    "label": "Term 4",
+    "value": 80,
+    "color": "#FF8042",
+    "id": 4,
+    "years": 2023
+}
+],
+"IsiZulu":[
+    {
+        "Label": "Term 1",
+        "Value": 77
+    }
+]
+}

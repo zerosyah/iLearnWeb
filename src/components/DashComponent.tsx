@@ -5,19 +5,42 @@ import "react-circular-progressbar/dist/styles.css";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import LiveEventCard from "./LiveEventCard";
 import { Box, Button, Divider, Stack } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import OverallPerfomanceCard from "./OverallPerfomanceCard";
 import DashAttendanceCard from "./DashAttendanceCard";
 import { Label } from "flowbite-react";
 import DashRecentCard from "../DashComponents/DashRecentCard";
 import DashSelectOption from "../DashComponents/DashSelectOption";
 import DashProgressCard from "../DashComponents/DashProgressCard";
+import progressLayoutData from "../Constants/ProgressLayout.json";
+import { Recents } from "../Constants/RecentLayout.json";
+import newsIcon from "../assets/Heros/SA/SA4.jpg"
+import { FaRegClock, FaRegEye, FaRegHeart } from "react-icons/fa";
+//import { SlOptions } from "react-icons/sl";
+import DashImageCard from "../DashComponents/DashImageCard";
 
 
+
+type Props = {
+  label?: string;
+  BarColor?: string;
+  BarNumber?: any;
+  Date?: string;
+  Dot?: boolean;
+}
+type RecentProps = {
+  Subject?: string;
+  Date?: string;
+  Results?: string;
+  Score?: number;
+  Total?: number;
+}
 export default function DashComponent() {
   const { currentUser } = useSelector((state: any) => state.user);
   // @ts-ignore
-  const [subject, setSubject] = useState<any>("");
+  const [subject, setSubject] = useState<string>("Mathematics");
+  const [progressData, setProgressData] = useState<any>([]);
+  
   console.log(currentUser);
 
   // @ts-ignore
@@ -131,11 +154,48 @@ export default function DashComponent() {
     setCurrentState(list[localIndex]);
   };
 
-  const progressCardData = [
-    { label: "Trigonometry", BarColor: "cyan", BarNumber: 80, Date: "Oct - Dec 2025", Dot: true },
-    { label: "Algebra", BarColor: "blue", BarNumber: 65, Date: "Jul - Sep 2025", Dot: false },
-    { label: "Calculus", BarColor: "green", BarNumber: 50, Date: "Apr - Jun 2025", Dot: false },
+  const data = [
+    {
+      title: "Title one",
+    },
+    {
+      title: "Title two",
+    },
+    {
+      title: "Title three",
+    },
+    {
+      title: "Title four",
+    },
+    {
+      title: "Title five",
+    },
+    {
+      title: "Title six",
+    },
+    {
+      title: "Title seven",
+    },
+    {
+      title: "Title eight",
+    }
   ]
+
+  useEffect(() => {
+    // @ts-ignore
+    if (!subject) {
+      setProgressData([]);
+      return;
+    }         
+    if (subject in progressLayoutData) {
+      // @ts-ignore
+     setProgressData(progressLayoutData[subject]);
+    }
+    else {
+      setProgressData([]);
+    }
+  }, [subject]);
+console.log("subject: ", subject);
 
   return (
     <Box
@@ -208,22 +268,30 @@ export default function DashComponent() {
                 spacing={1}
                 className="scroll-container h-[80%] overflow-y-auto rounded-[10px]"
               >
-                {progressCardData.map((item, index) => (
-                  <DashProgressCard
-                    BarColor={item?.BarColor}
-                    BarNumber={item?.BarNumber}
-                    Date={item?.Date}
-                    label={item?.label}
-                    Dot={item?.Dot}
-                    key={index}
-                  />
-                ))}
+                {progressData.length > 0 ? (
+                  progressData.map((item: Props, index: number) => (
+                    <DashProgressCard
+                      BarColor={item?.BarColor}
+                      BarNumber={item?.BarNumber}
+                      Date={item?.Date}
+                      label={item?.label}
+                      Dot={item?.Dot}
+                      key={index}
+                    />
+                  ))
+                ) : (
+                  <Stack>
+                    <span className="flex items-center justify-center text-center font-popins text-[14px]">
+                      Track your subject's progress here.
+                    </span>
+                  </Stack>
+                )}
               </Stack>
             </Box>
             {/* Recents */}
-            <Stack className="bg-pbase h-full w-[30%] rounded-[10px] p-[10px]">
+            <Stack className="h-full w-[30%] rounded-[10px] bg-pbase p-[10px]">
               <Stack>
-                <Label className="text-ptxtl font-roboto text-[18px] font-semibold">
+                <Label className="font-roboto text-[18px] font-semibold text-ptxtl">
                   Recents
                 </Label>
               </Stack>
@@ -231,32 +299,23 @@ export default function DashComponent() {
                 spacing={1}
                 className="scroll-container overflow-y-auto rounded-[10px] "
               >
-                <DashRecentCard
-                  subject="Mathematics"
-                  date="20 Nov 2025"
-                  results="Passed"
-                  score={93}
-                  total={150}
-                />
-                <DashRecentCard
-                  subject="English"
-                  date="19 Nov 2025"
-                  results="Passed"
-                  score={87}
-                  total={100}
-                />
-                <DashRecentCard
-                  subject="Phsyical Sciences"
-                  date="15 Nov 2025"
-                  results="Failed"
-                  score={23}
-                  total={150}
-                />
+                {Recents.length > 0
+                  ? Recents.map((item: RecentProps, index: number) => (
+                      <DashRecentCard
+                        Subject={item?.Subject}
+                        Date={item?.Date}
+                        Results={item?.Results}
+                        Score={item?.Score}
+                        Total={item.Total}
+                        key={index}
+                      />
+                    ))
+                  : ""}
               </Stack>
             </Stack>
 
             {/** action card */}
-            <Stack className="bg-sbase w-[40%] rounded-[10px] md:h-full">
+            <Stack className="w-[40%] rounded-[10px] bg-sbase md:h-full">
               <Stack
                 className=""
                 direction={"row"}
@@ -301,16 +360,125 @@ export default function DashComponent() {
             </Stack>
           </Stack>
           {/* third section */}
-          <section className="h-[100px] w-full rounded-[10px] border bg-[#D9D9D9]">
-            <div className="flex h-full w-full items-center justify-center">
-              <h1 className="font-bebasNeue text-[20px] text-cyan-600">
-                Under Maintaince
+          <Stack
+            direction={"row"}
+            className="h-[270px] w-[60%] rounded-[10px] border bg-pbase p-[10px]"
+            alignItems={"center"}
+            spacing={1}
+          >
+            <Stack
+              spacing={1}
+              className="scroll-container h-full w-[50%] overflow-x-hidden rounded-[10px] bg-pcard p-[5px] shadow-sm shadow-gray-400 border-t-white/50 border-t bg-gradient-to-t from-pcard to-white/50"
+            >
+              <DashImageCard
+                alt="News image icon"
+                src={newsIcon}
+                border="0px"
+                borderRadius="10px"
+                height="140px"
+                width="100%"
+              />
+              <Stack className="w-full">
+                <h1 className="overflow-x-hidden truncate font-roboto text-[14px] font-bold text-ptxtl">
+                  The newas title should be here dsfdsfsdfdfsdf
+                </h1>
+              </Stack>
+              <Stack
+                direction={"row"}
+                spacing={1}
+                alignItems={"center"}
+                justifyContent={"space-between"}
+              >
+                <Stack direction={"row"} spacing={1} alignItems={"center"}>
+                  <FaRegClock size={14} className="text-ptxtd" />
+                  <span className="font-popins text-[12px] text-ptxtd">
+                    2 days ago
+                  </span>
+                </Stack>
+                <Stack direction={"row"} spacing={1} alignItems={"center"}>
+                  <FaRegHeart size={14} className="cursor-pointer text-ptxtd" />
+                  <span className="font-popins text-[12px] text-ptxtd">43</span>
+                </Stack>
+                <Stack direction={"row"} spacing={1} alignItems={"center"}>
+                  <FaRegEye size={14} className="text-ptxtd" />
+                  <span className="font-popins text-[12px] text-ptxtd">
+                    675
+                  </span>
+                </Stack>
+              </Stack>
+              <Button
+                className="w-full border"
+                sx={{ width: "100%", borderRadius: "10px" }}
+                size="small"
+                variant="outlined"
+              >
+                View
+              </Button>
+            </Stack>
+            <Stack spacing={1} className="h-full w-[50%] rounded-[10px]">
+              <h1 className="font-roboto text-[18px] font-bold text-ptxtl">
+                News
               </h1>
-            </div>
-          </section>
+              <Stack
+                spacing={1}
+                className="scroll-container h-[100%] overflow-y-scroll rounded-[10px] "
+              >
+                {data.map((item, index) => (
+                  <Stack
+                    direction={"row"}
+                    spacing={1}
+                    className="w-full cursor-pointer rounded-[10px] bg-pcard p-[5px]"
+                    key={index}
+                  >
+                    <img
+                      alt="image"
+                      src={newsIcon}
+                      height="80px"
+                      width="50px"
+                      className="rounded-[10px]"
+                    />
+                    <Stack
+                      className="w-full overflow-x-hidden"
+                      justifyContent={"space-between"}
+                    >
+                      <h1 className="w-full overflow-x-hidden truncate text-nowrap font-popins text-[12px] font-semibold text-ptxtl">
+                        {item.title}
+                      </h1>
+                      <Stack
+                        direction={"row"}
+                        spacing={2}
+                        alignItems={"center"}
+                      >
+                        <Stack
+                          direction={"row"}
+                          spacing={0.5}
+                          alignItems={"center"}
+                        >
+                          <FaRegClock size={12} className="text-ptxtd" />
+                          <span className="font-popins text-[10px] text-ptxtd">
+                            2 days ago
+                          </span>
+                        </Stack>
+                        <Stack
+                          direction={"row"}
+                          spacing={0.5}
+                          alignItems={"center"}
+                        >
+                          <FaRegEye size={12} className="text-ptxtd" />
+                          <span className="font-popins text-[10px] text-ptxtd">
+                            55
+                          </span>
+                        </Stack>
+                      </Stack>
+                    </Stack>
+                  </Stack>
+                ))}
+              </Stack>
+            </Stack>
+          </Stack>
         </Stack>
         {/* Timetable Left Section */}
-        <Stack className="scroll-container hidden min-w-[24.2%] max-w-[24.2%] flex-col overflow-y-auto rounded-[10px] bg  md:inline-block ">
+        <Stack className="scroll-container bg hidden min-w-[24.2%] max-w-[24.2%] flex-col overflow-y-auto rounded-[10px]  md:inline-block ">
           <Stack className="flex h-fit w-full items-baseline justify-between border-b-4 border-pink-500 pb-2">
             <p className="font-popins text-lg text-gray-600">Grade 10</p>
             <p className="font-bebasNeue text-4xl">Science Timetable</p>

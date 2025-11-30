@@ -1,0 +1,33 @@
+{
+    "Recents": [
+      {
+        "Subject": "Mathematics",
+        "Date": "2025-11-27",
+        "Results": "Passed",
+        "Score": 80,
+        "Total": 100
+      },
+      {
+        "Subject": "English",
+        "Date": "2025-11-27",
+        "Results": "Failed",
+        "Score": 50,
+        "Total": 100
+      },
+      {
+        "Subject": "Life Orientation",
+        "Date": "2025-11-27",
+        "Results": "Passed",
+        "Score": 66,
+        "Total": 100
+      },
+      {
+        "Subject": "English",
+        "Date": "2025-11-27",
+        "Results": "Passed",
+        "Score": 72,
+        "Total": 100
+      }
+
+    ]
+}
