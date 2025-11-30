@@ -41,8 +41,8 @@ export default {
 
         pbase: "hsl(242, 36%, 83%)",
         pcard: "hsl(242, 36%, 88%)",
-        ptxtl: "hsl(242, 36%, 97%)",
-        ptxtd: "hsl(242, 36%, 95%)",
+        ptxtl: "hsl(0, 0%, 10%)",
+        ptxtd: "hsl(0, 0%, 30%)",
 
         bga: "hsl(182, 34%, 83%)",
         bgab: "hsl(182, 34%, 88%)",

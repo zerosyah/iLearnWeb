@@ -16,10 +16,15 @@ type Props = {
 function DashProgressCard({ label, BarColor, BarNumber, Date, Dot }: Props) {
     // const [subject, setSubject] = React.useState<any>("");
   return (
-    <Box sx={{
-      paddingX: "5px"
-    }}>
-      <Stack spacing={0.5} className={`"rounded-[10px] bg-scard p-[5px] ${Dot ? "border-scards shadow-md shadow-secondary border rounded-[10px]": "rounded-[10px]"}`}>
+    <Box
+      sx={{
+        paddingX: "5px",
+      }}
+    >
+      <Stack
+        spacing={0.5}
+        className={`"rounded-[10px] border-[2px] bg-[hsl(0,0%,5%)] p-[5px] ${Dot ? "rounded-[10px] border border-scards shadow-md shadow-secondary" : "rounded-[10px]"}`}
+      >
         <Stack
           direction={"row"}
           spacing={1}
@@ -28,22 +33,24 @@ function DashProgressCard({ label, BarColor, BarNumber, Date, Dot }: Props) {
         >
           <Stack direction={"row"} spacing={1} alignItems={"center"}>
             <span>
-              <MdSubject size={20} />
+              <MdSubject size={20} className="text-[hsl(0,0%,95%)]" />
             </span>
-            <span className="font-roboto text-[16px] font-semibold">
+            <span className="font-roboto text-[16px] font-semibold text-[hsl(0,0%,95%)]">
               {label}
             </span>
           </Stack>
           <span>
-            <GoDotFill size={20} color={Dot ? "red" : "gray"} />
+            <GoDotFill size={20} color={Dot ? "red" : "hsl(0,0%,95%)"} />
           </span>
         </Stack>
         <Stack className="w-[80%]">
           <Progress color={BarColor} progress={BarNumber} size={"sm"} />
         </Stack>
         <Stack direction={"row"} spacing={1} alignItems={"center"}>
-          <FaCalendar size={14} className="" />
-                  <span className="font-roboto text-[14px]">{ Date }</span>
+          <FaCalendar size={14} className="text-[hsl(0,0%,90%)]" />
+          <span className="font-roboto text-[14px] text-[hsl(0,0%,90%)]">
+            {Date}
+          </span>
         </Stack>
       </Stack>
     </Box>
