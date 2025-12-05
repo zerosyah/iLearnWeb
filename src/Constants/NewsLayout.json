@@ -1,0 +1,46 @@
+{
+    "News": [
+      {
+        "Title": "Science Fair Winners Announced",
+        "Duration": "3 hours ago",
+        "Views": 128,
+        "Image": "https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "Title": "Grade 10 Exam Timetable Released",
+        "Duration": "1 day ago",
+        "Views": 245,
+        "Image": "https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "Title": "New Library Books Available",
+        "Duration": "5 hours ago",
+        "Views": 76,
+        "Image": "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "Title": "Sports Day Highlights",
+        "Duration": "2 days ago",
+        "Views": 312,
+        "Image": "https://images.unsplash.com/photo-1509228468518-c5eeecbff44a?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "Title": "Parent-Teacher Meeting Schedule",
+        "Duration": "4 hours ago",
+        "Views": 98,
+        "Image": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "Title": "Art Competition Results",
+        "Duration": "6 hours ago",
+        "Views": 67,
+        "Image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "Title": "School Canteen Menu Updated",
+        "Duration": "30 minutes ago",
+        "Views": 54,
+        "Image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+    "Events": [
+    {
+      "subject": "Mathematics",
+      "date": "2025-09-14",
+      "time": "07:00 - 09:00",
+      "bColor": "orange"
+    },
+    {
+      "subject": "Chemistry",
+      "date": "2025-09-14",
+      "time": "09:00 - 11:00",
+      "bColor": "blue"
+    },
+    {
+      "subject": "Break Time",
+      "date": "2025-09-14",
+      "time": "11:00 - 13:00",
+      "bColor": "hotpink"
+    },
+    {
+      "subject": "Life Sciences",
+      "date": "2025-09-14",
+      "time": "11:00 - 13:00",
+      "bColor": "green"
+    },
+    {
+      "subject": "Life Orientation",
+      "date": "2025-09-14",
+      "time": "13:00 - 15:00",
+      "bColor": "orange"
+    },
+    {
+      "subject": "Study Time",
+      "date": "2025-09-14",
+      "time": "15:00 - 17:00",
+      "bColor": "blue"
+    }
+  ]
+}

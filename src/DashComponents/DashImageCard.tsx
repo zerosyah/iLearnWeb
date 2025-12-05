@@ -14,7 +14,7 @@ type Props = {
 function DashImageCard({width, height, borderRadius, border, src, alt, objectF}: Props) {
   return (
     <Box>
-        <img src={src} alt={alt} style={{width: width, height: height, border: border, borderRadius: borderRadius,}} className={`${objectF} p-0`} />
+        <img src={src} alt={alt} style={{width: width, height: height, border: border, borderRadius: borderRadius}} className={`${objectF} p-0`} />
     </Box>
   )
 }

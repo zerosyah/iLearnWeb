@@ -1,0 +1,36 @@
+{
+    "SidebarData": [
+        {
+            "Icon": "MdDashboard",
+            "Link": "/dashboard?tab=dash",
+            "Name": "Dashboard",
+            "Label": true,
+            "Restrict": false,
+            "Tab": "dash"
+        },
+        {
+            "Icon": "HiUser",
+            "Link": "/dashboard?tab=profile",
+            "Name": "Profile",
+            "Label": false,
+            "Restrict": false,
+            "Tab": "profile"
+        },
+        {
+            "Icon": "HiDocumentText",
+            "Link": "/dashboard?tab=posts",
+            "Name": "Posts",
+            "Label": false,
+            "Restrict": false,
+            "Tab": "posts"
+        },
+        {
+            "Icon": "TiMessages",
+            "Link": "/dashboard?tab=livechat",
+            "Name": "Live Chat",
+            "Label": false,
+            "Restrict": false,
+            "Tab": "livechat"
+        }
+    ]
+}
