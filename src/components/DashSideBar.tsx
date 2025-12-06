@@ -58,9 +58,8 @@ export default function DashSideBar() {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userId: currentUser._id }),
-      })
+        }
+      });
       const data = await res.json();
       if (!res.ok) {
         setLoading(false);
