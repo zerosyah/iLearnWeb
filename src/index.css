@@ -14,7 +14,7 @@
         90% 100%,
         0% 100%
     );
-    background-image: url("./assets/Heros/Hero_1.jpg");
+    background-image: url("./assets/Heros/Hero_1.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -27,7 +27,7 @@
                 calc(50% - 0px) 0%,
                 90% 100%,
                 0% 100%);
-        background-image: url("./assets/Heros/Hero_1.jpg");
+        background-image: url("./assets/Heros/Hero_1.webp");
         background-size: 50%;
         background-size: cover;
         background-position: center;

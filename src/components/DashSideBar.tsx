@@ -80,7 +80,7 @@ export default function DashSideBar() {
       alert(error);
     }
   };
-  console.log(iconArray);
+  //console.log(iconArray);
   
   //const [isOpen, setIsOpen] = useState<boolean>(false);
   return (

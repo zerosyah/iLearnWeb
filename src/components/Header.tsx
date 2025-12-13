@@ -8,15 +8,18 @@ import {
   Avatar,
   Dropdown,
   Badge,
+  //FooterBrand,
 } from "flowbite-react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { signOut } from "../redux/user/userSlice";
 import { toggleTheme } from "../redux/theme/themeSlice";
+import { Stack } from "@mui/material";
+import badge from "../assets/Heros/CARD/badge.webp"
 
 export default function Header() {
   // useLocation function to get path
-  const path = useLocation();
+  //const path = useLocation();
   const location = useLocation();
 
   // get current user
@@ -64,18 +67,15 @@ export default function Header() {
     }
   }, [location.search]);
 
+  // //use effect to get tab from url
+  // useEffect(() => {
+  //   const urlParms = new URLSearchParams(location.search);
+  //   const tabFromUrl = urlParms.get("/");
+  //   if (tabFromUrl) {
+  //     setTab(tabFromUrl);
+  //   }
+  // }, [location.search]);
 
-    // //use effect to get tab from url
-    // useEffect(() => {
-    //   const urlParms = new URLSearchParams(location.search);
-    //   const tabFromUrl = urlParms.get("/");
-    //   if (tabFromUrl) {
-    //     setTab(tabFromUrl);
-    //   }
-    // }, [location.search]);
-  
-  
-  
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const urlParms = new URLSearchParams(location.search);
@@ -83,23 +83,23 @@ export default function Header() {
     const searchQuery = urlParms.toString();
     navigate(`/search?${searchQuery}`);
   };
-  console.log(path.pathname);
-  
+  //console.log(path.pathname);
+
   return (
     <Navbar
-      className="absolute left-0 right-0 top-0 z-20 items-center w-full border-b-2"
+      className="absolute left-0 right-0 top-0 z-20 w-full items-center border-b-2"
       style={{
         background: "transparent",
       }}
     >
       {/* Logo */}
-      <Link
-        to="/"
-        className="self-center whitespace-nowrap text-[32px] font-semibold dark:text-white sm:text-xl"
-      >
-        <span className="pl-5 font-bebasNeue bg-clip-text bg-gradient-to-tr from-yellow-300 to-green-400 text-[30px]  font-bold drop-shadow-[0px_0px_10px_rgba(0,0,0,3)]">
-          sompukwane
-        </span>
+      <Link to="/" className="self-center">
+        <Stack direction={"row"} spacing={1} alignItems={"center"} className="sm:hidden">
+          <img src={badge} alt="school badge" className="h-[25px] md:h-[30px] w-[30px]" />
+          <h1 className="from-defaultYellowHsl to-defaultGreenHsl bg-gradient-to-r bg-clip-text font-bebasNeue text-[20px] md:text-[30px] text-transparent drop-shadow-[1px_1px_0px_white] space-x-[10px]">
+            Sompukwane
+          </h1>
+        </Stack>
       </Link>
 
       {/* Search */}
@@ -108,30 +108,27 @@ export default function Header() {
           type="search"
           placeholder="Search..."
           rightIcon={AiOutlineSearch}
-          className="hidden bg-transparent text-white shadow-lg lg:inline"
+          className="hidden dark:text-white text-black shadow-lg lg:inline font-popins text-[12px]"
           value={searchTerm}
+          sizing={"sm"}
           onChange={(e) => setSearchTerm(e.target.value)}
           style={{
-            background: "transparent",
-            color: "white",
+            
           }}
         />
       </form>
 
       {/* Sign-in */}
-      <Button className="h-10 w-12 lg:hidden" color="gray" pill>
-        <AiOutlineSearch />
-      </Button>
 
       {/* Dark icon */}
-      <div className="flex gap-2 md:order-2">
+      <Stack direction={"row"} alignItems={"center"} spacing={2} className="flex gap-2 md:order-2">
         <Button
-          className="hidden h-10 w-12 sm:inline"
+          className="hidden md:inline w-fit h-fit focus:border-none bg-default dark:bg-gray-700"
           color="gray"
           pill
           onClick={() => dispatch(toggleTheme())}
         >
-          {theme === "light" ? <FaMoon /> : <FaSun />}
+          {theme === "light" ? <FaMoon size={10} /> : <FaSun size={10} className="text-default" />}
         </Button>
 
         {/* Sign-in */}
@@ -194,19 +191,19 @@ export default function Header() {
             <Button
               outline
               gradientDuoTone="purpleToBlue"
-              className="font-popins font-bold uppercase md:w-[150px]"
+                className="font-popins font-bold uppercase h-fit md:w-[150px] bg-gradient-to-r from-defaultYellowHsl to-defaultGreenHsl"
             >
               Sign-in
             </Button>
           </Link>
         )}
-      </div>
+      </Stack>
 
       {/* Menu */}
       <Navbar.Toggle />
 
       {/* Collapse */}
-      <Navbar.Collapse className="absolute md:relative right-[10px] top-[80px] md:top-0 w-fit rounded-[10px] text-[18px] font-bold text-white backdrop-blur-md py-[10px]">
+      <Navbar.Collapse className="absolute right-[10px] top-[80px] w-fit rounded-[10px] py-[10px] text-[18px] font-bold text-white backdrop-blur-md md:relative md:top-0">
         <Navbar.Link as={"div"}>
           <Link
             to="/stuff"

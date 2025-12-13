@@ -55,6 +55,11 @@ export default {
         scards: "hsl(182, 34%, 88%)",
         stxtl: "hsl(182, 34%, 99%)",
         stxtd: "hsl(182, 34%, 95%)",
+
+        defaultYellowHsl: "hsl(47, 100%, 49.8%)",
+        defaultYellow: "#FEC700",
+        defaultGreenHsl: "hsl(182, 94.4%, 14.1%)",
+        defaultGreen: "#024628E",
       },
     },
   },
