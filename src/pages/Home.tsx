@@ -14,13 +14,9 @@ import { FaChevronRight } from "react-icons/fa";
 import { LuDrama } from "react-icons/lu";
 import { TbCash } from "react-icons/tb";
 import { GiMaterialsScience } from "react-icons/gi";
-import { hero, m3d, mission, ss } from "../Constants/Assets"
+import { hero, m3d, mission } from "../Constants/Assets"
 import slidesData from "../Constants/Slides";
 import { TeacherRecognition, MobileOnlySectionData1, SchoolSubjectList, MobileDisplayCardData } from "../Constants/EventLayout.json";
-import test from "../assets/mobile/hero4.png"
-import test2 from "../assets/mobile/hero6.jpg"
-import test3 from "../assets/mobile/hero7.jpg"
-import  {motion} from "framer-motion";
 
 //@ts-ignore
 import "swiper/css";
@@ -58,7 +54,7 @@ export default function Home() {
     }
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
-  })
+  }, [])
   
   const swiperWrapperReff = useRef<any>(null);
   function adjustMargim() {
@@ -82,10 +78,9 @@ export default function Home() {
     adjustMargim();
     window.addEventListener("resize", adjustMargim);
     return () => window.removeEventListener("resize", adjustMargim);
-  })
+  }, [])
   
   const navigate = useNavigate();
-  const List = ["Mathematics", "Science", "Commerce", "Drama", "History", "Geography", "Languages", "Physical Education", "Arts", "Computer Science", "Economics", "Psychology", "Sociology", "Philosophy", "Environmental Science", "Health Education", "Business Studies", "Accounting", "Media Studies", "Music"];
 
   //const responsiveTop => (vw > 400 ? vh*0.2 : vh*0.1);
   const phoneHeight = width < 430 ? height : height
