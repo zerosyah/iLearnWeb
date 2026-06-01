@@ -35,3 +35,13 @@ export type StaffDisplayCardProps = {
     grade: string;
     gender: string;
 }
+
+export type SchoolInformationCardProps = {
+    informationName: string;
+    name: string;
+    telephoneNumber: string;
+    phoneNumber: string;
+    faxNumber: string;
+    email: string;
+    address: string;
+}

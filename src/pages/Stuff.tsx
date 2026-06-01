@@ -9,7 +9,7 @@ export default function Stuff() {
         <Header />
       </div>
 
-      <div className="relative top-[70px] mx-[10px] my-2 flex flex-wrap justify-evenly gap-4 md:top-[70px] ">
+      <div className="relative mx-[10px] my-2 flex flex-wrap justify-evenly gap-4">
         {/*General Teacher*/}
         {
           StaffData.map((item, index:number)=>(

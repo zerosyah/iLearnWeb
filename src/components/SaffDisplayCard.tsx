@@ -40,15 +40,30 @@ function StaffDisplayCard ({
     const handleMouseLeave = () => {
       setIsHovered(false);
     };
+    const containerAnimationStyle = {
+      scale: isHovered ? 1.2 : 1,
+      transition: { duration: 0.3, ease: "easeInOut", type: "initia" },
+    };
+    // Define styles for the container
+    const containerStyle = `relative bg-[#D9D9D9] overflow-hidden h-[70vh] md:h-[400px] flex-wrap w-full md:w-[250px] rounded-[10px] border ${isHovered ? 'border shadow-sm shadow-gray-600' : 'border-gray-300'}`
+    // Define styles for the image
+    const imageSyle = `h-full w-full rounded-[10px] object-cover`
+    const secondLayerInitialStyle = {
+      opacity: 0,
+    };
+    const secondLayerAnimateStyle = {
+      opacity: isHovered ? 1 : 0,
+    }
+    const secondLayerStyle = `absolute inset-0 rounded-b-[10px] bg-gradient-to-t from-black/90 via-black/40 to-transparent duration-500 ease-in-out transition-all`
   return (
-    <div className={`relative bg-[#D9D9D9] overflow-hidden h-[70vh] md:h-[400px] flex-wrap w-full md:w-[250px] rounded-[10px] border ${isHovered ? 'border shadow-sm shadow-gray-600' : 'border-gray-300'}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div className={containerStyle} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <motion.img
         src={StaffDisplayCardRecord[image]}
-        alt="test image"
-        className={` h-full w-full rounded-[10px] object-cover`}
-        animate={{scale:isHovered?1.2:1, transition:{duration:0.3, ease:"easeInOut", type:"initia"}}}
+        alt="test-image"
+        className={imageSyle}
+        animate={containerAnimationStyle}
       />
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: isHovered ? 1 : 0 }} className={`absolute inset-0 rounded-b-[10px] bg-gradient-to-t from-black/90 via-black/40 to-transparent duration-500 ease-in-out transition-all`}></motion.div>
+      <motion.div initial={secondLayerInitialStyle} animate={secondLayerAnimateStyle} className={secondLayerStyle}></motion.div>
       <motion.div initial={{opacity: 0, y: 20}} animate={{opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20}} className="absolute bottom-0 left-0 z-10 p-[10px] opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100">
         <motion.h1 className="font-bebasNeue text-[20px] font-bold uppercase text-white">
           {name}

@@ -92,7 +92,7 @@ export default function Header() {
 
   return (
     <Navbar
-      className={`z-20 w-full items-center fixed backdrop-blur-md justify-between flex px-[20px] bg-transparent h-fit`}
+      className={`z-20 w-full items-center relative dark:bg-transparent justify-between flex px-[20px] bg-transparent h-fit`}
     >
       {/* Logo */}
       <Link to="/" className="lg:pl-[60px]">

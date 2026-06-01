@@ -218,5 +218,43 @@
       "gender": "F",
       "image": "img10"
     }
+  ],
+  "SchoolInformationCardData": [
+    {
+      "informationName": "School Information",
+    "name": "Sompukwane H. School",
+    "telephoneNumber": "031-310-3002",
+    "phoneNumber": "N/A",
+    "faxNumber": "378 378 4287",
+    "email": "schoolname@school.co.za",
+    "address": "1313 M35, Egolokodo-nsimbini"
+    },
+    {
+      "informationName": "Principal's Information",
+    "name": "Mr. John Doe",
+    "telephoneNumber": "031-310-3002",
+    "phoneNumber": "N/A",
+    "faxNumber": "378 378 4287",
+    "email": "principal@school.co.za",
+    "address": "1313 M35, Egolokodo-nsimbini"
+    },
+    {
+      "informationName": "Vice Principal's Information",
+    "name": "Ms. Jane Smith",
+    "telephoneNumber": "031-310-3002",
+    "phoneNumber": "N/A",
+    "faxNumber": "378 378 4287",
+    "email": "viceprincipal@school.co.za",
+    "address": "1313 M35, Egolokodo-nsimbini"
+    },
+    {
+      "informationName": "Head of Department's Information",
+    "name": "Mr. Michael Johnson",
+    "telephoneNumber": "031-310-3002",
+    "phoneNumber": "N/A",
+    "faxNumber": "378 378 4287",
+    "email": "headofdepartment@school.co.za",
+    "address": "1313 M35, Egolokodo-nsimbini"
+    }
   ]
 }
