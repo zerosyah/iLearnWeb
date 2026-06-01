@@ -1,4 +1,4 @@
-import React from "react";
+//import React from "react";
 import { SchoolInformationCardProps} from "../Constants/PropsInventory"
 
 function SchoolInformationCard({informationName, address, email, faxNumber, name, phoneNumber, telephoneNumber}:SchoolInformationCardProps):JSX.Element {
