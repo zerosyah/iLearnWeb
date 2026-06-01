@@ -29,9 +29,6 @@ function MobileDisplayCard({
     const handleMouseLeave = () => {
       setIsHovered(false);
     };
-    const imageStyle = {
-
-    }
   return (
     <div className={`relative overflow-hidden h-[60vh] md:h-[400px] flex-wrap w-full md:w-[250px] rounded-[10px] border ${isHovered ? 'border shadow-sm shadow-gray-600' : 'border-gray-300'}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <motion.img

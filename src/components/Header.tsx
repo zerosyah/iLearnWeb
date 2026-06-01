@@ -20,7 +20,7 @@ import SchoolBadge from "../DashComponents/Badge";
 
 export default function Header() {
   //const width = window.innerWidth;
-  const height = window.innerHeight;
+  //const height = window.innerHeight;
   // useLocation function to get path
   //const path = useLocation();
   const location = useLocation();

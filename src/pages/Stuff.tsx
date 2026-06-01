@@ -1,59 +1,8 @@
-import { useState } from "react";
-import logo from "../assets/image2.jpg";
-import { Link } from "react-router-dom";
-import { Card } from "flowbite-react";
-import { motion } from "framer-motion";
 import Header from "../components/Header";
 import StaffDisplayCard from "../components/SaffDisplayCard";
 import {StaffData} from "../Constants/EventLayout.json"
 
 export default function Stuff() {
-  const [isHovered, setIsHovered] = useState<string>("");
-
-  const staff = [
-    {
-      id: 1,
-      Subject: "Home Language (IsiZulu)",
-      description:
-        "Here are the teachers who are teaching the home language in Sompukwane Secondary School in reverse chronological order.",
-      link: "/view?subject=Home Language (IsiZulu)",
-    },
-    {
-      id: 2,
-      Subject: "Mathematics",
-      description:
-        "Here are the teachers who are teaching Mathematics in Sompukwane Secondary School in reverse chronological order.",
-      link: "/view?subject=Mathematics",
-    },
-    {
-      id: 3,
-      Subject: "English",
-      description:
-        "Here are the teachers who are teaching English in Sompukwane Secondary School in reverse chronological order.",
-      link: "/view?subject=English",
-    },
-    {
-      id: 4,
-      Subject: "Life Orientation",
-      description:
-        "Here are the teachers who are teaching Life Orientation in Sompukwane Secondary School in reverse chronological order.",
-      link: "/view?subject=Life Orientation",
-    },
-    {
-      id: 5,
-      Subject: "Physical Sciences",
-      description:
-        "Here are the teachers who are teaching Physical Sciences in Sompukwane Secondary School in reverse chronological order.",
-      link: "/view?subject=Physical Sciences",
-    },
-    {
-      id: 6,
-      Subject: "Life Sciences",
-      description:
-        "Here are the teachers who are teaching Life Sciences in Sompukwane Secondary School in reverse chronological order.",
-      link: "/view?subject=Life Sciences",
-    },
-  ]
   return (
     <section className="flex flex-col justify-evenly flex-wrap h-full w-full bg-[#D9D9D9]">
       <div>

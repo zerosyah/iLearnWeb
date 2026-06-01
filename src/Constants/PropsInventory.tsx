@@ -1,4 +1,3 @@
-import React from 'react'
 import { teacherImages } from '../Constants/Assets'
 
 // Define the props type for TeacherYearCard

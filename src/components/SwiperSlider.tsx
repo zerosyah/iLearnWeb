@@ -25,7 +25,7 @@ function SwiperSlider ({ data }: SwiperSliderPropsData) {
     <div className='s-container'>
       <Swiper
       className='swiper-container'
-        modules={[Pagination, Navigation, A11y]}
+        modules={[Pagination, Navigation, A11y, Scrollbar]}
       spaceBetween={10}
       navigation={true}
       pagination={paginationProps}

@@ -1,4 +1,3 @@
-import React from "react";
 import { MobileOnlySectionPropData } from "../Constants/PropsInventory";
 import { Stack } from "@mui/material";
 

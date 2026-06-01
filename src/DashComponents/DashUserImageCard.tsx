@@ -4,12 +4,10 @@ import { Box, Stack } from '@mui/material';
 type Props = {
     image: string;
     name: string;
-    w?: string;
-    h?: string;
     p?: boolean;
 }
 
-function DashUserImageCard({image, name, w, h, p}: Props) {
+function DashUserImageCard({image, name, p}: Props) {
   return (
     <Box>
       <Stack
