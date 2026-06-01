@@ -1,11 +1,6 @@
-// import { useState , useEffect} from "react";
-// import image1 from "../assets/images1.jpg";
-// import { motion } from "framer-motion"
-import Hero from "../assets/Heros/Hero_1.webp"
 import Header from "../components/Header";
 import {
   Button,
-  Carousel,
   Footer,
   FooterBrand,
   FooterCopyright,
@@ -14,41 +9,522 @@ import {
   FooterLinkGroup,
 } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
-import Class_2 from "../assets/Heros/Class_2.jpg"
-import Class_3 from "../assets/Heros/Class_3.jpg"
-import Class_4 from "../assets/Heros/Class_4.jpg"
-import Special from "../assets/Heros/Special_1.jpg"
-import Sport_Boys_Team from "../assets/Heros/Sport_Boys_Team.jpg"
-import Activity_1 from "../assets/Heros/Activity_1.jpg"
-import Activity_2 from "../assets/Heros/Activity_2.jpg"
-import SS1 from "../assets/Heros/SSP/Hoolywood_SSP.jpg";
-import SS2 from "../assets/Heros/SSP/SSP2.jpg";
-import SS3 from "../assets/Heros/SSP/SS3.jpg";
-import SS4 from "../assets/Heros/SSP/SS4.jpg";
-import SA1 from "../assets/Heros/SA/SA1.jpg";
-import SA2 from "../assets/Heros/SA/SA2.jpg";
-import SA3 from "../assets/Heros/SA/SA3.jpg";
-import { Box, Stack } from "@mui/material";
-import {class_1, class_2, class_3, class_4 } from "../Constants/Assets"
+import { Stack } from "@mui/material";
+import { FaChevronRight } from "react-icons/fa";
+import { LuDrama } from "react-icons/lu";
+import { TbCash } from "react-icons/tb";
+import { GiMaterialsScience } from "react-icons/gi";
+import { hero, m3d, mission, ss } from "../Constants/Assets"
+import slidesData from "../Constants/Slides";
+import { TeacherRecognition, MobileOnlySectionData1, SchoolSubjectList, MobileDisplayCardData } from "../Constants/EventLayout.json";
+import test from "../assets/mobile/hero4.png"
+import test2 from "../assets/mobile/hero6.jpg"
+import test3 from "../assets/mobile/hero7.jpg"
+import  {motion} from "framer-motion";
+
+//@ts-ignore
+import "swiper/css";
+//@ts-ignore
+import "swiper/css/effect-coverflow";
+//@ts-ignore
+import "swiper/css/pagination";
+//@ts-ignore
+import "swiper/css/navigation";
+
+//@ts-ignore
+import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
+import { useEffect, useRef, useState } from "react";
+
+import Marquee from "react-fast-marquee";
+import SwiperSlider from "../components/SwiperSlider";
+import TeacherYearCard from "../SvgComponents/TeacherYearCard";
+import MobileOnlySection from "../components/MobileOnlySection";
+import MobileDisplayCard from "../components/MobileDisplayCard";
+
+//import {} from "../as"
 
 
 export default function Home() {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const [vw, setVw] = useState(window.innerWidth);
+  const [vh, setVh] = useState(window.innerHeight);
+
+  // Use effect to update vw and vh on window resize
+  useEffect(()=>{
+    const onResize = ()=>{
+      setVw(window.innerWidth);
+      setVh(window.innerHeight);
+    }
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  })
+  
+  const swiperWrapperReff = useRef<any>(null);
+  function adjustMargim() {
+    const screenWidth = window.innerWidth;
+    if (swiperWrapperReff.current) {
+      swiperWrapperReff.current.style.marginLeft = screenWidth <= 520
+        ?
+        "0px"
+        : screenWidth <= 650
+          ?
+          "-50px"
+          : screenWidth <= 1000
+            ?
+            "-100px"
+            : "-150px";
+    }
+  }
+
+  // use effect to adjust margin on window resize of swiper wrapper
+  useEffect(() => {
+    adjustMargim();
+    window.addEventListener("resize", adjustMargim);
+    return () => window.removeEventListener("resize", adjustMargim);
+  })
+  
   const navigate = useNavigate();
+  const List = ["Mathematics", "Science", "Commerce", "Drama", "History", "Geography", "Languages", "Physical Education", "Arts", "Computer Science", "Economics", "Psychology", "Sociology", "Philosophy", "Environmental Science", "Health Education", "Business Studies", "Accounting", "Media Studies", "Music"];
+
+  //const responsiveTop => (vw > 400 ? vh*0.2 : vh*0.1);
+  const phoneHeight = width < 430 ? height : height
+  
   return (
-    <Box sx={{ height: "100%", overflow: "auto" }} className="scroll-container h-screen">
+    <div className="scroll-container h-screen w-full overflow-y-scroll px-[10px] bg-[#D9D9D9]">
+      <Stack className={`relative h-full w-full bg-[#D9D9D9]`}>
+        <Header />
+        <Stack className="flex flex-col md:flex-row">
+          {/* details information */}
+          <Stack
+            spacing={1}
+            className="absolute z-10 lg:left-[60px]"
+            style={{top:(vw > 400 ? vh*0.2 : vh*0.1)}}
+          >
+            <h3
+              style={{}}
+              className={`relative md:w-[335px] font-popins text-[14px] md:text-[18px] text-defaultGreenHsl font-semibold drop-shadow-[0px_0px_5px_white]`}
+            >
+              SHAPING MINDS, BUILDING FUTURES
+            </h3>
+            <h1
+              style={{ lineHeight: 0.8 }}
+              className={`relative md:w-[600px] bg-gradient-to-r from-defaultYellow to-defaultGreen bg-clip-text z-10 font-bebasNeue text-transparent text-[80px] drop-shadow-[0px_0px_5px_rgba(0,0,0,3)]`}
+            >
+              Sompukwane Secondary School
+            </h1>
+            <p className="h-fit md:w-[601px] text-wrap font-popins text-[18px] text-default drop-shadow-[0px_0px_5px_rgba(0,0,0,3)]">
+              Classrooms are the heart of learning, where students engage with
+              teachers, participate in discussions, and explore new ideas. A
+              well-structured classroom fosters creativity, discipline, and
+              knowledge-sharing. Interactive lessons encourage students to think
+              critically and collaborate effectively.
+            </p>
+            {/* buttons stack */}
+            <Stack
+              direction={"row"}
+              spacing={2}
+              alignContent={"center"}
+              className="relative top-[20px]"
+            >
+              <Button
+                className={`w-fit rounded-full bg-defaultYellow font-roboto text-[15px] font-bold text-black transition-all duration-300 ease-in-out hover:bg-defaultGreen hover:text-default`}
+                onClick={() => navigate("/signup")}
+              >
+                REGISTER NOW
+              </Button>
+              <Button
+                className="items-center rounded-full bg-transparent font-roboto text-[12px] text-black transition-all duration-300 ease-in-out hover:text-default"
+                onClick={() => navigate("/signin")}
+              >
+                iLearn web <FaChevronRight size={12} />
+              </Button>
+            </Stack>
+            {/* buttons stack */}
+
+            {/* icon */}
+            <Stack
+              direction={"row"}
+              spacing={2}
+              className="relative hidden md:inline-block top-[50px]"
+            >
+              <Stack
+                direction={"row"}
+                spacing={1}
+                alignItems={"center"}
+                className="drop-shadow-[0px_0px_5px_rgba(0,0,0,3)] hidden"
+              >
+                <TbCash size={20} className="text-default" />
+                <p className="font-popins flex-nowrap text-[16px] text-default">
+                  Commerce Studies
+                </p>
+              </Stack>
+              <Stack
+                direction={"row"}
+                spacing={1}
+                alignItems={"center"}
+                className="drop-shadow-[0px_0px_5px_rgba(1,3,2,3)] flex-nowrap"
+              >
+                <LuDrama size={20} className="text-default" />
+                <p className="font-popins text-[16px] text-default">
+                  Drama Studies
+                </p>
+              </Stack>
+              <Stack
+                direction={"row"}
+                spacing={1}
+                alignItems={"center"}
+                className="drop-shadow-[0px_0px_5px_rgba(0,0,0,3)]"
+              >
+                <GiMaterialsScience size={20} className="text-default" />
+                <p className="font-popins text-[16px] text-default flex-nowrap">
+                  Science Studies
+                </p>
+              </Stack>
+            </Stack>
+            
+
+          </Stack>
+          {/* image right */}
+          <Stack className={`absolute sm: bottom-0  lg:right-0 hidden md:block`}>
+            <img
+              src={hero}
+              alt="hero image"
+              style={{height: phoneHeight }}
+              className={`w-full brightness-75`}
+            />
+          </Stack>
+        </Stack>
+      </Stack>
+      {/* The first mobile only section */}
+      <section className="mobile-only h-[50vh] md:hidden overflow-hidden bg-[#d9d9d9] relative my-[50px] px-[50px] rounded-[10px]">
+        <img src={mission} alt="Test" className="w-full brightness-90 h-[50vh] object-fill" />
+        <section className="scroll-container w-full gap-[5px] h-full absolute inset-0 overflow-y-scroll px-[5px]">
+          {
+            MobileOnlySectionData1.map((item, index:number)=>(
+              <Stack spacing={1} key={index}>
+              <MobileOnlySection list={item?.list} title={item?.title} />
+            </Stack>
+            ))
+          }
+        
+        </section>
+      </section>
+      {/* The Slider section */}
+      <Stack spacing={3} alignItems={"center"} className=" w-full h-fit pb-[20px]">
+        <h1 className="text-left text-[40px] font-bold text-ptxtd">Our Programs</h1>
+          <SwiperSlider data={slidesData} />
+      </Stack>
+      <section
+        className="section-3 h-fit bg-[#D9D9D9] hidden md:inline-block relative pt-[20px] px-[50px] rounded-[10px]"
+        //spacing={5}
+        //justifyContent={"start"}
+      >
+        
+        <Stack direction={"row"} justifyContent={"flex-start"} alignItems={"end"} spacing={2} className="bg-[#D9D9D9]">
+          
+          <Stack
+            sx={{ width: width * 0.45 }}
+            className={`overflow-hidden z-10 text-start text-wrap drop-shadow-[0px_0px_10px_white]`}
+            spacing={2}
+          >
+           {
+            MobileOnlySectionData1.slice(0,2).map((item, index:number)=>(
+              <Stack spacing={0.45} key={index}>
+                <MobileOnlySection list={item?.list} title={item?.title} />
+              </Stack>
+            ))
+           }
+          </Stack>
+          <img
+            src={m3d}
+            alt="test7"
+            className=" rounded-[10px] bottom-0 object-center brightness-105 md:brightness-100 absolute md:relative"
+            width={width*0.25}
+          />
+          <Stack
+            sx={{ width: width * 0.45 }}
+            className={`overflow-hidden z-10 text-start text-wrap`}
+            spacing={2}
+          >
+           {
+            MobileOnlySectionData1.slice(2,4).map((item, index:number)=>(
+              <Stack spacing={0.5} key={index}>
+                <MobileOnlySection list={item?.list} title={item?.title} />
+              </Stack>
+            ))
+           }
+          </Stack>
+        </Stack>
+      </section>
+      {/* mobile only section */}
+      <Stack className="h-fit bg-[#D9D9D9] py-[10px]" spacing={2}>
+          <Marquee speed={30} className="py-[10px]">
+            {
+              TeacherRecognition.map((item:any, index:number)=>(
+                <TeacherYearCard
+                  title={item.title}
+                  name={item.name}
+                  subject={item.subject}
+                  grade={item.grade}
+                  description={item.description}
+                  img={item.img}
+                  key={index}
+                />
+              ))
+            }
+          </Marquee>
+      </Stack>
+      <Stack className="h-fit bg-[#D9D9D9] pt-[10px]">
+        <h1 className="pt-[10px] text-center font-roboto text-[20px] lg:text-[40px] font-bold uppercase text-ptxtl">
+          Student Support Program
+        </h1>
+        <div className="flex flex-col md:flex-row gap-5 md:gap-5 justify-center items-center py-[20px]">
+          {
+            MobileDisplayCardData.slice(0, 4).map((item, index:number)=>(
+              <MobileDisplayCard image={item.image} title={item.title} description={item.description} key={index} />
+            ))
+          }
+        </div>
+      </Stack>
+      <Stack className="bg-[#D9D9D9] w-full h-fit py-[10px] ">
+        <Marquee>
+          {SchoolSubjectList.map((item) => (
+            <p className="mx-4 text-[14px] lg:text-[16px] font-nunito font-bold" key={item}>
+              {item}
+            </p>
+          ))}
+        </Marquee>
+      </Stack>
+
+      <Stack>
+        <section className="h-fit bg-default rounded-[30px]">
+          <Footer container className="w-full bg-default">
+            <div className="w-full text-center">
+              <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
+                <FooterBrand
+                  href="https://ilearnweb.onrender.com"
+                  src="https://flowbite.com/docs/images/logo.svg"
+                  alt="Flowbite Logo"
+                  name="SOMPUKWANE"
+                  className="font-bebasNeue"
+                />
+                <FooterLinkGroup>
+                  <FooterLink href="#">About</FooterLink>
+                  <FooterLink href="#">Privacy Policy</FooterLink>
+                  <FooterLink href="#">Licensing</FooterLink>
+                  <FooterLink href="#">Contact</FooterLink>
+                </FooterLinkGroup>
+              </div>
+              <FooterDivider />
+              <FooterCopyright href="#" by="SOMPUKWANE™" year={2025} />
+            </div>
+          </Footer>
+        </section>
+      </Stack>
+    </div>
+  );
+}
+
+
+
+/*
+<Stack
+            //sx={{ width: width * 0.5 }}
+            className={` text-start z-10 text-wrap`}
+            spacing={2}
+          >
+            
+            <Stack spacing={0.5}>
+              <h1 className="font-popins text-[18px] lg:text-[20px] font-semibold text-ptxtd drop-shadow-[0px_0px_5px_rgba(0,0,0,3)]">
+                Citizenship & Leadership
+              </h1>
+              <Stack spacing={0.2} className="pl-[5px]">
+                <p className="pl-[10px] font-popins text-[14px] lg:text-[16px] text-ptxtd drop-shadow-[0px_0px_5px_rgba(0,0,0,3)]">
+                  Promote community service and civic responsibility.
+                </p>
+                <p className="pl-[10px] font-popins text-[14px] lg:text-[16px] text-ptxtd drop-shadow-[0px_0px_5px_rgba(0,0,0,3)]">
+                  Create leadership opportunities and student voice.
+                </p>
+                <p className="pl-[10px] font-popins text-[14px] lg:text-[16px] text-ptxtd drop-shadow-[0px_0px_5px_rgba(0,0,0,3)]">
+                  Teach ethical decision-making and digital citizenship.
+                </p>
+              </Stack>
+            </Stack>
+        </Stack>
+<Stack className="absolute inset-0 overflow-y-scroll">
+          <Stack spacing={0.5}>
+              <h1 className="font-roboto text-[18px] lg:text-[20px] font-semibold text-ptxtd">
+                Academic Excellence
+              </h1>
+              <Stack spacing={0.2} className="pl-[5px]">
+                <p className="pl-[10px] font-popins text-[14px] lg:text-[16px] text-ptxtd">
+                  Deliver a rigorous, standards-aligned curriculum.
+                </p>
+                <p className="pl-[10px] font-popins text-[14px] lg:text-[16px] text-ptxtd">
+                  Provide high-quality, research-based instruction.
+                </p>
+                <p className="pl-[10px] font-popins text-[14px] lg:text-[16px] text-ptxtd">
+                  Provide high-quality, research-based instruction.
+                </p>
+                <p className="pl-[10px] font-popins text-[14px] lg:text-[16px] text-ptxtd">
+                  Monitor progress with regular assessments.
+                </p>
+              </Stack>
+            </Stack>
+          <Stack spacing={0.5} className="z-10">
+              <h1 className="font-roboto z-10 text-[18px] lg:text-[20px] font-semibold text-ptxtd">
+                Holistic Development
+              </h1>
+              <Stack spacing={0.2} className="pl-[5px]">
+                <p className="pl-[10px] font-popins text-[14px] lg:text-[16px] text-ptxtd">
+                  Offer diverse extracurricular and arts programs.
+                </p>
+                <p className="pl-[10px] font-popins text-[14px] lg:text-[16px] text-ptxtd">
+                  Build life skills: critical thinking, communication,
+                  collaboration.
+                </p>
+                <p className="pl-[10px] font-popins text-[14px] lg:text-[16px] text-ptxtd">
+                  Support student mental and physical wellbeing.
+                </p>
+              </Stack>
+            </Stack>
+        </Stack>
+<div className="containerh h-[400px] ">
+          <Swiper
+            modules={[Pagination]}
+            grabCursor={false}
+            initialSlide={0}
+            centeredSlides
+            slidesPerView={"auto"}
+            speed={1000}
+            slideToClickedSlide
+            pagination={{ clickable: true }}
+            breakpoints={{
+              320: { spaceBetween: 40, width: vw },
+              650: { spaceBetween: 30 },
+              1000: { spaceBetween: 20 },
+            }}
+            onSwiper={(swiper) => {
+              swiperWrapperReff.current = swiper.wrapperEl;
+            }}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            autoFocus={true}
+          >
+            {slidesData.map((img, index) => (
+              <SwiperSlide key={index} className="border">
+                <img
+                  src={img.imgurl}
+                  alt="slide_image"
+                  className="slide-image"
+                />
+                <div className="title">
+                  <h1 className=" font-bebasNeue bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent text-[18px] md:text-[24px] sm:text-center">{img.title}</h1>
+                </div>
+                <div className="content">
+                  <div className="text-box font-montserrat">
+                    <p className="">{img.description}</p>
+                  </div>
+                  <div className="footer">
+                    <div className="category">
+                      {img.category.map((item, index) => (
+                        <span className="font-bebasNeue text-[16px]" key={index}>{item}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+
+<Stack
+              className="slider-controler relative"
+              justifyContent={"center"}
+            >
+              <div className="swiper-button-prev absolute top-[-50px] slider-arrow cursor-pointer  rounded-full border bg-default">
+                <FaChevronLeft size={12} className="absolute top-0" />
+              </div>
+              <div className="swiper-button-next slider-arrow mt-[10px] cursor-pointer">
+                <FaChevronRight size={20} className="" />
+              </div>
+              <div className="swiper-pagination bottom-[10px] w-[250px] h-[20px] self-center justify-center overflow-hidden border"></div>
+            </Stack>
+first:
+Classrooms are the heart of learning, where students engage with
+              teachers, participate in discussions, and explore new ideas. A
+              well-structured classroom fosters creativity, discipline, and
+              knowledge-sharing. Interactive lessons encourage students to think
+              critically and collaborate effectively. Teachers play a crucial
+              role in shaping young minds, guiding students through various
+              subjects and real-life applications. Technology-enhanced learning,
+              group projects, and hands-on experiments make lessons more
+              engaging. Classroom environments should be welcoming, inclusive,
+              and supportive, ensuring that every student thrives. By fostering
+              curiosity, discipline, and teamwork, classrooms become places of
+              inspiration, growth, and academic excellence, preparing students
+              for a successful future.
+ */
+
+  /*
+                  
+                <Stack
+                  direction={"row"}
+                  spacing={2}
+                  alignContent={"end"}
+                  alignItems={"center"}
+                  className="hidden md:flex"
+                >
+                  <Stack spacing={0.5} className="hidden md:block">
+                    <img
+                      src={Class_2}
+                      alt="photo 2"
+                      className="h-[226px] w-[407px] rounded-[10px] object-cover"
+                    />
+                    <p className="text-nowrap object-fill font-popins text-[15px] text-ptxtd">
+                      Student Meeting
+                    </p>
+                  </Stack>
+
+                  <Stack spacing={0.5} className="hidden md:block">
+                    <img
+                      src={Class_3}
+                      alt="PHOTO 3"
+                      className="h-[226px] w-[407px] rounded-[10px] object-cover"
+                    />
+                    <p className="object-fill font-popins text-[15px] text-ptxtd">
+                      Mathematics
+                    </p>
+                  </Stack>
+
+                  <Stack spacing={0.5} className="hidden md:block">
+                    <img
+                      src={Class_4}
+                      alt=""
+                      className="h-[226px] w-[407px] rounded-[10px] object-cover"
+                    />
+                    <p className="object-fill font-popins text-[15px] text-ptxtd">
+                      Sciences
+                    </p>
+                  </Stack>
+                </Stack>
+                /* second section only visible on desktop pictures pictures above 
+
+                <Box sx={{ height: "100%", overflow: "auto" }} className="h-screen">
       <Stack className="h-screen">
-          <Header />
         <Stack className="h-fit w-full bg-[#D9D9D9] md:min-h-screen">
+          <Header />
           <img
             src={Hero}
             alt="Hero Image"
             className="w-full rounded-b-[0px] object-cover md:h-screen"
           />
-          <div className="absolute left-0 right-0 top-[100px]">
+          <div className=" left-0 right-0 top-[100px]">
             <h2 className="ml-10 hidden bg-clip-text font-pacifico text-[30px] uppercase text-white drop-shadow-[5px_5px_0px_rgba(0,0,0,3)] md:inline-block">
               Welcome
             </h2>
-            <h1 className="from-defaultYellowHsl to-defaultGreenHsl text-wrap bg-gradient-to-r  bg-clip-text text-center font-bebasNeue text-[40px] font-bold uppercase text-transparent drop-shadow-[5px_5px_0px_rgba(1,2,5,3)] md:ml-10 md:text-[102px]">
+            <h1 className="text-wrap bg-gradient-to-r from-defaultYellowHsl to-defaultGreenHsl  bg-clip-text text-center font-bebasNeue text-[40px] font-bold uppercase text-transparent drop-shadow-[5px_5px_0px_rgba(1,2,5,3)] md:ml-10 md:text-[102px]">
               sompukwane secondary school
             </h1>
             <div className="relative bottom-[0px]  flex items-center justify-center md:top-[200px]">
@@ -63,9 +539,9 @@ export default function Home() {
             </div>
           </div>
         </Stack>
-        {/* second section visible on both. */}
+       second section visible on both. 
         <Stack className="h-fit w-full bg-[#D9D9D9] px-[10px] py-[10px]">
-          {/* first */}
+          {/* first 
           <Stack
             direction={"row"}
             className="flex h-fit w-full flex-col items-center justify-center md:flex-row md:pt-[56px]"
@@ -109,7 +585,7 @@ export default function Home() {
                   />
                 </Stack>
               </Stack>
-              {/* only visible on mobile */}
+              {/* only visible on mobile 
               <Stack
                 justifyContent={"center"}
                 alignItems={"center"}
@@ -136,7 +612,7 @@ export default function Home() {
                   />
                 </Carousel>
               </Stack>
-              {/* above visible on mobile */}
+              {/* above visible on mobile 
             </Stack>
           </Stack>
         </Stack>
@@ -480,68 +956,5 @@ export default function Home() {
         </section>
       </Stack>
     </Box>
-  );
-}
-
-/*
-first:
-Classrooms are the heart of learning, where students engage with
-              teachers, participate in discussions, and explore new ideas. A
-              well-structured classroom fosters creativity, discipline, and
-              knowledge-sharing. Interactive lessons encourage students to think
-              critically and collaborate effectively. Teachers play a crucial
-              role in shaping young minds, guiding students through various
-              subjects and real-life applications. Technology-enhanced learning,
-              group projects, and hands-on experiments make lessons more
-              engaging. Classroom environments should be welcoming, inclusive,
-              and supportive, ensuring that every student thrives. By fostering
-              curiosity, discipline, and teamwork, classrooms become places of
-              inspiration, growth, and academic excellence, preparing students
-              for a successful future.
- */
-
-  /*
-                  
-                <Stack
-                  direction={"row"}
-                  spacing={2}
-                  alignContent={"end"}
-                  alignItems={"center"}
-                  className="hidden md:flex"
-                >
-                  <Stack spacing={0.5} className="hidden md:block">
-                    <img
-                      src={Class_2}
-                      alt="photo 2"
-                      className="h-[226px] w-[407px] rounded-[10px] object-cover"
-                    />
-                    <p className="text-nowrap object-fill font-popins text-[15px] text-ptxtd">
-                      Student Meeting
-                    </p>
-                  </Stack>
-
-                  <Stack spacing={0.5} className="hidden md:block">
-                    <img
-                      src={Class_3}
-                      alt="PHOTO 3"
-                      className="h-[226px] w-[407px] rounded-[10px] object-cover"
-                    />
-                    <p className="object-fill font-popins text-[15px] text-ptxtd">
-                      Mathematics
-                    </p>
-                  </Stack>
-
-                  <Stack spacing={0.5} className="hidden md:block">
-                    <img
-                      src={Class_4}
-                      alt=""
-                      className="h-[226px] w-[407px] rounded-[10px] object-cover"
-                    />
-                    <p className="object-fill font-popins text-[15px] text-ptxtd">
-                      Sciences
-                    </p>
-                  </Stack>
-                </Stack>
-                /* second section only visible on desktop pictures pictures above 
 */
    

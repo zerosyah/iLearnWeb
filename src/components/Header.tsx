@@ -15,9 +15,12 @@ import { FaMoon, FaSun } from "react-icons/fa";
 import { signOut } from "../redux/user/userSlice";
 import { toggleTheme } from "../redux/theme/themeSlice";
 import { Stack } from "@mui/material";
-import badge from "../assets/Heros/CARD/badge.webp"
+//import badge from "../assets/Heros/CARD/badge.webp"
+import SchoolBadge from "../DashComponents/Badge";
 
 export default function Header() {
+  //const width = window.innerWidth;
+  const height = window.innerHeight;
   // useLocation function to get path
   //const path = useLocation();
   const location = useLocation();
@@ -37,6 +40,8 @@ export default function Header() {
   // search state
   const [searchTerm, setSearchTerm] = useState("");
   //const [tab, setTab] = useState("");
+
+  //const [selected, setSelected] = useState<string>("");
 
   // handle logout account
   const handleSignOutAccount = async () => {
@@ -87,19 +92,11 @@ export default function Header() {
 
   return (
     <Navbar
-      className="absolute left-0 right-0 top-0 z-20 w-full items-center border-b-2"
-      style={{
-        background: "transparent",
-      }}
+      className={`z-20 w-full items-center fixed backdrop-blur-md justify-between flex px-[20px] bg-transparent h-fit`}
     >
       {/* Logo */}
-      <Link to="/" className="self-center">
-        <Stack direction={"row"} spacing={1} alignItems={"center"} className="sm:hidden">
-          <img src={badge} alt="school badge" className="h-[25px] md:h-[30px] w-[30px]" />
-          <h1 className="from-defaultYellowHsl to-defaultGreenHsl bg-gradient-to-r bg-clip-text font-bebasNeue text-[20px] md:text-[30px] text-transparent drop-shadow-[1px_1px_0px_white] space-x-[10px]">
-            Sompukwane
-          </h1>
-        </Stack>
+      <Link to="/" className="lg:pl-[60px]">
+        <SchoolBadge />
       </Link>
 
       {/* Search */}
@@ -108,27 +105,34 @@ export default function Header() {
           type="search"
           placeholder="Search..."
           rightIcon={AiOutlineSearch}
-          className="hidden dark:text-white text-black shadow-lg lg:inline font-popins text-[12px]"
+          className="hidden font-popins text-[12px] text-black shadow-lg dark:text-white lg:inline"
           value={searchTerm}
           sizing={"sm"}
           onChange={(e) => setSearchTerm(e.target.value)}
-          style={{
-            
-          }}
+          style={{}}
         />
       </form>
 
       {/* Sign-in */}
 
       {/* Dark icon */}
-      <Stack direction={"row"} alignItems={"center"} spacing={2} className="flex gap-2 md:order-2">
+      <Stack
+        direction={"row"}
+        alignItems={"center"}
+        spacing={2}
+        className="flex gap-2 md:order-2"
+      >
         <Button
-          className="hidden md:inline w-fit h-fit focus:border-none bg-default dark:bg-gray-700"
+          className="hidden h-fit w-fit bg-default focus:border-none dark:bg-gray-700 md:inline"
           color="gray"
           pill
           onClick={() => dispatch(toggleTheme())}
         >
-          {theme === "light" ? <FaMoon size={10} /> : <FaSun size={10} className="text-default" />}
+          {theme === "light" ? (
+            <FaMoon size={10} />
+          ) : (
+            <FaSun size={10} className="text-default" />
+          )}
         </Button>
 
         {/* Sign-in */}
@@ -191,7 +195,8 @@ export default function Header() {
             <Button
               outline
               gradientDuoTone="purpleToBlue"
-                className="font-popins font-bold uppercase h-fit md:w-[150px] bg-gradient-to-r from-defaultYellowHsl to-defaultGreenHsl"
+              className="h-fit bg-gradient-to-r from-defaultYellow to-defaultGreen font-popins font-bold uppercase md:w-[150px]"
+              size={"md"}
             >
               Sign-in
             </Button>
@@ -207,7 +212,7 @@ export default function Header() {
         <Navbar.Link as={"div"}>
           <Link
             to="/stuff"
-            className="font-popins text-[16px] font-semibold uppercase text-black"
+            className={`"bg-gradient-to-r from-defaultYellow to-defaultGreen bg-clip-text font-popins text-[16px] font-semibold uppercase"`}
           >
             Stuff
           </Link>
@@ -215,7 +220,8 @@ export default function Header() {
         <Navbar.Link as={"div"}>
           <Link
             to="/department"
-            className="font-popins text-[16px] font-semibold uppercase text-black"
+            className="font-popins text-[16px] font-semibold uppercase from-defaultYellow to-defaultGreen bg-gradient-to-r bg-clip-text p-[2px] rounded-[10px]"
+
           >
             Department
           </Link>
@@ -223,7 +229,7 @@ export default function Header() {
         <Navbar.Link as={"div"}>
           <Link
             to="/contact"
-            className="font-popins text-[16px] font-semibold uppercase text-black"
+            className="font-popins text-[16px] font-semibold uppercase from-defaultYellow to-defaultGreen bg-gradient-to-r bg-clip-text"
           >
             contact
           </Link>

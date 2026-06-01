@@ -36,5 +36,187 @@
       "time": "15:00 - 17:00",
       "bColor": "blue"
     }
+  ],
+  "TeacherRecognition": [
+    {
+      "title": "Educator of the year",
+      "name": "MR. Johnson",
+      "subject": "Mathematics",
+      "grade": "Grade 10A",
+      "description": "Mr. Johnson is a passionate Mathematics educator who makes complex concepts feel accessible and relevant. His supportive classroom strengthens student confidence and achievement through real-world problem solving.",
+      "img": "test1"
+    },
+    {
+      "title": "Educator of the year",
+      "name": "Mrs. Williams",
+      "subject": "English",
+      "grade": "Grade 9B",
+      "description": "Mrs. Williams is an inspiring English teacher who nurtures strong reading, writing, and communication skills. She fosters creativity and critical thinking while mentoring students toward academic excellence.",
+      "img": "test2"
+    },
+    {
+      "title": "Educator of the year",
+      "name": "Mr. Okonkwo",
+      "subject": "Physics",
+      "grade": "Grade 11A",
+      "description": "Mr. Okonkwo is a Physics educator who combines hands-on experiments with clear explanations. His innovative lessons help students build strong science skills and succeed with confidence.",
+      "img": "test3"
+    },
+    {
+      "title": "Educator of the year",
+      "name": "Ms. Chen",
+      "subject": "Biology",
+      "grade": "Grade 10C",
+      "description": "Ms. Chen is a Biology educator who encourages curiosity and discovery through interactive lessons. She supports student growth with personalized guidance and a hands-on approach.",
+      "img": "test4"
+    },
+    {
+      "title": "Educator of the year",
+      "name": "Mr. Nkosi",
+      "subject": "History",
+      "grade": "Grade 8D",
+      "description": "Mr. Nkosi is a dedicated History educator with over 12 years of experience inspiring students through storytelling, critical thinking, and immersive lessons. He leads Grade 8D with a focus on cultural awareness, academic excellence, and a 94% pass rate.",
+      "img": "test5"
+    },
+    {
+      "title": "Educator of the year",
+      "name": "Mrs. Rodriguez",
+      "subject": "Chemistry",
+      "grade": "Grade 11B",
+      "description": "Mrs. Rodriguez is a Chemistry teacher who leads her students with laboratory expertise and a passion for scientific inquiry. Her supportive instruction helps learners develop confidence and strong analytical skills.",
+      "img": "test6"
+    }
+  ],
+  "MobileOnlySectionData1": [
+    {
+      "title": "Inclusive Community",
+      "list": ["Ensure equal access to learning for all students.", "Foster respect for diversity and cultural awareness.", "Engage families and community partners.", "Maintain safe, anti-bullying policies."]
+    },
+    {
+      "title": "Academic Excellence",
+      "list": ["Set high academic standards and expectations.", "Provide rigorous curriculum and instruction.", "Offer support for struggling students.", "Encourage critical thinking and creativity."]
+    },
+    {
+      "title": "Holistic Development",
+      "list": ["Promote physical and mental health.", "Encourage extracurricular activities and sports.", "Support social-emotional learning.", "Provide career guidance and counseling."]
+    },
+    {
+      "title": "Effective Leadership",
+      "list": ["Foster a positive school culture.", "Encourage teacher collaboration and professional development.", "Engage in data-driven decision making.", "Promote transparency and accountability."]
+    },
+    {
+      "title": "Community Engagement",
+      "list": ["Build strong partnerships with parents and local organizations.", "Encourage student involvement in community service.", "Host events that celebrate diversity and culture.", "Communicate regularly with stakeholders."]
+    }
+  ],
+  "SchoolSubjectList": ["Mathematics", "Science", "Commerce", "Drama", "History", "Geography", "Languages", "Physical Education", "Arts", "Computer Science", "Economics", "Psychology", "Sociology", "Philosophy", "Environmental Science", "Health Education", "Business Studies", "Accounting", "Media Studies", "Music"],
+  "MobileDisplayCardData":[
+    {
+      "image": "img1",
+      "title": "After School Tutoring",
+      "description": "Join our after-school tutoring program for personalized academic support and enrichment activities."
+    },
+    {
+      "image": "img2",
+      "title": "Science Fair",
+      "description": "Participate in our annual science fair to showcase your innovative projects and compete for exciting prizes."
+    },
+    {
+      "image": "img3",
+      "title": "Sports Day",
+      "description": "Get ready for our upcoming sports day with fun competitions and activities for all students."
+    },
+    {
+      "image": "img4",
+      "title": "Art Exhibition",
+      "description": "Explore your creativity and display your artwork at our school art exhibition."
+    },
+    {
+      "image": "img5",
+      "title": "Music Concert",
+      "description": "Join us for a night of music and talent at our annual school music concert."
+    }
+  ],
+  "StaffData": [
+    {
+      "name": "Mr. Shange",
+      "description": "Mr. Shange is a dedicated educator who motivates students with engaging lessons and a student-centered classroom. He combines strong subject knowledge with mentorship to support academic growth and character development.",
+      "grade": "Grade 10A",
+      "subject": "Mathematics",
+      "gender": "M",
+      "image": "img1"
+    },
+    {
+      "name": "Mrs. Rodriguez",
+      "description": "Mrs. Rodriguez is a dedicated Chemistry teacher who leads hands-on laboratory learning with clarity and care. She supports students through practical experiments, strong study habits, and a focus on scientific understanding.",
+      "grade": "Grade 11B",
+      "subject": "Chemistry",
+      "gender": "F",
+      "image": "img2"
+    },
+    {
+      "name": "Ms. Chen",
+      "description": "Ms. Chen is a Biology teacher who engages students with real-world science and collaborative learning. She creates a welcoming classroom where learners build confidence, curiosity, and academic success.",
+      "grade": "Grade 10C",
+      "subject": "Biology",
+      "gender": "F",
+      "image": "img3"
+    },
+    {
+      "name": "Ms. Alvarez",
+      "description": "Ms. Alvarez inspires students with immersive Spanish lessons and cultural storytelling. She supports language learners with engaging practice and thoughtful encouragement.",
+      "grade": "Grade 9A",
+      "subject": "Spanish",
+      "gender": "F",
+      "image": "img4"
+    },
+    {
+      "name": "Mr. Mensah",
+      "description": "Mr. Mensah brings geography to life through interactive maps, projects, and discussions of global issues. He encourages students to think critically about place, environment, and community.",
+      "grade": "Grade 10B",
+      "subject": "Geography",
+      "gender": "M",
+      "image": "img5"
+    },
+    {
+      "name": "Mrs. Kim",
+      "description": "Mrs. Kim leads computer science learners with patience and practical coding challenges. She helps students build confidence in technology while fostering problem-solving skills.",
+      "grade": "Grade 11C",
+      "subject": "Computer Science",
+      "gender": "F",
+      "image": "img6"
+    },
+    {
+      "name": "Ms. Patel",
+      "description": "Ms. Patel encourages artistic expression through guided studio work and creative projects. Her classroom is a supportive space for students to explore color, design, and visual storytelling.",
+      "grade": "Grade 8C",
+      "subject": "Art",
+      "gender": "F",
+      "image": "img7"
+    },
+    {
+      "name": "Mr. Sato",
+      "description": "Mr. Sato motivates students with energetic physical education lessons that emphasize teamwork and healthy living. He creates a positive environment where every student can thrive.",
+      "grade": "Grade 12A",
+      "subject": "Physical Education",
+      "gender": "M",
+      "image": "img8"
+    },
+    {
+      "name": "Mrs. Brown",
+      "description": "Mrs. Brown nurtures musical talent through ensemble practice and creative composition. She inspires students to develop confidence, rhythm, and a love for performance.",
+      "grade": "Grade 9C",
+      "subject": "Music",
+      "gender": "F",
+      "image": "img9"
+    },
+    {
+      "name": "Ms. Ndlovu",
+      "description": "Ms. Ndlovu supports life sciences learners with hands-on experiments and inquiry-based learning. She fosters curiosity while helping students understand the natural world.",
+      "grade": "Grade 10D",
+      "subject": "Life Sciences",
+      "gender": "F",
+      "image": "img10"
+    }
   ]
 }

@@ -2,8 +2,8 @@ import React from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 //import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import test from "../assets/Heros/CARD/test.jpg"
-import test2 from "../assets/Heros/CARD/test2.png";
+import test from "../assets/teachers/test.jpg"
+import test2 from "../assets/teachers/test2.png";
 import CurrentCard from "./CurrentCard";
 
 function LiveEventCard() {

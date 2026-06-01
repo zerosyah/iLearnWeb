@@ -24,14 +24,15 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/Stuff" element={<Stuff />} />
+        <Route path="/department" element={<Department />} />
+        <Route path="/Contact" element={<Contact />} />
         <Route path="/d" element={<DesktopLayout />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/about" element={<About />} />
         // department route
-        <Route path="/department" element={<Department />} />
         //stuff route
-        <Route path="/Stuff" element={<Stuff />} />
         // search route
         <Route path="/search" element={<Search />} />
         // register route
@@ -39,7 +40,6 @@ function App() {
           <Route path="/register" element={<FormalForm />} />
         </Route>
         // contact route
-        <Route path="/Contact" element={<Contact />} />
         // private profile route
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />

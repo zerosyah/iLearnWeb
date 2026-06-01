@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Card } from "flowbite-react";
 import { motion } from "framer-motion";
 import Header from "../components/Header";
+import StaffDisplayCard from "../components/SaffDisplayCard";
+import {StaffData} from "../Constants/EventLayout.json"
 
 export default function Stuff() {
   const [isHovered, setIsHovered] = useState<string>("");
@@ -53,13 +55,25 @@ export default function Stuff() {
     },
   ]
   return (
-    <div className="flex flex-col justify-evenly flex-wrap bg-[#FFFFFF]">
-      <Header />
+    <section className="flex flex-col justify-evenly flex-wrap h-full w-full bg-[#D9D9D9]">
+      <div>
+        <Header />
+      </div>
 
-      <div className="relative top-[80px] mx-[10px] my-2 flex flex-wrap justify-evenly gap-4 md:top-[70px] ">
+      <div className="relative top-[70px] mx-[10px] my-2 flex flex-wrap justify-evenly gap-4 md:top-[70px] ">
         {/*General Teacher*/}
         {
-          staff.map(({ id, Subject, description, link }) => (
+          StaffData.map((item, index:number)=>(
+            <StaffDisplayCard name={item.name} description={item.description} gender={item.gender} grade={item.grade} key={index} subject={item.subject} image={item.image}/>
+          ))
+        } 
+      </div>
+    </section>
+  );
+}
+
+/*
+staff.map(({ id, Subject, description, link }) => (
             <Card className={`max-w-sm bg-[#D9D9D9] 0verflow-hidden transition-transform duration-700 transform  `} onMouseEnter={() => setIsHovered(Subject)} onMouseLeave={() => setIsHovered("")} imgSrc={logo} horizontal key={id} >
           <h5 className={`text-[20px] font-semibold font-popins tracking-tight text-gray-900 dark:text-white ${isHovered === Subject ? "-mt-5 duration-700 ease-in-out": "mt-0"}`}>
             {Subject}
@@ -73,9 +87,4 @@ export default function Stuff() {
             </Link>
           </button>
         </Card> 
-          ))
-        } 
-      </div>
-    </div>
-  );
-}
+          )) */

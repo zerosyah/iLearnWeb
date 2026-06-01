@@ -57,11 +57,12 @@ export default {
         stxtd: "hsl(182, 34%, 95%)",
 
         defaultYellowHsl: "hsl(47, 100%, 49.8%)",
-        defaultYellow: "#FEC700",
+        defaultYellow: "#EBE308",
         defaultGreenHsl: "hsl(182, 94.4%, 14.1%)",
-        defaultGreen: "#024628E",
+        defaultGreen: "#24FC1C",
       },
     },
   },
-  plugins: [flowbite, scrollbar],
+  plugins: [
+    flowbite, scrollbar],
 };
