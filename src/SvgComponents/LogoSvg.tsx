@@ -1,4 +1,4 @@
-import * as React from "react"
+//import * as React from "react"
 import { SVGProps } from "react"
 const LogoSvg = (props: SVGProps<SVGSVGElement>) => (
   <svg
