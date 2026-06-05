@@ -10,13 +10,19 @@ import {
 } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 import { Stack } from "@mui/material";
-import { FaChevronRight } from "react-icons/fa";
-import { LuDrama } from "react-icons/lu";
-import { TbCash } from "react-icons/tb";
-import { GiMaterialsScience } from "react-icons/gi";
-import { hero, m3d, mission } from "../Constants/Assets"
+//import { FaChevronRight } from "react-icons/fa";
+//import { LuDrama } from "react-icons/lu";
+//import { TbCash } from "react-icons/tb";
+//import { GiMaterialsScience } from "react-icons/gi";
+import { m3d, mission } from "../Constants/Assets";
 import slidesData from "../Constants/Slides";
-import { TeacherRecognition, MobileOnlySectionData1, SchoolSubjectList, MobileDisplayCardData } from "../Constants/EventLayout.json";
+import {
+  TeacherRecognition,
+  MobileOnlySectionData1,
+  SchoolSubjectList,
+  MobileDisplayCardData,
+} from "../Constants/EventLayout.json";
+//import SvgHeroImage from "../SvgComponents/SvgHeroImage";
 
 //@ts-ignore
 import "swiper/css";
@@ -36,40 +42,41 @@ import SwiperSlider from "../components/SwiperSlider";
 import TeacherYearCard from "../SvgComponents/TeacherYearCard";
 import MobileOnlySection from "../components/MobileOnlySection";
 import MobileDisplayCard from "../components/MobileDisplayCard";
+//import kl from "../assets/r/kl.png"
+import iy from "../assets/r/iy.png"
+import pn from "../assets/r/pn.png";
+import g from "../assets/r/g.png";
 
 //import {} from "../as"
 
-
 export default function Home() {
   const width = window.innerWidth;
-  const height = window.innerHeight;
+  //const height = window.innerHeight;
   const [vw, setVw] = useState(window.innerWidth);
   const [vh, setVh] = useState(window.innerHeight);
 
   // Use effect to update vw and vh on window resize
-  useEffect(()=>{
-    const onResize = ()=>{
+  useEffect(() => {
+    const onResize = () => {
       setVw(window.innerWidth);
       setVh(window.innerHeight);
-    }
+    };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
-  }, [])
-  
+  }, []);
+
   const swiperWrapperReff = useRef<any>(null);
   function adjustMargim() {
     const screenWidth = window.innerWidth;
     if (swiperWrapperReff.current) {
-      swiperWrapperReff.current.style.marginLeft = screenWidth <= 520
-        ?
-        "0px"
-        : screenWidth <= 650
-          ?
-          "-50px"
-          : screenWidth <= 1000
-            ?
-            "-100px"
-            : "-150px";
+      swiperWrapperReff.current.style.marginLeft =
+        screenWidth <= 520
+          ? "0px"
+          : screenWidth <= 650
+            ? "-50px"
+            : screenWidth <= 1000
+              ? "-100px"
+              : "-150px";
     }
   }
 
@@ -78,19 +85,211 @@ export default function Home() {
     adjustMargim();
     window.addEventListener("resize", adjustMargim);
     return () => window.removeEventListener("resize", adjustMargim);
-  }, [])
-  
+  }, []);
+
   const navigate = useNavigate();
 
   //const responsiveTop => (vw > 400 ? vh*0.2 : vh*0.1);
-  const phoneHeight = width < 430 ? height : height
-  
+  //const phoneHeight = width < 430 ? height : height
+
   return (
-    <div className="scroll-container h-screen w-full overflow-y-scroll px-[10px] bg-[#D9D9D9]">
-      <Stack className={`relative h-full w-full bg-[#D9D9D9]`}>
+    <section className="scroll-container h-screen w-full gap-[10px] overflow-y-scroll bg-default  dark:bg-gray-700">
+      <Stack
+        className={`relative grid h-full w-full place-items-center justify-center`}
+      >
         <Header />
-        <Stack className="flex flex-col md:flex-row">
-          {/* details information */}
+        <section
+          className=" flex flex-col lg:flex-row justify-between relative "
+          style={{ width: vw <= 800 ? vw : vw*.85, height: vh * 0.7, maxHeight: vh*0.75 }}
+        >
+          <div
+            className="relative z-10 flex h-full flex-col items-center lg:items-start justify-between"
+            style={{ maxWidth: vw <= 850 ? vw : vw*0.45 }}
+          >
+            <p className="font-serif text-center px-[5px] text-[20px] md:text-center drop-shadow-[3px_3px_5px_black] md:text-[30px] flex-wrap lg:text-black lg:drop-shadow-none text-[#BD00FD] lg:text-[20px]" style={{maxWidth: vw <= 850 ? vw : vw*0.7}}>
+              SHAPING MINDS, BUILDING FUTURES
+            </p>
+            <h1 className="z-10 overflow-visible bg-gradient-to-r from-blue-500 to-[#BD00FD] bg-clip-text font-montserrat text-[53px] text-center lg:text-[100px] md:text-[90px] lg:text-start font-bold lg:leading-[90px] md:leading-[110px] leading-[70px] text-transparent drop-shadow-[3px_3px_5px_black]" style={{maxWidth: vw <= 850 ? vw : vw*0.7}}>
+              Empowering Tomorrow’s Innovators
+            </h1>
+            <p className="font-serif text-[20px] lg:drop-shadow-none drop-shadow-[3px_3px_5px_black] text-[#FF3C00] text-center lg:text-start px-[5px] lg:text-[20px] lg:text-black md:text-[40px] flex-wrap" style={{maxWidth: vw <= 850 ? vw : vw*0.7}}>
+              Join a community where academic excellence meets personal growth
+            </p>
+            <div className="flex gap-[20px] pt-[0px]">
+              <Button
+                outline
+                gradientDuoTone="purpleToBlue"
+                className="h-fit bg-gradient-to-r from-[#FF3C00] to-[#E800FD] font-nunito font-bold uppercase text-[50px] md:w-[150px]"
+                size={"md"}
+                onClick={()=>{navigate("/signup")}}
+              >
+                Apply Now
+              </Button>
+              <Button className="h-fit bg-gradient-to-r from-black to-default via-blck/40 font-nunito font-bold uppercase text-[50px] md:w-[150px]"
+              outline
+                gradientDuoTone="purpleToBlue"
+                size={"md"}
+                onClick={()=>{navigate("/signin")}}
+                >
+                <span className="pr-[5px]">ilearn</span>{" "}
+                <img
+                  src={pn}
+                  alt="pn"
+                  className="absolute right-0 top-[-13px]  w-[40px] pr-[5px]"
+                />
+              </Button>
+            </div>
+          </div>
+            <img src={g} alt="g" className="absolute lg:brightness-100 hidden lg:inline-block right-0 h-full" style={{}} />
+        </section>
+            <img src={iy} alt="iy" className="absolute bottom-0 lg:hidden h-[90vh]" style={{}} />
+      </Stack>
+
+      {/* The first mobile only section */}
+      <section className="mobile-only relative my-[50px] h-[50vh] overflow-hidden rounded-[10px] border bg-[#d9d9d9] px-[50px] md:hidden">
+        <img
+          src={mission}
+          alt="Test"
+          className="h-[50vh] w-full object-fill brightness-90"
+        />
+        <section className="scroll-container absolute inset-0 h-full w-full gap-[5px] overflow-y-scroll px-[5px]">
+          {MobileOnlySectionData1.map((item, index: number) => (
+            <Stack spacing={1} key={index}>
+              <MobileOnlySection list={item?.list} title={item?.title} />
+            </Stack>
+          ))}
+        </section>
+      </section>
+      {/* The Slider section */}
+      <Stack
+        spacing={3}
+        alignItems={"center"}
+        className=" h-fit w-full pb-[20px]"
+      >
+        <h1 className="text-left text-[40px] font-bold text-ptxtd">
+          Our Programs
+        </h1>
+        <SwiperSlider data={slidesData} />
+      </Stack>
+      <section
+        className="section-3 relative hidden h-fit rounded-[10px] bg-[#D9D9D9] px-[50px] pt-[20px] md:inline-block"
+        //spacing={5}
+        //justifyContent={"start"}
+      >
+        <Stack
+          direction={"row"}
+          justifyContent={"flex-start"}
+          alignItems={"end"}
+          spacing={2}
+          className="bg-[#D9D9D9]"
+        >
+          <Stack
+            sx={{ width: width * 0.45 }}
+            className={`z-10 overflow-hidden text-wrap text-start drop-shadow-[0px_0px_10px_white]`}
+            spacing={2}
+          >
+            {MobileOnlySectionData1.slice(0, 2).map((item, index: number) => (
+              <Stack spacing={0.45} key={index}>
+                <MobileOnlySection list={item?.list} title={item?.title} />
+              </Stack>
+            ))}
+          </Stack>
+          <img
+            src={m3d}
+            alt="test7"
+            className=" absolute bottom-0 rounded-[10px] object-center brightness-105 md:relative md:brightness-100"
+            width={width * 0.25}
+          />
+          <Stack
+            sx={{ width: width * 0.45 }}
+            className={`z-10 overflow-hidden text-wrap text-start`}
+            spacing={2}
+          >
+            {MobileOnlySectionData1.slice(2, 4).map((item, index: number) => (
+              <Stack spacing={0.5} key={index}>
+                <MobileOnlySection list={item?.list} title={item?.title} />
+              </Stack>
+            ))}
+          </Stack>
+        </Stack>
+      </section>
+      {/* mobile only section */}
+      <Stack className="h-fit bg-[#D9D9D9] py-[10px]" spacing={2}>
+        <Marquee speed={30} className="py-[10px]">
+          {TeacherRecognition.map((item: any, index: number) => (
+            <TeacherYearCard
+              title={item.title}
+              name={item.name}
+              subject={item.subject}
+              grade={item.grade}
+              description={item.description}
+              img={item.img}
+              key={index}
+            />
+          ))}
+        </Marquee>
+      </Stack>
+      <Stack className="h-fit bg-[#D9D9D9] pt-[10px]">
+        <h1 className="pt-[10px] text-center font-roboto text-[20px] font-bold uppercase text-ptxtl lg:text-[40px]">
+          Student Support Program
+        </h1>
+        <div className="flex flex-col items-center justify-center gap-5 py-[20px] md:flex-row md:gap-5">
+          {MobileDisplayCardData.slice(0, 4).map((item, index: number) => (
+            <MobileDisplayCard
+              image={item.image}
+              title={item.title}
+              description={item.description}
+              key={index}
+            />
+          ))}
+        </div>
+      </Stack>
+      <Stack className="h-fit w-full bg-[#D9D9D9] py-[10px] ">
+        <Marquee>
+          {SchoolSubjectList.map((item) => (
+            <p
+              className="mx-4 font-nunito text-[14px] font-bold lg:text-[16px]"
+              key={item}
+            >
+              {item}
+            </p>
+          ))}
+        </Marquee>
+      </Stack>
+
+      <Stack>
+        <section className="h-fit rounded-[30px] bg-default">
+          <Footer container className="w-full bg-default">
+            <div className="w-full text-center">
+              <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
+                <FooterBrand
+                  href="https://ilearnweb.onrender.com"
+                  src="https://flowbite.com/docs/images/logo.svg"
+                  alt="Flowbite Logo"
+                  name="SOMPUKWANE"
+                  className="font-bebasNeue"
+                />
+                <FooterLinkGroup>
+                  <FooterLink href="#">About</FooterLink>
+                  <FooterLink href="#">Privacy Policy</FooterLink>
+                  <FooterLink href="#">Licensing</FooterLink>
+                  <FooterLink href="#">Contact</FooterLink>
+                </FooterLinkGroup>
+              </div>
+              <FooterDivider />
+              <FooterCopyright href="#" by="SOMPUKWANE™" year={2025} />
+            </div>
+          </Footer>
+        </section>
+      </Stack>
+    </section>
+  );
+}
+
+/*
+
+<Stack className="flex flex-col md:flex-row border">
+          {/* details information *
           <Stack
             spacing={1}
             className="absolute z-10 lg:left-[60px]"
@@ -103,19 +302,15 @@ export default function Home() {
               SHAPING MINDS, BUILDING FUTURES
             </h3>
             <h1
-              style={{ lineHeight: 0.8 }}
+             style={{ lineHeight: 1 }}
               className={`relative md:w-[600px] bg-gradient-to-r from-defaultYellow to-defaultGreen bg-clip-text z-10 font-bebasNeue text-transparent text-[80px] drop-shadow-[0px_0px_5px_rgba(0,0,0,3)]`}
             >
-              Sompukwane Secondary School
+              Empowering Tomorrow’s Innovators 
             </h1>
             <p className="h-fit md:w-[601px] text-wrap font-popins text-[18px] text-default drop-shadow-[0px_0px_5px_rgba(0,0,0,3)]">
-              Classrooms are the heart of learning, where students engage with
-              teachers, participate in discussions, and explore new ideas. A
-              well-structured classroom fosters creativity, discipline, and
-              knowledge-sharing. Interactive lessons encourage students to think
-              critically and collaborate effectively.
+              Join a community where academic excellence meets personal growth
             </p>
-            {/* buttons stack */}
+            {/* buttons stack 
             <Stack
               direction={"row"}
               spacing={2}
@@ -135,9 +330,9 @@ export default function Home() {
                 iLearn web <FaChevronRight size={12} />
               </Button>
             </Stack>
-            {/* buttons stack */}
+            {/* buttons stack 
 
-            {/* icon */}
+            {/* icon 
             <Stack
               direction={"row"}
               spacing={2}
@@ -180,150 +375,13 @@ export default function Home() {
             
 
           </Stack>
-          {/* image right */}
-          <Stack className={`absolute sm: bottom-0  lg:right-0 hidden md:block`}>
-            <img
-              src={hero}
-              alt="hero image"
-              style={{height: phoneHeight }}
-              className={`w-full brightness-75`}
-            />
+          {/* image right 
+          <Stack className={`absolute sm: bottom-0  lg:right-0 hidden md:block h-[50vh]`}>
+            <SvgHeroImage />
           </Stack>
         </Stack>
-      </Stack>
-      {/* The first mobile only section */}
-      <section className="mobile-only h-[50vh] md:hidden overflow-hidden bg-[#d9d9d9] relative my-[50px] px-[50px] rounded-[10px]">
-        <img src={mission} alt="Test" className="w-full brightness-90 h-[50vh] object-fill" />
-        <section className="scroll-container w-full gap-[5px] h-full absolute inset-0 overflow-y-scroll px-[5px]">
-          {
-            MobileOnlySectionData1.map((item, index:number)=>(
-              <Stack spacing={1} key={index}>
-              <MobileOnlySection list={item?.list} title={item?.title} />
-            </Stack>
-            ))
-          }
-        
-        </section>
-      </section>
-      {/* The Slider section */}
-      <Stack spacing={3} alignItems={"center"} className=" w-full h-fit pb-[20px]">
-        <h1 className="text-left text-[40px] font-bold text-ptxtd">Our Programs</h1>
-          <SwiperSlider data={slidesData} />
-      </Stack>
-      <section
-        className="section-3 h-fit bg-[#D9D9D9] hidden md:inline-block relative pt-[20px] px-[50px] rounded-[10px]"
-        //spacing={5}
-        //justifyContent={"start"}
-      >
-        
-        <Stack direction={"row"} justifyContent={"flex-start"} alignItems={"end"} spacing={2} className="bg-[#D9D9D9]">
-          
-          <Stack
-            sx={{ width: width * 0.45 }}
-            className={`overflow-hidden z-10 text-start text-wrap drop-shadow-[0px_0px_10px_white]`}
-            spacing={2}
-          >
-           {
-            MobileOnlySectionData1.slice(0,2).map((item, index:number)=>(
-              <Stack spacing={0.45} key={index}>
-                <MobileOnlySection list={item?.list} title={item?.title} />
-              </Stack>
-            ))
-           }
-          </Stack>
-          <img
-            src={m3d}
-            alt="test7"
-            className=" rounded-[10px] bottom-0 object-center brightness-105 md:brightness-100 absolute md:relative"
-            width={width*0.25}
-          />
-          <Stack
-            sx={{ width: width * 0.45 }}
-            className={`overflow-hidden z-10 text-start text-wrap`}
-            spacing={2}
-          >
-           {
-            MobileOnlySectionData1.slice(2,4).map((item, index:number)=>(
-              <Stack spacing={0.5} key={index}>
-                <MobileOnlySection list={item?.list} title={item?.title} />
-              </Stack>
-            ))
-           }
-          </Stack>
-        </Stack>
-      </section>
-      {/* mobile only section */}
-      <Stack className="h-fit bg-[#D9D9D9] py-[10px]" spacing={2}>
-          <Marquee speed={30} className="py-[10px]">
-            {
-              TeacherRecognition.map((item:any, index:number)=>(
-                <TeacherYearCard
-                  title={item.title}
-                  name={item.name}
-                  subject={item.subject}
-                  grade={item.grade}
-                  description={item.description}
-                  img={item.img}
-                  key={index}
-                />
-              ))
-            }
-          </Marquee>
-      </Stack>
-      <Stack className="h-fit bg-[#D9D9D9] pt-[10px]">
-        <h1 className="pt-[10px] text-center font-roboto text-[20px] lg:text-[40px] font-bold uppercase text-ptxtl">
-          Student Support Program
-        </h1>
-        <div className="flex flex-col md:flex-row gap-5 md:gap-5 justify-center items-center py-[20px]">
-          {
-            MobileDisplayCardData.slice(0, 4).map((item, index:number)=>(
-              <MobileDisplayCard image={item.image} title={item.title} description={item.description} key={index} />
-            ))
-          }
-        </div>
-      </Stack>
-      <Stack className="bg-[#D9D9D9] w-full h-fit py-[10px] ">
-        <Marquee>
-          {SchoolSubjectList.map((item) => (
-            <p className="mx-4 text-[14px] lg:text-[16px] font-nunito font-bold" key={item}>
-              {item}
-            </p>
-          ))}
-        </Marquee>
-      </Stack>
-
-      <Stack>
-        <section className="h-fit bg-default rounded-[30px]">
-          <Footer container className="w-full bg-default">
-            <div className="w-full text-center">
-              <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
-                <FooterBrand
-                  href="https://ilearnweb.onrender.com"
-                  src="https://flowbite.com/docs/images/logo.svg"
-                  alt="Flowbite Logo"
-                  name="SOMPUKWANE"
-                  className="font-bebasNeue"
-                />
-                <FooterLinkGroup>
-                  <FooterLink href="#">About</FooterLink>
-                  <FooterLink href="#">Privacy Policy</FooterLink>
-                  <FooterLink href="#">Licensing</FooterLink>
-                  <FooterLink href="#">Contact</FooterLink>
-                </FooterLinkGroup>
-              </div>
-              <FooterDivider />
-              <FooterCopyright href="#" by="SOMPUKWANE™" year={2025} />
-            </div>
-          </Footer>
-        </section>
-      </Stack>
-    </div>
-  );
-}
 
 
-
-/*
 <Stack
             //sx={{ width: width * 0.5 }}
             className={` text-start z-10 text-wrap`}
@@ -462,7 +520,7 @@ Classrooms are the heart of learning, where students engage with
               for a successful future.
  */
 
-  /*
+/*
                   
                 <Stack
                   direction={"row"}
@@ -952,4 +1010,3 @@ Classrooms are the heart of learning, where students engage with
       </Stack>
     </Box>
 */
-   

@@ -1,35 +1,33 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+//import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Button,
   Navbar,
-  TextInput,
   Avatar,
   Dropdown,
   Badge,
   //FooterBrand,
 } from "flowbite-react";
-import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { signOut } from "../redux/user/userSlice";
 import { toggleTheme } from "../redux/theme/themeSlice";
 import { Stack } from "@mui/material";
 //import badge from "../assets/Heros/CARD/badge.webp"
-import SchoolBadge from "../DashComponents/Badge";
+import LogoSvg from "../SvgComponents/LogoSvg";
 
 export default function Header() {
   //const width = window.innerWidth;
   //const height = window.innerHeight;
   // useLocation function to get path
   //const path = useLocation();
-  const location = useLocation();
+  //const location = useLocation();
 
   // get current user
   const { currentUser } = useSelector((state: any) => state.user);
 
   // navigate hook
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   // get current theme
   const { theme } = useSelector((state: any) => state.theme);
@@ -38,7 +36,7 @@ export default function Header() {
   const dispatch = useDispatch();
 
   // search state
-  const [searchTerm, setSearchTerm] = useState("");
+  //const [searchTerm, setSearchTerm] = useState("");
   //const [tab, setTab] = useState("");
 
   //const [selected, setSelected] = useState<string>("");
@@ -64,13 +62,13 @@ export default function Header() {
     }
   };
 
-  useEffect(() => {
-    const urlParms = new URLSearchParams(location.search);
-    const searchTermFromUrl = urlParms.get("searchTerm");
-    if (searchTermFromUrl) {
-      setSearchTerm(searchTermFromUrl);
-    }
-  }, [location.search]);
+  // useEffect(() => {
+  //   const urlParms = new URLSearchParams(location.search);
+  //   const searchTermFromUrl = urlParms.get("searchTerm");
+  //   if (searchTermFromUrl) {
+  //     setSearchTerm(searchTermFromUrl);
+  //   }
+  // }, [location.search]);
 
   // //use effect to get tab from url
   // useEffect(() => {
@@ -81,37 +79,26 @@ export default function Header() {
   //   }
   // }, [location.search]);
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    const urlParms = new URLSearchParams(location.search);
-    urlParms.set("searchTerm", searchTerm);
-    const searchQuery = urlParms.toString();
-    navigate(`/search?${searchQuery}`);
-  };
+  // const handleSubmit = (e: any) => {
+  //   e.preventDefault();
+  //   const urlParms = new URLSearchParams(location.search);
+  //   urlParms.set("searchTerm", searchTerm);
+  //   const searchQuery = urlParms.toString();
+  //   navigate(`/search?${searchQuery}`);
+  // };
   //console.log(path.pathname);
 
   return (
     <Navbar
-      className={`z-20 w-full items-center relative dark:bg-transparent justify-between flex px-[20px] bg-transparent h-fit`}
+      className={`z-20 w-full absolute top-0 items-center dark:bg-transparent justify-between flex px-[5px] md:px-[10px] bg-transparent h-fit`}
     >
       {/* Logo */}
-      <Link to="/" className="lg:pl-[60px]">
-        <SchoolBadge />
+      <Link to="/" className="">
+        <LogoSvg className="" />
       </Link>
 
       {/* Search */}
-      <form onSubmit={handleSubmit} className="bg-transparent text-white">
-        <TextInput
-          type="search"
-          placeholder="Search..."
-          rightIcon={AiOutlineSearch}
-          className="hidden font-popins text-[12px] text-black shadow-lg dark:text-white lg:inline"
-          value={searchTerm}
-          sizing={"sm"}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={{}}
-        />
-      </form>
+      
 
       {/* Sign-in */}
 
@@ -123,7 +110,7 @@ export default function Header() {
         className="flex gap-2 md:order-2"
       >
         <Button
-          className="hidden h-fit w-fit bg-default focus:border-none dark:bg-gray-700 md:inline"
+          className="hidden h-fit w-fit bg-default focus:border-none dark:bg-gray-700 lg:inline"
           color="gray"
           pill
           onClick={() => dispatch(toggleTheme())}
@@ -191,11 +178,11 @@ export default function Header() {
             </Dropdown.Item>
           </Dropdown>
         ) : (
-          <Link to="/signin">
+          <Link to="/signin" className="hidden lg:inline">
             <Button
               outline
               gradientDuoTone="purpleToBlue"
-              className="h-fit bg-gradient-to-r from-defaultYellow to-defaultGreen font-popins font-bold uppercase md:w-[150px]"
+              className="h-fit bg-gradient-to-r from-[#FF3C00] to-[#E800FD] font-popins font-bold uppercase md:w-[150px]"
               size={"md"}
             >
               Sign-in
@@ -208,19 +195,19 @@ export default function Header() {
       <Navbar.Toggle />
 
       {/* Collapse */}
-      <Navbar.Collapse className="absolute right-[10px] top-[80px] w-fit rounded-[10px] py-[10px] text-[18px] font-bold text-white backdrop-blur-md md:relative md:top-0">
+      <Navbar.Collapse className="absolute right-[10px] top-[80px] w-fit rounded-[10px] py-[10px] text-[18px] font-bold text-white backdrop-blur-md md:relative md:top-0 md:text-left">
         <Navbar.Link as={"div"}>
           <Link
             to="/stuff"
-            className={`"bg-gradient-to-r from-defaultYellow to-defaultGreen bg-clip-text font-popins text-[16px] font-semibold uppercase"`}
+            className={`"bg-gradient-to-r from-defaultYellow to-defaultGreen bg-clip-text font-nunito text-[16px] font-bold uppercase"`}
           >
-            Stuff
+            STAFF
           </Link>
         </Navbar.Link>
         <Navbar.Link as={"div"}>
           <Link
             to="/department"
-            className="font-popins text-[16px] font-semibold uppercase from-defaultYellow to-defaultGreen bg-gradient-to-r bg-clip-text p-[2px] rounded-[10px]"
+            className="font-nunito text-[16px] font-bold uppercase from-defaultYellow to-defaultGreen bg-gradient-to-r bg-clip-text p-[2px] rounded-[10px]"
 
           >
             Department
@@ -229,9 +216,17 @@ export default function Header() {
         <Navbar.Link as={"div"}>
           <Link
             to="/contact"
-            className="font-popins text-[16px] font-semibold uppercase from-defaultYellow to-defaultGreen bg-gradient-to-r bg-clip-text"
+            className="font-nunito text-[16px] font-bold uppercase from-defaultYellow to-defaultGreen bg-gradient-to-r bg-clip-text"
           >
             contact
+          </Link>
+        </Navbar.Link>
+        <Navbar.Link as={"div"} className="md:hidden">
+          <Link
+            to="/signin"
+            className="font-nunito text-[16px] font-bold uppercase from-defaultYellow to-defaultGreen bg-gradient-to-r bg-clip-text"
+          >
+            Sign-in
           </Link>
         </Navbar.Link>
       </Navbar.Collapse>
@@ -292,5 +287,19 @@ export default function Header() {
           </Link>
         </ul>
       </div>
-    </div>*/
+    </div>
+
+    <form onSubmit={handleSubmit} className="bg-transparent text-white">
+        <TextInput
+          type="search"
+          placeholder="Search..."
+          rightIcon={AiOutlineSearch}
+          className="hidden font-popins text-[12px] text-black shadow-lg dark:text-white lg:inline"
+          value={searchTerm}
+          sizing={"sm"}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          style={{}}
+        />
+      </form>
+    */
 }
