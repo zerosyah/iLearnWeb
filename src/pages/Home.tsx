@@ -14,7 +14,7 @@ import { Stack } from "@mui/material";
 //import { LuDrama } from "react-icons/lu";
 //import { TbCash } from "react-icons/tb";
 //import { GiMaterialsScience } from "react-icons/gi";
-import { m3d, mission } from "../Constants/Assets";
+import { m3d } from "../Constants/Assets";
 import slidesData from "../Constants/Slides";
 import {
   TeacherRecognition,
@@ -24,17 +24,17 @@ import {
 } from "../Constants/EventLayout.json";
 //import SvgHeroImage from "../SvgComponents/SvgHeroImage";
 
-//@ts-ignore
+//@ts-expect-error the import is correct but typescript is giving error because of swiper css
 import "swiper/css";
-//@ts-ignore
+//@ts-expect-error the import is correct but typescript is giving error because of swiper css
 import "swiper/css/effect-coverflow";
-//@ts-ignore
+//@ts-expect-error the import is correct but typescript is giving error because of swiper css
 import "swiper/css/pagination";
-//@ts-ignore
+//@ts-expect-error the import is correct but typescript is giving error because of swiper css
 import "swiper/css/navigation";
 
-//@ts-ignore
-import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
+//ts-expect-error the import is correct but typescript is giving error because of swiper css
+//import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import { useEffect, useRef, useState } from "react";
 
 import Marquee from "react-fast-marquee";
@@ -43,9 +43,10 @@ import TeacherYearCard from "../SvgComponents/TeacherYearCard";
 import MobileOnlySection from "../components/MobileOnlySection";
 import MobileDisplayCard from "../components/MobileDisplayCard";
 //import kl from "../assets/r/kl.png"
-import iy from "../assets/r/iy.png"
+import iy from "../assets/r/iy.png";
 import pn from "../assets/r/pn.png";
 import g from "../assets/r/g.png";
+import pp from "../assets/r/pp.jpg";
 
 //import {} from "../as"
 
@@ -65,7 +66,7 @@ export default function Home() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  const swiperWrapperReff = useRef<any>(null);
+  const swiperWrapperReff = useRef<HTMLDivElement | null>(null);
   function adjustMargim() {
     const screenWidth = window.innerWidth;
     if (swiperWrapperReff.current) {
@@ -94,43 +95,63 @@ export default function Home() {
 
   return (
     <section className="scroll-container h-screen w-full gap-[10px] overflow-y-scroll bg-default  dark:bg-gray-700">
+
+      {/* Hero section start here */}
       <Stack
         className={`relative grid h-full w-full place-items-center justify-center`}
       >
         <Header />
         <section
-          className=" flex flex-col lg:flex-row justify-between relative "
-          style={{ width: vw <= 800 ? vw : vw*.85, height: vh * 0.7, maxHeight: vh*0.75 }}
+          className=" relative flex flex-col justify-between lg:flex-row "
+          style={{
+            width: vw <= 800 ? vw : vw * 0.85,
+            height: vh * 0.7,
+            maxHeight: vh * 0.75,
+          }}
         >
           <div
-            className="relative z-10 flex h-full flex-col items-center lg:items-start justify-between"
-            style={{ maxWidth: vw <= 850 ? vw : vw*0.45 }}
+            className="relative z-10 flex h-full flex-col items-center justify-between lg:items-start"
+            style={{ maxWidth: vw <= 850 ? vw : vw * 0.45 }}
           >
-            <p className="font-serif text-center px-[5px] text-[20px] md:text-center drop-shadow-[3px_3px_5px_black] md:text-[30px] flex-wrap lg:text-black lg:drop-shadow-none text-[#BD00FD] lg:text-[20px]" style={{maxWidth: vw <= 850 ? vw : vw*0.7}}>
+            <p
+              className="flex-wrap px-[5px] text-center font-serif text-[20px] text-[#BD00FD] drop-shadow-[3px_3px_5px_black] md:text-center md:text-[30px] lg:text-[20px] lg:text-black lg:drop-shadow-none"
+              style={{ maxWidth: vw <= 850 ? vw : vw * 0.7 }}
+            >
               SHAPING MINDS, BUILDING FUTURES
             </p>
-            <h1 className="z-10 overflow-visible bg-gradient-to-r from-blue-500 to-[#BD00FD] bg-clip-text font-montserrat text-[53px] text-center lg:text-[100px] md:text-[90px] lg:text-start font-bold lg:leading-[90px] md:leading-[110px] leading-[70px] text-transparent drop-shadow-[3px_3px_5px_black]" style={{maxWidth: vw <= 850 ? vw : vw*0.7}}>
+            <h1
+              className="z-10 overflow-visible bg-gradient-to-r from-blue-500 to-[#BD00FD] bg-clip-text text-center font-montserrat text-[53px] font-bold leading-[70px] text-transparent drop-shadow-[3px_3px_5px_black] md:text-[90px] md:leading-[110px] lg:text-start lg:text-[100px] lg:leading-[90px]"
+              style={{ maxWidth: vw <= 850 ? vw : vw * 0.7 }}
+            >
               Empowering Tomorrow’s Innovators
             </h1>
-            <p className="font-serif text-[20px] lg:drop-shadow-none drop-shadow-[3px_3px_5px_black] text-[#FF3C00] text-center lg:text-start px-[5px] lg:text-[20px] lg:text-black md:text-[40px] flex-wrap" style={{maxWidth: vw <= 850 ? vw : vw*0.7}}>
+            <p
+              className="flex-wrap px-[5px] text-center font-serif text-[20px] text-[#FF3C00] drop-shadow-[3px_3px_5px_black] md:text-[40px] lg:text-start lg:text-[20px] lg:text-black lg:drop-shadow-none"
+              style={{ maxWidth: vw <= 850 ? vw : vw * 0.7 }}
+            >
               Join a community where academic excellence meets personal growth
             </p>
             <div className="flex gap-[20px] pt-[0px]">
               <Button
                 outline
                 gradientDuoTone="purpleToBlue"
-                className="h-fit bg-gradient-to-r from-[#FF3C00] to-[#E800FD] font-nunito font-bold uppercase text-[50px] md:w-[150px]"
+                className="h-fit bg-gradient-to-r from-[#FF3C00] to-[#E800FD] font-nunito text-[50px] font-bold uppercase md:w-[150px]"
                 size={"md"}
-                onClick={()=>{navigate("/signup")}}
+                onClick={() => {
+                  navigate("/signup");
+                }}
               >
                 Apply Now
               </Button>
-              <Button className="h-fit bg-gradient-to-r from-black to-default via-blck/40 font-nunito font-bold uppercase text-[50px] md:w-[150px]"
-              outline
+              <Button
+                className="via-blck/40 h-fit bg-gradient-to-r from-black to-default font-nunito text-[50px] font-bold uppercase md:w-[150px]"
+                outline
                 gradientDuoTone="purpleToBlue"
                 size={"md"}
-                onClick={()=>{navigate("/signin")}}
-                >
+                onClick={() => {
+                  navigate("/signin");
+                }}
+              >
                 <span className="pr-[5px]">ilearn</span>{" "}
                 <img
                   src={pn}
@@ -140,27 +161,183 @@ export default function Home() {
               </Button>
             </div>
           </div>
-            <img src={g} alt="g" className="absolute lg:brightness-100 hidden lg:inline-block right-0 h-full" style={{}} />
+          <img
+            src={g}
+            alt="g"
+            className="absolute right-0 hidden h-full lg:inline-block lg:brightness-100"
+            style={{}}
+          />
         </section>
-            <img src={iy} alt="iy" className="absolute bottom-0 lg:hidden h-[90vh]" style={{}} />
-      </Stack>
-
-      {/* The first mobile only section */}
-      <section className="mobile-only relative my-[50px] h-[50vh] overflow-hidden rounded-[10px] border bg-[#d9d9d9] px-[50px] md:hidden">
         <img
-          src={mission}
-          alt="Test"
-          className="h-[50vh] w-full object-fill brightness-90"
+          src={iy}
+          alt="iy"
+          className="absolute bottom-0 h-[90vh] lg:hidden"
+          style={{}}
         />
-        <section className="scroll-container absolute inset-0 h-full w-full gap-[5px] overflow-y-scroll px-[5px]">
-          {MobileOnlySectionData1.map((item, index: number) => (
-            <Stack spacing={1} key={index}>
-              <MobileOnlySection list={item?.list} title={item?.title} />
+      </Stack>
+      {/* Hero section end here */}
+
+
+      {/* Second section start here */}
+      <section className="flex h-fit w-full flex-col py-12 justify-center gap-7">
+        <h1 className="relative text-center font-montserrat text-[40px] lg:text-[50px] font-bold">
+            Who We are ?
+          </h1>
+        {/* first section of section 2 start*/}
+        <div className="relative items-center h-fit w-full lg:px-[100px]" style={{height: vw <= 850 ? "fit-content" : vh * 0.5}}>
+          
+          <div className="flex gap-[50px] justify-center items-center" style={{ flexDirection: vw <= 800 ? "column" : "row" }}>
+            {/* image section */}
+            <div
+              className="relative rounded-[10px] flex-col justify-center items-center "
+              style={{ height: vh * 0.4, width: vw <= 850 ? vw*0.95 : vw * 0.3 }}
+            >
+              <img
+                src={pp}
+                alt="pp"
+                className="size-full relative rounded-[10px] object-cover"
+              />
+              <div className="absolute bottom-[-30px] left-1/2 flex h-fit w-fit -translate-x-1/2 transform flex-col items-center justify-center  rounded-[10px] bg-white p-[10px] text-center text-black shadow-md shadow-black">
+                <p className="text-nowrap font-popins text-[16px] text-black">
+                  "Making an impact, together"
+                </p>
+                <p className="font-roboto text-[16px] text-gray-500">
+                  The principal
+                </p>
+              </div>
+            </div>
+
+            {/* details section */}
+            <div
+              className=" relative w-full"
+              style={{ height: vw <= 850 ? "fit-content" : vh * 0.4, width: vw <= 850 ? vw*0.95 : vw * 0.5 }}
+            >
+              <Stack
+                spacing={1}
+                className="flex relative size-full flex-col justify-between"
+              >
+                <Stack spacing={-1}>
+                  <Stack direction={"row"} spacing={vh<= 850 ? 5: 10}>
+                    <div className="flex items-center gap-[10px]">
+                      <span className="font-roboto text-[40px] font-bold">
+                        25
+                      </span>
+                      <div className="flex flex-col gap-[-5px] font-roboto text-[12px]">
+                        <span className="">Years</span>
+                        <span className="">Experience</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-[10px]">
+                      <span className="font-roboto text-[40px] font-bold">
+                        100%
+                      </span>
+                      <div className="flex flex-col gap-[-5px] font-roboto text-[12px]">
+                        <span className="">Student</span>
+                        <span className="">Pass Rates</span>
+                      </div>
+                    </div>
+                  </Stack>
+                  <Stack direction={"row"} spacing={vh<= 850 ? 5: 10}>
+                    <div className="flex items-center gap-[10px]">
+                      <span className="font-roboto text-[40px] font-bold">
+                        916
+                      </span>
+                      <div className="flex flex-col gap-[-5px] font-roboto text-[12px]">
+                        <span className="">Registered </span>
+                        <span className="">Students</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-[10px]">
+                      <span className="font-roboto text-[40px] font-bold">
+                        102
+                      </span>
+                      <div className="flex flex-col gap-[-5px] font-roboto text-[12px]">
+                        <span className="">Active</span>
+                        <span className="">Teachers</span>
+                      </div>
+                    </div>
+                  </Stack>
+                </Stack>
+                <p className="font-roboto text-[15px]">
+                  Welcome to our school, where we are dedicated to nurturing
+                  young minds and fostering a love for learning. Our passionate
+                  educators strive to provide a supportive and dynamic
+                  environment that encourages students to achieve their full
+                  potential.
+                </p>
+                <p className="font-roboto text-[15px]">
+                  Through innovative teaching methods and a comprehensive
+                  curriculum, we prepare our students to become confident,
+                  responsible, and compassionate global citizens ready to make a
+                  positive impact in the future.
+                </p>
+              </Stack>
+            </div>
+          </div>
+        </div>
+        {/* first section of section 2 end */}
+
+        {/* second section of section 2 start */}
+        <div className="lg:mx-[100px] mx-[10px] " style={{ width: vw <= 850 ? vw*0.95 : vw * 0.5 }}>
+          <p className="font-nunito text-[20px] lg:text-[30px] font-semibold leading-[30px]">
+            We make sure that learning is Easy with the Help of iLearn
+          </p>
+        </div>
+        {/* second section of section 2 end */}
+
+        {/* third section of section 2 start */}
+        <Stack direction={vw <= 850 ? "column" : "row"} className="lg:mx-[100px] px-[10px]" alignItems="center" spacing={vw <= 850 ? 5 : 10}>
+          <div
+            className="rounded-[10px] border bg-gradient-to-t from-blue-500 to-[#BD00FD]"
+            style={{ width: vw <= 850 ? vw*0.95 : vw * 0.33}}
+          >
+            <Stack className="size-full p-[10px]" spacing={5}>
+              <h1 className="font-roboto text-[25px] font-bold text-white">
+                what is iLearn?
+              </h1>
+              <p className="font-roboto text-[20px] text-white">
+                Trust & Conectivity: iLearn is a secure software platform that
+                unifies mobile, desktop, and web technologies into a single
+                ecosytem for seamless school management.
+              </p>
             </Stack>
-          ))}
-        </section>
+          </div>
+          <div
+            className="rounded-[10px] border bg-gradient-to-t from-blue-500 to-[#BD00FD]"
+            style={{ width:  vw <= 850 ? vw*0.95 : vw * 0.33}}
+          >
+            <Stack className="size-full p-[10px]" spacing={5}>
+              <h1 className="font-roboto text-[25px] font-bold text-white">
+                Empowerment & Control
+              </h1>
+              <p className="font-roboto text-[20px] text-white">
+                Real-time parental monitoring, student self-service portals, and
+                advanced tracking to ensure everyone stays connected and
+                informed.
+              </p>
+            </Stack>
+          </div>
+          <div
+            className="rounded-[10px] border bg-gradient-to-t from-blue-500 to-[#BD00FD]"
+            style={{ width: vw <= 850 ? vw*0.95 : vw * 0.33 }}
+          >
+            <Stack className="size-full p-[10px]" spacing={5}>
+              <h1 className="font-roboto text-[25px] font-bold text-white">
+                Effortless
+              </h1>
+              <p className="font-roboto text-[20px] text-white">
+                Streamline the enrollment process with our fully integrated
+                online application system, making access simpler for new
+                families.
+              </p>
+            </Stack>
+          </div>
+        </Stack>
+        {/* third section of section 2 end */}
       </section>
-      {/* The Slider section */}
+      {/* Second section end here */}
+
+
       <Stack
         spacing={3}
         alignItems={"center"}
@@ -287,7 +464,20 @@ export default function Home() {
 }
 
 /*
-
+<section className="mobile-only relative my-[50px] h-[50vh] overflow-hidden rounded-[10px] border bg-[#d9d9d9] px-[50px] md:hidden">
+        <img
+          src={mission}
+          alt="Test"
+          className="h-[50vh] w-full object-fill brightness-90"
+        />
+        <section className="scroll-container absolute inset-0 h-full w-full gap-[5px] overflow-y-scroll px-[5px]">
+          {MobileOnlySectionData1.map((item, index: number) => (
+            <Stack spacing={1} key={index}>
+              <MobileOnlySection list={item?.list} title={item?.title} />
+            </Stack>
+          ))}
+        </section>
+      </section>
 <Stack className="flex flex-col md:flex-row border">
           {/* details information *
           <Stack
