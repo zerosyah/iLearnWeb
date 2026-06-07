@@ -43,10 +43,10 @@ import TeacherYearCard from "../SvgComponents/TeacherYearCard";
 import MobileOnlySection from "../components/MobileOnlySection";
 import MobileDisplayCard from "../components/MobileDisplayCard";
 //import kl from "../assets/r/kl.png"
-import iy from "../assets/r/iy.png";
+import iy from "../assets/r/iy.webp";
 import pn from "../assets/r/pn.png";
-import g from "../assets/r/g.png";
-import pp from "../assets/r/pp.jpg";
+import g from "../assets/r/g.webp";
+import pp from "../assets/r/pp.webp";
 
 //import {} from "../as"
 
@@ -214,7 +214,7 @@ export default function Home() {
             >
               <Stack
                 spacing={1}
-                className="flex relative size-full flex-col justify-between"
+                className="flex relative size-full flex-col items-center lg:items-start justify-between"
               >
                 <Stack spacing={-1}>
                   <Stack direction={"row"} spacing={vh<= 850 ? 5: 10}>
@@ -258,14 +258,14 @@ export default function Home() {
                     </div>
                   </Stack>
                 </Stack>
-                <p className="font-roboto text-[15px]">
+                <p className="font-roboto text-[15px] text-center lg:text-left">
                   Welcome to our school, where we are dedicated to nurturing
                   young minds and fostering a love for learning. Our passionate
                   educators strive to provide a supportive and dynamic
                   environment that encourages students to achieve their full
                   potential.
                 </p>
-                <p className="font-roboto text-[15px]">
+                <p className="font-roboto text-[15px] text-center lg:text-left">
                   Through innovative teaching methods and a comprehensive
                   curriculum, we prepare our students to become confident,
                   responsible, and compassionate global citizens ready to make a
@@ -278,21 +278,21 @@ export default function Home() {
         {/* first section of section 2 end */}
 
         {/* second section of section 2 start */}
-        <div className="lg:mx-[100px] mx-[10px] " style={{ width: vw <= 850 ? vw*0.95 : vw * 0.5 }}>
-          <p className="font-nunito text-[20px] lg:text-[30px] font-semibold leading-[30px]">
+        <div className="lg:mx-[100px] mx-[10px] text-center lg:text-left" style={{ width: vw <= 850 ? vw*0.95 : vw * 0.5 }}>
+          <p className="font-montserrat text-[20px] lg:text-[30px] font-semibold leading-[30px]">
             We make sure that learning is Easy with the Help of iLearn
           </p>
         </div>
         {/* second section of section 2 end */}
 
         {/* third section of section 2 start */}
-        <Stack direction={vw <= 850 ? "column" : "row"} className="lg:mx-[100px] px-[10px]" alignItems="center" spacing={vw <= 850 ? 5 : 10}>
+        <Stack direction={vw <= 850 ? "column" : "row"} className="relative lg:mx-[100px] px-[10px]" alignItems="center" spacing={vw <= 850 ? 5 : 10}>
           <div
-            className="rounded-[10px] border bg-gradient-to-t from-blue-500 to-[#BD00FD]"
-            style={{ width: vw <= 850 ? vw*0.95 : vw * 0.33}}
+            className="rounded-[10px] px-[10px] border bg-gradient-to-t from-blue-500 to-[#BD00FD]"
+            style={{ width: vw <= 850 ? vw*0.95 : vw * 0.33,  height:vh*0.63}}
           >
-            <Stack className="size-full p-[10px]" spacing={5}>
-              <h1 className="font-roboto text-[25px] font-bold text-white">
+            <Stack className="size-full p-[10px]" spacing={3} justifyContent={"end"}>
+              <h1 className="font-bebasNeue leading-[50px] text-[50px] font-bold text-white">
                 what is iLearn?
               </h1>
               <p className="font-roboto text-[20px] text-white">
@@ -300,14 +300,20 @@ export default function Home() {
                 unifies mobile, desktop, and web technologies into a single
                 ecosytem for seamless school management.
               </p>
+              <Stack direction={"row"} className="" justifyContent={"space-between"} alignItems={"flex-end"}>
+              <Button outline gradientDuoTone={"TealToPurple"} className="w-[150px] h-[40px] relative -top-[20px] rounded-[30px] text-[20px] font-montserrat">
+                Learn More
+              </Button>
+              <h1 className="text-[150px] font-bebasNeue leading-[70px]">1</h1>
+            </Stack>
             </Stack>
           </div>
           <div
-            className="rounded-[10px] border bg-gradient-to-t from-blue-500 to-[#BD00FD]"
-            style={{ width:  vw <= 850 ? vw*0.95 : vw * 0.33}}
+            className="rounded-[10px] px-[10px] border bg-gradient-to-t from-blue-500 to-[#BD00FD]"
+            style={{ width:  vw <= 850 ? vw*0.95 : vw * 0.33, height:vh*0.63}}
           >
-            <Stack className="size-full p-[10px]" spacing={5}>
-              <h1 className="font-roboto text-[25px] font-bold text-white">
+            <Stack className="size-full p-[10px]" spacing={3} justifyContent={"end"}>
+              <h1 className="font-bebasNeue leading-[50px] text-[50px] font-bold text-white">
                 Empowerment & Control
               </h1>
               <p className="font-roboto text-[20px] text-white">
@@ -315,14 +321,22 @@ export default function Home() {
                 advanced tracking to ensure everyone stays connected and
                 informed.
               </p>
+              
+              <Stack direction={"row"} className="" justifyContent={"space-between"} alignItems={"flex-end"}>
+              <Button outline gradientDuoTone={"TealToPurple"} className="w-[150px] h-[40px] relative -top-[20px] rounded-[30px] text-[20px] font-montserrat">
+                Learn More
+              </Button>
+              <h1 className="text-[150px] font-bebasNeue leading-[70px]">2</h1>
             </Stack>
+            </Stack>
+            
           </div>
           <div
-            className="rounded-[10px] border bg-gradient-to-t from-blue-500 to-[#BD00FD]"
-            style={{ width: vw <= 850 ? vw*0.95 : vw * 0.33 }}
+            className="rounded-[10px] px-[10px] border bg-gradient-to-t from-blue-500 to-[#BD00FD]"
+            style={{ width:  vw <= 850 ? vw*0.95 : vw * 0.33, height:vh*0.63}}
           >
-            <Stack className="size-full p-[10px]" spacing={5}>
-              <h1 className="font-roboto text-[25px] font-bold text-white">
+            <Stack className="size-full p-[10px]" spacing={3} justifyContent={"end"}>
+              <h1 className="font-bebasNeue leading-[50px] text-[50px] font-bold text-white">
                 Effortless
               </h1>
               <p className="font-roboto text-[20px] text-white">
@@ -330,6 +344,12 @@ export default function Home() {
                 online application system, making access simpler for new
                 families.
               </p>
+              <Stack direction={"row"} className="" justifyContent={"space-between"} alignItems={"flex-end"}>
+              <Button outline gradientDuoTone={"TealToPurple"} className="w-[150px] h-[40px] relative -top-[20px] rounded-[30px] text-[20px] font-montserrat">
+                Learn More
+              </Button>
+              <h1 className="text-[150px] font-bebasNeue leading-[71px]">3</h1>
+            </Stack>
             </Stack>
           </div>
         </Stack>
