@@ -1,5 +1,5 @@
 //import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Button,
@@ -16,28 +16,43 @@ import { Stack } from "@mui/material";
 //import badge from "../assets/Heros/CARD/badge.webp"
 import LogoSvg from "../SvgComponents/LogoSvg";
 
+interface UserState {
+  currentUser: { _id: string | null;
+  loading: boolean;
+  error: boolean | string | null;
+  }
+};
+
+interface ThemeState {
+  theme: "light" | "dark";
+}
+
+interface RootState {
+  user: UserState;
+  theme: ThemeState;
+}
+
 export default function Header() {
   //const width = window.innerWidth;
   //const height = window.innerHeight;
-  // useLocation function to get path
-  //const path = useLocation();
-  //const location = useLocation();
+ // useLocation function to get path
+  const path = useLocation();
+  // const location = useLocation();
 
   // get current user
-  const { currentUser } = useSelector((state: any) => state.user);
+  const { currentUser } = useSelector((state: RootState) => state.user);
 
   // navigate hook
   //const navigate = useNavigate();
 
-  // get current theme
-  const { theme } = useSelector((state: any) => state.theme);
+  const { theme } = useSelector((state: RootState) => state.theme);
 
   // dispatch slice
   const dispatch = useDispatch();
 
   // search state
   //const [searchTerm, setSearchTerm] = useState("");
-  //const [tab, setTab] = useState("");
+  // const [tab, setTab] = useState("");
 
   //const [selected, setSelected] = useState<string>("");
 
@@ -70,7 +85,7 @@ export default function Header() {
   //   }
   // }, [location.search]);
 
-  // //use effect to get tab from url
+  //use effect to get tab from url
   // useEffect(() => {
   //   const urlParms = new URLSearchParams(location.search);
   //   const tabFromUrl = urlParms.get("/");
@@ -78,6 +93,9 @@ export default function Header() {
   //     setTab(tabFromUrl);
   //   }
   // }, [location.search]);
+
+  // console.log("path: ", path);
+  
 
   // const handleSubmit = (e: any) => {
   //   e.preventDefault();
@@ -90,7 +108,7 @@ export default function Header() {
 
   return (
     <Navbar
-      className={`z-20 w-full absolute top-0 items-center dark:bg-transparent justify-between flex px-[5px] md:px-[10px] bg-transparent h-fit`}
+      className={`z-20 w-full absolute top-0 items-center dark:bg-transparent justify-between flex px-[5px] md:px-[0px] bg-transparent h-fit`}
     >
       {/* Logo */}
       <Link to="/" className="">
@@ -199,15 +217,15 @@ export default function Header() {
         <Navbar.Link as={"div"}>
           <Link
             to="/stuff"
-            className={`"bg-gradient-to-r from-defaultYellow to-defaultGreen bg-clip-text font-nunito text-[16px] font-bold uppercase"`}
+            className={`font-nunito text-[16px] font-bold uppercase ${path.pathname === "/stuff" ? "text-persianBlue":"text-black"}`}
           >
-            STAFF
+            Staff
           </Link>
         </Navbar.Link>
         <Navbar.Link as={"div"}>
           <Link
             to="/department"
-            className="font-nunito text-[16px] font-bold uppercase from-defaultYellow to-defaultGreen bg-gradient-to-r bg-clip-text p-[2px] rounded-[10px]"
+            className={`font-nunito text-[16px] font-bold uppercase ${path.pathname === "/department" ? "text-persianBlue":"text-black"}`}
 
           >
             Department
@@ -216,7 +234,7 @@ export default function Header() {
         <Navbar.Link as={"div"}>
           <Link
             to="/contact"
-            className="font-nunito text-[16px] font-bold uppercase from-defaultYellow to-defaultGreen bg-gradient-to-r bg-clip-text"
+            className={`font-nunito text-[16px] font-bold uppercase ${path.pathname === "/contact" ? "text-persianBlue font-montserrat font-bold":"text-black"}`}
           >
             contact
           </Link>
@@ -224,7 +242,7 @@ export default function Header() {
         <Navbar.Link as={"div"} className="md:hidden">
           <Link
             to="/signin"
-            className="font-nunito text-[16px] font-bold uppercase from-defaultYellow to-defaultGreen bg-gradient-to-r bg-clip-text"
+            className={`font-nunito text-[16px] font-bold uppercase ${path.pathname === "/signin" ? "text-persianBlue":"text-black"}`}
           >
             Sign-in
           </Link>
