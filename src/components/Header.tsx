@@ -16,21 +16,21 @@ import { Stack } from "@mui/material";
 //import badge from "../assets/Heros/CARD/badge.webp"
 import LogoSvg from "../SvgComponents/LogoSvg";
 
-interface UserState {
-  currentUser: { _id: string | null;
-  loading: boolean;
-  error: boolean | string | null;
-  }
-};
+// interface UserState {
+//   currentUser: { _id: string | null;
+//   loading: boolean;
+//   error: boolean | string | null;
+//   }
+// };
 
-interface ThemeState {
-  theme: "light" | "dark";
-}
+// interface ThemeState {
+//   theme: "light" | "dark";
+// }
 
-interface RootState {
-  user: UserState;
-  theme: ThemeState;
-}
+// interface RootState {
+//   user: UserState;
+//   theme: ThemeState;
+// }
 
 export default function Header() {
   //const width = window.innerWidth;
@@ -40,12 +40,12 @@ export default function Header() {
   // const location = useLocation();
 
   // get current user
-  const { currentUser } = useSelector((state: RootState) => state.user);
+  const { currentUser } = useSelector((state: any) => state.user);
 
   // navigate hook
   //const navigate = useNavigate();
 
-  const { theme } = useSelector((state: RootState) => state.theme);
+  const { theme } = useSelector((state: any) => state.theme);
 
   // dispatch slice
   const dispatch = useDispatch();
