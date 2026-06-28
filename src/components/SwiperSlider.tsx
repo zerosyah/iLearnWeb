@@ -4,13 +4,13 @@ import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
-//@ts-ignore
+//@ts-expect-error code below shows error because of swiper css error
 import 'swiper/css';
-//@ts-ignore
+//@ts-expect-error code below shows error because of swiper css error
 import 'swiper/css/navigation';
-//@ts-ignore
+//@ts-expect-error code below shows error because of swiper css error
 import 'swiper/css/pagination';
-//@ts-ignore
+//@ts-expect-error code below shows error because of swiper css error
 import 'swiper/css/scrollbar';
 import { SwiperSliderPropsData } from '../Constants/PropsInventory';
 
@@ -33,7 +33,7 @@ function SwiperSlider ({ data }: SwiperSliderPropsData) {
         autoplay={{ delay: 3000 }}
         a11y={{ enabled: true }}
     >
-      {data.map((img:any, index:number) => (
+      {data.map((img, index:number) => (
               <SwiperSlide key={index} className="">
                 <img
                   src={img?.imgurl}
@@ -41,7 +41,7 @@ function SwiperSlider ({ data }: SwiperSliderPropsData) {
                   className="slide-image"
                 />
                 <div className="title">
-                  <h1 className=" font-bebasNeue bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent text-[18px] md:text-[30px] text-center md:text-start tracking-wider">{img?.title}</h1>
+                  <h1 className=" bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-center font-bebasNeue text-[24px] tracking-wider text-transparent drop-shadow-[3px_3px_5px_black] md:text-start md:text-[30px]">{img?.title}</h1>
                 </div>
                 <div className="content">
                   <div className="text-box font-montserrat">

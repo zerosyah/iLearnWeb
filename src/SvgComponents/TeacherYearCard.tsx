@@ -4,35 +4,39 @@ import { Box, Stack } from '@mui/material'
 import { teacherImages } from '../Constants/Assets'
 import { TeacherYearCardProps } from '../Constants/PropsInventory'
 
+const vw = window.innerWidth;
+
 const containerBoxStyle = {
-    width:360,
-    height: 200,
-   // border: "1px solid red",
+    width:vw*0.1611111111,
+    height: vw*0.0833333333,
+    border: "1px solid #003ECD",
     borderRadius: 2,
     position: "relative",
-    backGroundColor: "lime"
+    //backGroundColor: "#FDFDFF",
+    marginRight: 2,
+    marginLeft: 2,
 }
-const containerStackStyle = {
-    width:360,
-    height: 200,
-    borderRadius: 2,
-    position: "relative"
-}
+// const containerStackStyle = {
+//     width:vw*0.1611111111,
+//     height: vw*0.0833333333,
+//     borderRadius: 2,
+//     position: "relative"
+// }
 
 function TeacherYearCard({title, name, subject, grade, description, img}:TeacherYearCardProps):JSX.Element {
   return (
-    <Box sx={[containerBoxStyle, {marginRight:2, marginLeft:2}]}>
-      <Stack sx={containerStackStyle} className='bg-gradient-to-tr from-defaultYellow to-defaultGreen shadow-md shadow-black overflow-hidden'>
-        <h1 className="text-[30px] font-bebasNeue text-center font-bold leading-0 ">{title}</h1>
-        <Stack className='absolute bottom-0' direction={"row"} gap={1}>
-            <div className="w-[140px] h-[150px] border-black rounded-[5px]">
-                <img src={teacherImages[img]} alt="text image" className='w-[140px] h-[150px] object-fill rounded-[6px]' />
+    <Box sx={[containerBoxStyle]}>
+      <Stack className='relative size-full flex flex-col gap-[8px] p-[8px] rounded-[10px] overflow-hidden'>
+        <h1 className="text-[20px] font-bebasNeue text-center font-bold leading-[18px] ">{title}</h1>
+        <Stack className='relative gap-[8px]' direction={"row"}>
+            <div className="relative" style={{width:vw*0.056, }}>
+                <img src={teacherImages[img]} alt="" className="relative object-contain w-full" />
             </div> 
-            <Stack className='w-[210px] h-[150px] left-0 rounded-[7px] border-blue-400'>
-                <h2 className="text-[16px] font-pacifico font-bold uppercase">{name}</h2>
-                <h3 className='text-[14px] leading-0 font-montserrat font-semibold'>{subject}</h3>
-                <h4 className="text-[12px] font-montserrat font-semibold">{grade}</h4>
-                <p className="text-[10px] pt-[1px] font-semibold font-nunito text-wrap">{description}</p>
+            <Stack className='relative flex flex-col gap-[8px]'>
+                <h2 className="text-[14px] leading-[12px] font-montserrat font-bold uppercase">{name}</h2>
+                <h3 className='text-[14px] leading-[12px] font-montserrat font-semibold'>{subject}</h3>
+                <h4 className="text-[14px] font-montserrat leading-[12px] font-semibold">{grade}</h4>
+                <p className="text-[14px] pt-[1px] leading-[10px] font-semibold font-nunito text-wrap">{description}</p>
             </Stack>
         </Stack>
       </Stack>

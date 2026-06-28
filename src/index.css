@@ -63,7 +63,7 @@
     border-radius: 10px;
 }
 .s-container{
-    width: 85%;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -72,7 +72,7 @@
 }
 .swiper-container{
     width: 100%;
-    padding: 0px 200px 0px 150px;
+    padding: 0px 280px 0px 230px;
     border-radius: 10px;
 }
 .swiper-slide{
@@ -98,7 +98,7 @@
 }
 @media (width <= 430px) {
     .swiper-container{
-        width: 100%;
+        width: 98%;
         padding: 0px;
         border-radius: 10px;
     }
@@ -130,8 +130,8 @@
 }
 
 .title h1{
-    font-size: 18px;
-    color: white;
+    font-size: 24px;
+    color: #FDFDFF;
     font-weight: 600;
     opacity: 1;
     transition: 0.8s ease;

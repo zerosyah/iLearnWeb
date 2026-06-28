@@ -22,6 +22,7 @@ import {
   //MobileOnlySectionData1,
   SchoolSubjectList,
   MobileDisplayCardData,
+  informationProgram,
 } from "../Constants/EventLayout.json";
 //import SvgHeroImage from "../SvgComponents/SvgHeroImage";
 
@@ -48,7 +49,10 @@ import iy from "../assets/r/iy.webp";
 import pn from "../assets/r/pn.png";
 import g from "../assets/r/g.webp";
 import pp from "../assets/r/pp.webp";
-import class_5 from "../assets/Heros/Class_5.jpg"
+import class_5 from "../assets/Heros/Class_5.jpg";
+import class_3 from "../assets/Heros/Class_4.jpg";
+import class_2 from "../assets/Heros/Class_2.jpg";
+import class_1 from "../assets/Heros/Class_1.jpg";
 
 //import {} from "../as"
 
@@ -83,6 +87,8 @@ export default function Home() {
     }
   }
 
+  const [selectedProgram, setSelectedProgram] = useState<string>("Mathematics");
+
   // use effect to adjust margin on window resize of swiper wrapper
   useEffect(() => {
     adjustMargim();
@@ -92,29 +98,52 @@ export default function Home() {
 
   const navigate = useNavigate();
 
+  type dataProps = {
+    subject: string;
+    image: string;
+    p1: string;
+    p2: string;
+  };
+
+  const [showInfo, setShowInfo] = useState<dataProps[]>([]);
+
+  useEffect(() => {
+    const getData = () => {
+      const result = informationProgram.filter(
+        (item) => item.subject == selectedProgram,
+      );
+      setShowInfo(result);
+    };
+    getData();
+  }, [selectedProgram]);
+
+  const imageRecord: Record<string, string> = {
+    img3: class_3,
+    img4: class_1,
+    img1: class_2,
+    img2: class_5,
+  };
   //const responsiveTop => (vw > 400 ? vh*0.2 : vh*0.1);
   //const phoneHeight = width < 430 ? height : height
 
   return (
-    <section className="scroll-container lg:px-[60px] h-screen w-screen gap-[10px] overflow-y-scroll bg-coolWhite  dark:bg-gray-700">
-
+    <section className="scroll-container h-screen w-screen gap-[10px] overflow-y-scroll bg-coolWhite dark:bg-gray-700  lg:px-[60px]">
       {/* Hero section start here */}
       <Stack
-        className={`relative grid h-full w-full place-items-center justify-center`}
+        className={`relative grid size-full place-items-center justify-center`}
       >
         <Header />
         <section
-          className=" relative w-full flex flex-col justify-between lg:flex-row lg:items-center "
+          className=" relative flex w-full flex-col justify-between lg:flex-row lg:items-center "
           style={{
             height: vh * 0.7,
             maxHeight: vh * 0.75,
           }}
         >
           <div
-            className="relative z-10 flex h-full flex-col items-center justify-between lg:items-start gap-[10px]"
+            className="relative z-10 flex h-full flex-col items-center justify-between gap-[10px] lg:items-start"
             style={{ maxWidth: vw <= 850 ? vw : vw * 0.45 }}
           >
-           
             <h1
               className="z-10 overflow-visible bg-gradient-to-r from-royalBlue to-persianBlue bg-clip-text text-center font-montserrat text-[53px] font-bold leading-[70px] text-transparent drop-shadow-[1px_1px_3px_black] md:text-[90px] md:leading-[110px] lg:text-start lg:text-[90px] lg:leading-[90px]"
               style={{ maxWidth: vw <= 850 ? vw : vw * 0.7 }}
@@ -122,7 +151,7 @@ export default function Home() {
               Empowering Tomorrow’s Innovators
             </h1>
             <p
-              className="flex-wrap px-[5px] text-center font-montserrat font-medium text-[20px] text-[#FF3C00] drop-shadow-[3px_3px_5px_black] md:text-[40px] lg:text-start lg:text-[20px] lg:text-black lg:drop-shadow-none"
+              className="flex-wrap px-[5px] text-center font-montserrat text-[20px] font-medium text-[#FF3C00] drop-shadow-[3px_3px_5px_black] md:text-[40px] lg:text-start lg:text-[20px] lg:text-black lg:drop-shadow-none"
               style={{ maxWidth: vw <= 850 ? vw : vw * 0.7 }}
             >
               Join a community where academic excellence meets personal growth
@@ -140,6 +169,7 @@ export default function Home() {
                 Apply Now
               </Button>
               <Button
+                // eslint-disable-next-line tailwindcss/no-custom-classname
                 className="via-blck/40 h-fit bg-gradient-to-r from-black to-default font-nunito text-[50px] font-bold uppercase md:w-[150px]"
                 outline
                 gradientDuoTone="purpleToBlue"
@@ -173,30 +203,37 @@ export default function Home() {
       </Stack>
       {/* Hero section end here */}
 
-
       {/* Second section start here */}
-      <section className="relative flex flex-col h-fit w-full py-[34px] gap-7 px-[0px] lg:px-[100px]"
-     // style={{padding: vw <= 850 ? vw*0.95 : vw * 0.9}}
+      <section
+        className="relative flex h-fit w-full flex-col gap-[24px]"
+        // style={{padding: vw <= 850 ? vw*0.95 : vw * 0.9}}
       >
-        <h1 className="relative text-center font-montserrat text-[40px] text-black lg:text-[50px] font-bold">
-            Who We are ?
-          </h1>
+        <h1 className="relative font-montserrat text-[40px] font-bold leading-tight text-black lg:text-[50px]">
+          Who We are ?
+        </h1>
         {/* first section of section 2 start*/}
-        <div className="relative flex flex-col items-center" style={{height: vw <= 850 ? "fit-content" : vh * 0.5}}>
-          
-          <div className="relative flex gap-[50px] lg:gap-[15px] rounded-[10px] justify-center" style={{ flexDirection: vw <= 800 ? "column" : "row" }}>
+        <div
+          className="relative flex w-full flex-col items-center"
+          style={{ height: vw <= 850 ? "fit-content" : vh * 0.5 }}
+        >
+          <div
+            className="relative flex w-full items-center gap-[36px] rounded-[10px] lg:items-start lg:gap-[16px]"
+            style={{ flexDirection: vw <= 800 ? "column" : "row" }}
+          >
             {/* image section */}
             <div
-              className="relative flex flex-col justify-center items-center h-fit"
-              style={{ width: vw <= 850 ? vw*0.95 : vw * 0.3 }}
+              className="relative flex h-fit flex-col"
+              style={{
+                width: vw <= 850 ? vw * 0.95 : vw * 0.4166666667,
+                height: vw <= 850 ? vh * 0.4 : vw * 0.2122222222,
+              }}
             >
               <img
                 src={pp}
                 alt="pp"
-                className="size-full relative rounded-[10px] object-cover"
-                style={{ height: vh * 0.42}}
+                className="relative size-full rounded-[10px] object-cover"
               />
-              <div className="absolute left-1/2 -bottom-[30px] flex h-fit w-fit -translate-x-1/2 transform flex-col items-center justify-center  rounded-[10px] bg-white p-[10px] text-center text-black shadow-md shadow-black">
+              <div className="absolute -bottom-[30px] left-1/2 flex h-fit w-fit -translate-x-1/2 transform flex-col items-center justify-center  rounded-[10px] bg-white p-[10px] text-center text-black">
                 <p className="text-nowrap font-popins text-[16px] text-black">
                   "Making an impact, together"
                 </p>
@@ -208,218 +245,342 @@ export default function Home() {
 
             {/* details section */}
             <div
-              className=" relative w-full"
-              style={{ height: vw <= 850 ? "fit-content" : vh * 0.42, width: vw <= 850 ? vw*0.95 : vw * 0.46 }}
+              className=" relative relative flex size-full w-full flex-col items-center gap-[16px] text-black lg:items-start"
+              style={{ width: vw <= 850 ? vw * 0.95 : "fit" }}
             >
-              <Stack
-                spacing={1}
-                className="flex relative size-full text-black flex-col items-center lg:items-start justify-between"
-              >
-                <Stack spacing={0} className="">
-                  <Stack direction={"row"} spacing={vh<= 850 ? 4: 5}>
-                    <div className="flex items-center gap-[6px]">
-                      <span className="font-montserrat text-black leading-[50px] text-[45px] font-bold">
-                        25
-                      </span>
-                      <div className="flex flex-col gap-[-5px] leading-[20px] text-[15px] font-medium font-montserrat">
-                        <span className="">Years</span>
-                        <span className="">Experience</span>
-                      </div>
+              <Stack className="flex flex-col gap-[8px]">
+                <Stack direction={"row"} spacing={vh <= 850 ? 4 : 5}>
+                  <div className="flex items-center gap-[6px]">
+                    <span className="text- font-nunito text-[40px] font-bold leading-[47px] text-royalBlue lg:text-[60px]">
+                      25
+                    </span>
+                    <div className="flex flex-col font-nunito text-[16px] font-semibold leading-tight lg:text-[20px]">
+                      <span className="">Years</span>
+                      <span className="">Experience</span>
                     </div>
-                    <div className="flex items-center gap-[6px]">
-                      <span className="font-roboto leading-[50px] text-[45px] font-bold">
-                        100%
-                      </span>
-                      <div className="flex flex-col gap-[-5px] leading-[20px] text-[15px] font-medium font-montserrat">
-                        <span className="">Student</span>
-                        <span className="">Pass Rates</span>
-                      </div>
+                  </div>
+                  <div className="flex items-center gap-[6px]">
+                    <span className="text- font-nunito text-[40px] font-bold leading-[47px] text-imperialRed lg:text-[60px]">
+                      100%
+                    </span>
+                    <div className="flex flex-col font-nunito text-[18px] font-semibold leading-tight lg:text-[20px]">
+                      <span className="">Pass</span>
+                      <span className="">Rates</span>
                     </div>
-                  </Stack>
-                  <Stack direction={"row"} spacing={vh<= 850 ? 4: 5}>
-                    <div className="flex items-center gap-[6px]">
-                      <span className="font-roboto leading-[50px] text-[45px] font-bold">
-                        916
-                      </span>
-                      <div className="flex flex-col gap-[-5px] leading-[20px] text-[15px] font-medium font-montserrat">
-                        <span className="">Registered </span>
-                        <span className="">Students</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-[6px]">
-                      <span className="font-roboto leading-[50px] text-[45px] font-bold">
-                        102
-                      </span>
-                      <div className="flex flex-col gap-[-5px] leading-[20px] text-[15px] font-medium font-montserrat">
-                        <span className="">Active</span>
-                        <span className="">Teachers</span>
-                      </div>
-                    </div>
-                  </Stack>
+                  </div>
                 </Stack>
-                <Stack spacing={0.5}>
-                  <p className="font-montserrat text-[16px] text-black font-medium text-left lg:text-left">
+                <Stack direction={"row"} spacing={vh <= 850 ? 4 : 5}>
+                  <div className="flex items-center gap-[6px]">
+                    <span className="text- font-nunito text-[40px] font-bold leading-[47px] text-persianBlue lg:text-[60px]">
+                      916
+                    </span>
+                    <div className="flex flex-col font-nunito text-[18px] font-semibold leading-tight">
+                      <span className="">Registered </span>
+                      <span className="">Students</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-[6px]">
+                    <span className="text- font-nunito text-[40px] font-bold leading-[47px] text-selectiveYellow lg:text-[60px]">
+                      102
+                    </span>
+                    <div className="flex flex-col font-nunito text-[18px] font-semibold leading-tight lg:text-[20px]">
+                      <span className="">Active</span>
+                      <span className="">Teachers</span>
+                    </div>
+                  </div>
+                </Stack>
+              </Stack>
+              <Stack className="flex flex-col gap-[8px]">
+                <p className="text-left font-montserrat text-[18px] text-black lg:text-left">
                   Welcome to our school, where we are dedicated to nurturing
                   young minds and fostering a love for learning. Our passionate
                   educators strive to provide a supportive and dynamic
                   environment that encourages students to achieve their full
                   potential.
                 </p>
-                <p className="font-montserrat text-[16px] text-black font-medium text-left lg:text-left">
+                <p className="text-left font-montserrat text-[18px] text-black lg:text-left">
                   Through innovative teaching methods and a comprehensive
                   curriculum, we prepare our students to become confident,
                   responsible, and compassionate global citizens ready to make a
                   positive impact in the future.
                 </p>
-                </Stack>
               </Stack>
             </div>
           </div>
         </div>
         {/* first section of section 2 end */}
 
-        <Stack className="relative" spacing={3}>
+        <div className="relative flex flex-col gap-[16px]">
           {/* second section of section 2 start */}
-        <div className="relative flex flex-col lg:items-start lg:justify-start items-center justify-center w-full ml-[30px]" style={{width:vw<=850 ? vw*0.9 : vw*0.4}}>
-          <p className="font-montserrat ml-[10px] text-[20px] lg:text-[30px] font-semibold leading-[30px]">
-            We make sure that learning is Easy with the Help of iLearn
-          </p>
-        </div>
-        {/* second section of section 2 end */}
+          <div
+            className="relative"
+            style={{ width: vw <= 850 ? vw * 0.95 : vw * 0.4 }}
+          >
+            <p className="pl-[10px] font-montserrat text-[20px] font-semibold leading-[30px] lg:pl-0 lg:text-[30px]">
+              We make sure that learning is Easy with the Help of iLearn
+            </p>
+          </div>
+          {/* second section of section 2 end */}
 
-        {/* third section of section 2 start */}
-        <Stack direction={vw <= 850 ? "column" : "row"} className="relative lg:mx-[0px] px-[0px]" alignItems="center" spacing={vw <= 850 ? 5 : 5}>
-          <div
-            className="relative rounded-[10px] px-[10px] bg-coolWhite shadow-md border border-persianBlue shadow-royalBlue"
-            style={{ width:  vw <= 850 ? vw*0.95 : vw * 0.33, height:vh*0.63}}
+          {/* third section of section 2 start */}
+          <Stack
+            direction={vw <= 850 ? "column" : "row"}
+            className="relative px-0 lg:mx-0"
+            alignItems="center"
+            spacing={vw <= 850 ? 5 : 2}
           >
-            <Stack className="size-full pb-[10px] pt-[30px]" spacing={vw <= 850 ? 10:5} justifyContent={"space-between"}>
-              <Stack spacing={1}>
-                <h1 className="font-bebasNeue leading-[50px] text-[50px] font-bold text-persianBlue">
-                What is iLearn?
-              </h1>
-              <p className="font-montserrat font-medium z-10 text-[17px] text-persianBlue">
-                Trust & Conectivity: iLearn is a secure software platform that
-                unifies mobile, desktop, and web technologies into a single
-                ecosytem for seamless school management.
-              </p>
+            <div
+              className="relative rounded-[10px] bg-coolWhite px-[8px] shadow-sm shadow-royalBlue"
+              style={{
+                width: vw <= 850 ? vw * 0.95 : vw * 0.21,
+                height: vh * 0.63,
+              }}
+            >
+              <Stack
+                className="size-full pb-[8px] pt-[24px]"
+                spacing={vw <= 850 ? 10 : 5}
+                justifyContent={"space-between"}
+              >
+                <div className="flex flex-col gap-[16px]">
+                  <h1 className="font-bebasNeue text-[50px] font-bold leading-[38px] text-persianBlue">
+                    What is iLearn?
+                  </h1>
+                  <p className="z-10 font-montserrat text-[17px] font-medium text-persianBlue">
+                    Trust & Conectivity: iLearn is a secure software platform
+                    that unifies mobile, desktop, and web technologies into a
+                    single ecosytem for seamless school management.
+                  </p>
+                </div>
+
+                <Stack
+                  direction={"row"}
+                  className=""
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
+                >
+                  <button className="relative h-[40px] w-full rounded-[10px] border border-persianBlue font-montserrat text-[20px] font-bold text-persianBlue transition-all duration-300 ease-in-out hover:bg-persianBlue hover:text-coolWhite">
+                    Learn More
+                  </button>
+                </Stack>
+                <h1 className="absolute bottom-0 right-0 z-0 bg-gradient-to-t from-[#BD00FD] via-black/50 to-[#FF3C00] bg-clip-text font-bebasNeue text-[150px] text-transparent">
+                  1
+                </h1>
               </Stack>
-              
-              <Stack direction={"row"} className="" justifyContent={"space-between"} alignItems={"center"}>
-              <button className="w-full h-[40px] relative bg-persianBlue font-bold text-white rounded-[10px] text-[18px] font-montserrat">
-                Learn More
-              </button>
-            </Stack>
-              <h1 className="text-[150px] absolute bottom-0 right-0 z-0 font-bebasNeue bg-gradient-to-t from-[#BD00FD] via-black/50 to-[#FF3C00] bg-clip-text text-transparent">1</h1>
-            </Stack>
-            
-          </div>
-          <div
-            className="relative rounded-[10px] shadow-md shadow-imperialRed px-[10px] border border-imperialRed"
-            style={{ width:  vw <= 850 ? vw*0.95 : vw * 0.33, height:vh*0.63}}
-          >
-            <Stack className="size-full pb-[10px] pt-[30px]" spacing={vw <= 850 ? 10:5} justifyContent={"space-between"}>
-              <Stack className="" spacing={1}>
-                <h1 className="font-bebasNeue leading-[50px] text-[50px] font-bold text-imperialRed">
-                Empowerment & Control
-              </h1>
-              <p className="font-montserrat z-10 text-[17px] font-medium text-imperialRed">
-                Real-time parental monitoring, student self-service portals, and
-                advanced tracking to ensure everyone stays connected and
-                informed.
-              </p>
+            </div>
+            <div
+              className="relative rounded-[10px] px-[8px] shadow-sm shadow-imperialRed"
+              style={{
+                width: vw <= 850 ? vw * 0.95 : vw * 0.21,
+                height: vh * 0.63,
+              }}
+            >
+              <Stack
+                className="size-full pb-[8px] pt-[24px]"
+                spacing={vw <= 850 ? 10 : 5}
+                justifyContent={"space-between"}
+              >
+                <div className="flex flex-col gap-[16px]">
+                  <h1 className="font-bebasNeue text-[50px] font-bold leading-[40px] text-imperialRed">
+                    Empowerment & Control
+                  </h1>
+                  <p className="z-10 font-montserrat text-[17px] font-medium text-imperialRed">
+                    Real-time parental monitoring, student self-service portals,
+                    and advanced tracking to ensure everyone stays connected and
+                    informed.
+                  </p>
+                </div>
+
+                <Stack
+                  direction={"row"}
+                  className=""
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
+                >
+                  <button className="relative h-[40px] w-full rounded-[10px] border border-imperialRed font-montserrat text-[20px] font-bold text-imperialRed transition-all duration-300 ease-in-out hover:bg-imperialRed hover:text-coolWhite">
+                    Learn More
+                  </button>
+                </Stack>
+                <h1 className="absolute bottom-0 right-0 z-0 bg-gradient-to-t from-[#BD00FD] via-black/50 to-[#FF3C00] bg-clip-text font-bebasNeue text-[150px] text-transparent">
+                  2
+                </h1>
               </Stack>
-              
-              <Stack direction={"row"} className="" justifyContent={"space-between"} alignItems={"center"}>
-              <button className="w-full h-[40px] relative bg-imperialRed rounded-[10px] text-coolWhite font-bold text-[20px] font-montserrat">
-                Learn More
-              </button> 
-            </Stack>
-              <h1 className="text-[150px] absolute bottom-0 right-0 z-0 font-bebasNeue bg-gradient-to-t from-[#BD00FD] via-black/50 to-[#FF3C00] bg-clip-text text-transparent">2</h1>
-            </Stack>
-            
-          </div>
-          <div
-            className="relative rounded-[10px] px-[10px] bg-coolWhite border shadow-md shadow-selectiveYellow border-selectiveYellow"
-            style={{ width:  vw <= 850 ? vw*0.95 : vw * 0.33, height:vh*0.63}}
-          >
-            <Stack className="size-full pb-[10px] pt-[30px]" spacing={vw <= 850 ? 10:5} justifyContent={"space-between"}>
-              <Stack spacing={1}>
-                <h1 className="font-bebasNeue leading-[50px] text-[50px] font-bold text-selectiveYellow">
-                Effortless Applications
-              </h1>
-              <p className="font-montserrat font-medium z-10 text-[17px] text-selectiveYellow">
-                
-Real-time parental monitoring, student self-service portals, and
-                advanced tracking to ensure everyone stays connected and
-                informed.
-              </p>
+            </div>
+            <div
+              className="relative rounded-[10px] bg-coolWhite px-[8px] shadow-sm shadow-selectiveYellow"
+              style={{
+                width: vw <= 850 ? vw * 0.95 : vw * 0.21,
+                height: vh * 0.63,
+              }}
+            >
+              <Stack
+                className="size-full pb-[8px] pt-[24px]"
+                spacing={vw <= 850 ? 10 : 5}
+                justifyContent={"space-between"}
+              >
+                <div className="flex flex-col gap-[16px]">
+                  <h1 className="font-bebasNeue text-[50px] font-bold leading-[40px] text-selectiveYellow">
+                    Effortless Applications
+                  </h1>
+                  <p className="z-10 font-montserrat text-[17px] font-medium text-selectiveYellow">
+                    Real-time parental monitoring, student self-service portals,
+                    and advanced tracking to ensure everyone stays connected and
+                    informed.
+                  </p>
+                </div>
+
+                <Stack
+                  direction={"row"}
+                  className="rounded-[10px]"
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
+                >
+                  <button className="relative h-[40px] w-full rounded-[10px] border border-selectiveYellow font-montserrat text-[20px] font-bold text-selectiveYellow transition-all duration-300 ease-in-out hover:bg-selectiveYellow hover:text-coolWhite">
+                    Learn More
+                  </button>
+                </Stack>
+                <h1 className="absolute bottom-0 right-0 z-0 bg-gradient-to-t from-[#BD00FD] via-black/50 to-[#FF3C00] bg-clip-text font-bebasNeue text-[150px] text-transparent">
+                  3
+                </h1>
               </Stack>
-              
-              <Stack direction={"row"} className="rounded-[10px]" justifyContent={"space-between"} alignItems={"center"}>
-              <button className="w-full bg-selectiveYellow h-[40px] text-coolWhite relative rounded-[10px] text-[20px] font-montserrat font-bold">
-                Learn More
-              </button>
-            </Stack>
-              <h1 className="text-[150px] absolute bottom-0 right-0 z-0 font-bebasNeue bg-gradient-to-t from-[#BD00FD] via-black/50 to-[#FF3C00] bg-clip-text text-transparent">3</h1>
-            </Stack>
-            
-          </div>
-        </Stack>
-        {/* third section of section 2 end */}
-        </Stack>
+            </div>
+            <div
+              className="relative rounded-[10px] bg-coolWhite px-[8px] shadow-sm shadow-royalBlue"
+              style={{
+                width: vw <= 850 ? vw * 0.95 : vw * 0.21,
+                height: vh * 0.63,
+              }}
+            >
+              <Stack
+                className="size-full pb-[8px] pt-[24px]"
+                spacing={vw <= 850 ? 10 : 5}
+                justifyContent={"space-between"}
+              >
+                <div className="flex flex-col gap-[16px]">
+                  <h1 className="font-bebasNeue text-[50px] font-bold leading-[40px] text-royalBlue">
+                    Effortless Applications
+                  </h1>
+                  <p className="z-10 font-montserrat text-[17px] font-medium text-royalBlue">
+                    Real-time parental monitoring, student self-service portals,
+                    and advanced tracking to ensure everyone stays connected and
+                    informed.
+                  </p>
+                </div>
+
+                <Stack
+                  direction={"row"}
+                  className="rounded-[10px]"
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
+                >
+                  <button className="relative h-[40px] w-full rounded-[10px] border border-royalBlue font-montserrat text-[20px] font-bold transition-all duration-300 ease-in-out hover:bg-royalBlue hover:text-coolWhite">
+                    Learn More
+                  </button>
+                </Stack>
+                <h1 className="absolute bottom-0 right-0 z-0 bg-gradient-to-t from-[#BD00FD] via-black/50 to-[#FF3C00] bg-clip-text font-bebasNeue text-[150px] text-transparent">
+                  4
+                </h1>
+              </Stack>
+            </div>
+          </Stack>
+          {/* third section of section 2 end */}
+        </div>
       </section>
       {/* Second section end here */}
 
-
       {/** Thrird Section Start here */}
-      <Stack
-        alignItems={"center"}
-        className="relative flex flex-col gap-[24px] h-fit w-full pb-[20px]"
-      >
-        <h1 className="text-left leading-tight text-[50px] font-bold text-black font-montserrat">
-          Our Programs
-        </h1>
-        <div className="relative flex flex-col gap-[24px] w-full">
-          <div className="border w-full h-fit p-[8px] rounded-[10px] border-persianBlue flex items-center justify-between" style={{}}>
-              <IoIosArrowBack size={50} className="border rounded-full bg-coolWhite border border-persianBlue cursor-pointer hidden lg:inline-block"/>
-            <ul className="relative p-[8px] w-full overflow-x-scroll md:overflow-hidden lg:mx-[30px] flex gap-[8px] lg:gap-[24px] text-[20px] font-montserrat font-semibold text-black">
-              <li className="p-[8px] border rounded-[10px] bg-coolWhite border-persianBlue text-persianBlue shadow-sm shadow-royalBlue cursor-pointer whitespace-nowrap">Mathematics</li>
-              <li className="p-[8px] border rounded-[10px] bg-coolWhite cursor-pointer whitespace-nowrap">English</li>
-              <li className="p-[8px] border rounded-[10px] bg-coolWhite cursor-pointer whitespace-nowrap">Physical Sciences</li>
-              <li className="p-[8px] border rounded-[10px] bg-coolWhite cursor-pointer whitespace-nowrap">Life Sciences</li>
-              <li className="p-[8px] border rounded-[10px] bg-coolWhite cursor-pointer whitespace-nowrap">IsiZulu</li>
-              <li className="p-[8px] border rounded-[10px] bg-coolWhite cursor-pointer whitespace-nowrap">History</li>
-            </ul>
-            <IoIosArrowForward size={50} className="border rounded-full bg-coolWhite border border-persianBlue cursor-pointer hidden lg:inline-block"/>
-          </div>
-          <div className="w-full h-fit flex flex-col items-center lg:flex-row lg:items-start gap-[16px]">
-            <div className="relative rounded-[10px]" style={{width: vw <= 850 ? vw*0.95 : vw*0.4166666667, height:vw <= 850 ? vh*0.3 :vw*0.2722222222}}>
-              <img src={class_5} alt="class image" className="size-full rounded-[10px] object-cover" />
+      <Stack className=" relative flex h-fit w-full flex-col gap-[24px] pb-[20px] lg:text-start">
+        <div className="">
+          <h1 className="relative font-montserrat text-[40px] font-bold leading-tight text-black lg:text-[50px]">
+            Our Programs
+          </h1>
+          <div className="relative flex w-full flex-col gap-[16px]">
+            <div
+              className="flex h-fit w-full items-center justify-between rounded-[10px] px-0"
+              style={{}}
+            >
+              <IoIosArrowBack
+                size={50}
+                className=" hidden cursor-pointer rounded-full bg-coolWhite lg:inline-block"
+              />
+              <ul className="relative flex w-full gap-[8px] overflow-x-scroll p-[8px] font-montserrat text-[20px] font-semibold text-black md:overflow-hidden lg:mx-[30px] lg:gap-[24px]">
+                {SchoolSubjectList.map((item, index) => (
+                  <li
+                    className={`rounded-[10px] bg-coolWhite p-[8px] ${selectedProgram == item ? "border border-persianBlue text-persianBlue shadow-sm shadow-royalBlue" : "border text-black"} cursor-pointer whitespace-nowrap transition-all duration-300 ease-in-out`}
+                    onClick={() => {
+                      setSelectedProgram(item);
+                    }}
+                    key={index}
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <IoIosArrowForward
+                size={50}
+                className="hidden cursor-pointer rounded-full bg-coolWhite lg:inline-block"
+              />
             </div>
-            <div className="flex flex-col justify-between" style={{width:vw <= 850 ? vw*0.95 : vw*0.4888888889, height:vw <= 850 ? "fit-content" :vw*0.2722222222}}>
-              <div className="flex flex-col gap-[8px]">
-                <h1 className="text-[20px] font-montserrat font-semibold">Mathematics</h1>
-              <div className="flex flex-col gap-[8px]">
-                <p className="text-[16px] font-montserrat">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam cumque quis quasi, pariatur delectus quo reprehenderit, quidem in maiores impedit alias quisquam velit earum. Hic illum cupiditate quam perspiciatis? Nemo vel, amet quae, eum iure dicta reiciendis optio cumque enim consectetur, officia facilis laboriosam sint debitis animi laborum totam consequuntur.</p>
-                <p className="text-[16px] font-montserrat">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur modi deleniti officia. Quasi pariatur dicta reprehenderit laborum sunt distinctio exercitationem voluptatum voluptatibus molestiae nihil accusamus, officiis iusto dolore, earum alias ducimus cum mollitia non eum dolores sed, est quibusdam.</p>
+            {showInfo?.map((item, index) => (
+              <div
+                className="flex h-fit w-full flex-col items-center gap-[16px] lg:flex-row lg:items-start"
+                key={index}
+              >
+                <div
+                  className="relative rounded-[10px]"
+                  style={{
+                    width: vw <= 850 ? vw * 0.95 : vw * 0.4166666667,
+                    height: vw <= 850 ? vh * 0.3 : vw * 0.2722222222,
+                  }}
+                >
+                  <img
+                    src={imageRecord[item.image]}
+                    alt="class image"
+                    className="size-full rounded-[10px] object-cover"
+                  />
+                </div>
+                <div
+                  className="flex flex-col justify-between"
+                  style={{
+                    width: vw <= 850 ? vw * 0.95 : vw * 0.4888888889,
+                    height: vw <= 850 ? "fit-content" : vw * 0.2722222222,
+                  }}
+                >
+                  <div className="flex flex-col gap-[8px]">
+                    <h1 className="font-montserrat text-[20px] font-semibold">
+                      {item?.subject}
+                    </h1>
+                    <div className="flex flex-col gap-[8px]">
+                      <p className="font-montserrat text-[16px]">{item?.p1}</p>
+                      <p className="font-montserrat text-[16px]">{item?.p2}</p>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => navigate("/signup")}
+                    className="mt-[20px] w-fit rounded-[10px] border border-transparent p-[8px] font-montserrat text-[18px] font-bold text-persianBlue transition-all duration-300 hover:bg-persianBlue hover:text-coolWhite hover:shadow-md hover:shadow-royalBlue lg:mt-0"
+                  >
+                    Impressive right!, Click here to register
+                  </button>
+                </div>
               </div>
-              </div>
-              <button onClick={()=>navigate("/signup")} className="border mt-[20px] lg:mt-[0px] border-persianBlue w-fit p-[8px] rounded-[10px] text-[18px] font-montserrat font-bold text-persianBlue hover:text-coolWhite hover:bg-persianBlue hover:shadow-md hover:shadow-royalBlue duration-300 transition-all">Impressive right!, Click here to register</button>
-            </div>
+            ))}
           </div>
         </div>
-        <SwiperSlider data={slidesData} />
+        <div className=" flex flex-col gap-[16px]">
+          <h1 className="relative pl-[8px] font-montserrat text-[24px] font-bold leading-tight text-black lg:pl-0 lg:text-[30px]">
+            Short School Gallery
+          </h1>
+          <div className="w-full">
+            <SwiperSlider data={slidesData} />
+          </div>
+        </div>
       </Stack>
       {/** Thrird Section End here */}
 
-
-
-  
       {/* mobile only section */}
-      <Stack className="h-fit bg-[#D9D9D9] py-[10px]" spacing={2}>
+      <Stack className="h-fit py-[10px]" spacing={2}>
         <Marquee speed={30} className="py-[10px]">
-          {TeacherRecognition.map((item: any, index: number) => (
+          {TeacherRecognition.map((item, index: number) => (
             <TeacherYearCard
               title={item.title}
               name={item.name}

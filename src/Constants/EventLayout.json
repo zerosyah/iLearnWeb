@@ -43,7 +43,7 @@
       "name": "MR. Johnson",
       "subject": "Mathematics",
       "grade": "Grade 10A",
-      "description": "Mr. Johnson is a passionate Mathematics educator who makes complex concepts feel accessible and relevant. His supportive classroom strengthens student confidence and achievement through real-world problem solving.",
+      "description": "97% Pass rate",
       "img": "test1"
     },
     {
@@ -51,7 +51,7 @@
       "name": "Mrs. Williams",
       "subject": "English",
       "grade": "Grade 9B",
-      "description": "Mrs. Williams is an inspiring English teacher who nurtures strong reading, writing, and communication skills. She fosters creativity and critical thinking while mentoring students toward academic excellence.",
+      "description": "100% Pass Rate",
       "img": "test2"
     },
     {
@@ -59,7 +59,7 @@
       "name": "Mr. Okonkwo",
       "subject": "Physics",
       "grade": "Grade 11A",
-      "description": "Mr. Okonkwo is a Physics educator who combines hands-on experiments with clear explanations. His innovative lessons help students build strong science skills and succeed with confidence.",
+      "description": "98% Pass Rate",
       "img": "test3"
     },
     {
@@ -67,7 +67,7 @@
       "name": "Ms. Chen",
       "subject": "Biology",
       "grade": "Grade 10C",
-      "description": "Ms. Chen is a Biology educator who encourages curiosity and discovery through interactive lessons. She supports student growth with personalized guidance and a hands-on approach.",
+      "description": "95% Pass Rate",
       "img": "test4"
     },
     {
@@ -75,7 +75,7 @@
       "name": "Mr. Nkosi",
       "subject": "History",
       "grade": "Grade 8D",
-      "description": "Mr. Nkosi is a dedicated History educator with over 12 years of experience inspiring students through storytelling, critical thinking, and immersive lessons. He leads Grade 8D with a focus on cultural awareness, academic excellence, and a 94% pass rate.",
+      "description": "94% Pass Rate",
       "img": "test5"
     },
     {
@@ -83,7 +83,7 @@
       "name": "Mrs. Rodriguez",
       "subject": "Chemistry",
       "grade": "Grade 11B",
-      "description": "Mrs. Rodriguez is a Chemistry teacher who leads her students with laboratory expertise and a passion for scientific inquiry. Her supportive instruction helps learners develop confidence and strong analytical skills.",
+      "description": "99% Pass Rate",
       "img": "test6"
     }
   ],
@@ -255,6 +255,38 @@
     "faxNumber": "378 378 4287",
     "email": "headofdepartment@school.co.za",
     "address": "1313 M35, Egolokodo-nsimbini"
+    }
+  ],
+  "informationProgram": [
+    {
+      "subject": "Mathematics",
+      "image": "img1",
+      "p1": "Mathematics provides students with practical problem-solving skills, logical reasoning, and the confidence to analyze patterns. Through collaboration and hands-on exploration, learners develop numerical fluency, critical thinking, and the ability to apply concepts across science, technology, engineering, and everyday life experiences in meaningful ways while preparing them for future academic success.",
+      "p2": "Students build strong foundations through study, practice, and guided instruction, mastering algebraic thinking and geometric reasoning. This prepares them to succeed in advanced coursework, handle data confidently, and approach challenges with persistence, creativity, and effective mathematical communication across school and real-world contexts."
+    },
+    {
+      "subject": "English",
+      "image": "img2",
+      "p1": "English language study cultivates reading comprehension, expressive writing, and effective communication skills across diverse genres and audiences. Students analyze texts, develop vocabulary, and practice critical interpretation through discussion and creative projects. Emphasis on clarity, persuasion, and literary appreciation prepares learners for academic success and professional growth too.",
+      "p2": "Through writing exercises, debates, and close reading, students sharpen argumentation, empathy, and analytical skills. Teachers provide feedback to improve grammar, structure, and voice while encouraging independent thought, cultural awareness, and confident public speaking essential for higher education and careers and lifelong learning."
+    },
+    {
+      "subject": "Science",
+      "image": "img3",
+      "p1": "Science education engages students in inquiry, experimentation, and evidence-based reasoning to explore natural phenomena. Hands-on labs, data analysis, and collaborative projects foster curiosity, problem-solving, and scientific literacy. Students learn to design investigations, interpret results, and communicate findings clearly while developing responsible, ethical research habits for future STEM pathways and innovation.",
+      "p2": "Students practice experimental design, measurement, and critical evaluation of evidence. Lessons emphasize modeling, quantitative reasoning, and cross-disciplinary connections that prepare learners for advanced study. Inquiry-based activities build resilience, creativity, and collaboration necessary for scientific problem-solving in academic and real-world contexts and beyond."
+    },
+    {
+      "subject": "Commerce",
+      "image": "img4",
+      "p1": "Computer Science introduces programming, algorithms, and computational thinking to solve complex problems. Students learn coding fundamentals, data structures, and software design through project-based learning. Emphasis on debugging, teamwork, and algorithmic efficiency prepares learners for modern technology roles and empowers them to create digital solutions responsibly and ethically for global impact.",
+      "p2": "Hands-on labs develop problem decomposition, computational modeling, and system architecture understanding. Students practice collaborative development workflows, version control, and testing. These skills enable students to design scalable software, think algorithmically, and apply computing principles across industries and research domains and practical projects."
+    },
+    {
+      "subject": "Arts",
+      "image": "img5",
+      "p1": "Art education nurtures creativity, visual literacy, and personal expression through drawing, painting, sculpture, and digital media. Students explore technique, composition, and art history while developing observational skills and conceptual thinking. Studio practice, critique, and interdisciplinary projects cultivate aesthetic judgment, perseverance, and cultural appreciation for lifelong creative engagement and community connection.",
+      "p2": "Through portfolio work and collaborative exhibits, learners refine technique and personal voice. Teachers guide experimentation, critical reflection, and contextual research that deepen understanding. Art practice supports emotional development, problem-solving, and communication skills valuable across academic and professional pathways and creative career opportunities."
     }
   ]
 }
