@@ -127,7 +127,7 @@ export default function Home() {
   //const phoneHeight = width < 430 ? height : height
 
   return (
-    <section className="scroll-container h-screen w-screen gap-[10px] overflow-y-scroll bg-coolWhite dark:bg-gray-700  lg:px-[60px]">
+    <section className="scroll-container flex flex-col h-screen w-screen gap-[32px] overflow-y-scroll bg-coolWhite dark:bg-gray-700  lg:px-[60px]">
       {/* Hero section start here */}
       <Stack
         className={`relative grid size-full place-items-center justify-center`}
@@ -208,7 +208,7 @@ export default function Home() {
         className="relative flex h-fit w-full flex-col gap-[24px]"
         // style={{padding: vw <= 850 ? vw*0.95 : vw * 0.9}}
       >
-        <h1 className="relative font-montserrat text-[40px] font-bold leading-tight text-black lg:text-[50px]">
+        <h1 className="relative font-montserrat text-[40px] font-bold leading-tight text-black lg:text-[40px]">
           Who We are ?
         </h1>
         {/* first section of section 2 start*/}
@@ -217,7 +217,7 @@ export default function Home() {
           style={{ height: vw <= 850 ? "fit-content" : vh * 0.5 }}
         >
           <div
-            className="relative flex w-full items-center gap-[36px] rounded-[10px] lg:items-start lg:gap-[16px]"
+            className="relative flex w-full items-center gap-[32px] rounded-[10px] lg:items-start lg:gap-[16px]"
             style={{ flexDirection: vw <= 800 ? "column" : "row" }}
           >
             {/* image section */}
@@ -225,7 +225,7 @@ export default function Home() {
               className="relative flex h-fit flex-col"
               style={{
                 width: vw <= 850 ? vw * 0.95 : vw * 0.4166666667,
-                height: vw <= 850 ? vh * 0.4 : vw * 0.2122222222,
+                height: vw <= 850 ? vh * 0.4 : vw * 0.2012222222,
               }}
             >
               <img
@@ -251,10 +251,10 @@ export default function Home() {
               <Stack className="flex flex-col gap-[8px]">
                 <Stack direction={"row"} spacing={vh <= 850 ? 4 : 5}>
                   <div className="flex items-center gap-[6px]">
-                    <span className="text- font-nunito text-[40px] font-bold leading-[47px] text-royalBlue lg:text-[60px]">
+                    <span className="font-nunito text-[40px] font-bold leading-[47px] text-royalBlue lg:text-[60px]">
                       25
                     </span>
-                    <div className="flex flex-col font-nunito text-[16px] font-semibold leading-tight lg:text-[20px]">
+                    <div className="flex flex-col font-nunito text-[16px] font-semibold leading-[20px] lg:text-[20px]">
                       <span className="">Years</span>
                       <span className="">Experience</span>
                     </div>
@@ -291,14 +291,14 @@ export default function Home() {
                 </Stack>
               </Stack>
               <Stack className="flex flex-col gap-[8px]">
-                <p className="text-left font-montserrat text-[18px] text-black lg:text-left">
+                <p className="text-left font-montserrat text-[16px] text-black lg:text-left">
                   Welcome to our school, where we are dedicated to nurturing
                   young minds and fostering a love for learning. Our passionate
                   educators strive to provide a supportive and dynamic
                   environment that encourages students to achieve their full
                   potential.
                 </p>
-                <p className="text-left font-montserrat text-[18px] text-black lg:text-left">
+                <p className="text-left font-montserrat text-[16px] text-black lg:text-left">
                   Through innovative teaching methods and a comprehensive
                   curriculum, we prepare our students to become confident,
                   responsible, and compassionate global citizens ready to make a
@@ -314,9 +314,9 @@ export default function Home() {
           {/* second section of section 2 start */}
           <div
             className="relative"
-            style={{ width: vw <= 850 ? vw * 0.95 : vw * 0.4 }}
+            style={{ width: vw <= 850 ? vw * 0.95 : vw * 0.5 }}
           >
-            <p className="pl-[10px] font-montserrat text-[20px] font-semibold leading-[30px] lg:pl-0 lg:text-[30px]">
+            <p className="pl-[10px] font-montserrat text-[24px] font-semibold leading-[35px] lg:pl-0 lg:text-[32px]">
               We make sure that learning is Easy with the Help of iLearn
             </p>
           </div>
@@ -342,10 +342,10 @@ export default function Home() {
                 justifyContent={"space-between"}
               >
                 <div className="flex flex-col gap-[16px]">
-                  <h1 className="font-bebasNeue text-[50px] font-bold leading-[38px] text-persianBlue">
+                  <h1 className="font-bebasNeue text-[40px] font-bold leading-[38px] text-persianBlue">
                     What is iLearn?
                   </h1>
-                  <p className="z-10 font-montserrat text-[17px] font-medium text-persianBlue">
+                  <p className="z-10 font-montserrat text-[16px] font-medium text-persianBlue">
                     Trust & Conectivity: iLearn is a secure software platform
                     that unifies mobile, desktop, and web technologies into a
                     single ecosytem for seamless school management.
@@ -380,10 +380,10 @@ export default function Home() {
                 justifyContent={"space-between"}
               >
                 <div className="flex flex-col gap-[16px]">
-                  <h1 className="font-bebasNeue text-[50px] font-bold leading-[40px] text-imperialRed">
+                  <h1 className="font-bebasNeue text-[40px] font-bold leading-[40px] text-imperialRed">
                     Empowerment & Control
                   </h1>
-                  <p className="z-10 font-montserrat text-[17px] font-medium text-imperialRed">
+                  <p className="z-10 font-montserrat text-[16px] font-medium text-imperialRed">
                     Real-time parental monitoring, student self-service portals,
                     and advanced tracking to ensure everyone stays connected and
                     informed.
@@ -418,10 +418,10 @@ export default function Home() {
                 justifyContent={"space-between"}
               >
                 <div className="flex flex-col gap-[16px]">
-                  <h1 className="font-bebasNeue text-[50px] font-bold leading-[40px] text-selectiveYellow">
+                  <h1 className="font-bebasNeue text-[40px] font-bold leading-[40px] text-selectiveYellow">
                     Effortless Applications
                   </h1>
-                  <p className="z-10 font-montserrat text-[17px] font-medium text-selectiveYellow">
+                  <p className="z-10 font-montserrat text-[16px] font-medium text-selectiveYellow">
                     Real-time parental monitoring, student self-service portals,
                     and advanced tracking to ensure everyone stays connected and
                     informed.
@@ -456,10 +456,10 @@ export default function Home() {
                 justifyContent={"space-between"}
               >
                 <div className="flex flex-col gap-[16px]">
-                  <h1 className="font-bebasNeue text-[50px] font-bold leading-[40px] text-royalBlue">
+                  <h1 className="font-bebasNeue text-[40px] font-bold leading-[40px] text-royalBlue">
                     Effortless Applications
                   </h1>
-                  <p className="z-10 font-montserrat text-[17px] font-medium text-royalBlue">
+                  <p className="z-10 font-montserrat text-[16px] font-medium text-royalBlue">
                     Real-time parental monitoring, student self-service portals,
                     and advanced tracking to ensure everyone stays connected and
                     informed.
@@ -488,7 +488,7 @@ export default function Home() {
       {/* Second section end here */}
 
       {/** Thrird Section Start here */}
-      <Stack className=" relative flex h-fit w-full flex-col gap-[24px] pb-[20px] lg:text-start">
+      <Stack className=" relative flex h-fit w-full flex-col gap-[24px] pb-[24px] lg:text-start">
         <div className="">
           <h1 className="relative font-montserrat text-[40px] font-bold leading-tight text-black lg:text-[50px]">
             Our Programs
@@ -502,7 +502,7 @@ export default function Home() {
                 size={50}
                 className=" hidden cursor-pointer rounded-full bg-coolWhite lg:inline-block"
               />
-              <ul className="relative flex w-full gap-[8px] overflow-x-scroll p-[8px] font-montserrat text-[20px] font-semibold text-black md:overflow-hidden lg:mx-[30px] lg:gap-[24px]">
+              <ul className="relative flex w-full gap-[8px] overflow-x-scroll p-[8px] font-montserrat text-[16px] font-semibold text-black md:overflow-hidden lg:mx-[30px] lg:gap-[24px]">
                 {SchoolSubjectList.map((item, index) => (
                   <li
                     className={`rounded-[10px] bg-coolWhite p-[8px] ${selectedProgram == item ? "border border-persianBlue text-persianBlue shadow-sm shadow-royalBlue" : "border text-black"} cursor-pointer whitespace-nowrap transition-all duration-300 ease-in-out`}
@@ -546,7 +546,7 @@ export default function Home() {
                   }}
                 >
                   <div className="flex flex-col gap-[8px]">
-                    <h1 className="font-montserrat text-[20px] font-semibold">
+                    <h1 className="font-montserrat text-[24px] font-semibold">
                       {item?.subject}
                     </h1>
                     <div className="flex flex-col gap-[8px]">
@@ -557,7 +557,7 @@ export default function Home() {
 
                   <button
                     onClick={() => navigate("/signup")}
-                    className="mt-[20px] w-fit rounded-[10px] border border-transparent p-[8px] font-montserrat text-[18px] font-bold text-persianBlue transition-all duration-300 hover:bg-persianBlue hover:text-coolWhite hover:shadow-md hover:shadow-royalBlue lg:mt-0"
+                    className="mt-[20px] w-fit rounded-[10px] border border-transparent p-[8px] font-montserrat text-[16px] font-bold text-persianBlue transition-all duration-300 hover:bg-persianBlue hover:text-coolWhite hover:shadow-md hover:shadow-royalBlue lg:mt-0"
                   >
                     Impressive right!, Click here to register
                   </button>
@@ -578,8 +578,8 @@ export default function Home() {
       {/** Thrird Section End here */}
 
       {/* mobile only section */}
-      <Stack className="h-fit py-[10px]" spacing={2}>
-        <Marquee speed={30} className="py-[10px]">
+      <Stack className="h-fit mx-[8px] lg:mx-[0px]">
+        <Marquee speed={30} className="">
           {TeacherRecognition.map((item, index: number) => (
             <TeacherYearCard
               title={item.title}
@@ -593,11 +593,14 @@ export default function Home() {
           ))}
         </Marquee>
       </Stack>
-      <Stack className="h-fit bg-[#D9D9D9] pt-[10px]">
-        <h1 className="pt-[10px] text-center font-roboto text-[20px] font-bold uppercase text-ptxtl lg:text-[40px]">
+
+
+
+      <Stack className="h-fit flex flex-col gap-[24px] mx-[8px] lg:mx-[0px]">
+        <h1 className="leading-[30px] text-start font-roboto text-[24px] font-bold uppercase text-ptxtl lg:text-[32px]">
           Student Support Program
         </h1>
-        <div className="flex flex-col items-center justify-center gap-5 py-[20px] md:flex-row md:gap-5">
+        <div className="flex flex-col items-start gap-[8px] md:flex-row">
           {MobileDisplayCardData.slice(0, 4).map((item, index: number) => (
             <MobileDisplayCard
               image={item.image}
@@ -608,6 +611,8 @@ export default function Home() {
           ))}
         </div>
       </Stack>
+
+
       <Stack className="h-fit w-full bg-[#D9D9D9] py-[10px] ">
         <Marquee>
           {SchoolSubjectList.map((item) => (
@@ -620,6 +625,7 @@ export default function Home() {
           ))}
         </Marquee>
       </Stack>
+
 
       <Stack>
         <section className="h-fit rounded-[30px] bg-default">

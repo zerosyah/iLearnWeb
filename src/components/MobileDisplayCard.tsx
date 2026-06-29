@@ -30,19 +30,19 @@ function MobileDisplayCard({
       setIsHovered(false);
     };
   return (
-    <div className={`relative overflow-hidden h-[60vh] md:h-[400px] flex-wrap w-full md:w-[250px] rounded-[10px] border ${isHovered ? 'border shadow-sm shadow-gray-600' : 'border-gray-300'}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div className={`relative h-[50vh] w-full flex-wrap overflow-hidden rounded-[10px] border md:h-[60vh] md:w-[250px] ${isHovered ? 'border' : ''}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <motion.img
         src={MobileDisplayCardRecord[image]}
         alt="test image"
-        className={` h-full w-full rounded-[10px] object-cover`}
+        className={` h-full w-full rounded-[10px] object-center`}
         animate={{scale:isHovered?1.2:1, transition:{duration:0.3, ease:"easeInOut", type:"initia"}}}
       />
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: isHovered ? 1 : 0 }} className={`absolute inset-0 rounded-b-[10px] bg-gradient-to-t from-black/90 via-black/40 to-transparent duration-500 ease-in-out transition-all`}></motion.div>
-      <motion.div initial={{opacity: 0, y: 20}} animate={{opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20}} className="absolute bottom-0 left-0 z-10 p-[10px] opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100">
-        <motion.h1 className="font-montserrat text-[20px] font-bold uppercase text-white">
+      <motion.div initial={{opacity: 0, y: 20}} animate={{opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20}} className="absolute bottom-0 flex flex-col gap-[16px] left-0 z-10 p-[8px] opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100">
+        <motion.h1 className="font-montserrat text-[24px] font-bold uppercase text-white">
           {title}
         </motion.h1>
-        <motion.p className="text-[12px] text-gray-400 font-nunito">{description}</motion.p>
+        <motion.p className="text-[16px] text-coolWhite font-montserrat">{description}</motion.p>
       </motion.div>
     </div>
   );
