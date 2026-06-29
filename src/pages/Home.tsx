@@ -127,10 +127,10 @@ export default function Home() {
   //const phoneHeight = width < 430 ? height : height
 
   return (
-    <section className="scroll-container flex flex-col h-screen w-screen gap-[32px] overflow-y-scroll bg-coolWhite dark:bg-gray-700  lg:px-[60px]">
+    <section className="scroll-container flex h-fit w-full flex-col gap-[72px] overflow-y-scroll bg-coolWhite dark:bg-gray-700  lg:px-[60px]">
       {/* Hero section start here */}
       <Stack
-        className={`relative grid size-full place-items-center justify-center`}
+        className={`relative grid h-screen place-items-center justify-center`}
       >
         <Header />
         <section
@@ -208,7 +208,7 @@ export default function Home() {
         className="relative flex h-fit w-full flex-col gap-[24px]"
         // style={{padding: vw <= 850 ? vw*0.95 : vw * 0.9}}
       >
-        <h1 className="relative font-montserrat text-[40px] font-bold leading-tight text-black lg:text-[40px]">
+        <h1 className="relative pl-[8px] lg:pl-0 font-montserrat text-[40px] font-bold leading-[30px] text-black lg:text-[40px]">
           Who We are ?
         </h1>
         {/* first section of section 2 start*/}
@@ -217,7 +217,7 @@ export default function Home() {
           style={{ height: vw <= 850 ? "fit-content" : vh * 0.5 }}
         >
           <div
-            className="relative flex w-full items-center gap-[32px] rounded-[10px] lg:items-start lg:gap-[16px]"
+            className="relative flex w-full items-center gap-[48px] rounded-[10px] lg:items-start lg:gap-[16px]"
             style={{ flexDirection: vw <= 800 ? "column" : "row" }}
           >
             {/* image section */}
@@ -233,7 +233,7 @@ export default function Home() {
                 alt="pp"
                 className="relative size-full rounded-[10px] object-cover"
               />
-              <div className="absolute -bottom-[30px] left-1/2 flex h-fit w-fit -translate-x-1/2 transform flex-col items-center justify-center  rounded-[10px] bg-white p-[10px] text-center text-black">
+              <div className="absolute -bottom-[30px] left-1/2 flex h-fit w-fit -translate-x-1/2 transform flex-col items-center justify-center  rounded-[10px] bg-white p-[8px] text-center text-black">
                 <p className="text-nowrap font-popins text-[16px] text-black">
                   "Making an impact, together"
                 </p>
@@ -245,47 +245,46 @@ export default function Home() {
 
             {/* details section */}
             <div
-              className=" relative relative flex size-full w-full flex-col items-center gap-[16px] text-black lg:items-start"
-              style={{ width: vw <= 850 ? vw * 0.95 : "fit" }}
+              className="relative flex size-full w-full flex-col gap-[16px] px-[8px] pt text-black lg:items-start lg:px-0"
             >
-              <Stack className="flex flex-col gap-[8px]">
-                <Stack direction={"row"} spacing={vh <= 850 ? 4 : 5}>
+              <Stack className="relative flex flex-col gap-[8px]">
+                <Stack direction={"row"} spacing={vh <= 850 ? 2 : 2}>
                   <div className="flex items-center gap-[6px]">
-                    <span className="font-nunito text-[40px] font-bold leading-[47px] text-royalBlue lg:text-[60px]">
+                    <span className="font-bebasNeue text-[55px] font-bold leading-[47px] text-royalBlue lg:text-[60px]">
                       25
                     </span>
-                    <div className="flex flex-col font-nunito text-[16px] font-semibold leading-[20px] lg:text-[20px]">
-                      <span className="">Years</span>
-                      <span className="">Experience</span>
+                    <div className="flex flex-col font-montserrat text-[16px] font-semibold leading-tight lg:text-[20px] text-royalBlue">
+                      <span className="leading-[20px]">Years</span>
+                      <span className="leading-[20px]">Experience</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-[6px]">
-                    <span className="text- font-nunito text-[40px] font-bold leading-[47px] text-imperialRed lg:text-[60px]">
+                    <span className="font-bebasNeue text-[55px] font-bold leading-[47px] text-imperialRed lg:text-[60px]">
                       100%
                     </span>
-                    <div className="flex flex-col font-nunito text-[18px] font-semibold leading-tight lg:text-[20px]">
-                      <span className="">Pass</span>
-                      <span className="">Rates</span>
+                    <div className="flex flex-col text-imperialRed font-montserrat text-[16px] font-semibold leading-tight lg:text-[20px]">  
+               <span className="leading-[20px]">Pass</span>
+                      <span className="leading-[20px]">Rates</span>
                     </div>
                   </div>
                 </Stack>
-                <Stack direction={"row"} spacing={vh <= 850 ? 4 : 5}>
+                <Stack direction={"row"} spacing={vh <= 850 ? 2 : 2}>
                   <div className="flex items-center gap-[6px]">
-                    <span className="text- font-nunito text-[40px] font-bold leading-[47px] text-persianBlue lg:text-[60px]">
+                    <span className="font-bebasNeue text-[55px] font-bold leading-[47px] text-persianBlue lg:text-[60px]">
                       916
                     </span>
-                    <div className="flex flex-col font-nunito text-[18px] font-semibold leading-tight">
-                      <span className="">Registered </span>
-                      <span className="">Students</span>
+                    <div className="flex flex-col font-montserrat text-[16px] font-semibold leading-tight text-persianBlue lg:text-[20px]">
+                      <span className="leading-[20px]">Registered </span>
+                      <span className="leading-[20px]">Students</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-[6px]">
-                    <span className="text- font-nunito text-[40px] font-bold leading-[47px] text-selectiveYellow lg:text-[60px]">
+                    <span className="font-bebasNeue text-[55px] font-bold leading-[47px] text-selectiveYellow lg:text-[60px]">
                       102
                     </span>
-                    <div className="flex flex-col font-nunito text-[18px] font-semibold leading-tight lg:text-[20px]">
-                      <span className="">Active</span>
-                      <span className="">Teachers</span>
+                    <div className="flex flex-col font-montserrat text-[16px] font-semibold leading-tight text-selectiveYellow lg:text-[20px]">
+                      <span className="leading-[20px]">Active</span>
+                      <span className="leading-[20px]">Teachers</span>
                     </div>
                   </div>
                 </Stack>
@@ -488,7 +487,7 @@ export default function Home() {
       {/* Second section end here */}
 
       {/** Thrird Section Start here */}
-      <Stack className=" relative flex h-fit w-full flex-col gap-[24px] pb-[24px] lg:text-start">
+      <Stack className="relative  flex h-fit w-full flex-col gap-[24px] pb-[24px] lg:text-start">
         <div className="">
           <h1 className="relative font-montserrat text-[40px] font-bold leading-tight text-black lg:text-[50px]">
             Our Programs
@@ -578,7 +577,7 @@ export default function Home() {
       {/** Thrird Section End here */}
 
       {/* mobile only section */}
-      <Stack className="h-fit mx-[8px] lg:mx-[0px]">
+      <Stack className="mx-[8px] h-fit border border-r-selectiveYellow lg:mx-0">
         <Marquee speed={30} className="">
           {TeacherRecognition.map((item, index: number) => (
             <TeacherYearCard
@@ -596,7 +595,7 @@ export default function Home() {
 
 
 
-      <Stack className="h-fit flex flex-col gap-[24px] mx-[8px] lg:mx-[0px]">
+      <Stack className="mx-[8px] flex h-fit flex-col gap-[24px] lg:mx-0">
         <h1 className="leading-[30px] text-start font-roboto text-[24px] font-bold uppercase text-ptxtl lg:text-[32px]">
           Student Support Program
         </h1>
