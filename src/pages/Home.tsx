@@ -141,17 +141,17 @@ export default function Home() {
           }}
         >
           <div
-            className="relative z-10 flex h-full flex-col items-center justify-between gap-[8px] lg:items-start"
+            className="relative z-10 flex h-[70vh] flex-col items-center justify-between gap-[24px] lg:items-start"
             style={{ width: vw <= 850 ? vw : vw * 0.45 }}
           >
             <h1
-              className="z-10 overflow-visible bg-imperialRed bg-clip-text text-center font-montserrat text-[53px] font-bold leading-[70px] text-transparent md:text-[90px] md:leading-[110px] lg:text-start lg:text-[90px] lg:leading-[90px]"
+              className="z-10 overflow-visible bg-imperialRed bg-clip-text text-center font-montserrat text-[52px] px-[0px] lg:px-0 font-bold  text-transparent md:text-[90px] md:leading-[110px] lg:text-start lg:leading-[90px]"
               style={{ maxWidth: vw <= 850 ? vw : vw * 0.7 }}
             >
               Empowering Tomorrow’s Innovators
             </h1>
             <p
-              className="flex-wrap px-[8px] lg:px-0 text-center font-montserrat text-[20px] font-semibold text-persianBlue drop-shadow-[0px_0px_10px_black] md:text-[40px] lg:text-start lg:text-[20px] lg:text-persianBlue lg:drop-shadow-none"
+              className="flex-wrap px-[8px] lg:px-0 text-center font-montserrat text-[20px] font-semibold text-persianBlue drop-shadow-[0px_0px_5px_black] md:text-[40px] lg:text-start lg:text-[20px] lg:text-persianBlue lg:drop-shadow-none hidden lg:block"
               style={{ maxWidth: vw <= 850 ? vw : vw * 0.7 }}
             >
               Join a community where academic excellence meets personal growth
