@@ -127,14 +127,14 @@ export default function Home() {
   //const phoneHeight = width < 430 ? height : height
 
   return (
-    <section className="scroll-container flex h-full w-full flex-col gap-[72px] overflow-y-scroll bg-coolWhite dark:bg-gray-700  lg:px-[60px]">
+    <section className="scroll-container flex size-full flex-col gap-[72px] overflow-y-scroll bg-coolWhite dark:bg-gray-700 lg:px-[60px]">
       {/* Hero section start here */}
       <Stack
         className={`relative grid h-screen place-items-center justify-center`}
       >
         <Header />
         <section
-          className=" relative flex w-full h-fit flex-col justify-between lg:flex-row lg:items-center "
+          className=" relative flex h-fit w-full flex-col justify-between lg:flex-row lg:items-center "
           style={{
             //height: vh * 0.7,
             //maxHeight: vh * 0.75,
@@ -145,22 +145,22 @@ export default function Home() {
             style={{ width: vw <= 850 ? vw : vw * 0.45 }}
           >
             <h1
-              className="z-10 overflow-visible bg-imperialRed bg-clip-text text-center font-montserrat text-[52px] px-[0px] lg:px-0 font-bold  text-transparent md:text-[90px] md:leading-[110px] lg:text-start lg:leading-[90px]"
+              className="z-10 overflow-visible bg-imperialRed bg-clip-text px-0 text-center font-montserrat text-[52px] font-bold text-transparent  md:text-[90px] md:leading-[110px] lg:px-0 lg:text-start lg:leading-[90px]"
               style={{ maxWidth: vw <= 850 ? vw : vw * 0.7 }}
             >
               Empowering Tomorrow’s Innovators
             </h1>
             <p
-              className="flex-wrap px-[8px] lg:px-0 text-center font-montserrat text-[20px] font-semibold text-persianBlue drop-shadow-[0px_0px_5px_black] md:text-[40px] lg:text-start lg:text-[20px] lg:text-persianBlue lg:drop-shadow-none hidden lg:block"
+              className="hidden flex-wrap px-[8px] text-center font-montserrat text-[20px] font-semibold text-persianBlue drop-shadow-[0px_0px_5px_black] md:text-[40px] lg:block lg:px-0 lg:text-start lg:text-[20px] lg:text-persianBlue lg:drop-shadow-none"
               style={{ maxWidth: vw <= 850 ? vw : vw * 0.7 }}
             >
               Join a community where academic excellence meets personal growth
             </p>
-            <div className="flex flex-col lg:flex-row w-full px-[8px] lg:px-0 gap-[24px] lg:mt-[8px]">
+            <div className="flex w-full flex-col gap-[24px] px-[8px] lg:mt-[8px] lg:flex-row lg:px-0">
               <Button
                 outline
                 //gradientDuoTone="purpleToBlue"
-                className="h-fit bg-imperialRed text-coolWhite font-nunito text-[50px] font-bold uppercase md:w-[150px]"
+                className="h-fit bg-imperialRed font-nunito text-[50px] font-bold uppercase text-coolWhite md:w-[150px]"
                 size={"md"}
                 color={"#ff1833"}
                 onClick={() => {
@@ -171,7 +171,7 @@ export default function Home() {
               </Button>
               <Button
                 // eslint-disable-next-line tailwindcss/no-custom-classname
-                className="via-blck/40 h-fit bg-selectiveYellow text-coolWhite font-nunito text-[50px] font-bold uppercase md:w-[150px]"
+                className="via-blck/40 h-fit bg-selectiveYellow font-nunito text-[50px] font-bold uppercase text-coolWhite md:w-[150px]"
                 outline
                 //gradientDuoTone="purpleToBlue"
                 size={"md"}
@@ -337,10 +337,10 @@ export default function Home() {
                 height: vh * 0.63,
               }}
             >
-              <Stack
-                className="size-full pb-[8px] pt-[24px]"
-                spacing={vw <= 850 ? 10 : 5}
-                justifyContent={"space-between"}
+              <div
+                className="flex size-full flex-col justify-between pb-[8px] pt-[24px]"
+                //spacing={vw <= 850 ? 10 : 5}
+                //justifyContent={"space-between"}
               >
                 <div className="flex flex-col gap-[16px]">
                   <h1 className="font-bebasNeue text-[40px] font-bold leading-[38px] text-persianBlue">
@@ -366,7 +366,7 @@ export default function Home() {
                 <h1 className="absolute bottom-0 right-0 z-0 bg-gradient-to-t from-[#BD00FD] via-black/50 to-[#FF3C00] bg-clip-text font-bebasNeue text-[150px] text-transparent">
                   1
                 </h1>
-              </Stack>
+              </div>
             </div>
             <div
               className="relative rounded-[10px] px-[8px] shadow-sm shadow-imperialRed"
@@ -375,10 +375,10 @@ export default function Home() {
                 height: vh * 0.63,
               }}
             >
-              <Stack
-                className="size-full pb-[8px] pt-[24px]"
-                spacing={vw <= 850 ? 10 : 5}
-                justifyContent={"space-between"}
+              <div
+                className="flex size-full flex-col justify-between pb-[8px] pt-[24px]"
+                // spacing={vw <= 850 ? 10 : 5}
+                // justifyContent={"space-between"}
               >
                 <div className="flex flex-col gap-[16px]">
                   <h1 className="font-bebasNeue text-[40px] font-bold leading-[40px] text-imperialRed">
@@ -404,7 +404,7 @@ export default function Home() {
                 <h1 className="absolute bottom-0 right-0 z-0 bg-gradient-to-t from-[#BD00FD] via-black/50 to-[#FF3C00] bg-clip-text font-bebasNeue text-[150px] text-transparent">
                   2
                 </h1>
-              </Stack>
+              </div>
             </div>
             <div
               className="relative rounded-[10px] bg-coolWhite px-[8px] shadow-sm shadow-selectiveYellow"
@@ -413,10 +413,10 @@ export default function Home() {
                 height: vh * 0.63,
               }}
             >
-              <Stack
-                className="size-full pb-[8px] pt-[24px]"
-                spacing={vw <= 850 ? 10 : 5}
-                justifyContent={"space-between"}
+              <div
+                className="flex size-full flex-col justify-between pb-[8px] pt-[24px]"
+                // spacing={vw <= 850 ? 10 : 5}
+                // justifyContent={"space-between"}
               >
                 <div className="flex flex-col gap-[16px]">
                   <h1 className="font-bebasNeue text-[40px] font-bold leading-[40px] text-selectiveYellow">
@@ -442,7 +442,7 @@ export default function Home() {
                 <h1 className="absolute bottom-0 right-0 z-0 bg-gradient-to-t from-[#BD00FD] via-black/50 to-[#FF3C00] bg-clip-text font-bebasNeue text-[150px] text-transparent">
                   3
                 </h1>
-              </Stack>
+              </div>
             </div>
             <div
               className="relative rounded-[10px] bg-coolWhite px-[8px] shadow-sm shadow-royalBlue"
@@ -451,10 +451,8 @@ export default function Home() {
                 height: vh * 0.63,
               }}
             >
-              <Stack
-                className="size-full pb-[8px] pt-[24px]"
-                spacing={vw <= 850 ? 10 : 5}
-                justifyContent={"space-between"}
+              <div
+                className="flex size-full flex-col justify-between pb-[8px] pt-[24px]"
               >
                 <div className="flex flex-col gap-[16px]">
                   <h1 className="font-bebasNeue text-[40px] font-bold leading-[40px] text-royalBlue">
@@ -480,7 +478,7 @@ export default function Home() {
                 <h1 className="absolute bottom-0 right-0 z-0 bg-gradient-to-t from-[#BD00FD] via-black/50 to-[#FF3C00] bg-clip-text font-bebasNeue text-[150px] text-transparent">
                   4
                 </h1>
-              </Stack>
+              </div>
             </div>
           </Stack>
           {/* third section of section 2 end */}
@@ -489,9 +487,9 @@ export default function Home() {
       {/* Second section end here */}
 
       {/** Thrird Section Start here */}
-      <Stack className="relative  flex h-fit w-full flex-col gap-[24px] pb-[24px] lg:text-start">
+      <Stack className="relative  flex h-fit w-full flex-col gap-[24px] lg:text-start">
         <div className="">
-          <h1 className="relative font-montserrat text-[40px] font-bold leading-tight text-black lg:text-[50px]">
+          <h1 className="relative px-[8px] font-montserrat text-[40px] font-bold leading-tight text-black lg:px-0 lg:text-[50px]">
             Our Programs
           </h1>
           <div className="relative flex w-full flex-col gap-[16px]">
@@ -575,11 +573,11 @@ export default function Home() {
             <SwiperSlider data={slidesData} />
           </div>
         </div>
-      </Stack>
-      {/** Thrird Section End here */}
-
-      {/* mobile only section */}
-      <Stack className="mx-[8px] h-fit border border-r-selectiveYellow lg:mx-0">
+              {/* mobile only section */}
+      <Stack className="mx-[8px] flex-col flex gap-[16px] h-fit lg:mx-0">
+        <h1 className="relative font-montserrat text-[24px] font-bold leading-[30px] text-black lg:pl-0 lg:text-[30px]">
+          Staff Announcement
+        </h1>
         <Marquee speed={30} className="">
           {TeacherRecognition.map((item, index: number) => (
             <TeacherYearCard
@@ -594,6 +592,10 @@ export default function Home() {
           ))}
         </Marquee>
       </Stack>
+      </Stack>
+      {/** Thrird Section End here */}
+
+
 
 
       <Stack className="mx-[8px] flex h-fit flex-col gap-[24px] lg:mx-0">
