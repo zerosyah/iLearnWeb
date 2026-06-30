@@ -134,10 +134,10 @@ export default function Home() {
       >
         <Header />
         <section
-          className=" relative flex w-full flex-col justify-between lg:flex-row lg:items-center "
+          className=" relative border flex w-full flex-col justify-between lg:flex-row lg:items-center "
           style={{
             height: vh * 0.7,
-            maxHeight: vh * 0.75,
+            //maxHeight: vh * 0.75,
           }}
         >
           <div
@@ -151,12 +151,12 @@ export default function Home() {
               Empowering Tomorrow’s Innovators
             </h1>
             <p
-              className="flex-wrap px-[5px] text-center font-montserrat text-[20px] font-semibold text-persianBlue drop-shadow-[3px_3px_5px_black] md:text-[40px] lg:text-start lg:text-[20px] lg:text-persianBlue lg:drop-shadow-none"
+              className="flex-wrap px-[8px] lg:px-0 text-center font-montserrat text-[20px] font-semibold text-persianBlue drop-shadow-[0px_0px_10px_black] md:text-[40px] lg:text-start lg:text-[20px] lg:text-persianBlue lg:drop-shadow-none"
               style={{ maxWidth: vw <= 850 ? vw : vw * 0.7 }}
             >
               Join a community where academic excellence meets personal growth
             </p>
-            <div className="flex flex-col lg:flex-row w-full px-[8px] gap-[24px] lg:mt-[8px]">
+            <div className="flex flex-col lg:flex-row w-full px-[8px] lg:px-0 gap-[24px] lg:mt-[8px]">
               <Button
                 outline
                 //gradientDuoTone="purpleToBlue"
