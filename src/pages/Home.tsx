@@ -134,18 +134,18 @@ export default function Home() {
       >
         <Header />
         <section
-          className=" relative border flex w-full flex-col justify-between lg:flex-row lg:items-center "
+          className=" relative flex w-full h-fit flex-col justify-between lg:flex-row lg:items-center "
           style={{
-            height: vh * 0.7,
+            //height: vh * 0.7,
             //maxHeight: vh * 0.75,
           }}
         >
           <div
-            className="relative z-10 flex h-full flex-col items-center justify-between gap-[10px] lg:items-start"
-            style={{ maxWidth: vw <= 850 ? vw : vw * 0.45 }}
+            className="relative z-10 flex h-full flex-col items-center justify-between gap-[8px] lg:items-start"
+            style={{ width: vw <= 850 ? vw : vw * 0.45 }}
           >
             <h1
-              className="z-10 overflow-visible bg-imperialRed bg-clip-text text-center font-montserrat text-[53px] font-bold leading-[70px] text-transparent drop-shadow-[1px_1px_3px_black] md:text-[90px] md:leading-[110px] lg:text-start lg:text-[90px] lg:leading-[90px]"
+              className="z-10 overflow-visible bg-imperialRed bg-clip-text text-center font-montserrat text-[53px] font-bold leading-[70px] text-transparent md:text-[90px] md:leading-[110px] lg:text-start lg:text-[90px] lg:leading-[90px]"
               style={{ maxWidth: vw <= 850 ? vw : vw * 0.7 }}
             >
               Empowering Tomorrow’s Innovators
