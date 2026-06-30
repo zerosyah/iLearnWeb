@@ -127,7 +127,7 @@ export default function Home() {
   //const phoneHeight = width < 430 ? height : height
 
   return (
-    <section className="scroll-container flex h-fit w-full flex-col gap-[72px] overflow-y-scroll bg-coolWhite dark:bg-gray-700  lg:px-[60px]">
+    <section className="scroll-container flex h-full w-full flex-col gap-[72px] overflow-y-scroll bg-coolWhite dark:bg-gray-700  lg:px-[60px]">
       {/* Hero section start here */}
       <Stack
         className={`relative grid h-screen place-items-center justify-center`}
@@ -145,23 +145,24 @@ export default function Home() {
             style={{ maxWidth: vw <= 850 ? vw : vw * 0.45 }}
           >
             <h1
-              className="z-10 overflow-visible bg-gradient-to-r from-royalBlue to-persianBlue bg-clip-text text-center font-montserrat text-[53px] font-bold leading-[70px] text-transparent drop-shadow-[1px_1px_3px_black] md:text-[90px] md:leading-[110px] lg:text-start lg:text-[90px] lg:leading-[90px]"
+              className="z-10 overflow-visible bg-imperialRed bg-clip-text text-center font-montserrat text-[53px] font-bold leading-[70px] text-transparent drop-shadow-[1px_1px_3px_black] md:text-[90px] md:leading-[110px] lg:text-start lg:text-[90px] lg:leading-[90px]"
               style={{ maxWidth: vw <= 850 ? vw : vw * 0.7 }}
             >
               Empowering Tomorrow’s Innovators
             </h1>
             <p
-              className="flex-wrap px-[5px] text-center font-montserrat text-[20px] font-medium text-[#FF3C00] drop-shadow-[3px_3px_5px_black] md:text-[40px] lg:text-start lg:text-[20px] lg:text-black lg:drop-shadow-none"
+              className="flex-wrap px-[5px] text-center font-montserrat text-[20px] font-semibold text-persianBlue drop-shadow-[3px_3px_5px_black] md:text-[40px] lg:text-start lg:text-[20px] lg:text-persianBlue lg:drop-shadow-none"
               style={{ maxWidth: vw <= 850 ? vw : vw * 0.7 }}
             >
               Join a community where academic excellence meets personal growth
             </p>
-            <div className="flex gap-[20px] lg:mt-[10px]">
+            <div className="flex flex-col lg:flex-row w-full px-[8px] gap-[24px] lg:mt-[8px]">
               <Button
                 outline
-                gradientDuoTone="purpleToBlue"
-                className="h-fit bg-gradient-to-r from-[#FF3C00] to-[#E800FD] font-nunito text-[50px] font-bold uppercase md:w-[150px]"
+                //gradientDuoTone="purpleToBlue"
+                className="h-fit bg-imperialRed text-coolWhite font-nunito text-[50px] font-bold uppercase md:w-[150px]"
                 size={"md"}
+                color={"#ff1833"}
                 onClick={() => {
                   navigate("/signup");
                 }}
@@ -170,10 +171,11 @@ export default function Home() {
               </Button>
               <Button
                 // eslint-disable-next-line tailwindcss/no-custom-classname
-                className="via-blck/40 h-fit bg-gradient-to-r from-black to-default font-nunito text-[50px] font-bold uppercase md:w-[150px]"
+                className="via-blck/40 h-fit bg-selectiveYellow text-coolWhite font-nunito text-[50px] font-bold uppercase md:w-[150px]"
                 outline
-                gradientDuoTone="purpleToBlue"
+                //gradientDuoTone="purpleToBlue"
                 size={"md"}
+                color={"#ff1833"}
                 onClick={() => {
                   navigate("/signin");
                 }}
@@ -592,7 +594,6 @@ export default function Home() {
           ))}
         </Marquee>
       </Stack>
-
 
 
       <Stack className="mx-[8px] flex h-fit flex-col gap-[24px] lg:mx-0">
