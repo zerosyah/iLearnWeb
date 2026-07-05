@@ -41,17 +41,36 @@
 }
 
 .first-section-container{
-    height: fit-content;
+    height: auto;
     width: 100%;
+}
+.ilearn-card {
+    width: auto;
+    height: 100vh;
 }
 
 @media (width <= 850px){
     .first-section-container img {
-        height: 40%;
+        height: auto;
         width: 100%;
     }
+    .second-section-div{
+        width: 100%;
+    }
+    .ilearn-card {
+        width: 95%;
+        height: 63vh;
+    }
 }
-
+@media (width>= 768px){
+    .second-section-div{
+        width: 50%;
+    }
+    .ilearn-card {
+        width: 21%;
+        height: 63vh;
+    }
+}
 
 
 

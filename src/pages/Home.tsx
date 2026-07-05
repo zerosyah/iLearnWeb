@@ -23,6 +23,7 @@ import {
   SchoolSubjectList,
   MobileDisplayCardData,
   informationProgram,
+  //iLearnCardData
 } from "../Constants/EventLayout.json";
 //import SvgHeroImage from "../SvgComponents/SvgHeroImage";
 
@@ -216,10 +217,10 @@ export default function Home() {
 
       {/* Second section start here */}
       <section
-        className="relative flex h-fit w-full flex-col gap-[24px]"
+        className="relative flex h-fit w-full flex-col gap-[16px]"
         // style={{padding: vw <= 850 ? vw*0.95 : vw * 0.9}}
       >
-        <h1 className="relative pl-[8px] font-montserrat text-[40px] font-bold leading-[30px] text-black lg:pl-0 lg:text-[40px]">
+        <h1 className="relative pl-[8px] font-montserrat text-[40px] font-bold leading-[30px] text-black lg:pl-0">
           Who We are ?
         </h1>
         {/* first section of section 2 start*/}
@@ -228,16 +229,12 @@ export default function Home() {
           //style={{ height: vw <= 850 ? "fit-content" : vh * 0.5 }}
         >
           <div
-            className="relative flex w-full items-center gap-[48px] rounded-[10px] lg:items-start lg:gap-[16px]"
+            className="relative flex w-full items-center gap-[48px] rounded-[10px] px-[8px] lg:items-start lg:gap-[16px] lg:px-0"
             style={{ flexDirection: vw <= 800 ? "column" : "row" }}
           >
             {/* image section */}
             <div
               className="relative flex h-fit flex-col"
-              // style={{
-              //   width: vw <= 850 ? vw * 0.95 : vw * 0.4166666667,
-              //   height: vw <= 850 ? vh * 0.4 : vw * 0.2012222222,
-              // }}
             >
               <img
                 src={pp}
@@ -246,7 +243,7 @@ export default function Home() {
                 className="first-section-container-img relative size-full rounded-[10px] object-cover"
               />
 
-              <div className="absolute bottom-[-30px] left-1/2 flex size-fit -translate-x-1/2 flex-col items-center justify-center rounded-[10px] bg-white  p-[8px] text-center text-black">
+              <div className="absolute bottom-[-30px] left-1/2 flex size-fit -translate-x-1/2 flex-col items-center justify-center rounded-[10px] border bg-white  p-[8px] text-center text-black">
                 <p className="text-nowrap font-popins text-[16px] text-black">
                   "Making an impact, together"
                 </p>
@@ -258,7 +255,7 @@ export default function Home() {
 
             {/* details section */}
             <div
-              className="relative flex size-full w-full flex-col gap-[16px] px-[8px] pt text-black lg:items-start lg:px-0"
+              className="relative flex size-full w-full flex-col gap-[16px] text-black lg:items-start"
             >
               <Stack className="relative flex flex-col gap-[8px]">
                 <Stack direction={"row"} spacing={vh <= 850 ? 2 : 2}>
@@ -322,11 +319,11 @@ export default function Home() {
         </div>
         {/* first section of section 2 end */}
 
-        <div className="relative flex flex-col gap-[16px]">
+        <div className="relative mt-[24px] flex flex-col gap-[16px]">
           {/* second section of section 2 start */}
           <div
-            className="relative"
-            style={{ width: vw <= 850 ? vw * 0.95 : vw * 0.5 }}
+            className="second-section-div relative"
+            //style={{ width: vw <= 850 ? vw : vw * 0.5 }}
           >
             <p className="pl-[10px] font-montserrat text-[24px] font-semibold leading-[35px] lg:pl-0 lg:text-[32px]">
               We make sure that learning is Easy with the Help of iLearn
@@ -342,11 +339,11 @@ export default function Home() {
             spacing={vw <= 850 ? 5 : 2}
           >
             <div
-              className="relative rounded-[10px] bg-coolWhite px-[8px] shadow-sm shadow-royalBlue"
-              style={{
-                width: vw <= 850 ? vw * 0.95 : vw * 0.21,
-                height: vh * 0.63,
-              }}
+              className="ilearn-card relative rounded-[10px] bg-coolWhite px-[8px] shadow-sm shadow-royalBlue"
+              // style={{
+              //   width: vw <= 850 ? vw * 0.95 : vw * 0.21,
+              //   height: vh * 0.63,
+              // }}
             >
               <div
                 className="flex size-full flex-col justify-between pb-[8px] pt-[24px]"
@@ -380,21 +377,11 @@ export default function Home() {
               </div>
             </div>
             <div
-
-
-
-
-
-
-
-
-
-
-              className="relative rounded-[10px] px-[8px] shadow-sm shadow-imperialRed"
-              style={{
-                width: vw <= 850 ? vw * 0.95 : vw * 0.21,
-                height: vh * 0.63,
-              }}
+              className="ilearn-card relative rounded-[10px] px-[8px] shadow-sm shadow-imperialRed"
+              // style={{
+              //   width: vw <= 850 ? vw * 0.95 : vw * 0.21,
+              //   height: vh * 0.63,
+              // }}
             >
               <div
                 className="flex size-full flex-col justify-between pb-[8px] pt-[24px]"

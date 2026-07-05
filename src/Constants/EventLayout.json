@@ -288,5 +288,27 @@
       "p1": "Art education nurtures creativity, visual literacy, and personal expression through drawing, painting, sculpture, and digital media. Students explore technique, composition, and art history while developing observational skills and conceptual thinking. Studio practice, critique, and interdisciplinary projects cultivate aesthetic judgment, perseverance, and cultural appreciation for lifelong creative engagement and community connection.",
       "p2": "Through portfolio work and collaborative exhibits, learners refine technique and personal voice. Teachers guide experimentation, critical reflection, and contextual research that deepen understanding. Art practice supports emotional development, problem-solving, and communication skills valuable across academic and professional pathways and creative career opportunities."
     }
+  ],
+  "iLearnCardData": [
+    {
+      "title": "Interactive Learning",
+      "description": "Engage with dynamic lessons, quizzes, and multimedia content that make learning fun and effective.",
+      "image": "img1"
+    },
+    {
+      "title": "Personalized Education",
+      "description": "Tailor your learning experience to your needs with adaptive resources and individualized support.",
+      "image": "img2"
+    },
+    {
+      "title": "Collaborative Tools",
+      "description": "Work together with peers and teachers through forums, group projects, and shared resources.",
+      "image": "img3"
+    },
+    {
+      "title": "Progress Tracking",
+      "description": "Monitor your academic growth with detailed reports, feedback, and goal-setting features.",
+      "image": "img4"
+    }
   ]
 }
