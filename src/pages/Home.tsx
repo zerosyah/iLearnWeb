@@ -57,17 +57,28 @@ import class_1 from "../assets/Heros/Class_1.jpg";
 //import {} from "../as"
 
 export default function Home() {
-  const [vw, setVw] = useState<number>(()=> typeof window !== "undefined"? window.innerWidth: 0);
-  const [vh, setVh] = useState<number>(()=> typeof window !== "undefined"? window.innerHeight: 0);
-  // Use effect to update vw and vh on window resize
+  const [vw, setVw] = useState<number>(() =>
+    typeof window !== "undefined" ? window.innerWidth : 0,
+  );
+  const [vh, setVh] = useState<number>(() =>
+    typeof window !== "undefined" ? window.innerHeight : 0,
+  );
+
   useEffect(() => {
-    const onResize = () => {
+    const updateViewport = () => {
       setVw(window.innerWidth);
-      setVh(window.innerHeight);
+      setVh(window.visualViewport?.height ?? window.innerHeight);
     };
-    onResize();
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+
+    updateViewport();
+
+    window.addEventListener("resize", updateViewport);
+    window.visualViewport?.addEventListener("resize", updateViewport);
+
+    return () => {
+      window.removeEventListener("resize", updateViewport);
+      window.visualViewport?.removeEventListener("resize", updateViewport);
+    };
   }, []);
 
   const swiperWrapperReff = useRef<HTMLDivElement | null>(null);
