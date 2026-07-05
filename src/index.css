@@ -48,6 +48,10 @@
     width: auto;
     height: 100vh;
 }
+.subgject-img {
+    width: auto;
+    height: auto;
+}
 
 @media (width <= 850px){
     .first-section-container img {
@@ -61,6 +65,10 @@
         width: 95%;
         height: 63vh;
     }
+    .subject-img {
+        width: 95%;
+        height: 21%;
+    }
 }
 @media (width>= 768px){
     .second-section-div{
@@ -69,6 +77,10 @@
     .ilearn-card {
         width: 21%;
         height: 63vh;
+    }
+    .subject-img {
+        width: 41.66666667%;
+        height: 21.22222222%;
     }
 }
 

@@ -325,7 +325,7 @@ export default function Home() {
             className="second-section-div relative"
             //style={{ width: vw <= 850 ? vw : vw * 0.5 }}
           >
-            <p className="pl-[10px] font-montserrat text-[24px] font-semibold leading-[35px] lg:pl-0 lg:text-[32px]">
+            <p className="px-[8px] font-montserrat text-[24px] font-semibold leading-[35px] lg:pl-0 lg:text-[32px]">
               We make sure that learning is Easy with the Help of iLearn
             </p>
           </div>
@@ -535,11 +535,11 @@ export default function Home() {
                 key={index}
               >
                 <div
-                  className="relative rounded-[10px]"
-                  style={{
-                    width: vw <= 850 ? vw * 0.95 : vw * 0.4166666667,
-                    height: vw <= 850 ? vh * 0.3 : vw * 0.2722222222,
-                  }}
+                  className="subject-img relative rounded-[10px]"
+                  // style={{
+                  //   width: vw <= 850 ? vw * 0.95 : vw * 0.4166666667,
+                  //   height: vw <= 850 ? vh * 0.3 : vw * 0.2722222222,
+                  // }}
                 >
                   <img
                     src={imageRecord[item.image]}
