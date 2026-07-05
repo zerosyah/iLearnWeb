@@ -219,13 +219,13 @@ export default function Home() {
         className="relative flex h-fit w-full flex-col gap-[24px]"
         // style={{padding: vw <= 850 ? vw*0.95 : vw * 0.9}}
       >
-        <h1 className="relative pl-[8px] lg:pl-0 font-montserrat text-[40px] font-bold leading-[30px] text-black lg:text-[40px]">
+        <h1 className="relative pl-[8px] font-montserrat text-[40px] font-bold leading-[30px] text-black lg:pl-0 lg:text-[40px]">
           Who We are ?
         </h1>
         {/* first section of section 2 start*/}
         <div
-          className="relative flex w-full flex-col items-center"
-          style={{ height: vw <= 850 ? "fit-content" : vh * 0.5 }}
+          className="first-section-container relative flex w-full flex-col items-center"
+          //style={{ height: vw <= 850 ? "fit-content" : vh * 0.5 }}
         >
           <div
             className="relative flex w-full items-center gap-[48px] rounded-[10px] lg:items-start lg:gap-[16px]"
@@ -234,17 +234,19 @@ export default function Home() {
             {/* image section */}
             <div
               className="relative flex h-fit flex-col"
-              style={{
-                width: vw <= 850 ? vw * 0.95 : vw * 0.4166666667,
-                height: vw <= 850 ? vh * 0.4 : vw * 0.2012222222,
-              }}
+              // style={{
+              //   width: vw <= 850 ? vw * 0.95 : vw * 0.4166666667,
+              //   height: vw <= 850 ? vh * 0.4 : vw * 0.2012222222,
+              // }}
             >
               <img
                 src={pp}
                 alt="pp"
-                className="relative size-full rounded-[10px] object-cover"
+                // eslint-disable-next-line tailwindcss/no-custom-classname
+                className="first-section-container-img relative size-full rounded-[10px] object-cover"
               />
-              <div className="absolute -bottom-[30px] left-1/2 flex h-fit w-fit -translate-x-1/2 transform flex-col items-center justify-center  rounded-[10px] bg-white p-[8px] text-center text-black">
+
+              <div className="absolute bottom-[-30px] left-1/2 flex size-fit -translate-x-1/2 flex-col items-center justify-center rounded-[10px] bg-white  p-[8px] text-center text-black">
                 <p className="text-nowrap font-popins text-[16px] text-black">
                   "Making an impact, together"
                 </p>
