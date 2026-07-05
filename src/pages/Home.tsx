@@ -125,7 +125,7 @@ export default function Home() {
   //const phoneHeight = width < 430 ? height : height
 
   return (
-    <section className="relative scroll-container flex h-full w-full flex-col gap-[72px] bg-coolWhite dark:bg-gray-700 px-[8px] lg:px-[60px]">
+    <section className="relative scroll-container flex h-full w-full flex-col gap-[72px] bg-coolWhite dark:bg-gray-700 px-[0px] lg:px-[60px]">
       {/* Hero section start here */}
       <Stack
         className={`relative grid h-screen place-items-center justify-center`}
@@ -208,7 +208,7 @@ export default function Home() {
         className="relative flex h-fit w-full flex-col gap-[24px]"
         // style={{padding: vw <= 850 ? vw*0.95 : vw * 0.9}}
       >
-        <h1 className="relative font-montserrat text-[40px] font-bold leading-[30px] text-black lg:text-[40px]">
+        <h1 className="relative pl-[8px] font-montserrat text-[40px] font-bold leading-[30px] text-black lg:text-[40px]">
           Who We are ?
         </h1>
         {/* first section of section 2 start*/}
@@ -231,7 +231,7 @@ export default function Home() {
               <img
                 src={pp}
                 alt="pp"
-                className="relative rounded-[10px] object-cover"
+                className="relative rounded-[10px] object-center"
                 style={{
                 width: vw <= 850 ? vw * 0.95 : vw * 0.4166666667,
                 height: vw <= 850 ? vh * 0.4 : vw * 0.2012222222,
