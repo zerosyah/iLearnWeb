@@ -136,7 +136,7 @@ export default function Home() {
   //const phoneHeight = width < 430 ? height : height
 
   return (
-    <section className="relative scroll-container flex h-full w-full flex-col gap-[72px] bg-coolWhite dark:bg-gray-700 px-[0px] lg:px-[60px]">
+    <section className="scroll-container flex size-full flex-col gap-[72px] overflow-y-scroll bg-coolWhite dark:bg-gray-700 lg:px-[60px]">
       {/* Hero section start here */}
       <Stack
         className={`relative grid h-screen place-items-center justify-center`}
@@ -219,13 +219,13 @@ export default function Home() {
         className="relative flex h-fit w-full flex-col gap-[24px]"
         // style={{padding: vw <= 850 ? vw*0.95 : vw * 0.9}}
       >
-        <h1 className="relative pl-[8px] font-montserrat text-[40px] font-bold leading-[30px] text-black lg:text-[40px]">
+        <h1 className="relative pl-[8px] lg:pl-0 font-montserrat text-[40px] font-bold leading-[30px] text-black lg:text-[40px]">
           Who We are ?
         </h1>
         {/* first section of section 2 start*/}
         <div
-          className="relative flex w-full border flex-col items-center"
-          style={{ height: vw <= 850 ? vh : vh * 0.5 }}
+          className="relative flex w-full flex-col items-center"
+          style={{ height: vw <= 850 ? "fit-content" : vh * 0.5 }}
         >
           <div
             className="relative flex w-full items-center gap-[48px] rounded-[10px] lg:items-start lg:gap-[16px]"
@@ -234,19 +234,15 @@ export default function Home() {
             {/* image section */}
             <div
               className="relative flex h-fit flex-col"
-              // style={{
-              //   width: vw <= 850 ? vw * 0.95 : vw * 0.4166666667,
-              //   height: vw <= 850 ? vh * 0.4 : vw * 0.2012222222,
-              // }}
+              style={{
+                width: vw <= 850 ? vw * 0.95 : vw * 0.4166666667,
+                height: vw <= 850 ? vh * 0.4 : vw * 0.2012222222,
+              }}
             >
               <img
                 src={pp}
                 alt="pp"
-                className="relative rounded-[10px] object-center"
-                style={{
-                //width: vw <= 850 ? vw * 0.95 : vw * 0.4166666667,
-                height: vw <= 850 ? vh * 0.4 : vw * 0.2012222222,
-              }}
+                className="relative size-full rounded-[10px] object-cover"
               />
               <div className="absolute -bottom-[30px] left-1/2 flex h-fit w-fit -translate-x-1/2 transform flex-col items-center justify-center  rounded-[10px] bg-white p-[8px] text-center text-black">
                 <p className="text-nowrap font-popins text-[16px] text-black">
@@ -382,6 +378,16 @@ export default function Home() {
               </div>
             </div>
             <div
+
+
+
+
+
+
+
+
+
+
               className="relative rounded-[10px] px-[8px] shadow-sm shadow-imperialRed"
               style={{
                 width: vw <= 850 ? vw * 0.95 : vw * 0.21,
@@ -500,7 +506,7 @@ export default function Home() {
       {/* Second section end here */}
 
       {/** Thrird Section Start here */}
-      <Stack className="relative flex h-fit w-full flex-col gap-[24px] lg:text-start">
+      <Stack className="relative  flex h-fit w-full flex-col gap-[24px] lg:text-start">
         <div className="">
           <h1 className="relative px-[8px] font-montserrat text-[40px] font-bold leading-tight text-black lg:px-0 lg:text-[50px]">
             Our Programs
