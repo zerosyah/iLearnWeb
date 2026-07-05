@@ -233,7 +233,7 @@ export default function Home() {
                 alt="pp"
                 className="relative rounded-[10px] object-center"
                 style={{
-                width: vw <= 850 ? vw * 0.95 : vw * 0.4166666667,
+                //width: vw <= 850 ? vw * 0.95 : vw * 0.4166666667,
                 height: vw <= 850 ? vh * 0.4 : vw * 0.2012222222,
               }}
               />
