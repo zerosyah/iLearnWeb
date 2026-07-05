@@ -57,17 +57,15 @@ import class_1 from "../assets/Heros/Class_1.jpg";
 //import {} from "../as"
 
 export default function Home() {
-  //const width = window.innerWidth;
-  //const height = window.innerHeight;
-  const [vw, setVw] = useState(window.innerWidth);
-  const [vh, setVh] = useState(window.innerHeight);
-
+  const [vw, setVw] = useState<number>(()=> typeof window !== "undefined"? window.innerWidth: 0);
+  const [vh, setVh] = useState<number>(()=> typeof window !== "undefined"? window.innerHeight: 0);
   // Use effect to update vw and vh on window resize
   useEffect(() => {
     const onResize = () => {
       setVw(window.innerWidth);
       setVh(window.innerHeight);
     };
+    onResize();
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
@@ -369,6 +367,16 @@ export default function Home() {
               </div>
             </div>
             <div
+
+
+
+
+
+
+
+
+
+
               className="relative rounded-[10px] px-[8px] shadow-sm shadow-imperialRed"
               style={{
                 width: vw <= 850 ? vw * 0.95 : vw * 0.21,
