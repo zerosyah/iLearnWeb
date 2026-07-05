@@ -415,11 +415,12 @@ export default function Home() {
               </div>
             </div>
             <div
-              className="relative rounded-[10px] bg-coolWhite px-[8px] shadow-sm shadow-selectiveYellow"
-              style={{
-                width: vw <= 850 ? vw * 0.95 : vw * 0.21,
-                height: vh * 0.63,
-              }}
+              // eslint-disable-next-line tailwindcss/no-custom-classname
+              className="ilear-card relative rounded-[10px] bg-coolWhite px-[8px] shadow-sm shadow-selectiveYellow"
+              // style={{
+              //   width: vw <= 850 ? vw * 0.95 : vw * 0.21,
+              //   height: vh * 0.63,
+              // }}
             >
               <div
                 className="flex size-full flex-col justify-between pb-[8px] pt-[24px]"
@@ -453,11 +454,12 @@ export default function Home() {
               </div>
             </div>
             <div
-              className="relative rounded-[10px] bg-coolWhite px-[8px] shadow-sm shadow-royalBlue"
-              style={{
-                width: vw <= 850 ? vw * 0.95 : vw * 0.21,
-                height: vh * 0.63,
-              }}
+              // eslint-disable-next-line tailwindcss/no-custom-classname
+              className="ilearn-club relative rounded-[10px] bg-coolWhite px-[8px] shadow-sm shadow-royalBlue"
+              // style={{
+              //   width: vw <= 850 ? vw * 0.95 : vw * 0.21,
+              //   height: vh * 0.63,
+              // }}
             >
               <div
                 className="flex size-full flex-col justify-between pb-[8px] pt-[24px]"
