@@ -135,7 +135,7 @@ export default function Home() {
   };
 
   return (
-    <section className="scroll-container flex size-full flex-col gap-[72px] overflow-y-scroll bg-coolWhite dark:bg-gray-700 lg:px-[60px]">
+    <section className="scroll-container flex size-full flex-col gap-[40px] overflow-y-scroll bg-coolWhite dark:bg-gray-700 lg:px-[60px]">
       {/* Hero section start here */}
       <Stack
         className={`relative grid h-screen place-items-center justify-center`}
@@ -495,9 +495,9 @@ export default function Home() {
       {/* Second section end here */}
 
       {/** Thrird Section Start here */}
-      <Stack className="third-section-container relative flex h-fit  w-full flex-col gap-[24px] lg:text-start">
+      <Stack className="third-section-container relative flex h-fit  w-full flex-col lg:text-start">
         <div className="flex flex-col gap-[16px] px-[8px] lg:items-start lg:gap-[24px] lg:px-0 lg:text-start">
-          <h1 className="relative font-montserrat text-[40px] font-bold leading-[35px] text-black lg:px-0 lg:text-[50px]">
+          <h1 className="relative font-montserrat text-[32px] font-bold leading-[35px] text-black lg:px-0 lg:text-[32px]">
             Our Programs
           </h1>
           <div className="relative flex w-full flex-col gap-[8px]">
@@ -567,42 +567,45 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div className=" flex flex-col gap-[16px]">
-          <h1 className="relative pl-[8px] font-montserrat text-[24px] font-bold leading-tight text-black lg:pl-0 lg:text-[30px]">
+      </Stack>
+
+      <section className=" flex flex-col gap-[24px]">
+          <h1 className="relative pl-[8px] font-montserrat text-[32px] font-bold leading-[20px] text-black lg:pl-0 lg:text-[32px]">
             Short School Gallery
           </h1>
           <div className="w-full">
             <SwiperSlider data={slidesData} />
           </div>
-        </div>
-              {/* mobile only section */}
-      <Stack className="mx-[8px] flex h-fit flex-col gap-[16px] lg:mx-0">
-        <h1 className="relative font-montserrat text-[24px] font-bold leading-[30px] text-black lg:pl-0 lg:text-[30px]">
-          Staff Announcement
-        </h1>
-        <Marquee speed={30} className="">
-          {TeacherRecognition.map((item, index: number) => (
-            <TeacherYearCard
-              title={item.title}
-              name={item.name}
-              subject={item.subject}
-              grade={item.grade}
-              description={item.description}
-              img={item.img}
-              key={index}
-            />
-          ))}
-        </Marquee>
-      </Stack>
-      </Stack>
+        </section>
       {/** Thrird Section End here */}
 
+      
+      <section className="w-full px-[8px] lg:px-0 flex flex-col gap-[24px]">
+        <h1 className="relative font-montserrat text-[32px] font-bold leading-[20px] text-black lg:text-[32px]">
+            Announcements
+          </h1>
+          <Marquee className="px-[8px] lg:px-0" gradient={false} speed={50}>
+        {
+          TeacherRecognition.map((item, index: number)=>(
+            <div className="" key={index}>
+              <TeacherYearCard
+                title={item.title}
+                description={item.description}
+                grade={item.grade}
+                img={item.img}
+                name={item.name}
+                subject={item.subject}
+              />
+            </div>
+          ))
+        }
+      </Marquee>
+      </section>
 
 
-
-      <Stack className="mx-[8px] flex h-fit flex-col gap-[24px] lg:mx-0">
-        <h1 className="leading-[30px] text-start font-roboto text-[24px] font-bold uppercase text-ptxtl lg:text-[32px]">
-          Student Support Program
+      <Stack className="flex h-fit flex-col gap-[24px] px-[8px] lg:mx-0">
+        <h1 className="text-start font-roboto text-[32px] font-bold leading-[30px] text-ptxtl lg:text-[32px]">
+          Support Program
         </h1>
         <div className="flex flex-col items-start gap-[8px] md:flex-row">
           {MobileDisplayCardData.slice(0, 4).map((item, index: number) => (
@@ -617,7 +620,7 @@ export default function Home() {
       </Stack>
 
 
-      <Stack className="h-fit w-full bg-[#D9D9D9] py-[10px] ">
+      <Stack className="h-fit w-full py-[10px] ">
         <Marquee>
           {SchoolSubjectList.map((item) => (
             <p

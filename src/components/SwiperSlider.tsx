@@ -41,16 +41,16 @@ function SwiperSlider ({ data }: SwiperSliderPropsData) {
                   className="slide-image"
                 />
                 <div className="title">
-                  <h1 className=" bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-center font-bebasNeue text-[24px] tracking-wider text-transparent drop-shadow-[3px_3px_5px_black] md:text-start md:text-[30px]">{img?.title}</h1>
+                  <h1 className="text-center font-bebasNeue text-[24px] tracking-wider text-selectiveYellow md:text-start md:text-[30px]">{img?.title}</h1>
                 </div>
                 <div className="content">
                   <div className="text-box font-montserrat">
-                    <p className="">{img?.description}</p>
+                    <p className="text-[16px]">{img?.description}</p>
                   </div>
                   <div className="footer">
                     <div className="category">
                       {img?.category.map((item:string, index:number) => (
-                        <span className="font-bebasNeue text-[16px]" key={index}>{item}</span>
+                        <span className="font-montserrat text-[16px] font-bold" key={index}>{item}</span>
                       ))}
                     </div>
                   </div>
