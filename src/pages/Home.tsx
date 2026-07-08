@@ -133,8 +133,6 @@ export default function Home() {
     img1: class_2,
     img2: class_5,
   };
-  //const responsiveTop => (vw > 400 ? vh*0.2 : vh*0.1);
-  //const phoneHeight = width < 430 ? height : height
 
   return (
     <section className="scroll-container flex size-full flex-col gap-[72px] overflow-y-scroll bg-coolWhite dark:bg-gray-700 lg:px-[60px]">
@@ -497,12 +495,12 @@ export default function Home() {
       {/* Second section end here */}
 
       {/** Thrird Section Start here */}
-      <Stack className="relative  flex h-fit w-full flex-col gap-[24px] lg:text-start">
-        <div className="">
-          <h1 className="relative px-[8px] font-montserrat text-[40px] font-bold leading-tight text-black lg:px-0 lg:text-[50px]">
+      <Stack className="third-section-container relative flex h-fit  w-full flex-col gap-[24px] lg:text-start">
+        <div className="flex flex-col gap-[16px] px-[8px] lg:items-start lg:gap-[24px] lg:px-0 lg:text-start">
+          <h1 className="relative font-montserrat text-[40px] font-bold leading-[35px] text-black lg:px-0 lg:text-[50px]">
             Our Programs
           </h1>
-          <div className="relative flex w-full flex-col gap-[16px]">
+          <div className="relative flex w-full flex-col gap-[8px]">
             <div
               className="flex h-fit w-full items-center justify-between rounded-[10px] px-0"
               style={{}}
@@ -511,7 +509,7 @@ export default function Home() {
                 size={50}
                 className=" hidden cursor-pointer rounded-full bg-coolWhite lg:inline-block"
               />
-              <ul className="relative flex w-full gap-[8px] overflow-x-scroll p-[8px] font-montserrat text-[16px] font-semibold text-black md:overflow-hidden lg:mx-[30px] lg:gap-[24px]">
+              <ul className="relative flex w-full gap-[8px] overflow-x-scroll py-[8px] font-montserrat text-[16px] font-semibold text-black md:overflow-hidden lg:mx-[30px] lg:gap-[24px]">
                 {SchoolSubjectList.map((item, index) => (
                   <li
                     className={`rounded-[10px] bg-coolWhite p-[8px] ${selectedProgram == item ? "border border-persianBlue text-persianBlue shadow-sm shadow-royalBlue" : "border text-black"} cursor-pointer whitespace-nowrap transition-all duration-300 ease-in-out`}
@@ -531,7 +529,7 @@ export default function Home() {
             </div>
             {showInfo?.map((item, index) => (
               <div
-                className="flex h-fit w-full flex-col items-center gap-[16px] lg:flex-row lg:items-start"
+                className="third-section-details-container flex h-fit w-full flex-col items-center gap-[16px] lg:flex-row lg:items-start"
                 key={index}
               >
                 <div
@@ -547,29 +545,23 @@ export default function Home() {
                     className="size-full rounded-[10px] object-cover"
                   />
                 </div>
+
                 <div
-                  className="flex flex-col justify-between"
-                  style={{
-                    width: vw <= 850 ? vw * 0.95 : vw * 0.4888888889,
-                    height: vw <= 850 ? "fit-content" : vw * 0.2722222222,
-                  }}
+                  className="details flex flex-col justify-between "
+                  // style={{
+                  //   width: vw <= 850 ? vw * 0.95 : vw * 0.4888888889,
+                  //   height: vw <= 850 ? "fit-content" : vw * 0.2722222222,
+                  // }}
                 >
                   <div className="flex flex-col gap-[8px]">
-                    <h1 className="font-montserrat text-[24px] font-semibold">
+                    <h1 className="font-montserrat text-[24px] font-semibold leading-[20px]">
                       {item?.subject}
                     </h1>
-                    <div className="flex flex-col gap-[8px]">
+                    <div className="flex flex-col gap-[6px]">
                       <p className="font-montserrat text-[16px]">{item?.p1}</p>
                       <p className="font-montserrat text-[16px]">{item?.p2}</p>
                     </div>
                   </div>
-
-                  <button
-                    onClick={() => navigate("/signup")}
-                    className="mt-[20px] w-fit rounded-[10px] border border-transparent p-[8px] font-montserrat text-[16px] font-bold text-persianBlue transition-all duration-300 hover:bg-persianBlue hover:text-coolWhite hover:shadow-md hover:shadow-royalBlue lg:mt-0"
-                  >
-                    Impressive right!, Click here to register
-                  </button>
                 </div>
               </div>
             ))}
@@ -584,7 +576,7 @@ export default function Home() {
           </div>
         </div>
               {/* mobile only section */}
-      <Stack className="mx-[8px] flex-col flex gap-[16px] h-fit lg:mx-0">
+      <Stack className="mx-[8px] flex h-fit flex-col gap-[16px] lg:mx-0">
         <h1 className="relative font-montserrat text-[24px] font-bold leading-[30px] text-black lg:pl-0 lg:text-[30px]">
           Staff Announcement
         </h1>
