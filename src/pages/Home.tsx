@@ -215,7 +215,7 @@ export default function Home() {
 
       {/* Second section start here */}
       <section
-        className="relative flex h-fit w-full flex-col gap-[16px]"
+        className="relative flex h-fit w-full flex-col gap-[24px]"
         // style={{padding: vw <= 850 ? vw*0.95 : vw * 0.9}}
       >
         <h1 className="relative pl-[8px] font-montserrat text-[40px] font-bold leading-[30px] text-black lg:pl-0">
