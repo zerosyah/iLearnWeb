@@ -4,8 +4,8 @@ import {StaffData} from "../Constants/EventLayout.json"
 
 export default function Stuff() {
   return (
-    <section className="flex flex-col justify-evenly flex-wrap h-full w-full bg-[#D9D9D9]">
-      <div>
+    <section className="flex size-full flex-col flex-wrap justify-evenly bg-[#D9D9D9]">
+      <div className="mb-[70px]">
         <Header />
       </div>
 

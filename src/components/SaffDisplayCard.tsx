@@ -64,15 +64,17 @@ function StaffDisplayCard ({
         animate={containerAnimationStyle}
       />
       <motion.div initial={secondLayerInitialStyle} animate={secondLayerAnimateStyle} className={secondLayerStyle}></motion.div>
-      <motion.div initial={{opacity: 0, y: 20}} animate={{opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20}} className="absolute bottom-0 left-0 z-10 p-[10px] opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100">
-        <motion.h1 className="font-bebasNeue text-[20px] font-bold uppercase text-white">
+      <motion.div initial={{opacity: 0, y: 20}} animate={{opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20}} className="absolute bottom-0 left-0 z-10 flex flex-col gap-[16px] p-[10px] opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100">
+        <div className="flex flex-col gap-[8px]">
+          <motion.h1 className="w-fit font-montserrat text-[24px] font-bold uppercase leading-[20px] text-white">
           {name}
         </motion.h1>
-        <motion.p className="text-[12px] text-gray-400 font-nunito">{description}</motion.p>
-        <div className="flex gap-[10px] items-center mt-[5px] font-roboto">
-            <p className="text-[12px] text-gray-400 bg-gray-900 border px-[5px] rounded-[5px]">{grade}</p>
-            <p className="text-[12px] text-gray-400 border px-[5px] rounded-[5px]">{subject}</p>
-            <p className="text-[12px] text-gray-400 border px-[5px] rounded-[5px]">{gender}</p>
+        <motion.p className="font-montserrat text-[16px] leading-[25px] text-coolWhite">{description}</motion.p>
+        </div>
+        <div className="mt-[5px] flex items-center gap-[10px] text-nowrap font-roboto">
+            <p className="rounded-[5px] bg-royalBlue px-[5px] font-montserrat text-[12px] text-coolWhite">{grade}</p>
+            <p className="rounded-[5px] px-[5px] font-montserrat text-[12px] text-coolWhite">{subject}</p>
+            <p className="rounded-[5px] px-[5px] font-montserrat text-[12px] text-coolWhite">{gender}</p>
         </div>
       </motion.div>
     </div>
