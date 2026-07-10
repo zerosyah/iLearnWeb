@@ -27,18 +27,9 @@ import {
 } from "../Constants/EventLayout.json";
 //import SvgHeroImage from "../SvgComponents/SvgHeroImage";
 
-//@ts-expect-error the import is correct but typescript is giving error because of swiper css
-import "swiper/css";
-//@ts-expect-error the import is correct but typescript is giving error because of swiper css
-import "swiper/css/effect-coverflow";
-//@ts-expect-error the import is correct but typescript is giving error because of swiper css
-import "swiper/css/pagination";
-//@ts-expect-error the import is correct but typescript is giving error because of swiper css
-import "swiper/css/navigation";
-
 //ts-expect-error the import is correct but typescript is giving error because of swiper css
 //import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import Marquee from "react-fast-marquee";
 import SwiperSlider from "../components/SwiperSlider";
@@ -115,16 +106,8 @@ export default function Home() {
     p2: string;
   };
 
-  const [showInfo, setShowInfo] = useState<dataProps[]>([]);
-
-  useEffect(() => {
-    const getData = () => {
-      const result = informationProgram.filter(
-        (item) => item.subject == selectedProgram,
-      );
-      setShowInfo(result);
-    };
-    getData();
+  const showInfo = useMemo<dataProps[]>(() => {
+    return informationProgram.filter((item) => item.subject === selectedProgram);
   }, [selectedProgram]);
 
   const imageRecord: Record<string, string> = {
@@ -261,7 +244,7 @@ export default function Home() {
                     <span className="font-bebasNeue text-[55px] font-bold leading-[47px] text-royalBlue lg:text-[60px]">
                       25
                     </span>
-                    <div className="flex flex-col font-montserrat text-[16px] font-semibold leading-tight lg:text-[20px] text-royalBlue">
+                    <div className="flex flex-col font-montserrat text-[16px] font-semibold leading-tight text-royalBlue lg:text-[20px]">
                       <span className="leading-[20px]">Years</span>
                       <span className="leading-[20px]">Experience</span>
                     </div>
@@ -270,7 +253,7 @@ export default function Home() {
                     <span className="font-bebasNeue text-[55px] font-bold leading-[47px] text-imperialRed lg:text-[60px]">
                       100%
                     </span>
-                    <div className="flex flex-col text-imperialRed font-montserrat text-[16px] font-semibold leading-tight lg:text-[20px]">  
+                    <div className="flex flex-col font-montserrat text-[16px] font-semibold leading-tight text-imperialRed lg:text-[20px]">
                <span className="leading-[20px]">Pass</span>
                       <span className="leading-[20px]">Rates</span>
                     </div>
@@ -495,71 +478,82 @@ export default function Home() {
       {/* Second section end here */}
 
       {/** Thrird Section Start here */}
-      <Stack className="third-section-container relative flex h-fit  w-full flex-col lg:text-start">
+      <Stack className="third-section-container relative flex h-fit w-full flex-col lg:text-start">
         <div className="flex flex-col gap-[16px] px-[8px] lg:items-start lg:gap-[24px] lg:px-0 lg:text-start">
-          <h1 className="relative font-montserrat text-[32px] font-bold leading-[35px] text-black lg:px-0 lg:text-[32px]">
-            Our Programs
-          </h1>
-          <div className="relative flex w-full flex-col gap-[8px]">
-            <div
-              className="flex h-fit w-full items-center justify-between rounded-[10px] px-0"
-              style={{}}
-            >
+          <div className="flex flex-col gap-2">
+            <h1 className="relative font-montserrat text-[32px] font-bold leading-[35px] text-black lg:px-0 lg:text-[32px]">
+              Our Programs
+            </h1>
+            <p className="max-w-2xl text-[16px] leading-7 text-slate-600 sm:text-base">
+              Explore the academic pathways we offer, each designed to support growth, curiosity, and excellence.
+            </p>
+          </div>
+
+          <div className="relative flex w-full flex-col gap-[12px] rounded-[20px] border border-slate-200 bg-white p-3 shadow-[0_8px_30px_rgba(15,23,42,0.06)] sm:p-4">
+            <div className="flex h-fit w-full items-center justify-between gap-2 rounded-[14px] bg-slate-50/80 p-2">
               <IoIosArrowBack
-                size={50}
-                className=" hidden cursor-pointer rounded-full bg-coolWhite lg:inline-block"
+                size={40}
+                className="hidden cursor-pointer rounded-full bg-white p-2 text-slate-600 shadow-sm lg:inline-block"
               />
-              <ul className="relative flex w-full gap-[8px] overflow-x-scroll py-[8px] font-montserrat text-[16px] font-semibold text-black md:overflow-hidden lg:mx-[30px] lg:gap-[24px]">
-                {SchoolSubjectList.map((item, index) => (
-                  <li
-                    className={`rounded-[10px] bg-coolWhite p-[8px] ${selectedProgram == item ? "border border-persianBlue text-persianBlue shadow-sm shadow-royalBlue" : "border text-black"} cursor-pointer whitespace-nowrap transition-all duration-300 ease-in-out`}
-                    onClick={() => {
-                      setSelectedProgram(item);
-                    }}
-                    key={index}
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <div className="relative flex w-full flex-wrap gap-[8px] overflow-x-auto py-[6px] font-montserrat text-[15px] font-semibold text-slate-700 sm:justify-center lg:gap-[12px]">
+                {SchoolSubjectList.map((item, index) => {
+                  const isActive = selectedProgram === item;
+
+                  return (
+                    <button
+                      className="rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-300 ease-in-out"
+                      style={
+                        isActive
+                          ? {
+                              borderColor: "#3b82f6",
+                              backgroundColor: "rgba(59, 130, 246, 0.1)",
+                              color: "#3b82f6",
+                              boxShadow: "0 1px 2px rgba(15, 23, 42, 0.08)",
+                            }
+                          : {
+                              borderColor: "transparent",
+                              backgroundColor: "#ffffff",
+                              color: "#334155",
+                            }
+                      }
+                      onClick={() => {
+                        setSelectedProgram(item);
+                      }}
+                      key={index}
+                      type="button"
+                    >
+                      {item}
+                    </button>
+                  );
+                })}
+              </div>
               <IoIosArrowForward
-                size={50}
-                className="hidden cursor-pointer rounded-full bg-coolWhite lg:inline-block"
+                size={40}
+                className="hidden cursor-pointer rounded-full bg-white p-2 text-slate-600 shadow-sm lg:inline-block"
               />
             </div>
+
             {showInfo?.map((item, index) => (
               <div
-                className="third-section-details-container flex h-fit w-full flex-col items-center gap-[16px] lg:flex-row lg:items-start"
+                className="flex h-fit w-full flex-col items-center gap-[16px] rounded-[16px] border border-slate-100 bg-slate-50/70 p-3 sm:p-4 lg:flex-row lg:items-start"
                 key={index}
               >
-                <div
-                  className="subject-img relative rounded-[10px]"
-                  // style={{
-                  //   width: vw <= 850 ? vw * 0.95 : vw * 0.4166666667,
-                  //   height: vw <= 850 ? vh * 0.3 : vw * 0.2722222222,
-                  // }}
-                >
+                <div className="relative w-full overflow-hidden rounded-[14px] lg:w-2/5">
                   <img
                     src={imageRecord[item.image]}
                     alt="class image"
-                    className="size-full rounded-[10px] object-cover"
+                    className="h-[240px] w-full rounded-[14px] object-cover sm:h-[280px]"
                   />
                 </div>
 
-                <div
-                  className="details flex flex-col justify-between "
-                  // style={{
-                  //   width: vw <= 850 ? vw * 0.95 : vw * 0.4888888889,
-                  //   height: vw <= 850 ? "fit-content" : vw * 0.2722222222,
-                  // }}
-                >
+                <div className="flex flex-1 flex-col justify-between gap-3">
                   <div className="flex flex-col gap-[8px]">
-                    <h1 className="font-montserrat text-[24px] font-semibold leading-[20px]">
+                    <h2 className="font-montserrat text-[22px] font-semibold leading-[1.2] text-slate-900">
                       {item?.subject}
-                    </h1>
-                    <div className="flex flex-col gap-[6px]">
-                      <p className="font-montserrat text-[16px]">{item?.p1}</p>
-                      <p className="font-montserrat text-[16px]">{item?.p2}</p>
+                    </h2>
+                    <div className="flex flex-col gap-[6px] text-sm leading-7 text-slate-600 sm:text-base">
+                      <p>{item?.p1}</p>
+                      <p>{item?.p2}</p>
                     </div>
                   </div>
                 </div>
@@ -580,7 +574,7 @@ export default function Home() {
       {/** Thrird Section End here */}
 
       
-      <section className="w-full px-[8px] lg:px-0 flex flex-col gap-[24px]">
+      <section className="flex w-full flex-col gap-[24px] px-[8px] lg:px-0">
         <h1 className="relative font-montserrat text-[32px] font-bold leading-[20px] text-black lg:text-[32px]">
             Announcements
           </h1>

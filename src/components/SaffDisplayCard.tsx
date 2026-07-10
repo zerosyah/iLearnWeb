@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { easeInOut, motion } from "framer-motion";
 import { StaffDisplayCardProps } from "../Constants/PropsInventory";
 import img1 from "../assets/staff/staff1.jpg";
 import img2 from "../assets/staff/staff2.jpg";
@@ -38,11 +38,11 @@ function StaffDisplayCard({
   const containerAnimationStyle = {
     scale: isHovered ? 1.03 : 1,
     y: isHovered ? -6 : 0,
-    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1], easeInOut },
   };
 
   const containerStyle = `group relative h-[70vh] w-full overflow-hidden rounded-[16px] border border-white/20 bg-[#ececec] shadow-[0_18px_45px_rgba(15,23,42,0.12)] transition-all duration-300 md:h-[420px] md:w-[260px] ${
-    isHovered ? "shadow-[0_20px_55px_rgba(15,23,42,0.18)]" : "shadow-[0_10px_25px_rgba(15,23,42,0.08)]"
+    isHovered ? "shadow-[0_20px_55px_rgba(15,23,42,0.18)] z-10" : "shadow-[0_10px_25px_rgba(15,23,42,0.08)]"
   }`;
   const imageStyle = "h-full w-full rounded-[16px] object-cover transition duration-500 ease-out";
   const overlayStyle =
