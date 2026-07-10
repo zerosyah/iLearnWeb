@@ -2,15 +2,9 @@
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-//@ts-expect-error code below shows error because of swiper css error
 import 'swiper/css';
-//@ts-expect-error code below shows error because of swiper css error
 import 'swiper/css/navigation';
-//@ts-expect-error code below shows error because of swiper css error
 import 'swiper/css/pagination';
-//@ts-expect-error code below shows error because of swiper css error
 import 'swiper/css/scrollbar';
 import { SwiperSliderPropsData } from '../Constants/PropsInventory';
 
