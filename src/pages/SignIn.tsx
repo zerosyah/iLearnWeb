@@ -89,13 +89,15 @@ function SignIn() {
         dispatch(signInSuccess(data.user));
 
         // if user is new and not admin
+        console.log("data: ", data.user);
+        
         if (!data.user.IsComplete && data.user.Role != "admin") {
           // navigate to user info form
-          navigate("/register");
+          return navigate("/register");
         }
         
         // navigate to admin dashbord
-        navigate("/dashboard?tab=dash");
+        return navigate("/dashboard?tab=dash");
       }
     } catch (error) {
       dispatch(signInFailure(error));

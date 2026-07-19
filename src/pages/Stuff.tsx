@@ -24,7 +24,7 @@ export default function Stuff() {
           </div>
         </div>
 
-        <div className="2xl:grid-cols- grid place-items-start gap-6 md:grid-cols-2 xl:grid-cols-5">
+        <div className="2xl:grid-cols-grid place-items-start gap-6 md:grid-cols-2 xl:grid-cols-5">
           {StaffData.map((item, index: number) => (
             <StaffDisplayCard
               key={`${item.name}-${index}`}

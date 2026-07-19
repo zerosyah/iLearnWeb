@@ -13,7 +13,7 @@ function SwiperSlider ({ data }: SwiperSliderPropsData) {
         dynamicBullets: true,
         clickable: true,
     }
-    console.log("Data: ", data);
+    //console.log("Data: ", data);
     
   return (
     <div className='s-container'>

@@ -287,6 +287,102 @@
       "image": "img5",
       "p1": "Art education nurtures creativity, visual literacy, and personal expression through drawing, painting, sculpture, and digital media. Students explore technique, composition, and art history while developing observational skills and conceptual thinking. Studio practice, critique, and interdisciplinary projects cultivate aesthetic judgment, perseverance, and cultural appreciation for lifelong creative engagement and community connection.",
       "p2": "Through portfolio work and collaborative exhibits, learners refine technique and personal voice. Teachers guide experimentation, critical reflection, and contextual research that deepen understanding. Art practice supports emotional development, problem-solving, and communication skills valuable across academic and professional pathways and creative career opportunities."
+    },
+    {
+      "subject": "Drama",
+      "image": "img6",
+      "p1": "Drama education develops confidence, creativity, and communication skills through performance, improvisation, and theatrical production. Students explore character development, scriptwriting, and stage presence while building empathy and cultural awareness. Collaborative rehearsals and public performances foster self-expression, resilience, and the ability to work effectively in ensemble settings.",
+      "p2": "Through scene work, character analysis, and dramatic interpretation, students deepen understanding of human experience and motivation. Drama practice builds presentation skills, emotional intelligence, and creative problem-solving abilities essential for public speaking, leadership, and careers in performing arts and beyond."
+    },
+    {
+      "subject": "History",
+      "image": "img7",
+      "p1": "History education cultivates critical thinking, analytical skills, and historical consciousness through the study of past events, societies, and ideas. Students examine primary and secondary sources, evaluate multiple perspectives, and understand cause-and-effect relationships. This discipline develops informed citizenship and appreciation for how historical decisions shape contemporary life and future possibilities.",
+      "p2": "Through research projects, debates, and document analysis, learners sharpen argumentation and evidence evaluation skills. History study connects past to present, fostering cultural awareness and global perspective. These competencies prepare students for higher education, civic engagement, and careers requiring analytical thinking and contextual understanding."
+    },
+    {
+      "subject": "Geography",
+      "image": "img8",
+      "p1": "Geography education explores the interconnections between people, places, and environments through physical, human, and cultural study. Students analyze maps, investigate climate systems, and examine social-economic issues using geospatial tools and fieldwork. This discipline develops environmental awareness, global citizenship, and understanding of sustainability challenges and solutions.",
+      "p2": "Through case studies, field investigations, and data analysis, students engage with real-world issues like urbanization, resource management, and climate change. Geography builds spatial reasoning, systems thinking, and cultural empathy. These skills prepare learners for careers in environmental science, international development, urban planning, and informed decision-making."
+    },
+    {
+      "subject": "Languages",
+      "image": "img9",
+      "p1": "Language study develops communication proficiency, cultural competence, and cognitive flexibility through listening, speaking, reading, and writing practice. Students engage with authentic materials, cultural traditions, and real-world communication scenarios. Multilingual learning fosters cross-cultural understanding, career opportunities, and enhanced cognitive development including improved memory and problem-solving abilities.",
+      "p2": "Through conversation practice, cultural projects, and immersive learning, students build linguistic confidence and communicative competence. Language study opens doors to global opportunities, enhances employability, and deepens appreciation for diverse cultures and perspectives. These skills support international collaboration and lifelong learning across languages and cultures."
+    },
+    {
+      "subject": "Physical Education",
+      "image": "img10",
+      "p1": "Physical Education promotes lifelong health, fitness, and wellness through sport, exercise, and movement activities. Students develop motor skills, athletic technique, and understanding of human physiology and nutrition. Emphasis on teamwork, sportsmanship, and personal fitness builds confidence, resilience, and healthy lifestyle habits essential for physical and mental wellbeing.",
+      "p2": "Through diverse sports, fitness challenges, and wellness education, students discover personal interests and develop active lifestyle habits. PE cultivates leadership, cooperation, and goal-setting skills while promoting mental health and stress management. These competencies support academic success, career readiness, and long-term health and social engagement throughout life."
+    },
+    {
+      "subject": "Computer Science",
+      "image": "img11",
+      "p1": "Computer Science introduces programming, algorithms, and computational thinking to solve complex problems. Students learn coding fundamentals, data structures, and software design through project-based learning. Emphasis on debugging, teamwork, and algorithmic efficiency prepares learners for modern technology roles and empowers them to create digital solutions responsibly and ethically for global impact.",
+      "p2": "Hands-on labs develop problem decomposition, computational modeling, and system architecture understanding. Students practice collaborative development workflows, version control, and testing. These skills enable students to design scalable software, think algorithmically, and apply computing principles across industries and research domains and practical projects."
+    },
+    {
+      "subject": "Economics",
+      "image": "img12",
+      "p1": "Economics education develops understanding of market systems, resource allocation, and financial literacy. Students analyze supply and demand, evaluate economic policies, and examine global trade patterns. This discipline cultivates critical thinking about personal finance, business decision-making, and societal economic issues including inequality, sustainability, and prosperity.",
+      "p2": "Through case studies, data analysis, and economic modeling, students develop quantitative reasoning and policy evaluation skills. Economics study prepares learners for careers in finance, business, and public policy. These competencies support informed citizenship, entrepreneurial thinking, and ability to navigate personal financial decisions and global economic challenges."
+    },
+    {
+      "subject": "Psychology",
+      "image": "img13",
+      "p1": "Psychology education explores human behavior, mental processes, and social interactions through scientific inquiry and evidence-based research. Students examine cognitive development, emotional intelligence, and mental health while investigating psychological principles in real-world contexts. This discipline fosters self-understanding, empathy, and critical evaluation of psychological claims and research.",
+      "p2": "Through experiments, case studies, and personal reflection, students develop insight into human motivation, learning, and wellbeing. Psychology study builds emotional intelligence, interpersonal skills, and understanding of diverse perspectives. These competencies support personal development, career readiness in helping professions, and informed decision-making about mental health and relationships."
+    },
+    {
+      "subject": "Sociology",
+      "image": "img14",
+      "p1": "Sociology education examines social institutions, cultural patterns, and group behavior through systematic investigation and analysis. Students explore family structures, education systems, inequality, and social change. This discipline develops sociological imagination, enabling students to connect personal experiences to broader social forces and understand society from multiple perspectives.",
+      "p2": "Through surveys, qualitative research, and theoretical analysis, students engage with real-world social issues and cultural diversity. Sociology study cultivates critical thinking about social justice, institutional change, and human rights. These skills prepare learners for careers in social work, public policy, international development, and engaged citizenship in diverse societies."
+    },
+    {
+      "subject": "Philosophy",
+      "image": "img15",
+      "p1": "Philosophy education develops critical thinking, ethical reasoning, and understanding of fundamental questions about knowledge, reality, and values. Students engage with classical and contemporary philosophical ideas through discussion, argumentation, and textual analysis. This discipline cultivates intellectual curiosity, logical rigor, and ability to construct and evaluate sophisticated arguments about meaning and morality.",
+      "p2": "Through Socratic dialogue, thought experiments, and philosophical writing, students sharpen reasoning skills and moral awareness. Philosophy study builds intellectual confidence, reflective practice, and capacity for nuanced thinking about complex issues. These competencies support higher education readiness, professional success in diverse fields, and examined, purposeful living."
+    },
+    {
+      "subject": "Environmental Science",
+      "image": "img16",
+      "p1": "Environmental Science education examines ecosystems, human-environment interactions, and sustainability solutions through field study and scientific investigation. Students explore biodiversity, climate systems, pollution, and resource management. This discipline fosters environmental literacy, systems thinking, and understanding of urgent ecological challenges and evidence-based sustainability practices.",
+      "p2": "Through fieldwork, data analysis, and research projects, students investigate environmental phenomena and evaluate conservation strategies. Environmental Science study builds scientific reasoning, ecological awareness, and sense of environmental stewardship. These skills prepare learners for careers in conservation, environmental engineering, and policy while promoting informed action on global environmental issues."
+    },
+    {
+      "subject": "Health Education",
+      "image": "img17",
+      "p1": "Health Education develops knowledge and skills for making informed decisions about personal wellness, nutrition, disease prevention, and healthy relationships. Students examine physical health, mental wellbeing, substance abuse prevention, and reproductive health. This discipline promotes healthy lifestyles, risk awareness, and understanding of factors influencing individual and public health.",
+      "p2": "Through research, discussions, and practical applications, students build health literacy and personal responsibility. Health Education cultivates understanding of preventive care, stress management, and safe decision-making. These competencies support long-term wellness, informed healthcare choices, and ability to support others in achieving health goals throughout the lifespan."
+    },
+    {
+      "subject": "Business Studies",
+      "image": "img18",
+      "p1": "Business Studies education develops understanding of organizational management, entrepreneurship, and business operations. Students explore marketing, finance, human resources, and strategic planning through case studies and project-based learning. This discipline cultivates entrepreneurial thinking, leadership skills, and understanding of how businesses create value and navigate competitive markets sustainably.",
+      "p2": "Through simulations, business plans, and real-world projects, students develop practical management and financial literacy skills. Business Studies prepares learners for entrepreneurship and careers in various business sectors. These competencies support career readiness, informed decision-making about economic opportunities, and ability to contribute to organizational success and innovation."
+    },
+    {
+      "subject": "Accounting",
+      "image": "img19",
+      "p1": "Accounting education develops financial literacy, analytical skills, and understanding of financial record-keeping and reporting. Students learn bookkeeping, financial analysis, and accounting principles through practical application. This discipline cultivates numeracy, attention to detail, and understanding of how financial information informs business and personal decision-making.",
+      "p2": "Through problem-solving, case studies, and real-world accounting scenarios, students develop technical competency and ethical reasoning. Accounting study prepares learners for careers in finance, auditing, and business management. These skills support entrepreneurship, informed financial planning, and contribution to organizational accountability and strategic decision-making."
+    },
+    {
+      "subject": "Media Studies",
+      "image": "img20",
+      "p1": "Media Studies education develops critical analysis of media messages, production techniques, and cultural representation. Students examine advertising, journalism, digital media, and storytelling while analyzing how media shapes perception and culture. This discipline fosters media literacy, creative thinking, and understanding of ethical issues in media communication and representation.",
+      "p2": "Through media creation, textual analysis, and production projects, students develop both critical and creative media competencies. Media Studies builds communication skills, understanding of persuasion, and awareness of media bias. These competencies support digital citizenship, creative careers, and ability to navigate and produce media responsibly in contemporary culture."
+    },
+    {
+      "subject": "Music",
+      "image": "img21",
+      "p1": "Music education nurtures artistic expression, listening skills, and understanding of musical theory and composition. Students develop performance techniques, explore diverse musical genres and cultures, and practice ensemble collaboration. This discipline cultivates creativity, discipline, and emotional expression while building appreciation for music's role in human culture and personal wellbeing.",
+      "p2": "Through performance, music creation, and cultural exploration, students develop musical literacy and confidence. Music study supports cognitive development, stress relief, and social connection. These competencies enhance academic performance, support careers in music and related arts, and foster lifelong engagement with music as creative expression and cultural appreciation."
     }
   ],
   "iLearnCardData": [

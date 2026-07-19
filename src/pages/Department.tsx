@@ -7,8 +7,8 @@ export default function Department() {
     "Mathematics",
     "English",
     "IsiZulu",
-    "Life Oriantation",
-    "Crative Art",
+    "Life Orientation",
+    "Creative Art",
     "Technology",
     "Natural Science",
     "Geography",
@@ -66,7 +66,7 @@ export default function Department() {
       subjects[9],
       subjects[13],
     ],
-    grade10_Commerse: [
+    grade10_Commerce: [
       subjects[0],
       subjects[1],
       subjects[2],
@@ -78,58 +78,62 @@ export default function Department() {
     ],
   };
   return (
-    <section className="flex flex-col gap-0 bg-[#D9D9D9] h-fit">
+    <section className="flex h-fit flex-col gap-0 bg-coolWhite dark:bg-royalBlue">
       <Header />
-      <div className="self-center relative flex flex-col gap-4 md:flex-row justify-evenly flex-wrap mb-4">
+      <div className="relative mb-4 mt-[90px] flex flex-col flex-wrap justify-evenly gap-4 self-center md:flex-row">
         {/*Grade 8 */}
-        <Card className="bg-[#D9D9D9]">
-          <h2 className="text-center dark:text-white text-black font-semibold ">GRADE 8:</h2>
+        <Card className="bg-[#D9D9D9] p-[8px]">
+          <h2 className="text-center font-montserrat text-[24px] font-bold tracking-tighter text-black dark:text-white ">GRADE 8</h2>
           <ul className="">
             {grade["Grade8"].map((subject, index) => (
-              <li key={index}>{subject}</li>
+              <li key={index} className="font-montserrat text-[16px] text-black dark:text-white">{subject}</li>
             ))}
           </ul>
         </Card>
 
         {/*Grade 9 */}
-        <Card className="bg-[#D9D9D9]">
-          <h2 className="text-center text-black font-semibold dark:text-white">GRADE 9:</h2>
+        <Card className="bg-[#D9D9D9] p-[8px]">
+          <h2 className="text-center font-montserrat text-[24px] font-bold tracking-tighter text-black dark:text-white">GRADE 9</h2>
           <ul className="">
-            {grade["Grade9"].map((subject) => (
-              <li key={subject}>{subject}</li>
+            {grade["Grade9"].map((subject, index) => (
+              <li key={index} className="font-montserrat text-[16px] text-black dark:text-white">
+                {subject}
+              </li>
             ))}
           </ul>
         </Card>
 
-        {/*Grade 10 Commerse */}
-        <Card className="bg-[#D9D9D9]">
-          <h2 className=" font-semibold text-center ">Grade 10:</h2>
-          <span className=" italic text-center">Commerce</span>
+        {/*Grade 10 commerce */}
+        <Card className="bg-[#D9D9D9] p-[8px]">
+          <h2 className="text-center font-montserrat text-[24px] font-bold tracking-tighter text-black dark:text-white">Grade 10</h2>
+          <span className="text-center italic text-black dark:text-white">Commerce</span>
           <ul className="">
-            {grade.grade10_Commerse.map((subject) => (
-              <li key={subject}>{subject}</li>
+            {grade.grade10_Commerce.map((subject, index) => (
+              <li key={index} className="font-montserrat text-[16px] text-black dark:text-white">
+                {subject}
+              </li>
             ))}
           </ul>
         </Card>
 
         {/*Grade 10 drama */}
-        <Card className="bg-[#D9D9D9]">
-          <h2 className="font-semibold text-center">Grade 10:</h2>
-          <span className="italic text-center">Genaral</span>
+        <Card className="bg-[#D9D9D9] p-[8px]">
+          <h2 className="text-center font-montserrat text-[24px] font-bold tracking-tighter text-black dark:text-white">Grade 10</h2>
+          <span className="text-center italic text-black dark:text-white">General</span>
           <ul className="">
-            {grade.grade10_drama.map((subject) => (
-              <li key={subject}>{subject}</li>
+            {grade.grade10_drama.map((subject, index) => (
+              <li key={index} className="font-montserrat text-[16px] text-black dark:text-white">{subject}</li>
             ))}
           </ul>
         </Card>
 
         {/*Grade 10 science */}
-        <Card className="bg-[#D9D9D9]">
-          <h2 className="font-semibold text-center">Grade 10:</h2>
-          <span className="italic text-center">Science</span>
+        <Card className="bg-[#D9D9D9] p-[8px]">
+          <h2 className="text-center font-montserrat text-[24px] font-bold tracking-tighter text-black dark:text-white">Grade 10</h2>
+          <span className="text-center italic text-black dark:text-white">Science</span>
           <ul className="">
-            {grade.grade10_science.map((subject) => (
-              <li key={subject}>{subject}</li>
+            {grade.grade10_science.map((subject, index) => (
+              <li key={index} className="font-montserrat text-[16px] text-black dark:text-white">{subject}</li>
             ))}
           </ul>
         </Card>
@@ -137,67 +141,67 @@ export default function Department() {
         {/**grade11 */}
 
         {/*Grade 11 drama */}
-        <Card className="bg-[#D9D9D9]">
-          <h2 className="font-semibold text-center">Grade 11:</h2>
-          <span className="italic text-center">Genaral</span>
+        <Card className="bg-[#D9D9D9] p-[8px]">
+          <h2 className="text-center font-montserrat text-[24px] font-bold tracking-tighter text-black dark:text-white">Grade 11</h2>
+          <span className="text-center italic text-black dark:text-white">General</span>
           <ul className="">
-            {grade.grade10_drama.map((subject) => (
-              <li key={subject}>{subject}</li>
+            {grade.grade10_drama.map((subject, index) => (
+              <li key={index} className="font-montserrat text-[16px] text-black dark:text-white">{subject}</li>
             ))}
           </ul>
         </Card>
 
         {/*Grade 11 science */}
-        <Card className="bg-[#D9D9D9]">
-          <h2 className="font-semibold text-center">Grade 11:</h2>
-          <span className="italic text-center">Science</span>
+        <Card className="bg-[#D9D9D9] p-[8px]">
+          <h2 className="text-center font-montserrat text-[24px] font-bold tracking-tighter text-black dark:text-white">Grade 11</h2>
+          <span className="text-center italic text-black dark:text-white">Science</span>
           <ul className="">
-            {grade.grade10_science.map((subject) => (
-              <li key={subject}>{subject}</li>
+            {grade.grade10_science.map((subject, index) => (
+              <li key={index} className="font-montserrat text-[16px] text-black dark:text-white">{subject}</li>
             ))}
           </ul>
         </Card>
 
         {/*Grade 11 commerce */}
-        <Card className="bg-[#D9D9D9]">
-          <h2 className="font-semibold text-center">Grade 11:</h2>
-          <span className="italic text-center">Commerse</span>
+        <Card className="bg-[#D9D9D9] p-[8px]">
+          <h2 className="text-center font-montserrat text-[24px] font-bold tracking-tighter text-black dark:text-white">Grade 11</h2>
+          <span className="text-center italic text-black dark:text-white">Commerce</span>
           <ul className="">
-            {grade.grade10_Commerse.map((subject) => (
-              <li key={subject}>{subject}</li>
+            {grade.grade10_Commerce.map((subject, index) => (
+              <li key={index} className="font-montserrat text-[16px] text-black dark:text-white">{subject}</li>
             ))}
           </ul>
         </Card>
 
         {/*Grade 12 drama */}
-        <Card className="bg-[#D9D9D9]">
-          <h2 className="font-semibold text-center">Grade 12:</h2>
-          <span className="italic text-center">Genaral</span>
+        <Card className="bg-[#D9D9D9] p-[8px]">
+          <h2 className="text-center font-montserrat text-[24px] font-bold tracking-tighter text-black dark:text-white">Grade 12</h2>
+          <span className="text-center italic text-black dark:text-white">General</span>
           <ul className="">
-            {grade.grade10_drama.map((subject) => (
-              <li key={subject}>{subject}</li>
+            {grade.grade10_drama.map((subject, index) => (
+              <li key={index} className="font-montserrat text-[16px] text-black dark:text-white">{subject}</li>
             ))}
           </ul>
         </Card>
 
         {/*Grade 12 science */}
-        <Card className="bg-[#D9D9D9]">
-          <h2 className="font-semibold text-center">Grade 12:</h2>
-          <span className="italic text-center">Science</span>
+        <Card className="bg-[#D9D9D9] p-[8px]">
+          <h2 className="text-center font-montserrat text-[24px] font-bold tracking-tighter text-black dark:text-white">Grade 12</h2>
+          <span className="text-center italic text-black dark:text-white">Science</span>
           <ul className="">
-            {grade.grade10_science.map((subject) => (
-              <li key={subject}>{subject}</li>
+            {grade.grade10_science.map((subject, index) => (
+              <li key={index} className="font-montserrat text-[16px] text-black dark:text-white">{subject}</li>
             ))}
           </ul>
         </Card>
 
         {/*Grade 12 commerce */}
-        <Card className="bg-[#D9D9D9]">
-          <h2 className="font-semibold text-center">Grade 12:</h2>
-          <span className="italic text-center">Commerse</span>
+        <Card className="bg-[#D9D9D9] p-[8px]">
+          <h2 className="text-center font-montserrat text-[24px] font-bold tracking-tighter text-black dark:text-white">Grade 12</h2>
+          <span className="text-center italic text-black dark:text-white">Commerce</span>
           <ul className="">
-            {grade.grade10_Commerse.map((subject) => (
-              <li key={subject}>{subject}</li>
+            {grade.grade10_Commerce.map((subject, index) => (
+              <li key={index} className="font-montserrat text-[16px] text-black dark:text-white">{subject}</li>
             ))}
           </ul>
         </Card>

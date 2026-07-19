@@ -45,6 +45,16 @@ import class_5 from "../assets/Heros/Class_5.jpg";
 import class_3 from "../assets/Heros/Class_4.jpg";
 import class_2 from "../assets/Heros/Class_2.jpg";
 import class_1 from "../assets/Heros/Class_1.jpg";
+import Mathematics from "../assets/programs/mathematics.webp";
+import Arts from "../assets/programs/Arts.webp";
+import Commerce from "../assets/programs/Commerce.webp";
+import Science from "../assets/programs/Science.webp";
+import Languages from "../assets/programs/Languages.webp";
+import Geography from "../assets/programs/Geography.webp";
+import PhysicalTraining from "../assets/programs/Physical Education.webp"
+import Drama from "../assets/programs/Drama.webp"
+import History from "../assets/programs/History.webp"
+
 
 //import {} from "../as"
 
@@ -111,10 +121,19 @@ export default function Home() {
   }, [selectedProgram]);
 
   const imageRecord: Record<string, string> = {
-    img3: class_3,
-    img4: class_1,
-    img1: class_2,
+    img3: Science,
+    img4: Commerce,
+    img1: Mathematics,
     img2: class_5,
+    img5: Arts,
+    img6: Drama,
+    img7: History,
+    img8: Geography,
+    img9: Languages,
+    img10: PhysicalTraining,
+    img11: class_1,
+    img12: class_2,
+    img13: class_3,
   };
 
   return (
