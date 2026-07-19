@@ -91,7 +91,7 @@ function SignIn() {
         // if user is new and not admin
         if (!data.user.IsComplete && data.user.Role != "admin") {
           // navigate to user info form
-          navigate("/register");
+          return navigate("/register");
         }
         
         // navigate to admin dashbord
