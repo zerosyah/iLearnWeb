@@ -28,7 +28,7 @@ export default function Dashboard() {
   
   return (
     <DesktopLayout>
-      <div className="flex flex-col md:flex-row">
+      <div className="flex h-full w-full min-h-0 flex-1 flex-col md:flex-row">
         {/* content */}
         {tab === "profile" && <DashProfile />}
         {/* Posts */}

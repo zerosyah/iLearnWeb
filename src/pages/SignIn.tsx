@@ -17,6 +17,7 @@ import {
 } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Icon from "../assets/Heros/icon.jpg"
+import { UserProps } from "../Constants/PropsInventory";
 //import Axios from "axios"
 //import Header from "../components/Header";
 
@@ -30,7 +31,7 @@ function SignIn() {
   const [visible, setVisible] = useState(false);
 
   const { loading, error, currentUser } = useSelector(
-    (state: any) => state.user,
+    (state:UserProps) => state.user,
   );
 
   //console.log(currentUser);
@@ -40,12 +41,12 @@ function SignIn() {
     }
   }, []);
   // onchange event handler
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
   // onsubmit event handler
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     // Prevent default submit functionality
     e.preventDefault();
 
@@ -153,9 +154,9 @@ function SignIn() {
           </div>
         </div>
         <div className="flex w-[350px] flex-col items-center">
-          <div className="flex flex-row items-center justify-between gap-[100px] px-[10px] py-[10px]">
+          <div className="flex flex-row items-center justify-between gap-[100px] p-[10px]">
             <h1 className="font-popins text-[20px] font-bold">Sompukwane</h1>
-            <span className="flex cursor-pointer flex-row items-center rounded-full border bg-blue-600 px-[10px] font-robot text-[16px] font-semibold text-white">
+            <span className="font-robot flex cursor-pointer flex-row items-center rounded-full border bg-blue-600 px-[10px] text-[16px] font-semibold text-white">
               Eng
               <LiaChevronDownSolid size={18} className="ml-[5px]" />
             </span>
@@ -163,7 +164,7 @@ function SignIn() {
           <div className="mt-[20px] w-[280px] items-center justify-center text-center">
             <div className="">
               <h1 className="font-popins text-[28px] font-bold">Hi, Friend!</h1>
-              <p className="font-robot text-[16px]">Welcome to iLearnWeb</p>
+              <p className="font-montserrat text-[16px]">Welcome to iLearnWeb</p>
             </div>
             <form onSubmit={handleSubmit} className="mt-[30px] flex flex-col items-center justify-center gap-4 ">
               <TextInput
@@ -267,7 +268,8 @@ function SignIn() {
               required
               disabled={loading}
               onChange={handleChange}
-              className="w-full md:hidden disabled:open:*: font-popins text-[16px] font-semibold uppercase"
+              // eslint-disable-next-line tailwindcss/no-custom-classname
+              className="disabled:open:*: w-full font-popins text-[16px] font-semibold uppercase md:hidden"
             />
             <TextInput
               id="Password"

@@ -29,12 +29,12 @@ const userSlice = createSlice({
      * @param {*} state
      * @param {*} action
      */
-    updateUserSuccess: (state: any, action : any) => {
+    updateUserSuccess: (state, action) => {
       state.currentUser = action.payload;
       state.loading = false;
       state.error = false;
     },
-    updateUserFailure: (state, action: any) => {
+    updateUserFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
@@ -45,7 +45,7 @@ const userSlice = createSlice({
      * @param {*} state
      * @param {*} action
      */
-    deleteUserSuccess: (state: any) => {
+    deleteUserSuccess: (state) => {
       state.currentUser = null;
       state.loading = false;
       state.error = false;
