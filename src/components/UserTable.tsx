@@ -24,7 +24,7 @@ export default function UserTable() {
   const [, setMessage] = useState<string>("");
   const [, setData] = useState<Student[]>([]);
   const [, setResults] = useState([]);
-  const [approved, setApproved] = useState<boolean>(false);
+  const [, setApproved] = useState<boolean>(false);
     const gradeList = [
     "Grade",
     "Grade 8",
@@ -189,7 +189,7 @@ const resetState = () => {
   setApproved(false);
   setAction("");
 };
-const applicantAction = async (action:string, approved:boolean, userList:string[]) => {
+const applicantAction = async (action:string, userList:string[]) => {
   // console.log("Starting function");
   // console.log("Action: ", action);
   // console.log("Approved: ", approved);
@@ -316,7 +316,7 @@ const applicantAction = async (action:string, approved:boolean, userList:string[
                   <p className={`${action =="Accept" ? "text-green-500":"text-imperialRed"} font-montserrat text-sm font-medium`}>*are You sure, you want to {action} the selected students*</p>
                   <div className="flex gap-[6px]">
                     <button onClick={()=>{setApproved(false); setShowActionMenu(false); setConfirmAlert(false); resetState()}} className="w-full rounded-[50px] border border-imperialRed font-medium text-imperialRed hover:bg-imperialRed hover:text-coolWhite">No</button>
-                    <button onClick={()=>{setApproved(true); applicantAction(action, approved, userList); setShowActionMenu(false); setConfirmAlert(false)}} className="w-full rounded-[50px] border border-green-500 font-medium text-green-500 hover:bg-green-500 hover:text-coolWhite">Yes {userList?.length}</button>
+                    <button onClick={()=>{setApproved(true); applicantAction(action, userList); setShowActionMenu(false); setConfirmAlert(false)}} className="w-full rounded-[50px] border border-green-500 font-medium text-green-500 hover:bg-green-500 hover:text-coolWhite">Yes {userList?.length}</button>
                   </div>
                 </div>}
               </div>
