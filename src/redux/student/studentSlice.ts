@@ -1,22 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
+//import { Student } from "../../Constants/PropsInventory";
 
 const initialState = {
-    currentStudent: null,
+    studentData: null,
     loading: false,
     error: false,
 }
 
 const studentSlice = createSlice({
-    name: "st",
+    name: "student",
     initialState,
     reducers: {
-        studentSelected: (state, action) => {
-            state.currentStudent = action.payload;
+        setStudentData: (state, action) => {
+            state.studentData = action.payload;
             state.loading = false;
             state.error = false;
+        },
+        resetSelection: (state)=>{
+            state.studentData = null;
+            state.error = false;
+            state.loading = false;
         }
     }
 });
 
-export const { studentSelected } = studentSlice.actions;
+export const { setStudentData, resetSelection } = studentSlice.actions;
 export default studentSlice.reducer;

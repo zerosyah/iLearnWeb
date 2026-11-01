@@ -310,7 +310,7 @@ select:focus {
     grid-template-columns: 15% 1fr;
     grid-template-rows: 9% 1fr;
     grid-template-areas: "side header" "side view";
-    gap: 8px;
+    gap: 16px;
     min-width: 0;
 }
 .header {
@@ -335,13 +335,14 @@ select:focus {
 .dash{
     height: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-areas: 
-    "c1 c2 c3"
-    "c4 c4 c5"
-    "c4 c4 c6";
-    gap: 8px;
+    "c1 c1 c1 c1"
+    "c2 c3 c4 c5"
+    "c6 c6 c6 c7"
+    "c6 c6 c6 c7";
+    gap: 16px;
 
 }
 .card:nth-child(1){
@@ -362,16 +363,24 @@ select:focus {
 .card:nth-child(6){
     grid-area: c6;
 }
+.card:nth-child(7){
+    grid-area: c7;
+}
+.card{
+    border-radius: 6px;
+    border: 1px solid #DEE3DF;
+    padding: 20px;
+}
 .screen {
     height: 100%;
 }
 
 .flowSidebar {
-    background-color: #90E0EF !important;
+    background-color: #113022 !important;
 }
 
 .flowSidebar [class*='bg-'] {
-    background-color: #90E0EF;
+    background-color: #113022;
 }
 
 .chart-span {
@@ -382,5 +391,8 @@ select:focus {
 input:active{
     outline: none !important;
     border: 1px solid red
+}
 
+.titleLogo {
+    background-color: #E1B343 !important;
 }

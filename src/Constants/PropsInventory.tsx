@@ -110,6 +110,7 @@ export type Student = {
   HasMedicalAid: boolean;
   MedicalAid: string;
   MedicalAidNumber: string;
+  //HasDisability: boolean;
 
   HasSiblings: boolean;
   Siblings: string[] | null;

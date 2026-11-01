@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import "react-circular-progressbar/dist/styles.css";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaBookReader, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import LiveEventCard from "./LiveEventCard";
 import { Box, Button, Divider, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -13,25 +13,26 @@ import DashProgressCard from "../DashComponents/DashProgressCard";
 import progressLayoutData from "../Constants/ProgressLayout.json";
 import { Recents } from "../Constants/RecentLayout.json";
 import newsIcon from "../assets/Heros/SA/SA4.jpg";
-import { SlOptions } from "react-icons/sl";
+//import { SlOptions } from "react-icons/sl";
+import { IoDocumentTextOutline } from "react-icons/io5";
 import {
   FaRegClock,
   FaRegEye,
   FaRegHeart,
-  FaAngleDoubleUp,
+  //FaAngleDoubleUp,
   FaUsers,
 } from "react-icons/fa";
 import DashImageCard from "../DashComponents/DashImageCard";
 import DashMoreNewsCard from "../DashComponents/DashMoreNewsCard";
 import { News } from "../Constants/NewsLayout.json";
 import { Events } from "../Constants/EventLayout.json";
-import { useNavigate } from "react-router-dom";
-import DashTotalApplication from "../DashComponents/DashTotalApplication";
+import { Link, useNavigate } from "react-router-dom";
+import { FaGraduationCap } from "react-icons/fa6";
 
 type Props = {
   label?: string;
   BarColor?: string;
-  BarNumber?: any;
+  BarNumber?: number;
   Date?: string;
   Dot?: boolean;
 };
@@ -50,7 +51,7 @@ export default function DashComponent() {
   const list = ["live", "attend", "deadline"];
   const [currentState, setCurrentState] = useState<string>("live");
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const stateTracker = (motion: any) => {
+  const stateTracker = (motion: string) => {
     let localIndex = currentIndex;
     if (motion == "next") {
       list.forEach((stat: string, index: number) => {
@@ -85,6 +86,7 @@ export default function DashComponent() {
       return;
     }
     if (subject in progressLayoutData) {
+      // @ts-expect-error will not be undefined because of the if statement.
       setProgressData(progressLayoutData[subject]);
     } else {
       setProgressData([]);
@@ -403,14 +405,94 @@ export default function DashComponent() {
 
       {currentUser?.Role == "admin" && (
         <div className="dash size-full bg-transparent">
-          <DashTotalApplication />
-          <div className="card rounded-[8px] bg-[#90E0EF]">ddfff</div>
-          <div className="card rounded-[8px] bg-[#90E0EF]"></div>
-          <div className="card rounded-[8px] bg-[#90E0EF] p-[8px] font-bold">
-            Line chart
+          <div className="card rounded-[6px] !border-none">
+            <h3 className="mb-2 font-popins text-[11px] font-semibold uppercase leading-none text-hoverGold">
+              Ilearn / Dashboard
+            </h3>
+            <h1 className="font-bebasNeue text-[36px] leading-10 text-nightGreen md:text-[48px]">
+              Dashboard
+            </h1>
+            <div className="flex items-center justify-between">
+              <h2 className="mt-2 text-[14px] font-medium text-textGray">
+              School at glance
+            </h2>
+            <Link to={`/dashboard?tab=applications`}>
+            <p className="cursor-pointer rounded-[6px] border border-borderGray px-2 py-1 font-popins text-[14px] font-semibold uppercase text-strongNightGreen hover:border-hoverGold hover:bg-hoverGold hover:text-softWhite">Register Student</p>
+            </Link>
+            </div>
           </div>
-          <div className="card rounded-[8px] bg-[#90E0EF]"></div>
-          <div className="card rounded-[8px] bg-[#90E0EF]"></div>
+          <div className="card rounded-[6px] !bg-nightGreen">
+            <div className="flex items-center justify-between">
+              <h2 className="font-popins text-[11px] font-semibold uppercase text-softWhite">
+                Total Applications
+              </h2>
+              <IoDocumentTextOutline size={20} className="text-gold" />
+            </div>
+            <h1 className="mt-5 font-bebasNeue text-[36px] tracking-wide text-gold md:text-[48px]">
+              4328
+            </h1>
+            <div className="h-[4px] w-[32px] rounded-full bg-gold " />
+          </div>
+          <div className="card rounded-[6px] shadow-md shadow-borderGray">
+            <div className="flex items-center justify-between">
+              <h2 className="font-popins text-[11px] font-semibold uppercase text-textGray">
+                Students
+              </h2>
+              <FaGraduationCap size={20} className="text-gold" />
+            </div>
+            <h1 className="mt-5 font-bebasNeue text-[36px] tracking-wide text-strongNightGreen md:text-[48px]">
+              1248
+            </h1>
+            <div className="h-[4px] w-[32px] rounded-full bg-[#E1EFF7]" />
+          </div>
+          <div className="card rounded-[6px] p-[8px] font-bold shadow-md shadow-borderGray">
+            <div className="flex items-center justify-between">
+              <h2 className="font-popins text-[11px] font-semibold uppercase text-textGray">
+                Teachers
+              </h2>
+              <FaUsers size={20} className="text-gold" />
+            </div>
+            <h1 className="mt-5 font-bebasNeue text-[36px] tracking-wide text-strongNightGreen md:text-[48px]">
+              120
+            </h1>
+            <div className="h-[4px] w-[32px] rounded-full bg-[#E1EFF7]" />
+          </div>
+          <div className="card rounded-[6px] shadow-md shadow-borderGray">
+            <div className="flex items-center justify-between">
+              <h2 className="font-popins text-[11px] font-semibold uppercase text-textGray">
+                Classes
+              </h2>
+              <FaBookReader size={20} className="text-gold" />
+            </div>
+            <h1 className="mt-5 font-bebasNeue text-[36px] tracking-wide text-strongNightGreen md:text-[48px]">
+              68
+            </h1>
+            <div className="h-[4px] w-[32px] rounded-full bg-[#E1EFF7]" />
+          </div>
+          <div className="card rounded-[6px] shadow-md shadow-borderGray">
+            <div className="flex items-center justify-between">
+              <div className="">
+                <h1 className="font-bebasNeue text-[24px] text-nightGreen">Attendance</h1>
+                <p className="mt-1 font-popins text-[12px] font-medium text-textGray">This week. Mon - Fri </p>
+              </div>
+              <div className="flex flex-col items-end">
+                <h1 className="font-bebasNeue text-[36px] leading-none text-nightGreen">94.22%</h1>
+                <p className="mt-0.5 font-popins text-[12px] font-medium text-green-500">+2.5% this week</p>
+              </div>
+            </div>
+          </div>
+          <div className="card rounded-[6px] !border-none !p-0">
+            <div className="flex items-center justify-between">
+              <div className="">
+                <h1 className="font-bebasNeue text-[24px] text-nightGreen">Recent Activity</h1>
+              </div>
+              <div className="flex items-center">
+                <Link to={`/dashboard?tab=applications`}>
+                <h1 className="font-bebasNeue leading-none text-[14pxpx] text-hoverGold">Applications </h1> 
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       )}
       {/* Mobile */}

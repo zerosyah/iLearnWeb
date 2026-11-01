@@ -1,520 +1,620 @@
-import {useEffect, useState} from 'react'
-import { Avatar, Modal } from 'flowbite-react';
-//import LineChart from "./PieChart"
-import { Autocomplete, Divider, Stack, TextField, Button } from '@mui/material';
-import { LineChart } from "@mui/x-charts/LineChart";
-import { FaChevronDown } from "react-icons/fa";
-//import { Model } from 'mongoose';
+import React, { useEffect, useState } from "react";
+import { FaFilePdf } from "react-icons/fa";
+import { LuChevronDown, LuUser } from "react-icons/lu";
+import DashLinechart from "../DashComponents/DashLineChart";
+import { ChartData } from "../Constants/EventLayout.json";
+import { Student } from "../Constants/PropsInventory";
+import { useSelector } from "react-redux";
+import { store } from "../redux/store";
 
-function DashUserDetails({selectedUser, selected}: any) {
-    const [user, setUser] = useState({});
-    const [details, setDetails] = useState({});
-    const [parent, setParent] = useState(false);
-    const [school, setSchool] = useState(false);
-    const [medic, setMedic] = useState(false);
-    const [other, setOther] = useState(false);
-    const [show, setShow] = useState<boolean>(true);
-    const [showChart, setShowChart] = useState<boolean>(false);
-    const [showOther, setShowOther] = useState<boolean>(true);
+type SelectedProp = {
+  selectedUser: Student,
+}
 
-    useEffect(() =>{
-        // fetch student from more details
-        const fetchStudent = async () =>{
-            // fetch student from more details using id
-            const res = await fetch(`/api/user/getUsersById/${selectedUser}`);
+type RootProp = ReturnType<typeof store.getState>
 
-            // get data from database and change to json
-            const data = await res.json();
-            
-            // if response was success
-            if(res.ok){
-                // set details
-                setDetails(data.users);
-            }
-        }
+function DashUserDetails(selectedUser:SelectedProp) {
+  const [, setUser] = useState({});
+  const [, setDetails] = useState<Student>() 
+  const [data, setData] = useState<DataTypeProp[]>();
+  const {studentData} = useSelector((state:RootProp) => state.student)
+  console.log("redux data:", studentData);
+  console.log("SelectedUser:", selectedUser);
+  
 
-        // fetch user
-        const fetchGet = async () =>{
-            // fetch user using id from oirginal database
-            const res = await fetch(`/api/user/get/${selectedUser}`);
+  if (data?.length == 0) {
+    setData(()=> {
+      [{
+    "name": "Test 1",
+    "mark": 37,
+    "month": "Jan",
+    "subject": "Mathematics",
+    "date": "2025-01-02"
+  },
+  {
+    "name": "Test 2",
+    "mark": 71,
+    "month": "Jan",
+    "subject": "English",
+    "date": "2025-01-03"
+  },
+  {
+    "name": "Test 3",
+    "mark": 32,
+    "month": "Jan",
+    "subject": "Physical Sciences",
+    "date": "2025-01-07"
+  },
+  {
+    "name": "Test 4",
+    "mark": 89,
+    "month": "Jan",
+    "subject": "Life Sciences",
+    "date": "2025-01-15"
+  },
+  {
+    "name": "Test 5",
+    "mark": 52,
+    "month": "Jan",
+    "subject": "Geography",
+    "date": "2025-01-17"
+  },
+  {
+    "name": "Test 6",
+    "mark": 29,
+    "month": "Jan",
+    "subject": "History",
+    "date": "2025-01-24"
+  }]
+    })
+  }
 
-            // get data from database and change to json
-            const data = await res.json();
+  type FormDataProp = {
+    Subject : string,
+    Month: string
+  }
 
-            // if response was success
-            if(res.ok){
-                // set user
-                setUser(data.users);
-            }
-        }
+  useEffect(() => {
+    // fetch student from more details
+    const fetchStudent = async () => {
+      // fetch student from more details using id
+      const res = await fetch(`/api/user/getUsersById/${selectedUser}`);
 
-        // call the function
-        fetchStudent();
+      // get data from database and change to json
+      const data = await res.json();
 
-        // call the function
-        fetchGet();
-    }, [selectedUser]);
+      // if response was success
+      if (res.ok) {
+        // set details
+        setDetails(data.users);
+      }
+    };
 
-    const handleParent = () =>{
-        setParent(true);
-    }
-    const handleSchool = () =>{
-        setSchool(true);
-    }
-    const handleMedic = () =>{
-        setMedic(true);
-    }
-    const handleOther = () =>{
-        setOther(true);
-    }
-    console.log("student: ", selected);
-    const subjects = [
-      { label: "Mathematics", value: "Mathematics" },
-      { label: "English", value: "English" },
-      { label: "IsiZulu", value: "IsiZulu " },
-      { label: "Life Orientation", value: "LifeOrientation" },
-      { label: "Creative Art", value: "CreativeArt" },
-      { label: "Technology", value: "Technology" },
-      { label: "Natural Science", value: "NaturalScience" },
-      { label: "Geography", value: "Geography" },
-      { label: "Drama", value: "Drama" },
-      { label: "History", value: "History" },
-      { label: "Life Sciences", value: "LifeSciences" },
-      { label: "Physical Sciences", value: "PhysicalSciences" },
-      { label: "Mathematics Literacy", value: "MathematicsLiteracy" },
-      { label: "Tourism", value: "Tourism" },
-      { label: "Accounting", value: "Accounting" },
-      { label: "Consumer Studies", value: "ConsumerStudies" },
-      { label: "Business Studies", value: "BusinessStudies" },
-    ];
-    const [formData, setFormData] = useState<any>({
-    });
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    
+    // fetch user
+    const fetchGet = async () => {
+      // fetch user using id from oirginal database
+      const res = await fetch(`/api/user/get/${selectedUser}`);
+
+      // get data from database and change to json
+      const data = await res.json();
+
+      // if response was success
+      if (res.ok) {
+        // set user
+        setUser(data.users);
+      }
+    };
+
+    // call the function
+    fetchStudent();
+
+    // call the function
+    fetchGet();
+  }, [selectedUser]);
+  const [formData, setFormData] = useState<FormDataProp>({
+    Subject: "",
+    Month: ""
+  });
+  const sectionsList = [
+    {
+      section: "section 01",
+      title: "Personal Information",
+    },
+    {
+      section: "section 02",
+      title: "Chart",
+    },
+    {
+      section: "section 03",
+      title: "Previous School",
+    },
+    {
+      section: "section 04",
+      title: "Medical Info",
+    },
+  ];
+  const [select, setSelected] = React.useState<string>("");
+  const onClickSection = (value: string) => {
+    if (select == value) return setSelected("");
+    return setSelected(value);
+  };
+
+  useEffect(() => {
+    if (formData.Month === "" || formData.Subject === "") return;
+
+    const filterByMonth = ChartData.filter((item) =>
+      item.month.includes(formData.Month),
+    );
+    setData(filterByMonth);
+  }, [formData.Month, formData.Subject]);
+
+  type DataTypeProp = {
+    date: string,
+    mark: number,
+    month: string,
+    name: string
+    subject: string
+  };
+
+  const birthDate = (studentData as {BirthDate: string} | null)?.BirthDate;
+
   return (
-    <div className="Main-div max-w-[600px]">
-      <Stack
-        direction={"column"}
-        spacing={0}
-        className="rounded-[10px] border "
-      >
-        <Stack
-          direction={"row"}
-          alignItems={"center"}
-          spacing={1}
-          bgcolor={"#F8F8F8"}
-          className="h-[100px] rounded-[10px] p-[10px]"
-        >
-          {/* @ts-ignore */}
-          <Avatar
-            size={"lg"}
-            //@ts-ignore
-            img={user?.ProfilePicture}
-            rounded
-            className=""
-            bordered
-          />
-          <Stack direction={"column"} spacing={1} className="">
-            {/* @ts-ignore */}
-            <p className="font-popins text-[25px] font-medium text-gray-700">
-              {selected?.FirstName} {selected?.LastName}
-            </p>
-            <Stack
-              direction={"row"}
-              spacing={1}
-              alignItems={"center"}
-              className="text-[14px] font-medium italic text-gray-600"
-            >
-              {/* @ts-ignore */}
-              <span>{selected?.GradeAppliedFor}</span>
-              <span>|</span>
-              <span>{selected?.IdNumber}</span>
-              <span>|</span>
-              <span>{selected?.Gender}</span>
-            </Stack>
-          </Stack>
-        </Stack>
-          <Divider />
-        <Stack spacing={0.5} className="p-[10px]">
-          <Stack direction={"column"} spacing={1} className="">
-            <Stack direction={"row"} spacing={2} className="items-center">
-              <h1 className="font-robot text-[18px] font-medium">
-                Basic Details
-              </h1>
-              <FaChevronDown
-                size={18}
-                className={`${show && "rotate-180 transition-all duration-500 ease-in-out"} hover:cursor-pointer ${!show && "transition-all duration-500 ease-in-out"}`}
-                onClick={() => setShow(!show)}
-              />
-            </Stack>
-            {show && (
-              <>
-                <Stack direction={"row"} spacing={4} className="mt-2 px-4">
-                  <Stack spacing={-0.5} className="Dob">
-                    <p className="text-[12px] text-gray-400">Date Of Birth</p>
-                    {/* @ts-ignore */}
-                    <p className=" text-[14px] font-semibold">
-                      {selected?.BirthDate}
-                    </p>
-                  </Stack>
-                  <Stack spacing={-0.5} className="">
-                    <p className="text-[12px] text-gray-400">Religion</p>
-                    {/* @ts-ignore */}
-                    <p className=" text-[14px] font-semibold">
-                      {selected?.Religion}
-                    </p>
-                  </Stack>
-                  <Stack spacing={-0.5} className="">
-                    <p className="text-[12px] text-gray-400"> Disability</p>
-                    {/* @ts-ignore */}
-                    <p className=" text-[14px] font-semibold">
-                      {selected?.Disabilities ? "N/A" : "Yes"}
-                    </p>
-                  </Stack>
-                  <Stack spacing={-0.5} className="">
-                    <p className="text-[12px] text-gray-400"> Emergency</p>
-                    {/* @ts-ignore */}
-                    <p className=" text-[14px] font-semibold">
-                      {selected.EmergencyNumber}
-                    </p>
-                  </Stack>
-                  <Stack spacing={-0.5} className="">
-                    <p className="text-[12px] text-gray-400"> Phone</p>
-                    {/* @ts-ignore */}
-                    <p className=" text-[14px] font-semibold">
-                      {selected?.PhoneNumber}
-                    </p>
-                  </Stack>
-                </Stack>
-                <Stack
-                  direction={"row"}
-                  spacing={4}
-                  className="mt-2 items-center overflow-x-hidden px-4"
-                >
-                  <Stack spacing={-0.5} className="Dob">
-                    <p className="text-[12px] text-gray-400">Race</p>
-                    {/* @ts-ignore */}
-                    <p className=" text-[14px] font-semibold">
-                      {selected.Race}
-                    </p>
-                  </Stack>
-                  <Stack spacing={-0.5} className="">
-                    <p className="text-[12px] text-gray-400">Home Number</p>
-                    {/* @ts-ignore */}
-                    <p className=" text-[14px] font-semibold">
-                      {selected?.HomeNumber}
-                    </p>
-                  </Stack>
-                  <Stack spacing={-0.5} className="">
-                    <p className="text-[12px] text-gray-400">Country</p>
-                    {/* @ts-ignore */}
-                    <p className=" text-[14px] font-semibold">
-                      {selected?.CountryOfOrigin}
-                    </p>
-                  </Stack>
-                  <Stack spacing={-0.5} className=" truncate">
-                    <p className="text-[12px] text-gray-400">Email</p>
-                    {/* @ts-ignore */}
-                    <p className=" text-[14px] font-semibold">
-                      {selected?.Email}
-                    </p>
-                  </Stack>
-                </Stack>
-              </>
-            )}
-          </Stack>
-        </Stack>
-
-        <Stack direction={"column"} spacing={0.5} className="px-[10px]">
-          <Divider />
-          <Stack direction={"row"} spacing={2} className="items-center pb-[10px]">
-            <h1 className="font-popins text-[18px] font-medium">Results</h1>
-            <FaChevronDown
-              size={18}
-              onClick={() => setShowChart(!showChart)}
-              className={`${showChart && "rotate-180 transition-all duration-500 ease-in-out"} hover:cursor-pointer ${!showChart && "transition-all duration-500 ease-in-out"}`}
-            />
-          </Stack>
-          {showChart && (
-            <>
-              <Stack direction={"row"} spacing={2}>
-                <Autocomplete
-                  value={formData.Subject}
-                  onChange={(event: any, value: object) => {
-                    event.preventDefault();
-                    //@ts-ignore
-                    setFormData({ ...formData, Subject: value.value });
-                  }}
-                  id="Subject"
-                  size="small"
-                  options={subjects}
-                  sx={{ width: 150 }}
-                  renderInput={(params) => (
-                    <TextField {...params} label="Subject" />
-                  )}
-                />
-                <Autocomplete
-                  value={formData.Month}
-                  onChange={(event: any, value: string) => {
-                    event.preventDefault();
-                    //@ts-ignore
-                    setFormData({ ...formData, Month: value });
-                  }}
-                  id="Month"
-                  size="small"
-                  options={months}
-                  sx={{ width: 150 }}
-                  renderInput={(params) => (
-                    <TextField {...params} label="Month" />
-                  )}
-                />
-                <div className="text-xs">
-                  <p className="">
-                    Showing {formData?.Subject} Marks of {formData?.Month}.
-                  </p>
-                  <p className="">Error wass found here</p>
-                </div>
-              </Stack>
-              <div className="">
-                <LineChart
-                  xAxis={[{ data: ["1", 2, 3, 4, 5, 6, 7, 8] }]}
-                  series={[
-                    {
-                      data: [58, 87, 29, 85, 76, 60, 96, 45],
-                    },
-                  ]}
-                  height={270}
-                />
-              </div>
-            </>
-          )}
-        </Stack>
-        <Stack direction={"column"} spacing={0.5} className="px-[10px]">
-          <Divider />
-          <Stack direction={"row"} spacing={2} className="items-center pb-[10px]">
-            <h1 className="font-robot text-[18px] font-medium">
-              Other Details
-            </h1>
-            <FaChevronDown
-              size={18}
-              className={`${showOther && "rotate-180 transition-all duration-500 ease-in-out"} hover:cursor-pointer ${!showOther && "transition-all duration-500 ease-in-out"}`}
-              onClick={() => setShowOther(!showOther)}
-            />
-          </Stack>
-          {showOther && (
-            <>
-              <Stack direction={"row"} spacing={2} className="pb-[10px]">
-                <Button variant='contained' onClick={handleSchool}>Prev School</Button>
-                  <Button variant='contained' onClick={handleMedic}>Medical Info</Button>
-                  <Button variant='contained' onClick={handleParent}>Parents/Gudian</Button>
-                <Button variant='outlined' onClick={handleOther}>Other!!</Button>
-              </Stack>
-            </>
-          )}
-        </Stack>
-      </Stack>
-
-      <div className="">
-        <Modal show={parent} onClose={() => setParent(false)}>
-          <Modal.Header>Parents/Guardian Details</Modal.Header>
-          <Modal.Body>
-            <div className="flex justify-evenly border">
-              <div className="">
-                <h2 className="font-semibold underline">Title:</h2>
-                {/* @ts-ignore */}
-                <p className="text-sm ">{details.parentTitle}</p>
-              </div>
-              <div className="">
-                <h2 className="font-semibold underline">Initials:</h2>
-                {/* @ts-ignore */}
-                <p className="text-sm ">{details.parentInitials}</p>
-              </div>
-              <div className="">
-                <h2 className="font-semibold underline">Language:</h2>
-                {/* @ts-ignore */}
-                <p className="text-sm ">{details.parentHomeLanguage}</p>
-              </div>
-            </div>
-
-            <div className="flex justify-evenly border">
-              <div className="">
-                <h2 className="font-semibold underline">First Name:</h2>
-                {/* @ts-ignore */}
-                <p className="text-sm ">{details.parentFirstName}</p>
-              </div>
-              <div className="">
-                <h2 className="font-semibold underline">Second Name:</h2>
-                {/* @ts-ignore */}
-                <p className="text-sm ">{details.parentSecondName}</p>
-              </div>
-              <div className="">
-                <h2 className="font-semibold underline">ID Number:</h2>
-                {/* @ts-ignore */}
-                <p className="text-sm ">{details.parentId}</p>
-              </div>
-            </div>
-
-            <div className="flex justify-evenly border">
-              <div className="">
-                <h2 className="font-semibold underline">Email:</h2>
-                {/* @ts-ignore */}
-                <p className="text-sm ">{details.parentEmail}</p>
-              </div>
-              <div className="">
-                <h2 className="font-semibold underline">First Number:</h2>
-                {/* @ts-ignore */}
-                <p className="text-sm ">{details.parentSecondName}</p>
-              </div>
-              <div className="">
-                <h2 className="font-semibold underline">Second Number:</h2>
-                {/* @ts-ignore */}
-                <p className="text-sm ">{details.parentId}</p>
-              </div>
-            </div>
-          </Modal.Body>
-        </Modal>
-
-        <Modal show={school} onClose={() => setSchool(false)}>
-          <Modal.Header>Previous School Details</Modal.Header>
-          <Modal.Body>
-            <h2 className="text-lg font-semibold underline">School Name:</h2>
-            {/* @ts-ignore */}
-            <p className="text-sm">{details.previousSchoolName}</p>
-
-            <h2 className="text-lg font-semibold underline">School Address:</h2>
-            {/* @ts-ignore */}
-            <p className="text-sm">{details.previousSchoolAddress}</p>
-
-            <h2 className="text-lg font-semibold underline">Zip Code:</h2>
-            {/* @ts-ignore */}
-            <p className="text-sm">{details.previousSchoolZipCode}</p>
-
-            <h2 className="text-lg font-semibold underline">Country:</h2>
-            {/* @ts-ignore */}
-            <p className="text-sm">
-              {
-                //@ts-ignore
-                details.previousSchoolProvince
-              }
-              ,{" "}
-              {
-                //@ts-ignore
-                details.previousSchoolCountry
-              }
-            </p>
-          </Modal.Body>
-        </Modal>
-
-        <Modal show={medic} onClose={() => setMedic(false)}>
-          <Modal.Header>Medical Details</Modal.Header>
-          <Modal.Body>
-            <div className="flex justify-evenly border">
-              <div className="">
-                <h2 className="font-semibold underline">Medical Aid Number:</h2>
-                {/* @ts-ignore */}
-                <p className="text-sm ">{details.medicalAidNumber}</p>
-              </div>
-              <div className="">
-                <h2 className="font-semibold underline">Medical Aid Name:</h2>
-                {/* @ts-ignore */}
-                <p className="text-sm ">{details.medicalAidName}</p>
-              </div>
-              <div className="">
-                <h2 className="font-semibold underline">Medical Aid Member:</h2>
-                {/* @ts-ignore */}
-                <p className="text-sm ">{details.medicalAidMainMember}</p>
-              </div>
-            </div>
-            <div className="flex justify-around border">
-              <div className="">
-                <h2 className="font-semibold underline">Doctor Name:</h2>
-                {/* @ts-ignore */}
-                <p className="text-sm ">{details.medicalAidDoctorName}</p>
-              </div>
-              <div className="">
-                <h2 className="font-semibold underline">Doctor Number:</h2>
-                {/* @ts-ignore */}
-                <p className="text-sm ">{details.medicalAidDoctorNumber}</p>
-              </div>
-              <div className="">
-                <h2 className="font-semibold underline">Doctor Address:</h2>
-                {/* @ts-ignore */}
-                <p className="text-sm ">{details.medicalAidDoctorAddress}</p>
-              </div>
-            </div>
-            <div className="flex justify-around border">
-              <div className="">
-                <h2 className="font-semibold underline">Counseling:</h2>
-                {/* @ts-ignore */}
-                <p className="text-sm uppercase">
-                  {
-                    //@ts-ignore
-                    details.studentRequiringCounseling
-                  }
-                </p>
-              </div>
-              <div className="">
-                <h2 className="font-semibold underline">Medical Condion:</h2>
-                {/* @ts-ignore */}
-                <p className="text-sm uppercase">
-                  {
-                    //@ts-ignore
-                    details.studentMedicalCondition
-                  }
-                </p>
-              </div>
-            </div>
-          </Modal.Body>
-        </Modal>
-
-        <Modal show={other} onClose={() => setOther(false)}>
-          <Modal.Header>Other information</Modal.Header>
-          <Modal.Body>
-            <div className="flex justify-around">
-              <div className="border p-2">
-                <div className="">
-                  <h2 className="font-semibold underline">
-                    Siblings In School:
-                  </h2>
-                  {/* @ts-ignore */}
-                  <p className="text-sm ">{details.numberOfSiblingsInSchool}</p>
-                </div>
-                <div className="">
-                  <h2 className="font-semibold underline">
-                    Position In Family:
-                  </h2>
-                  {/* @ts-ignore */}
-                  <p className="text-sm ">{details.positionInTheFamily}</p>
-                </div>
-                <div className="">
-                  <h2 className="font-semibold underline">Sibling 1:</h2>
-                  {/* @ts-ignore */}
-                  <p className="text-sm ">{details.firstSiblingName}</p>
-                </div>
-                <div className="">
-                  <h2 className="font-semibold underline">Sibling 2:</h2>
-                  {/* @ts-ignore */}
-                  <p className="text-sm ">{details.secondSiblingName}</p>
-                </div>
-                <div className="">
-                  <h2 className="font-semibold underline">Sibling 3:</h2>
-                  {/* @ts-ignore */}
-                  <p className="text-sm ">{details.thirdSiblingName}</p>
-                </div>
-              </div>
-              <div className="">
-                <div className="border p-2">
-                  <h2 className="font-semibold underline">Home Address:</h2>
-                  {/* @ts-ignore */}
-                  <p className="text-sm ">{details.streetAddress}</p>
-                </div>
-              </div>
-            </div>
-          </Modal.Body>
-        </Modal>
+    <div className="scroll-container h-screen w-full overflow-y-scroll">
+      <div className="flex w-full items-start gap-6 rounded-[6px] bg-default p-[20px]">
+        <div className="flex size-[70px] items-center justify-center rounded-[6px] border-2 border-gold bg-nightGreen">
+          <h1 className="font-bebasNeue text-[36px] leading-none tracking-widest text-gold">
+            {(studentData as {FirstName: string} | null)?.FirstName?.[0]}
+            {(studentData as {LastName: string} | null)?.LastName?.[0]}
+          </h1>
+        </div>
+        <div className="">
+          <h1 className="font-bebasNeue text-[36px] leading-none text-strongNightGreen">
+            {(studentData as {FirstName: string}| null)?.FirstName} {(studentData as {LastName:string}|null)?.LastName}
+          </h1>
+          <div className="flex items-center gap-1 font-popins text-[14px] font-medium">
+            <p className="">{(studentData as {IdNumber:string}|null)?.IdNumber}</p>
+            <p className="">·</p>
+            <p className="">{(studentData as {Gender:string}|null)?.Gender}</p>
+          </div>
+        </div>
       </div>
+
+      <section className="mt-4 min-h-screen">
+        {sectionsList?.map((item, index) => (
+          <div className="" key={index}>
+            <div
+              key={index}
+              onClick={() => onClickSection(item?.title)}
+              className={`flex w-full items-center justify-between ${item?.title == select ? "" : "border-b border-gray-400"} bg-default px-[24px] py-[20px] transition-all duration-300 ease-in-out`}
+            >
+              <div className="flex gap-[16px]">
+                <div className="flex size-[36px] items-center justify-center rounded-[6px] bg-nightGreen">
+                  <LuUser
+                    size={20}
+                    color="#EBBE5C"
+                    className="flex items-center justify-center"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <p className="font-popins text-[11px] font-medium uppercase leading-none tracking-[0.2em] text-[#EBBE5C]">
+                    {item?.section}
+                  </p>
+                  <p className="font-bebasNeue text-[24px] uppercase leading-none tracking-wide">
+                    {item?.title}
+                  </p>
+                </div>
+              </div>
+              <LuChevronDown
+                size={24}
+                className={`${select == item?.title ? "rotate-180" : "rotate-0"} transition-all duration-300 ease-in-out`}
+              />
+            </div>
+
+            {/** Personal Details */}
+            {item?.title == "Personal Information" && select == item?.title && (
+              <div className="mt-2 grid gap-6 px-6 pb-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    First name
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {FirstName: string}| null)?.FirstName}{" "}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Last name
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {LastName: string}| null)?.LastName}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Gender
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {Gender: string}| null)?.Gender}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Email
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {Email: string}| null)?.Email}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Birth Date
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {birthDate
+                      ? new Date(birthDate).toLocaleDateString("en-US", {
+                          day: "2-digit",
+                          month: "long",
+                          year: "numeric",
+                        })
+                      : ""}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Home Number
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {HomeNumber: string} | null)?.HomeNumber}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Country Of Birth
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {CountryOfOrigin: string} | null)?.CountryOfOrigin}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Physical Address
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {PhysicalAddress: string} | null)?.PhysicalAddress}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    City
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {City: string} | null)?.City}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Religion
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {Religion: string} | null)?.Religion}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    ID Number
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {IdNumber: string} | null)?.IdNumber}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Nick Name
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {NickName: string} | null)?.NickName}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Phone Number
+                  </h1>
+                  <p
+                    className={`mt-1 font-popins text-[14px] ${!(studentData as {PhoneNumber: string} | null)?.PhoneNumber && "text-imperialRed"} font-medium leading-none`}
+                  >
+                    {(studentData as {PhoneNumber: string} | null)?.PhoneNumber || "N/A (required *)"}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Race
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {Race: string} | null)?.Race}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Certified Id Copy
+                  </h1>
+                  <div className="mt-1 flex w-fit cursor-pointer items-center gap-2 rounded-[6px] border border-nightGreen px-2 py-1 hover:border-[#EBBE5C]">
+                    <FaFilePdf
+                      size={15}
+                      className="text-nightGreen hover:text-[#EBBE5C]"
+                    />
+                    <p className="font-popins text-[14px] font-semibold leading-none text-nightGreen hover:text-[#EBBE5C]">
+                      {(studentData as {FirstName: string} | null)?.FirstName?.[0] +
+                        "." +
+                        (studentData as {LastName: string} | null)?.LastName +
+                        "-ID-copy.pdf"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/** Charts */}
+            {item.title == "Chart" && select == item.title && (
+              <div className="mt-4">
+                <div className="flex items-center gap-4">
+                  <div className="">
+                    <select
+                      className="h-[40px] w-[150px] rounded-[6px]"
+                      id="Subject"
+                      onChange={(e: React.FormEvent) => {
+                        e.preventDefault();
+                        const target = e.target as HTMLInputElement;
+                        setFormData({ ...formData, [target.id]: target.value });
+                      }}
+                    >
+                      <option value="Mathematics" className="">
+                        Mathematics
+                      </option>
+                      <option value="MathematicsLiteracy" className="">
+                        Math Literacy
+                      </option>
+                      <option value="English" className="">
+                        English
+                      </option>
+                    </select>
+                  </div>
+                  <div className="">
+                    <select
+                      className="h-[40px] w-[150px] rounded-[6px]"
+                      id="Month"
+                      onChange={(e: React.FormEvent) => {
+                        e.preventDefault();
+                        const target = e.target as HTMLInputElement;
+                        setFormData({ ...formData, [target.id]: target.value });
+                      }}
+                    >
+                      <option value="" className="">
+                        Months
+                      </option>
+                      <option value="Jan" className="">
+                        January
+                      </option>
+                      <option value="Feb" className="">
+                        February
+                      </option>
+                      <option value="Mar" className="">
+                        March
+                      </option>
+                    </select>
+                  </div>
+
+                  <div className="">
+                    <p className="font-popins text-[14px] text-textGray">
+                      Showing <strong>{formData?.Subject}</strong> Marks of{" "}
+                      <strong>{formData?.Month}</strong>.
+                    </p>
+                    <p className="font-popins text-[14px] text-strongNightGreen">
+                      Error wass found here
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-2 flex w-full gap-6">
+                  {data && <DashLinechart data={data} />}
+                  <div className="">
+                    <h1 className="font-bebasNeue text-[18px] uppercase">
+                      MArks Layout
+                    </h1>
+                    <div className="">
+                      <div className="">
+                        {data && (
+                          <ul className="">
+                            {data.map((item: DataTypeProp, index: number) => (
+                              <li
+                                className="flex items-center gap-2"
+                                key={index}
+                              >
+                                {item.name}:{" "}
+                                <span className="">{item.mark}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/** Previous School Data */}
+            {item?.title == "Previous School" && select == item?.title && (
+              <div className="mt-2 grid gap-6 px-6 pb-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    School Name
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {PreviousSchoolName: string} | null)?.PreviousSchoolName}{" "}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    School Principal
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {PreviousSchoolPrincipal: string} | null)?.PreviousSchoolPrincipal}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    School Number
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {PreviousSchoolNumber: string} | null)?.PreviousSchoolNumber}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    School Address
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {PreviousSchoolAddress: string} | null)?.PreviousSchoolAddress}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    School Country
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {PreviousSchoolCountry: string} | null)?.PreviousSchoolCountry}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Removal letter
+                  </h1>
+                  <div className="mt-1 flex w-fit cursor-pointer items-center gap-2 rounded-[6px] border border-nightGreen px-2 py-1 hover:border-[#EBBE5C]">
+                    <FaFilePdf
+                      size={15}
+                      className="text-nightGreen hover:text-[#EBBE5C]"
+                    />
+                    <p className="font-popins text-[14px] font-semibold leading-none text-nightGreen hover:text-[#EBBE5C]">
+                      School-Removal-Letter.pdf
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/** Medical Conditions */}
+            {item.title == "Medical Info" && select == item.title && (
+              <div className="mt-2 grid gap-6 px-6 pb-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Medical Aid Available?
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {HasMedicalAid: boolean} | null)?.HasMedicalAid
+                      ? "Yes, I have medical aid."
+                      : "No, I don't have medical aid."}
+                  </p>
+                </div>
+                {(studentData as {HasMedicalAid: boolean} | null)?.HasMedicalAid && (
+                  <div className="">
+                    <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                      Medical Aid Name
+                    </h1>
+                    <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                      {(studentData as {MedicalAid: string} | null)?.MedicalAid || "None"}
+                    </p>
+                  </div>
+                )}
+                {(studentData as {HasMedicalAid: boolean} | null)?.HasMedicalAid && (
+                  <div className="">
+                    <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                      Medical Aid Number
+                    </h1>
+                    <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                      {(studentData as {MedicalAidNumber: string} | null)?.MedicalAidNumber || "None"}
+                    </p>
+                  </div>
+                )}
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Medical Conditions?
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {HasMedicalConditions: boolean} | null)?.HasMedicalConditions || "None"}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Special Needs?
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {HasSpecialNeeds: boolean} | null)?.HasSpecialNeeds || "None"}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Allergic?
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {HasAllergies: boolean} | null)?.HasAllergies || "None"}
+                  </p>
+                </div>
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Disabled?
+                  </h1>
+                  <p
+                    className={`mt-1 font-popins text-[14px] ${(studentData as {IsRepeating: boolean} | null)?.IsRepeating && "text-imperialRed"} font-medium leading-none`}
+                  >
+                    {(studentData as {HasDisability: boolean} | null)?.HasDisability
+                      ? "Yes, I have a disability."
+                      : "No, I don't have a disability."}
+                  </p>
+                </div>
+                {(studentData as {HasDisability: boolean} | null)?.HasDisability && (
+                  <div className="">
+                    <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                      Medical Condition List
+                    </h1>
+                    <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                      {(studentData as {Disabilities: string[] | null} | null)?.Disabilities || "None"}
+                    </p>
+                  </div>
+                )}
+                {(studentData as {HasAllergies: boolean} | null)?.HasAllergies && (
+                  <div className="">
+                    <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                      Allergy List
+                    </h1>
+                    <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                      {(studentData as {Allergies: string[] | null} | null)?.Allergies || "None"}
+                    </p>
+                  </div>
+                )}
+                {(studentData as {HasSpecialNeeds: boolean} | null)?.HasSpecialNeeds && (
+                  <div className="">
+                    <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                      Special Needs List
+                    </h1>
+                    <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                      {(studentData as {SpecialNeeds: string[] | null} | null)?.SpecialNeeds || "None"}
+                    </p>
+                  </div>
+                )}
+                <div className="">
+                  <h1 className="font-popins text-[11px] font-medium uppercase tracking-[0.14em] text-gray-600">
+                    Medical Condition List
+                  </h1>
+                  <p className="mt-1 font-popins text-[14px] font-medium leading-none">
+                    {(studentData as {Disabilities: string[] | null} | null)?.Disabilities || "None"}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </section>
     </div>
   );
 }
 
-export default DashUserDetails
+export default DashUserDetails;

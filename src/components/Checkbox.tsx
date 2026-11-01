@@ -6,16 +6,17 @@ type CheckProps ={
 }
 export default function ControlledCheckbox({setCount, user}:CheckProps) {
   const [checked, setChecked] = React.useState(false);
-
+  
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
     const isChecked = event.target.checked;
     setChecked(isChecked);
     
-    setCount((prev)=>{
+    setCount((prev) => {
       if(isChecked){
         return [...prev, user];
-      }else{
-        return prev.filter(item=> item!==user);
+      } else{
+        return prev.filter(item => item !== user);
       }
     })
   };

@@ -5,24 +5,24 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-//import TableOptions from "./TableOptions";
-import { useEffect, useState } from "react";
-import { FaCheck, FaSearch, FaUser } from "react-icons/fa";
+import { useEffect, useMemo, useState } from "react";
+import { FaSearch } from "react-icons/fa";
 import TableUserSelect from "./TableUserSelect";
 import ControlledCheckbox from "./Checkbox";
-//import { MdOutlineCancel } from "react-icons/md";
-import { IoDocumentsOutline } from "react-icons/io5";
 import { ImCross } from "react-icons/im";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import{Student} from "../Constants/PropsInventory"
-//import { Divider } from "@mui/material";
+import { ApplicationData } from "../Constants/EventLayout.json"
+import { useNavigate } from "react-router-dom";
+import { CgOptions } from "react-icons/cg";
+import { TiCancel, TiInfoLarge } from "react-icons/ti";
 
 export default function UserTable() {
   const [action, setAction] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [, setError] = useState<boolean>(false);
   const [, setMessage] = useState<string>("");
-  const [data, setData] = useState<Student[]>([]);
+  const [, setData] = useState<Student[]>([]);
   const [, setResults] = useState([]);
   const [approved, setApproved] = useState<boolean>(false);
     const gradeList = [
@@ -37,52 +37,117 @@ export default function UserTable() {
   const [userList, setUserList] = useState<string[]>([]);
   const [showActionMenu, setShowActionMenu] = useState(false);
   const [mouseOver, setMouseOver] = useState<boolean>(false);
-  const [confirmAlert, setConfirmAlert] = useState(false)
+  const [confirmAlert, setConfirmAlert] = useState(false);
+  const [filteredData, setFilteredData] = useState<Student[]>(ApplicationData);
+  const [selectedGrade, setSelectedGrade] = useState<string>("Grade")
+  const [selectedMonth, setSelectedMonth] = useState<string>("Month")
+  const [templateId, setTemplateId] = useState<string>("")
   //const [ ]
+
+  // console.log("selected Grade: ", selectedGrade);
+  // console.log("selected Filtered Data: ", filteredData);
+  
 
   const onSelectBunch = () => {
     setShowActionMenu((prev) => !prev);
   };
 
+  // Cancel the active tabs when clicking outside the action menu.
   const cancelActiveTabs = ()=>{
     if (showActionMenu && !mouseOver){
-      return setShowActionMenu(!showActionMenu)
-    }
-  }
-//console.log("Action: ", action);
-//console.log("Approved: ", approved);
+      // Set the action value or State to default.
+      setAction(()=> "");
 
-  const singleAction = (id:string, option:string): void =>{
+      // Toggles the show Action Panels.
+      setShowActionMenu(!showActionMenu);
+
+      // Reset the userList to default.
+      return setUserList([]); 
+    }
+    return;
+  }
+
+  // Function to handle single action on a user.
+  const singleAction = (id:string): void =>{
+    // Set the userList to the selected user id.
     setUserList([id]);
-    setAction(option);
+
+    // Set the templateId to the selected user id.
+    setTemplateId(id);
+    
+    // Show the action menu for the selected user.
     return setShowActionMenu(true);
   }
-  //console.log("List: ", userList);
+
+  // useEffect(()=>{
+  //   const getUsers = async ()=>{
+  //     try{
+  //       setLoading(true);
+  //       setError(false);
+  //       const res = await fetch("http://127.0.0.1:4001/data/student/get/all",{
+  //         method: "GET",
+  //         credentials: "include"
+  //       });
+        
+  //       if (!res.ok){
+  //         setError(true);
+  //         setLoading(false);
+  //       }
+  //       const data = await res.json();
+  //       setTempData(data.data[1]);
+  //       console.log("data: ", data);
+        
+  //     }catch(error){
+  //       setError(true);
+  //       console.log("Error: ", error);
+        
+  //     }finally{
+  //       setLoading(false);
+  //       setError(false);
+  //     }
+  //   }
+  //   getUsers();
+  // }, []);
+  //console.log("Temp data: ", tempData);
+  
+  // test useEffect for fetching data
+  useEffect(()=>{
+    const getData = async ()=>{
+      try {
+        setLoading(true);
+        setFilteredData(ApplicationData);
+      }catch(error){
+        console.log("Error: ", error);
+      }finally{
+        setLoading(false);
+      }
+    }
+    getData();
+  }, []);
+  //console.log("first filter data: ", filteredData);
   
 
-  //const [rows, setRows] = useState<Data[]>([]);
-
-  // interface Data {
-  //     FirstName: string;
-  //     LastName: string;
-  //     Grade: string;
-  //     Year: number;
-  //     Date: string;
-  //     //Action: any;
-  //     // Decline: any;
-  // }
-
-  // function createData(
-  //     FirstName: string,
-  //     LastName: string,
-  //     Grade: string,
-  //     Year: number,
-  //     Date: string,
-  //     //Action: any,
-  //     // Decline: any,
-  // ): Data {
-  //     return { FirstName, LastName, Grade, Year, Date};
-  // }
+  useMemo(()=>{
+    const getFilteredData = () => {
+      let filter :Student[] = ApplicationData;
+      if (selectedGrade != "Grade"){
+        filter = ApplicationData.filter((item)=> item.GradeAppliedFor === selectedGrade );
+      if (filter.length === 0 || (selectedMonth && filter.length === 0)) return setFilteredData(()=> ApplicationData);
+      if (selectedMonth ) {
+        const monthFilter = filter.filter((item)=> new Date(item.CreatedAt).toLocaleString("default", {month: "long"}) === selectedMonth);
+        if (monthFilter.length === 0) return setFilteredData(()=> filter);
+        return setFilteredData(()=> monthFilter);
+      }
+      }
+      if (selectedMonth && selectedGrade == "Grade") {
+        const monthFilter = ApplicationData.filter((item)=> new Date(item.CreatedAt).toLocaleString("default", {month: "long"}) === selectedMonth);
+        if (monthFilter.length === 0) return setFilteredData(()=> ApplicationData);
+        return setFilteredData(()=> monthFilter);
+      }
+      return setFilteredData(filter);
+    }
+    getFilteredData();
+  }, [selectedGrade, selectedMonth]);
 
   useEffect(() => {
     const getApplicants = async () => {
@@ -110,76 +175,14 @@ export default function UserTable() {
         setLoading(false);
         setError(false);
         setData(data.data);
-      } catch (error: any) {
+      } catch (error) {
         setLoading(false);
         setError(true);
-        setMessage(error.toString());
+        setMessage(error instanceof Error ? error.message : String(error));
       }
     };
     getApplicants();
   }, []);
-
-  //console.log("rows", rows);
-
-  // const [filter, setFilter] = useState<Data[]>(initialRows);
-  // `https://mark-service.onrender.com/data/studemt/applicant/${action}`
-  // console.log("Action: ", action?.index);
-
-//   useEffect(() => {
-//   if (!action || !approved || userList.length === 0) {
-//     setUserList([]);
-//     setApproved(false);
-//     setAction("");
-//     return;
-//   }
-
-//   const applicantAction = async () => {
-//     const resetState = () => {
-//       setUserList([]);
-//       setApproved(false);
-//       setAction("");
-//     };
-
-//     try {
-//       setLoading(true);
-//       setError(false);
-
-//       const res = await fetch(
-//         `https://mark-service.onrender.com/data/student/applicant/${action}`,
-//         {
-//           method: "PATCH",
-//           headers: { "Content-Type": "application/json" },
-//           credentials: "include",
-//           body: JSON.stringify({ userList }),
-//         }
-//       );
-
-//       const data = await res.json();
-
-//       if (!res.ok) {
-//         setError(true);
-//         setMessage(data.message || "Failed to update applicant state");
-//         resetState();
-//         return;
-//       }
-
-//       setResults(data.data);
-//       setData((prev: Student[]) =>
-//         prev.filter((student: Student) => !userList.includes(student?.IdNumber))
-//       );
-//       resetState();
-//     } catch (err: unknown) {
-//       setError(true);
-//       const errorMessage = err instanceof Error ? err.message : String(err);
-//       setMessage(errorMessage || "Unknown error");
-//       resetState();
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   applicantAction();
-// }, [approved]);// Only trigger when all conditions are met
 
 const resetState = () => {
   setUserList([]);
@@ -187,10 +190,10 @@ const resetState = () => {
   setAction("");
 };
 const applicantAction = async (action:string, approved:boolean, userList:string[]) => {
-  console.log("Starting function");
-  console.log("Action: ", action);
-  console.log("Approved: ", approved);
-  console.log("User List: ", userList);
+  // console.log("Starting function");
+  // console.log("Action: ", action);
+  // console.log("Approved: ", approved);
+  // console.log("User List: ", userList);
     if (userList.length == 0) {
     setUserList([]);
     setApproved(false);
@@ -198,10 +201,10 @@ const applicantAction = async (action:string, approved:boolean, userList:string[
     return;
   }
 
-  console.log("after the first condition");
+  // console.log("after the first condition");
   
 
-  console.log("data to be sent: ", userList, action, approved);
+  // console.log("data to be sent: ", userList, action, approved);
   
 
     try {
@@ -209,12 +212,12 @@ const applicantAction = async (action:string, approved:boolean, userList:string[
       setError(false);
 
       const res = await fetch(
-        `https://mark-service.onrender.com/data/student/applicant/${action}`,
+        `https://0f29-102-252-74-1.ngrok-free.app/data/student/applications/${action}`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
-          body: JSON.stringify({ userList }),
+          body: JSON.stringify({List: userList }),
         }
       );
 
@@ -244,78 +247,86 @@ const applicantAction = async (action:string, approved:boolean, userList:string[
 
 //console.log("Data: ", data);
 
-  //const
+  const navigate = useNavigate();
+
+
+  const actionMenuOptions = (alert: boolean, value: string)=>{
+    setConfirmAlert(alert);
+    setAction(value);
+    if (value === "View") {
+      navigate(`/dashboard?tab=view`, { state: { data: ApplicationData.find((item) => item.IdNumber === templateId) } });
+    }
+  }
 
   return (
     <section className="flex flex-col gap-[16px]" onClick={cancelActiveTabs}>
       <div className="">
-        <h1 className="font-montserrat text-[24px] font-bold uppercase leading-[20px] tracking-wider text-[#03045E]">
+        <h1 className="font-montserrat text-[20px] font-bold uppercase leading-none text-strongNightGreen">
           Applications
         </h1>
         <div className="flex items-center gap-[6px]">
-          <FaUser size={14} color="#6b7280" />
-          <span className="text-[14px] font-medium text-gray-500">
-            Total:{" "}
-            <span className="font-bebasNeue text-[18px] tracking-wider text-black">
-              4852
-            </span>
-          </span>
+          <p className="font-bebasNeue text-[20px] text-gray-500">
+            Total: {ApplicationData.length}
+          </p>
         </div>
       </div>
-      <div className="flex gap-[16px]">
-        <TableUserSelect label={"Grade"} data={gradeList} />
-        <TableUserSelect label={"Month"} data={months} />
+      <div className="flex items-center gap-[16px]">
+        <TableUserSelect label={"Grade"} data={gradeList} onChangeValue={setSelectedGrade} />
+        <TableUserSelect label={"Month"} data={months} onChangeValue={setSelectedMonth} />
 
         <div className="relative flex items-center pr-[16px]">
           <input
             type="text"
-            className="h-[35px] rounded-[50px] border border-[#03045E] bg-[#CAF0F8] pl-[35px] font-montserrat text-sm font-medium text-[#03045E] focus:outline-none focus:ring-0 focus:ring-offset-0"
+            className="h-[40px] rounded-[6px] border border-softWhite pl-[40px] font-popins text-[14px] font-medium leading-none text-strongNightGreen focus:outline-none focus:ring-0 focus:ring-offset-0 active:outline-none"
             placeholder="Search here"
             style={{ outline: "none", boxShadow: "none" }}
           />
-          <span className="absolute flex size-[35px] cursor-pointer items-center justify-center rounded-[50px]">
-            <FaSearch size={20} color="#03045E" />
+          <span className="absolute flex size-[40px] cursor-pointer items-center justify-center rounded-[6px]">
+            <FaSearch size={20} color="#0A2519" />
           </span>
         </div>
         <div className="relative">
-          {userList.length > 1 && (
+          {userList?.length > 1 && (
           <div className="relative">
             <button
               onClick={onSelectBunch}
-              className="flex items-center gap-[6px] rounded-[50px] border border-selectiveYellow px-[8px] font-montserrat text-[15px] font-bold tracking-widest text-selectiveYellow"
+              className="flex items-center gap-2 rounded-[6px] border bg-gold p-[8px] font-popins text-[14px] font-bold leading-none tracking-widest text-strongNightGreen hover:bg-hoverGold"
             >
-              <IoCheckmarkDoneSharp size={20} />
-              Accept All selected
-              <div className="">{userList.length}</div>
+              <IoCheckmarkDoneSharp size={18} />
+              Choose Action
+              <div className="">{userList?.length}</div>
             </button>
           </div>
         )}
         {showActionMenu && (
-              <div onMouseOver={()=>setMouseOver(true)} onMouseLeave={()=>setMouseOver(false)} className="absolute left-0 top-[44px] z-20 min-w-[220px] rounded-lg border border-gray-200 bg-white p-3 shadow-md">
-                <h1 className="mb-2 font-semibold text-gray-800">Select Action</h1>
+              <div onMouseOver={()=>setMouseOver(true)} onMouseLeave={()=>setMouseOver(false)} className="absolute left-0 top-[44px] z-20 min-w-[220px] rounded-[6px] border border-gray-200 bg-nightGreen p-2 shadow-md">
+                <h1 className="mb-2 font-popins text-[20px] font-semibold uppercase text-softWhite ">Select Action</h1>
                 <ul className="space-y-2 text-sm text-gray-700">
-                  <li onClick={()=>{setConfirmAlert(true); setAction("Accept")}} className={`flex cursor-pointer gap-[6px] hover:text-selectiveYellow ${action == "Accept"? " border-l-2 border-selectiveYellow pl-[8px] text-selectiveYellow":""}`}>
-                   <IoCheckmarkDoneSharp size={20} /> Accept selected users
+                  <li onClick={()=>{actionMenuOptions(false, "View")}} className={`flex items-center gap-2 rounded-[6px] p-2 font-roboto text-[15px] font-semibold leading-none text-softWhite hover:bg-gold hover:text-strongNightGreen`}>
+                   <TiInfoLarge size={18} /> <p className="font-roboto text-[14px]">View Applicants</p>
                   </li>
-                  <li onClick={()=>{setConfirmAlert(true); setAction("Reject")}} className={`flex cursor-pointer gap-[6px] hover:text-imperialRed ${action == "Reject"? " border-l-2 border-imperialRed pl-[8px] text-imperialRed":""}`}>
-                   <ImCross size={20} /> Reject selected users
+                  <li onClick={()=>{actionMenuOptions(true, "Accept")}} className={`flex items-center gap-2 rounded-[6px] p-2 font-roboto text-[15px] font-semibold leading-none hover:bg-green-500 hover:text-strongNightGreen ${action === "Accept" ? "bg-green-500 text-strongNightGreen" : "text-softWhite"}`}>
+                   <IoCheckmarkDoneSharp size={16} /> <p className="font-roboto text-[14px]">Accept selected users</p>
+                  </li>
+                  <li onClick={()=>{actionMenuOptions(true, "Reject")}} className={`flex items-center gap-2 rounded-[6px] p-2 font-roboto text-[15px] font-semibold leading-none  hover:bg-imperialRed hover:text-strongNightGreen ${action === "Reject" ? "bg-imperialRed text-strongNightGreen" : "text-softWhite"}`}>
+                   <ImCross size={16} /> <p className="font-roboto text-[14px]">Reject selected users</p>
                   </li>
                 </ul>
                 {confirmAlert && <div className="mt-[8px] flex flex-col gap-[8px]">
-                  <p className={`${action =="Accept" ? "text-selectiveYellow":"text-imperialRed"} font-montserrat text-sm font-medium`}>*are You sure, you want to {action} the selected students*</p>
+                  <p className={`${action =="Accept" ? "text-green-500":"text-imperialRed"} font-montserrat text-sm font-medium`}>*are You sure, you want to {action} the selected students*</p>
                   <div className="flex gap-[6px]">
                     <button onClick={()=>{setApproved(false); setShowActionMenu(false); setConfirmAlert(false); resetState()}} className="w-full rounded-[50px] border border-imperialRed font-medium text-imperialRed hover:bg-imperialRed hover:text-coolWhite">No</button>
-                    <button onClick={()=>{setApproved(true); applicantAction(action, approved, userList); setShowActionMenu(false); setConfirmAlert(false)}} className="w-full rounded-[50px] border border-selectiveYellow font-medium text-selectiveYellow hover:bg-selectiveYellow hover:text-coolWhite">Yes {userList.length}</button>
+                    <button onClick={()=>{setApproved(true); applicantAction(action, approved, userList); setShowActionMenu(false); setConfirmAlert(false)}} className="w-full rounded-[50px] border border-green-500 font-medium text-green-500 hover:bg-green-500 hover:text-coolWhite">Yes {userList?.length}</button>
                   </div>
                 </div>}
               </div>
             )}
         </div>
       </div>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className="scroll-container h-fit min-w-full">
         <Table
           sx={{ minWidth: "100%", margin: "auto" }}
-          className="min-w-screen h-fit"
+          className="h-fit min-w-full"
           areal-label="simple table"
         >
           <TableHead className="bg-gray-300">
@@ -330,26 +341,26 @@ const applicantAction = async (action:string, approved:boolean, userList:string[
               <TableCell>Grade</TableCell>
               <TableCell>Year</TableCell>
               <TableCell>Class</TableCell>
-              <TableCell>Action</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {loading ? (
-              <TableCell>
-                <TableRow>Loading Applicants...</TableRow>
-              </TableCell>
-            ) : data ? (
-              data.map((row: Student, index: number) => {
+              <TableRow>
+                <TableCell colSpan={9}>Loading Applicants...</TableCell>
+              </TableRow>
+            ) : filteredData?.length > 0 ? (
+              filteredData?.map((row: Student, index: number) => {
                 return (
                   <TableRow
-                    key={index}
+                    key={index+row?.FirstName}
                     sx={{}}
                     className="bg-gray-100 hover:bg-gray-200"
                   >
                     <TableCell>
                       <ControlledCheckbox setCount={setUserList} user={row?.IdNumber} />
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="truncate">
                       {row?.CreatedAt || row?.CreatedAt
                         ? new Date(row?.CreatedAt).toLocaleDateString(
                             "default",
@@ -357,38 +368,33 @@ const applicantAction = async (action:string, approved:boolean, userList:string[
                           )
                         : ""}
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="truncate">
                       <div className="flex gap-[6px]">
-                        <span className="font-bold">{row?.LastName}</span>
+                        <span className="font-bold">{row?.LastName[0]}</span>
                         <span className="">{row?.FirstName}</span>
                       </div>
                     </TableCell>
-                    <TableCell>{row?.IdNumber}</TableCell>
-                    <TableCell>{row?.Email}</TableCell>
-                    <TableCell>
+                    <TableCell className="truncate">{row?.IdNumber}</TableCell>
+                    <TableCell className="truncate">{row?.Email}</TableCell>
+                    <TableCell className="truncate">
                       {row?.GradeAppliedFor}
                     </TableCell>
-                    <TableCell>{row?.YearOfStudy}</TableCell>
-                    <TableCell>{row?.CourseOfStudy}</TableCell>
+                    <TableCell className="truncate">{row?.YearOfStudy}</TableCell>
+                    <TableCell className="truncate">{row?.CourseOfStudy}</TableCell>
                     <TableCell>
-                      {userList.length<1 ?
+                      {userList?.length<1 ?
                       <div className={`flex items-center gap-[16px]`}>
-                        <FaCheck
-                        onClick={()=>singleAction(row.IdNumber, "Accept")}
+                        <CgOptions
+                        onClick={()=>singleAction(row?.IdNumber)}
                           size={20}
-                          color="#0e9f6e"
-                          className={`${userList.length>1 ? "cursor-not-allowed": "cursor-pointer"}`}
+                          color="#03045E"
+                          className={`${userList?.length>1 ? "cursor-not-allowed": "cursor-pointer"}`}
                         />
-                        <IoDocumentsOutline
+                      </div>: <div><TiCancel
                           size={20}
-                          className={`${userList.length>1 ? "cursor-not-allowed": "cursor-pointer"}`}
-                        />
-                        <ImCross
-                          size={20}
-                          color="#ff1833"
-                          className={`${userList.length>1 ? "cursor-not-allowed": "cursor-pointer"}`}
-                        />
-                      </div>: <p>not available</p>}
+                          color="#03045E"
+                          className={`cursor-not-allowed`}
+                        /></div>}
                     </TableCell>
                   </TableRow>
                 );

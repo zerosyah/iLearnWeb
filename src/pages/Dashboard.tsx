@@ -8,6 +8,7 @@ import DashUser from '../components/DashUser'
 import Result from '../components/Result'
 import UserTable from '../components/UserTable'
 import DesktopLayout from '../layouts/DesktopLayout'
+import DashViewApplicant from '../DashComponents/DashViewApplicant'
 
 
 export default function Dashboard() {
@@ -28,7 +29,7 @@ export default function Dashboard() {
   
   return (
     <DesktopLayout>
-      <div className="flex h-full w-full min-h-0 flex-1 flex-col md:flex-row">
+      <div className="flex size-full min-h-0 flex-1 flex-col md:flex-row">
         {/* content */}
         {tab === "profile" && <DashProfile />}
         {/* Posts */}
@@ -42,7 +43,9 @@ export default function Dashboard() {
         {/* result */}
         {tab === "result" && <Result />}
         {/* calculator */}
-        {tab === "calculator" && <UserTable />}
+        {tab === "applications" && <UserTable />}
+        {/** View Applicant */}
+        {tab === "view" && <DashViewApplicant />}
       </div>
     </DesktopLayout>
   );

@@ -4,16 +4,42 @@ import { SlOptions } from "react-icons/sl";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 //import DashUserDetails from "./DashUserDetails";
-import { TextField, Stack, Divider, Button } from "@mui/material";
-import { studentSelected } from "../redux/student/studentSlice";
+//import { TextField, Stack, Divider, Button } from "@mui/material";
+import { setStudentData } from "../redux/student/studentSlice";
+import { FaSearch } from "react-icons/fa";
+import { store } from "../redux/store";
+import { ApplicationData } from "../Constants/EventLayout.json";
+import { Student } from "../Constants/PropsInventory";
 
-function DashSearchList({selected}:any) {
-  const [users, setUsers] = useState([]);
-  //const [selectedUser, setSelectedUser] = useState('');
-  const [clicked, setClicked] = useState<number>()
-  const { currentUser } = useSelector((state: any) => state.user);
-  const dispatch = useDispatch()
-  
+// type ListProp = {
+//     FirstName: string,
+//       LastName: string,
+//       IdNumber: string,
+//       Grade: string,
+//       Gender: string,
+//       DOB: string,
+//       Email: string,
+//       PhoneNumber: string,
+//       Religion: string,
+//       Disability: string,
+//       EmergencyNumber: string,
+//       Race: string,
+//       HomeNumber: string,
+//       Country: string,
+//   }
+
+// type DashSearchListProp = {
+//   selected: (value: Student) => void;
+// };
+
+function DashSearchList() {
+  type RootProp = ReturnType<typeof store.getState>;
+  const [, setUsers] = useState([]);
+  const [clicked, setClicked] = useState<number>();
+  const { currentUser } = useSelector((state: RootProp) => state.user);
+  const [data, setData] = useState(ApplicationData);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const fetchUsers = async () => {
       const res = await fetch("http://127.0.0.1:4001/data/studemt/get/all");
@@ -25,173 +51,98 @@ function DashSearchList({selected}:any) {
     fetchUsers();
   }, [currentUser]);
 
-  const list = [
-    {
-      FirstName: "Siyabonga",
-      LastName: "Shezi",
-      IdNumber: "0210245686089",
-      Grade: "Grade 10",
-      Gender: "Male",
-      DOB: "2002-10-24",
-      Email: "syahshezi3000@gmail.com",
-      PhoneNumber: "068-249-0617",
-      Religion: "Christian",
-      Disability: "None",
-      EmergencyNumber: "078-844-7447",
-      Race: "African",
-      HomeNumber: "067-902-7763",
-      Country: "South Africa",
-    },
-    {
-      FirstName: "Thabiso",
-      LastName: "Zulu",
-      IdNumber: "0210245686089",
-      Grade: "Grade 10",
-      Gender: "Male",
-      DOB: "2002-10-24",
-      Email: "syahshezi3000@gmail.com",
-      PhoneNumber: "068-249-0617",
-      Religion: "Christian",
-      Disability: "None",
-      EmergencyNumber: "078-844-7447",
-      Race: "African",
-      HomeNumber: "067-902-7763",
-      Country: "South Africa",
-    },
-    {
-      FirstName: "Nombani",
-      LastName: "Sishi",
-      IdNumber: "0210245686089",
-      Grade: "Grade 10",
-      Gender: "Male",
-      DOB: "2002-10-24",
-      Email: "syahshezi3000@gmail.com",
-      PhoneNumber: "068-249-0617",
-      Religion: "Christian",
-      Disability: "None",
-      EmergencyNumber: "078-844-7447",
-      Race: "African",
-      HomeNumber: "067-902-7763",
-      Country: "South Africa",
-    },
-    {
-      FirstName: "Siyabonga",
-      LastName: "Shezi",
-      IdNumber: "0210245686089",
-      Grade: "Grade 10",
-      Gender: "Male",
-      DOB: "2002-10-24",
-      Email: "syahshezi3000@gmail.com",
-      PhoneNumber: "068-249-0617",
-      Religion: "Christian",
-      Disability: "None",
-      EmergencyNumber: "078-844-7447",
-      Race: "African",
-      HomeNumber: "067-902-7763",
-      Country: "South Africa",
-    },
-    {
-      FirstName: "Siyabonga",
-      LastName: "Shezi",
-      IdNumber: "0210245686089",
-      Grade: "Grade 10",
-      Gender: "Male",
-      DOB: "2002-10-24",
-      Email: "syahshezi3000@gmail.com",
-      PhoneNumber: "068-249-0617",
-      Religion: "Christian",
-      Disability: "None",
-      EmergencyNumber: "078-844-7447",
-      Race: "African",
-      HomeNumber: "067-902-7763",
-      Country: "South Africa",
-    },
-    {
-      FirstName: "Siyabonga",
-      LastName: "Shezi",
-      IdNumber: "0210245686089",
-      Grade: "Grade 10",
-      Gender: "Male",
-      DOB: "2002-10-24",
-      Email: "syahshezi3000@gmail.com",
-      PhoneNumber: "068-249-0617",
-      Religion: "Christian",
-      Disability: "None",
-      EmergencyNumber: "078-844-7447",
-      Race: "African",
-      HomeNumber: "067-902-7763",
-      Country: "South Africa",
-    },
-  ];
-  console.log(users);
-  
-  const onSelected = (l:any) => {
-    //console.log(l);
-    dispatch(studentSelected(l))
-    selected(l)
-    //console.log(currentStudent);
-    
-  }
+  const [searchText, setSearchText] = useState<{ text: string }>({ text: "" });
+  const handleChange = (e: React.FormEvent) => {
+    e.preventDefault();
+    const target = e.target as HTMLInputElement;
+    setSearchText({ ...searchText, [target.id]: target.value });
+  };
+  const handleSearch = () => {
+    if (!searchText.text) return setData(() => ApplicationData);
+    return setData(() =>
+      ApplicationData.filter(
+        (data) =>
+          data.FirstName.toLowerCase().includes(
+            searchText.text.toLowerCase(),
+          ) ||
+          data.IdNumber == searchText.text ||
+          data.LastName.toLowerCase().includes(searchText.text.toLowerCase()),
+      ),
+    );
+  };
+
+  const handleClick = (dataInfo: Student, index: number) => {
+    if (!dataInfo) return;
+    setClicked(index);
+    return dispatch(setStudentData(dataInfo));
+  };
 
   return (
     <>
-      <Stack
-        spacing={1}
-        className="h-[550px] w-[220px] rounded-[10px] bg-gray-300 p-[10px]"
-      >
-        <Stack direction={"row"} className="items-center justify-between">
-          <h1 className="text-[20px] font-medium">Students</h1>
-          <SlOptions size={25} className="hover:cursor-pointer" />
-        </Stack>
-        <Stack borderRadius={10}>
-          <TextField
-            size="small"
-            sx={{ borderRadius: 1 }}
-            placeholder="Search"
-            label={"Search"}
-            className="bg-[#F8F8F8] font-popins text-[12px] "
+      <div className="scroll-container relative h-full overflow-y-scroll rounded-[6px] border border-borderGray bg-default p-4 transition-all duration-300 ease-in-out">
+        <div className="flex items-center justify-between">
+          <h1 className="font-bebasNeue text-[24px] text-strongNightGreen">
+            Students
+          </h1>
+          <SlOptions size={16} className="hover:cursor-pointer" />
+        </div>
+
+        <div className="relative mt-3">
+          <input
+            type="text"
+            id="text"
+            value={searchText.text}
+            className="relative h-[40px] w-full rounded-[6px] bg-defaultBg pl-8 font-popins text-[14px] font-medium"
+            placeholder="search here"
+            onChange={handleChange}
           />
-        </Stack>
-        <Stack
-          direction={"row"}
-          justifyContent={"space-between"}
-          className="font-medium hover:cursor-pointer"
-        >
-          <p className="hover: rounded-lg px-[5px] text-[14px] transition-all duration-300 ease-in-out hover:bg-blue-400 hover:text-white">
-            sort
-          </p>
-          <p className="hover: rounded-lg px-[5px] text-[14px] transition-all duration-300 ease-in-out hover:bg-blue-400 hover:text-white">
-            filter
-          </p>
-        </Stack>
-        <Divider />
-        <Stack spacing={2} className="scroll-container h-[500px] w-[200px]">
-          {list.map((l: any, i: number) => (
-            <Button
-              variant={clicked == i ? "contained" : "outlined"}
-              onClick={() => {
-                onSelected(l);
-                setClicked(i);
-              }}
-              key={i}
-            >
-              <Stack
-                direction={"row"}
-                spacing={1}
-                className="w-full overflow-hidden truncate rounded-[10px] p-[5px] hover:cursor-pointer"
-              >
-                <div className="w-[80px] rounded-full border-[1px] border-black"></div>
-                <Stack className="w-[200px] truncate">
-                  <h1 className="text-[14px] font-medium">
-                    {l.FirstName} {l.LastName}{" "}
-                  </h1>
-                  <h2 className="text-[12px] italic">{l.IdNumber}</h2>
-                </Stack>
-              </Stack>
-            </Button>
-          ))}
-        </Stack>
-      </Stack>
+          <div className="absolute left-2 top-3 items-center">
+            <FaSearch size={18} className="absolute" onClick={handleSearch} />
+          </div>
+        </div>
+
+        <div className="scroll-container mt-3 flex h-screen flex-col gap-2 overflow-y-scroll">
+          {data.length > 0 &&
+            data.map((l: Student, i: number) => (
+              <ul onClick={() => handleClick(l, i)} key={i}>
+                <li
+                  className={`flex cursor-pointer items-center gap-2 rounded-[6px] border ${clicked == i ? "bg-nightGreen text-softWhite" : ""} border-borderGray p-2`}
+                >
+                  <div className="flex size-[40px] items-center justify-center rounded-[6px] border border-gold leading-none">
+                    <h1 className="font-bebasNeue text-[24px] tracking-wide text-gold">
+                      {l.FirstName[0]}
+                      {l.LastName[0]}
+                    </h1>
+                  </div>
+                  <div className="">
+                    <h1 className="font-popins text-[14px] font-semibold leading-none">
+                      {l.FirstName} {l.LastName}{" "}
+                    </h1>
+                    <h2 className="mt-1 text-[12px] font-medium">
+                      {l.IdNumber}
+                    </h2>
+                  </div>
+                </li>
+              </ul>
+            ))}
+          {data.length <= 0 && (
+            <div className="">
+              <h1 className="font-popins text-[18px] text-strongNightGreen">
+                No data found
+              </h1>
+            </div>
+          )}
+          <button
+            onClick={() => {
+              setData(() => ApplicationData);
+              setSearchText({ text: "" });
+            }}
+            className="mt-2 cursor-pointer rounded-[6px] border border-borderGray bg-default px-2 py-1 font-popins text-[14px] font-semibold uppercase text-strongNightGreen hover:border-hoverGold hover:bg-hoverGold hover:text-strongNightGreen"
+          >
+            reset
+          </button>
+        </div>
+      </div>
     </>
   );
 }

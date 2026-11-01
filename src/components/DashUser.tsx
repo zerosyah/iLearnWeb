@@ -1,36 +1,48 @@
-import { useEffect, useState } from 'react'
-//import LineChart from "./PieChart"
-import { useSelector } from "react-redux"
-import DashSearchList from './DashSearchList';
-import DashUserDetails from './DashUserDetails';
-import { Stack } from '@mui/material';
-//import DashUserDetails from './DashUserDetails';
+import { useDispatch, useSelector } from "react-redux";
+import DashSearchList from "./DashSearchList";
+import DashUserDetails from "./DashUserDetails";
+import { store } from "../redux/store";
+import { resetSelection } from "../redux/student/studentSlice";
 
+type RootProps = ReturnType<typeof store.getState>;
 
 export default function DashUser() {
+  const { studentData } = useSelector((state: RootProps) => state.student);
+  const dispatch = useDispatch();
 
-  //@ts-ignore
-    const [users, setUsers] = useState([])
-    const [selectedStudent, setSelectedStudent] = useState<any>()
-    const { currentUser } = useSelector((state: any) => state.user)
-    useEffect(() => {
-        const fetchUsers = async () =>{
-            const res = await fetch("/api/user/getUsers")
-            const data = await res.json()
-            if (res.ok) {
-                setUsers(data.users)
-            }
-        }
-        fetchUsers()
-    }, [currentUser])
-    //console.log("student: ", selectedStudent);
-    
+  const handleReset = () => {
+    //console.log("before: ", studentData);
+    return dispatch(resetSelection());
+    //console.log("after: ", studentData);
+  };
+
   return (
-    <div className="my-4">
-      <Stack direction={"row"} spacing={2} className="Sub-Main-Div flex justify-between">
-        <DashSearchList selected={(value: any) => setSelectedStudent(value)} />
-        {selectedStudent && <DashUserDetails selected={selectedStudent} />}
-      </Stack>
+    <div className="scroll-container h-screen w-full overflow-y-scroll">
+      <div className="card rounded-[6px] !border-none">
+        <h3 className="mb-2 font-popins text-[11px] font-semibold uppercase leading-none text-hoverGold">
+          Ilearn / Results
+        </h3>
+        <h1 className="font-bebasNeue text-[36px] leading-10 text-nightGreen md:text-[48px]">
+          Find Students
+        </h1>
+        <div className="flex items-center justify-between">
+          <h2 className="mt-2 text-[14px] font-medium text-textGray">
+            Find a learner and review their details and results
+          </h2>
+          {
+            <p
+              onClick={handleReset}
+              className="cursor-pointer rounded-[6px] border border-borderGray !bg-default px-2 py-1 font-popins text-[14px] font-semibold uppercase text-strongNightGreen hover:border-hoverGold hover:bg-hoverGold hover:text-softWhite"
+            >
+              Reset User
+            </p>
+          }
+        </div>
+      </div>
+      <div className="flex gap-6">
+        <DashSearchList />
+        {studentData && <DashUserDetails selectedUser={studentData} />}
+      </div>
     </div>
   );
 }
