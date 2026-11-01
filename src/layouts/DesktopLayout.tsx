@@ -8,11 +8,7 @@ import { useSelector } from "react-redux";
 import { UserProps } from "../Constants/PropsInventory";
 import avatar from "../assets/avatar.jpg";
 
-export default function DesktopLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function DesktopLayout({ children }: { children?: React.ReactNode }) {
   // use location hook to get tab
   const location = useLocation();
 
@@ -87,4 +83,3 @@ export default function DesktopLayout({
     </div>
   );
 }
-
