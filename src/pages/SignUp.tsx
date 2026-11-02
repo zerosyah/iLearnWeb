@@ -29,7 +29,7 @@ function SignUp() {
     try {
       setLoading(true);
       setError(false);
-      const res = await fetch("https://auth.ilearn.club/api/auth/register", {
+      const res = await fetch("https://auth.apexegdestudios.co.za/api/auth/register", {
         method: "POST",
         credentials: "include",
         headers: {
