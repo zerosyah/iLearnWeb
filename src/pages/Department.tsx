@@ -78,7 +78,7 @@ export default function Department() {
     ],
   };
   return (
-    <section className="flex h-fit flex-col gap-0 bg-coolWhite dark:bg-royalBlue">
+    <section className="flex h-screen overflow-y-auto flex-col gap-0 bg-coolWhite dark:bg-royalBlue">
       <Header />
       <div className="relative mb-4 mt-[90px] flex flex-col flex-wrap justify-evenly gap-4 self-center md:flex-row">
         {/*Grade 8 */}

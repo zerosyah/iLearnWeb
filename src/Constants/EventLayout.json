@@ -43,7 +43,7 @@
       "name": "MR. Johnson",
       "subject": "Mathematics",
       "grade": "Grade 10A",
-      "description": "97% Pass rate",
+      "description": "97%",
       "img": "test1"
     },
     {
@@ -51,7 +51,7 @@
       "name": "Mrs. Williams",
       "subject": "English",
       "grade": "Grade 9B",
-      "description": "100% Pass Rate",
+      "description": "100%",
       "img": "test2"
     },
     {
@@ -59,7 +59,7 @@
       "name": "Mr. Okonkwo",
       "subject": "Physics",
       "grade": "Grade 11A",
-      "description": "98% Pass Rate",
+      "description": "98%",
       "img": "test3"
     },
     {
@@ -67,7 +67,7 @@
       "name": "Ms. Chen",
       "subject": "Biology",
       "grade": "Grade 10C",
-      "description": "95% Pass Rate",
+      "description": "95%",
       "img": "test4"
     },
     {
@@ -75,7 +75,7 @@
       "name": "Mr. Nkosi",
       "subject": "History",
       "grade": "Grade 8D",
-      "description": "94% Pass Rate",
+      "description": "94%",
       "img": "test5"
     },
     {
@@ -83,7 +83,7 @@
       "name": "Mrs. Rodriguez",
       "subject": "Chemistry",
       "grade": "Grade 11B",
-      "description": "99% Pass Rate",
+      "description": "99%",
       "img": "test6"
     }
   ],

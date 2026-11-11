@@ -60,7 +60,7 @@ const DashViewApplicant = () => {
     },
   ];
   return (
-    <div className="min-h-screen w-full bg-[#F8F7EE]">
+    <div className="scroll-container min-h-screen w-full overflow-y-scroll bg-[#F8F7EE]">
       <section className="bg-nightGreen px-6 py-8 sm:px-8">
         <p className="font-popins text-[11px] font-medium uppercase tracking-[0.3em] text-[#EBBE5C]">
           Ilearn · admissions

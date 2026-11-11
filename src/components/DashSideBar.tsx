@@ -34,8 +34,9 @@ export default function DashSideBar() {
   const handleSignOutAccount = async () => {
     try {
       setLoading(true);
-      const res = await fetch("https://auth.ilearn.club/api/auth/logout", {
-        method: "GET",
+      const res = await fetch("https://auth.apexegdestudios.co.za/api/auth/logout", {
+        method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -185,7 +186,7 @@ export default function DashSideBar() {
           <hr className="my-1 bg-white" />
           <div
             onClick={handleSignOutAccount}
-            className={`flex items-center gap-[16px] rounded-[6px] px-2 py-1 ${tab == "logout" ? "!bg-[#e1b34d]" : ""} hover:!bg-[#b08423]`}
+            className={`flex cursor-pointer items-center gap-[16px] rounded-[6px] px-2 py-1 ${tab == "logout" ? "!bg-[#e1b34d]" : ""} hover:!bg-[#b08423]`}
           >
             <MdEmail
               size={25}

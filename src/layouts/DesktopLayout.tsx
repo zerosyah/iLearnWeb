@@ -31,7 +31,7 @@ export default function DesktopLayout({ children }: { children?: React.ReactNode
         
         {/** Greetings */}
         <div className="relative flex flex-col ">
-          <p className="font-popins text-[16px] font-semibold leading-none tracking-widest text-[#121E17] lg:text-[18px]">
+          <p className="font-popins text-[16px] font-semibold leading-none tracking-widest text-ink lg:text-[18px]">
             Hello!, {currentUser?.FirstName + " " + currentUser?.LastName}
           </p>
           <p className="mt-1 truncate font-popins text-[12px] font-medium leading-none text-textGray">
@@ -77,7 +77,7 @@ export default function DesktopLayout({ children }: { children?: React.ReactNode
         <DashSideBar />
       </div>
 
-      <div className="view-screen flex size-full min-h-0 overflow-hidden rounded-none">
+      <div className="view-screen flex size-full min-h-0 overflow-y-scroll rounded-none">
         <div className="flex size-full min-h-full">{children}</div>
       </div>
     </div>

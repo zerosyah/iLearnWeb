@@ -39,7 +39,7 @@ function SignIn() {
     if (currentUser) {
       navigate("/dashboard?tab=dash");
     }
-  }, []);
+  }, [currentUser, navigate]);
   // onchange event handler
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -57,7 +57,7 @@ function SignIn() {
       
       // api request to sign in
       const res = await fetch(
-        "https://auth.ilearn.club/api/auth/login",
+        "https://auth.apexegdestudios.co.za/api/auth/login",
         {
           method: "POST",
           credentials: "include",
@@ -156,7 +156,7 @@ function SignIn() {
         <div className="flex w-[350px] flex-col items-center">
           <div className="flex flex-row items-center justify-between gap-[100px] p-[10px]">
             <h1 className="font-popins text-[20px] font-bold">Sompukwane</h1>
-            <span className="font-robot flex cursor-pointer flex-row items-center rounded-full border bg-blue-600 px-[10px] text-[16px] font-semibold text-white">
+            <span className="flex cursor-pointer flex-row items-center rounded-full border bg-blue-600 px-[10px] font-roboto text-[16px] font-semibold text-white">
               Eng
               <LiaChevronDownSolid size={18} className="ml-[5px]" />
             </span>
@@ -175,7 +175,7 @@ function SignIn() {
                 required
                 disabled={loading}
                 onChange={handleChange}
-                className="w-full items-center font-robot text-[14px]"
+                className="w-full items-center font-roboto text-[14px]"
               />
               <TextInput
                 id="Password"
@@ -185,11 +185,11 @@ function SignIn() {
                 required
                 disabled={loading}
                 onChange={handleChange}
-                className="w-full items-center font-robot text-[14px]"
+                className="w-full items-center font-roboto text-[14px]"
               />
               <div className="">
                 <hr className="relative top-[10px] z-0 w-[200px]" />
-                <p className="relative z-10 cursor-pointer font-robot text-[14px] text-orange-600">
+                <p className="relative z-10 cursor-pointer font-roboto text-[14px] text-orange-600">
                   Forgot password?
                 </p>
               </div>
@@ -212,16 +212,16 @@ function SignIn() {
               >
                 {loading ? "Loading..." : "Sign In"}
               </Button>
-              <p className="relative -top-[10px] text-xs">
+              <p className="relative top-[-10px] text-xs">
                 I don't have an account,{" "}
                 <Link to="/signup">
-                  <span className="cursor-pointer font-robot text-[12px] text-blue-600">
+                  <span className="cursor-pointer font-roboto text-[12px] text-blue-600">
                     Sign up
                   </span>
                 </Link>
               </p>
               {visible && (
-                <p className="relative -top-[10px] text-xs text-red-600 transition-all duration-300 ease-in-out">
+                <p className="relative top-[-10px] text-xs text-red-600 transition-all duration-300 ease-in-out">
                   {error.message}
                 </p>
               )}
@@ -244,19 +244,19 @@ function SignIn() {
         </div>
       </div>
       <div className="absolute flex flex-col gap-[10px] rounded-[10px] border bg-white/60 p-[10px] text-center shadow-md backdrop-blur-md md:hidden">
-        <div className="h-[80px] w-[80px] self-center rounded-full bg-red-700">
+        <div className="size-[80px] self-center rounded-full bg-red-700">
           <img
             src={Icon}
             alt="icon"
-            className="h-full w-full rounded-full object-cover"
+            className="size-full rounded-full object-cover"
           />
         </div>
-        <div className="absolute border p-[5px] rounded-[10px] right-[10px] bg-gradient-to-t from-purple-600 to-blue-600 hover:from-cyan-600 hover:to-pink-600 text-white" onClick={() => navigate("/signup")}>
+        <div className="absolute right-[10px] rounded-[10px] border bg-gradient-to-t from-purple-600 to-blue-600 p-[5px] text-white hover:from-cyan-600 hover:to-pink-600" onClick={() => navigate("/signup")}>
           <FaUserPlus size={20} />
         </div>
-        <div className="relative flex flex-col items-center justify-center h-fit mb-[10px]">
+        <div className="relative mb-[10px] flex h-fit flex-col items-center justify-center">
           <p className="font-popins text-[28px] font-semibold">iLearn-Web</p>
-          <p className="font-pacifico text-[12px] absolute text-center bottom-[-10px]">learning made easy</p>
+          <p className="absolute bottom-[-10px] text-center font-pacifico text-[12px]">learning made easy</p>
         </div>
         <div className="">
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -291,7 +291,7 @@ function SignIn() {
               >
                 {"Continue with Google"}
               </Button>
-              <p className="pt-[10px] font-robot text-[14px] font-semibold text-orange-600 ">
+              <p className="pt-[10px] font-roboto text-[14px] font-semibold text-orange-600 ">
                 forgot password
               </p>
             </div>
@@ -305,7 +305,7 @@ function SignIn() {
               {loading ? "Loading..." : "Sign In"}
             </Button>
             {visible && (
-              <p className="relative -top-[10px] text-xs text-red-600 transition-all duration-300 ease-in-out">
+              <p className="relative top-[10px] text-xs text-red-600 transition-all duration-300 ease-in-out">
                 {error.message}
               </p>
             )}

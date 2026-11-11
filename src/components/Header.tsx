@@ -1,20 +1,22 @@
 //import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  Button,
-  Navbar,
   Avatar,
   Dropdown,
   Badge,
+  DropdownDivider
   //FooterBrand,
 } from "flowbite-react";
-import { FaMoon, FaSun } from "react-icons/fa";
+import { RiBookOpenLine } from "react-icons/ri";
+import { RootState } from "../redux/store";
 import { signOut } from "../redux/user/userSlice";
-import { toggleTheme } from "../redux/theme/themeSlice";
-import { Stack } from "@mui/material";
-//import badge from "../assets/Heros/CARD/badge.webp"
-import LogoSvg from "../SvgComponents/LogoSvg";
+// import { FaMoon, FaSun } from "react-icons/fa";
+// import { signOut } from "../redux/user/userSlice";
+// import { toggleTheme } from "../redux/theme/themeSlice";
+// import { Stack } from "@mui/material";
+// //import badge from "../assets/Heros/CARD/badge.webp"
+// import LogoSvg from "../SvgComponents/LogoSvg";
 
 // interface UserState {
 //   currentUser: { _id: string | null;
@@ -35,17 +37,17 @@ import LogoSvg from "../SvgComponents/LogoSvg";
 export default function Header() {
   //const width = window.innerWidth;
   //const height = window.innerHeight;
- // useLocation function to get path
-  const path = useLocation();
+  // useLocation function to get path
+  //const path = useLocation();
   // const location = useLocation();
 
   // get current user
-  const { currentUser } = useSelector((state: any) => state.user);
+  const { currentUser } = useSelector((state: RootState) => state.user);
 
   // navigate hook
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const { theme } = useSelector((state: any) => state.theme);
+  //const { theme } = useSelector((state: any) => state.theme);
 
   // dispatch slice
   const dispatch = useDispatch();
@@ -59,12 +61,15 @@ export default function Header() {
   // handle logout account
   const handleSignOutAccount = async () => {
     try {
-      const res = await fetch("https://auth.ilearn.club/api/auth/logout", {
-        method: "DELETE",
+      const userId = (currentUser as { _id?: string } | null)?._id;
+
+      const res = await fetch("https://auth.apexegdestudios.co.za/api/auth/logout", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId: currentUser._id }),
+        credentials: "include",
+        body: JSON.stringify({ userId }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -95,7 +100,6 @@ export default function Header() {
   // }, [location.search]);
 
   // console.log("path: ", path);
-  
 
   // const handleSubmit = (e: any) => {
   //   e.preventDefault();
@@ -107,149 +111,104 @@ export default function Header() {
   //console.log(path.pathname);
 
   return (
-    <Navbar
-      className={`absolute top-0 z-20 flex h-fit w-full items-center justify-between bg-transparent px-[5px] dark:bg-transparent md:px-0`}
-    >
-      {/* Logo */}
-      <Link to="/" className="">
-        <LogoSvg className="" />
-      </Link>
+    <section className="sticky top-0 flex min-h-[64px] w-full items-center justify-between border-b border-borderGray bg-white px-[16px] md:px-0 lg:px-[00px]">
+      {/** logo below */}
+      <div className="flex w-fit items-center gap-2">
+        <div className="flex size-[40px] items-center justify-center rounded-[6px] bg-nightGreen text-gold">
+          <RiBookOpenLine size={20} className="" />
+        </div>
+        <div className="">
+          <h1 className="font-bebasNeue text-[24px] leading-none text-nightGreen">
+            Sompukeane
+          </h1>
+          <h3 className="font-popins text-[11px] text-textGray">
+            Powered by iLearn
+          </h3>
+        </div>
+      </div>
+      {/** logo above */}
 
-      {/* Search */}
-      
+      {/** Links below */}
+      <div className="hidden w-fit md:inline-block">
+        <ul className="flex items-center gap-[24px] font-popins text-[14px] font-medium text-textGray">
+          <a href="#about" className="">
+            <li className="cursor-pointer hover:text-nightGreen">About</li>
+          </a>
+          <a href="#whyIlearn" className="">
+            <li className="cursor-pointer hover:text-nightGreen">Why iLearn</li>
+          </a>
+          <a href="#programs" className="">
+            <li className="cursor-pointer hover:text-nightGreen">Programs</li>
+          </a>
+          <a href="#educators" className="">
+            <li className="cursor-pointer hover:text-nightGreen">Educators</li>
+          </a>
+          <a href="#contact" className="">
+            <li className="cursor-pointer hover:text-nightGreen">Contact</li>
+          </a>
+        </ul>
+      </div>
 
-      {/* Sign-in */}
-
-      {/* Dark icon */}
-      <Stack
-        direction={"row"}
-        alignItems={"center"}
-        spacing={2}
-        className="flex gap-2 md:order-2"
-      >
-        <Button
-          className="hidden h-fit w-fit bg-default focus:border-none dark:bg-gray-700 lg:inline"
-          color="gray"
-          pill
-          onClick={() => dispatch(toggleTheme())}
+      {/** btn below */}
+      {currentUser ? (
+        <Dropdown
+          label={
+            <Avatar
+              alt="User settings"
+              img={( currentUser as {ProfilePicture?: string}|| null).ProfilePicture}
+              rounded
+            />
+          }
+          arrowIcon={false}
+          inline={true}
         >
-          {theme === "light" ? (
-            <FaMoon size={10} />
-          ) : (
-            <FaSun size={10} className="text-default" />
-          )}
-        </Button>
-
-        {/* Sign-in */}
-        {currentUser ? (
-          // Dropdown menu IF user is logged in
-          <Dropdown
-            label={
-              <Avatar
-                alt="User settings"
-                img={currentUser.ProfilePicture}
-                rounded
-              />
-            }
-            arrowIcon={false}
-            inline={true}
-          >
-            {/* Dropdown header IF user is logged in */}
-            <Dropdown.Header>
-              <span className="block text-sm">@{currentUser.FirstName}</span>
-              <span className="block truncate text-sm font-medium">
-                {currentUser.Email}
-              </span>
-            </Dropdown.Header>
-            <Link to={"/dashboard?tab=profile"}>
-              <Dropdown.Item>
-                Profile{" "}
-                {currentUser.IsAdmin ? (
-                  <Badge color="info" className="ml-12">
-                    admin
-                  </Badge>
-                ) : (
-                  <Badge color="pink" className="ml-12">
-                    Student
-                  </Badge>
-                )}
-              </Dropdown.Item>
-            </Link>
-            <Link to={"/dashboard?tab=dash"}>
-              <Dropdown.Item>
-                Dashboard{" "}
-                {currentUser.IsAdmin ? (
-                  <Badge color="info" className="ml-12">
-                    admin
-                  </Badge>
-                ) : (
-                  <Badge color="pink" className="ml-12">
-                    Student
-                  </Badge>
-                )}
-              </Dropdown.Item>
-            </Link>
-            <Dropdown.Item>Settings</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item onClick={handleSignOutAccount}>
-              Sign out
+          <Dropdown.Header>
+            <span className="block text-sm">@{( currentUser as {FirstName?: string}|| null).FirstName}</span>
+            <span className="block truncate text-sm font-medium">
+              {( currentUser as {Email?: string}|| null).Email}
+            </span>
+          </Dropdown.Header>
+          <Link to={"/dashboard?tab=profile"}>
+            <Dropdown.Item>
+              Profile{" "}
+              {(currentUser as {IsAdmin?:boolean}|| null).IsAdmin ? (
+                <Badge color="info" className="ml-12">
+                  admin
+                </Badge>
+              ) : (
+                <Badge color="pink" className="ml-12">
+                  Student
+                </Badge>
+              )}
             </Dropdown.Item>
-          </Dropdown>
-        ) : (
-          <Link to="/signin" className="hidden lg:inline">
-            <Button
-              outline
-              gradientDuoTone="purpleToBlue"
-              className="h-fit bg-gradient-to-r from-[#FF3C00] to-[#E800FD] font-popins font-bold uppercase md:w-[150px]"
-              size={"md"}
-            >
-              Sign-in
-            </Button>
           </Link>
-        )}
-      </Stack>
-
-      {/* Menu */}
-      <Navbar.Toggle />
-
-      {/* Collapse */}
-      <Navbar.Collapse className="absolute right-[10px] top-[80px] w-fit rounded-[10px] py-[10px] text-[18px] font-bold text-white backdrop-blur-md md:relative md:top-0 md:text-left">
-        <Navbar.Link as={"div"}>
-          <Link
-            to="/stuff"
-            className={`font-nunito text-[16px] font-bold uppercase ${path.pathname === "/stuff" ? "text-persianBlue":"text-black"}`}
-          >
-            Staff
+          <Link to={"/dashboard?tab=dash"}>
+            <Dropdown.Item>
+              Dashboard
+            </Dropdown.Item>
           </Link>
-        </Navbar.Link>
-        <Navbar.Link as={"div"}>
-          <Link
-            to="/department"
-            className={`font-nunito text-[16px] font-bold uppercase ${path.pathname === "/department" ? "text-persianBlue":"text-black"}`}
-
-          >
-            Department
+          <Link to={"/dashboard?tab=profile"}>
+            <Dropdown.Item>
+              Settings
+            </Dropdown.Item>
           </Link>
-        </Navbar.Link>
-        <Navbar.Link as={"div"}>
-          <Link
-            to="/contact"
-            className={`font-nunito text-[16px] font-bold uppercase ${path.pathname === "/contact" ? "text-persianBlue font-montserrat font-bold":"text-black"}`}
-          >
-            contact
-          </Link>
-        </Navbar.Link>
-        <Navbar.Link as={"div"} className="md:hidden">
-          <Link
-            to="/signin"
-            className={`font-nunito text-[16px] font-bold uppercase ${path.pathname === "/signin" ? "text-persianBlue":"text-black"}`}
-          >
-            Sign-in
-          </Link>
-        </Navbar.Link>
-      </Navbar.Collapse>
-    </Navbar>
+          <DropdownDivider/>
+          
+            <Dropdown.Item onClick={handleSignOutAccount}>
+              logout
+            </Dropdown.Item>
+        </Dropdown>
+      ) : (
+        <div className=" w-fit">
+          <button onClick={()=>navigate("/signin")} className="h-[40px] rounded-[6px] bg-gold px-[20px] font-popins text-[14px] font-semibold text-strongNightGreen">
+            Apply now
+          </button>
+        </div>
+      )}
+    </section>
   );
+}
+{
   /*const [time, setTime] = useState("");
   const [date, setDate] = useState("");
   const { currentUser } = useSelector((state) => state.user);
@@ -319,5 +278,146 @@ export default function Header() {
           style={{}}
         />
       </form>
+      <Navbar
+      className={`absolute top-0 z-20 flex h-fit w-full items-center justify-between bg-transparent px-[5px] dark:bg-transparent md:px-0`}
+    >
+      {/* Logo 
+      <Link to="/" className="">
+        <LogoSvg className="" />
+      </Link>
+
+      
+      
+
+      /* Sign-in *
+
+      {/* Dark icon 
+      <Stack
+        direction={"row"}
+        alignItems={"center"}
+        spacing={2}
+        className="flex gap-2 md:order-2"
+      >
+        <Button
+          className="hidden h-fit w-fit bg-default focus:border-none dark:bg-gray-700 lg:inline"
+          color="gray"
+          pill
+          onClick={() => dispatch(toggleTheme())}
+        >
+          {theme === "light" ? (
+            <FaMoon size={10} />
+          ) : (
+            <FaSun size={10} className="text-default" />
+          )}
+        </Button>
+
+        {/* Sign-in *
+        {currentUser ? (
+          // Dropdown menu IF user is logged in
+          <Dropdown
+            label={
+              <Avatar
+                alt="User settings"
+                img={currentUser.ProfilePicture}
+                rounded
+              />
+            }
+            arrowIcon={false}
+            inline={true}
+          >
+            {/* Dropdown header IF user is logged in *
+            <Dropdown.Header>
+              <span className="block text-sm">@{currentUser.FirstName}</span>
+              <span className="block truncate text-sm font-medium">
+                {currentUser.Email}
+              </span>
+            </Dropdown.Header>
+            <Link to={"/dashboard?tab=profile"}>
+              <Dropdown.Item>
+                Profile{" "}
+                {currentUser.IsAdmin ? (
+                  <Badge color="info" className="ml-12">
+                    admin
+                  </Badge>
+                ) : (
+                  <Badge color="pink" className="ml-12">
+                    Student
+                  </Badge>
+                )}
+              </Dropdown.Item>
+            </Link>
+            <Link to={"/dashboard?tab=dash"}>
+              <Dropdown.Item>
+                Dashboard{" "}
+                {currentUser.IsAdmin ? (
+                  <Badge color="info" className="ml-12">
+                    admin
+                  </Badge>
+                ) : (
+                  <Badge color="pink" className="ml-12">
+                    Student
+                  </Badge>
+                )}
+              </Dropdown.Item>
+            </Link>
+            <Dropdown.Item>Settings</Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item onClick={handleSignOutAccount}>
+              Sign out
+            </Dropdown.Item>
+          </Dropdown>
+        ) : (
+          <Link to="/signin" className="hidden lg:inline">
+            <Button
+              outline
+              gradientDuoTone="purpleToBlue"
+              className="h-fit bg-gradient-to-r from-[#FF3C00] to-[#E800FD] font-popins font-bold uppercase md:w-[150px]"
+              size={"md"}
+            >
+              Sign-in
+            </Button>
+          </Link>
+        )}
+      </Stack>
+
+      <Navbar.Toggle />
+
+     
+      <Navbar.Collapse className="absolute right-[10px] top-[80px] w-fit rounded-[10px] py-[10px] text-[18px] font-bold text-white backdrop-blur-md md:relative md:top-0 md:text-left">
+        <Navbar.Link as={"div"}>
+          <Link
+            to="/stuff"
+            className={`font-nunito text-[16px] font-bold uppercase ${path.pathname === "/stuff" ? "text-persianBlue":"text-black"}`}
+          >
+            Staff
+          </Link>
+        </Navbar.Link>
+        <Navbar.Link as={"div"}>
+          <Link
+            to="/department"
+            className={`font-nunito text-[16px] font-bold uppercase ${path.pathname === "/department" ? "text-persianBlue":"text-black"}`}
+
+          >
+            Department
+          </Link>
+        </Navbar.Link>
+        <Navbar.Link as={"div"}>
+          <Link
+            to="/contact"
+            className={`font-nunito text-[16px] font-bold uppercase ${path.pathname === "/contact" ? "text-persianBlue font-montserrat font-bold":"text-black"}`}
+          >
+            contact
+          </Link>
+        </Navbar.Link>
+        <Navbar.Link as={"div"} className="md:hidden">
+          <Link
+            to="/signin"
+            className={`font-nunito text-[16px] font-bold uppercase ${path.pathname === "/signin" ? "text-persianBlue":"text-black"}`}
+          >
+            Sign-in
+          </Link>
+        </Navbar.Link>
+      </Navbar.Collapse>
+    </Navbar>
     */
 }

@@ -112,11 +112,6 @@ select:focus {
     }
 }
 
-
-
-
-
-
 .scroll-container {
     overflow-y: auto;
     scrollbar-gutter: stable;
@@ -222,7 +217,7 @@ select:focus {
 }
 .content {
     position: absolute;
-    inset: 0;
+    inset: 0; 
     width: 100%;
     height: 100%;
     padding: 25px 10px 65px;
@@ -310,7 +305,7 @@ select:focus {
     grid-template-columns: 15% 1fr;
     grid-template-rows: 9% 1fr;
     grid-template-areas: "side header" "side view";
-    gap: 16px;
+    gap: 8px;
     min-width: 0;
 }
 .header {
@@ -336,7 +331,7 @@ select:focus {
     height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: max-content max-content repeat(2, minmax(0, 1fr));
     grid-template-areas: 
     "c1 c1 c1 c1"
     "c2 c3 c4 c5"
@@ -347,6 +342,7 @@ select:focus {
 }
 .card:nth-child(1){
     grid-area: c1;
+    border: none;
 }
 .card:nth-child(2){
     grid-area: c2;
@@ -369,7 +365,7 @@ select:focus {
 .card{
     border-radius: 6px;
     border: 1px solid #DEE3DF;
-    padding: 20px;
+    padding: 5px;
 }
 .screen {
     height: 100%;

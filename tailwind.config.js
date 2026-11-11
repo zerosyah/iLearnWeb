@@ -60,14 +60,20 @@ export default {
         defaultGreenHsl: "hsl(182, 94.4%, 14.1%)",
         defaultGreen: "#24FC1C",
 
-        nightGreen: "#113022",
-        strongNightGreen: "#0A2519",
         gold: "#E1B34D",
         hoverGold: "#B08423",
-        softWhite: "#BAC4BE",
+        nightGreen: "#113022",
+        strongNightGreen: "#0A2519",
+        offWhite: "#F7F5EC",
+        white: "#FFFFFF",
         borderGray: "#DEE3DF",
         textGray: "#5F6D65",
+        ink: "#121E17",
+        lightBlue: "#EDF6FB",
+        softLight: "#E1EFF7",
+        softWhite: "#BAC4BE",
         defaultBg: "#F1F5F1"
+
       },
     },
   },

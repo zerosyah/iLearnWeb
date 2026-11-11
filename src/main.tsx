@@ -11,7 +11,7 @@ import ThemeProvider from './components/ThemeProvider.tsx'
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <Provider store={store}>
-  <PersistGate persistor={ persistor } loading={null} >
+  <PersistGate persistor={persistor} loading={null}>
     <ThemeProvider>
     <App />
     </ThemeProvider>

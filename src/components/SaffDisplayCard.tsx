@@ -12,7 +12,7 @@ import img8 from "../assets/staff/staff8.webp";
 import img9 from "../assets/staff/staff9.webp";
 import img10 from "../assets/staff/staff10.webp";
 
-function StaffDisplayCard({
+function  StaffDisplayCard({
   image,
   name,
   description,
@@ -36,8 +36,8 @@ function StaffDisplayCard({
   const [isHovered, setIsHovered] = React.useState(false);
 
   const containerAnimationStyle = {
-    scale: isHovered ? 1.03 : 1,
-    y: isHovered ? -6 : 0,
+    scale: isHovered ? 1 : 1,
+    y: isHovered ? 0 : 0,
     transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1], easeInOut },
   };
 

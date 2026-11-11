@@ -28,6 +28,8 @@ import { News } from "../Constants/NewsLayout.json";
 import { Events } from "../Constants/EventLayout.json";
 import { Link, useNavigate } from "react-router-dom";
 import { FaGraduationCap } from "react-icons/fa6";
+import DashBarChart from "../DashComponents/DashBarChart";
+import { RootState } from "../redux/store";
 
 type Props = {
   label?: string;
@@ -43,10 +45,11 @@ type RecentProps = {
   Score?: number;
   Total?: number;
 };
+
 export default function DashComponent() {
-  const { currentUser } = useSelector((state: any) => state.user);
+  const { currentUser } = useSelector((state: RootState) => state.user);
   const [subject, setSubject] = useState<string>("Mathematics");
-  const [progressData, setProgressData] = useState<any>([]);
+  const [progressData, setProgressData] = useState<string[]>([]);
 
   const list = ["live", "attend", "deadline"];
   const [currentState, setCurrentState] = useState<string>("live");
@@ -94,15 +97,15 @@ export default function DashComponent() {
   }, [subject]);
 
   const Navigate = useNavigate();
-  console.log(currentUser.Role);
+  console.log((currentUser as { Role?:string}| null)?.Role);
 
   return (
     <Box
       component={"section"}
       className="h-full w-[100%] justify-between overflow-y-hidden"
     >
-      {currentUser?.Role == "Student" && currentUser?.IsComplete ? (
-        <Stack direction={"row"} className="w-[100%]" spacing={1}>
+      {((currentUser as { Role?:string}| null)?.Role) == "Student" && (currentUser as { IsComplete?:boolean } | null)?.IsComplete ? (
+        <Stack direction={"row"} className="w-full" spacing={1}>
           {/* Right Section */}
           <Stack
             spacing={1}
@@ -115,25 +118,25 @@ export default function DashComponent() {
               className="overflow-x-hidden rounded-[10px] bg-primary p-[5px] shadow-sm shadow-black"
             >
               <img
-                src={currentUser?.ProfilePicture}
+                src={(currentUser as { ProfilePicture?:string}| null)?.ProfilePicture}
                 alt="Profile Picture"
                 className="h-[50px] w-[50px] rounded-full border border-default object-cover p-[2px]"
               />
               <Stack direction={"column"} className="">
                 <h1 className="font-roboto text-[20px] font-semibold text-default">
-                  {currentUser?.FirstName + " " + currentUser?.LastName}
+                  {(currentUser as { FirstName?:string}| null)?.FirstName} {(currentUser as { LastName?:string}| null)?.LastName}
                 </h1>
                 <Stack spacing={1} direction={"row"} className="items-center">
                   <p className="font-inter text-[14px] font-medium text-secondary">
-                    ID: {currentUser?.IdNumber}
+                    ID: {(currentUser as { IdNumber?:string}| null)?.IdNumber}
                   </p>
                   <Divider orientation="vertical" className="bg-black" />
                   <p className="font-Popins text-[14px] font-medium text-secondary">
-                    Email: {currentUser?.Email}
+                    Email: {(currentUser as { Email?:string}| null)?.Email}
                   </p>
                   <Divider orientation="vertical" className="bg-black" />
                   <p className="font-inter text-[14px] font-medium text-secondary">
-                    Phone: {currentUser?.Phone}
+                    Phone: {(currentUser as { Phone?:string}| null)?.Phone}
                   </p>
                   <Divider orientation="vertical" className="bg-black" />
                   <p className="font-inter text-[14px] font-medium text-secondary">
@@ -174,7 +177,7 @@ export default function DashComponent() {
                   className="scroll-container h-[80%] overflow-y-auto rounded-[10px]"
                 >
                   {progressData.length > 0 ? (
-                    progressData.map((item: Props, index: number) => (
+                    progressData.map((item, index: number) => (
                       <DashProgressCard
                         BarColor={item?.BarColor}
                         BarNumber={item?.BarNumber}
@@ -381,8 +384,8 @@ export default function DashComponent() {
           </Stack>
         </Stack>
       ) : (
-        !currentUser.IsComplete &&
-        currentUser.Role == "Student" && (
+        !(currentUser as { IsComplete?:boolean } | null)?.IsComplete &&
+        (currentUser as { Role?:string}| null)?.Role == "Student" && (
           <Stack
             alignItems={"center"}
             justifyContent={"center"}
@@ -403,9 +406,10 @@ export default function DashComponent() {
         )
       )}
 
-      {currentUser?.Role == "admin" && (
+      {((currentUser as { Role?:string}| null)?.Role) == "admin" && (
         <div className="dash size-full bg-transparent">
-          <div className="card rounded-[6px] !border-none">
+          {/** First section intro */}
+          <div className="card !mb-0 rounded-[6px] !pb-0">
             <h3 className="mb-2 font-popins text-[11px] font-semibold uppercase leading-none text-hoverGold">
               Ilearn / Dashboard
             </h3>
@@ -413,14 +417,18 @@ export default function DashComponent() {
               Dashboard
             </h1>
             <div className="flex items-center justify-between">
-              <h2 className="mt-2 text-[14px] font-medium text-textGray">
-              School at glance
-            </h2>
-            <Link to={`/dashboard?tab=applications`}>
-            <p className="cursor-pointer rounded-[6px] border border-borderGray px-2 py-1 font-popins text-[14px] font-semibold uppercase text-strongNightGreen hover:border-hoverGold hover:bg-hoverGold hover:text-softWhite">Register Student</p>
-            </Link>
+              <h2 className=" text-[14px] font-medium text-textGray">
+                School at glance
+              </h2>
+              <Link to={`/dashboard?tab=applications`}>
+                <p className="cursor-pointer rounded-[6px] border border-borderGray px-2 py-1 font-popins text-[14px] font-semibold uppercase text-strongNightGreen hover:border-hoverGold hover:bg-hoverGold hover:text-softWhite">
+                  Register Student
+                </p>
+              </Link>
             </div>
           </div>
+
+          {/** Card for total applications */}
           <div className="card rounded-[6px] !bg-nightGreen">
             <div className="flex items-center justify-between">
               <h2 className="font-popins text-[11px] font-semibold uppercase text-softWhite">
@@ -428,7 +436,7 @@ export default function DashComponent() {
               </h2>
               <IoDocumentTextOutline size={20} className="text-gold" />
             </div>
-            <h1 className="mt-5 font-bebasNeue text-[36px] tracking-wide text-gold md:text-[48px]">
+            <h1 className="mt-2 font-bebasNeue text-[36px] tracking-wide text-gold md:text-[48px]">
               4328
             </h1>
             <div className="h-[4px] w-[32px] rounded-full bg-gold " />
@@ -440,7 +448,7 @@ export default function DashComponent() {
               </h2>
               <FaGraduationCap size={20} className="text-gold" />
             </div>
-            <h1 className="mt-5 font-bebasNeue text-[36px] tracking-wide text-strongNightGreen md:text-[48px]">
+            <h1 className="mt-3 font-bebasNeue text-[36px] tracking-wide text-strongNightGreen md:text-[48px]">
               1248
             </h1>
             <div className="h-[4px] w-[32px] rounded-full bg-[#E1EFF7]" />
@@ -452,7 +460,7 @@ export default function DashComponent() {
               </h2>
               <FaUsers size={20} className="text-gold" />
             </div>
-            <h1 className="mt-5 font-bebasNeue text-[36px] tracking-wide text-strongNightGreen md:text-[48px]">
+            <h1 className="mt-3 font-bebasNeue text-[36px] tracking-wide text-strongNightGreen md:text-[48px]">
               120
             </h1>
             <div className="h-[4px] w-[32px] rounded-full bg-[#E1EFF7]" />
@@ -464,31 +472,48 @@ export default function DashComponent() {
               </h2>
               <FaBookReader size={20} className="text-gold" />
             </div>
-            <h1 className="mt-5 font-bebasNeue text-[36px] tracking-wide text-strongNightGreen md:text-[48px]">
+            <h1 className="mt-3 font-bebasNeue text-[36px] tracking-wide text-strongNightGreen md:text-[48px]">
               68
             </h1>
             <div className="h-[4px] w-[32px] rounded-full bg-[#E1EFF7]" />
           </div>
+
           <div className="card rounded-[6px] shadow-md shadow-borderGray">
             <div className="flex items-center justify-between">
               <div className="">
-                <h1 className="font-bebasNeue text-[24px] text-nightGreen">Attendance</h1>
-                <p className="mt-1 font-popins text-[12px] font-medium text-textGray">This week. Mon - Fri </p>
+                <h1 className="font-bebasNeue text-[24px] text-nightGreen">
+                  Attendance
+                </h1>
+                <p className="mt-1 font-popins text-[12px] font-medium text-textGray">
+                  This week. Mon - Fri{" "}
+                </p>
               </div>
               <div className="flex flex-col items-end">
-                <h1 className="font-bebasNeue text-[36px] leading-none text-nightGreen">94.22%</h1>
-                <p className="mt-0.5 font-popins text-[12px] font-medium text-green-500">+2.5% this week</p>
+                <h1 className="font-bebasNeue text-[36px] leading-none text-nightGreen">
+                  94.22%
+                </h1>
+                <p className="mt-0.5 font-popins text-[12px] font-medium text-green-500">
+                  +2.5% this week
+                </p>
               </div>
             </div>
+            <div className="size-full">
+              <DashBarChart />
+            </div>
           </div>
+
           <div className="card rounded-[6px] !border-none !p-0">
             <div className="flex items-center justify-between">
               <div className="">
-                <h1 className="font-bebasNeue text-[24px] text-nightGreen">Recent Activity</h1>
+                <h1 className="font-bebasNeue text-[24px] text-nightGreen">
+                  Recent Activity
+                </h1>
               </div>
               <div className="flex items-center">
                 <Link to={`/dashboard?tab=applications`}>
-                <h1 className="font-bebasNeue leading-none text-[14pxpx] text-hoverGold">Applications </h1> 
+                  <h1 className="font-bebasNeue leading-none text-[14pxpx] text-hoverGold">
+                    Applications{" "}
+                  </h1>
                 </Link>
               </div>
             </div>

@@ -8,7 +8,7 @@ import { GoDotFill } from "react-icons/go";
 type Props = {
     label?: string,
     BarColor?: string,
-    BarNumber?: any,
+    BarNumber?: number | null,
     Date?: string,
     Dot?: boolean
 }
@@ -19,7 +19,7 @@ function DashProgressCard({ label, BarColor, BarNumber, Date, Dot }: Props) {
     <Box sx={{
       paddingX: "5px"
     }}>
-      <Stack spacing={0.5} className={`"rounded-[10px] bg-pcard p-[5px] ${Dot ? "border-scards shadow-md shadow-secondary border rounded-[10px]": "rounded-[10px]"}`}>
+      <Stack spacing={0.5} className={`rounded-[10px] bg-pcard p-[5px] ${Dot ? "rounded-[10px] border border-scards shadow-md shadow-secondary": "rounded-[10px]"}`}>
         <Stack
           direction={"row"}
           spacing={1}
