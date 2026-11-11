@@ -1,5 +1,5 @@
 import { Box, Stack } from '@mui/material'
-import { Progress } from 'flowbite-react';
+//import { Progress } from 'flowbite-react';
 import { FaCalendar } from "react-icons/fa";
 import { MdSubject } from "react-icons/md";
 import { GoDotFill } from "react-icons/go";
@@ -8,12 +8,12 @@ import { GoDotFill } from "react-icons/go";
 type Props = {
     label?: string,
     BarColor?: string,
-    BarNumber?: number | null,
+    BarNumber?: number,
     Date?: string,
     Dot?: boolean
 }
 
-function DashProgressCard({ label, BarColor, BarNumber, Date, Dot }: Props) {
+function DashProgressCard({ label, Date, Dot }: Props) {
     // const [subject, setSubject] = React.useState<any>("");
   return (
     <Box sx={{
@@ -39,7 +39,7 @@ function DashProgressCard({ label, BarColor, BarNumber, Date, Dot }: Props) {
           </span>
         </Stack>
         <Stack className="w-[80%]">
-          <Progress color={BarColor} progress={BarNumber} size={"sm"} />
+          
         </Stack>
         <Stack direction={"row"} spacing={1} alignItems={"center"}>
           <FaCalendar size={14} className="" />
@@ -51,3 +51,8 @@ function DashProgressCard({ label, BarColor, BarNumber, Date, Dot }: Props) {
 }
 
 export default DashProgressCard
+
+
+/**
+ * <Progress color={BarColor} progress={BarNumber} size={"sm"} />
+ */
