@@ -38,7 +38,7 @@ function DashProgressCard({ label, Date, Dot }: Props) {
             <GoDotFill size={20} color={Dot ? "red" : "gray"} />
           </span>
         </Stack>
-        <Stack className="w-[80%]">
+        <Stack className="w-4/5">
           
         </Stack>
         <Stack direction={"row"} spacing={1} alignItems={"center"}>

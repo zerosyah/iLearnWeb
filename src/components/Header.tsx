@@ -111,9 +111,9 @@ export default function Header() {
   //console.log(path.pathname);
 
   return (
-    <section className="sticky top-0 flex min-h-[64px] w-full items-center justify-between border-b border-borderGray bg-white px-[16px] md:px-0 lg:px-[00px]">
+    <section className="sticky top-0 z-10 flex min-h-[64px] w-full items-center justify-between border-b border-borderGray bg-white px-[16px] md:px-0 lg:px-[00px]">
       {/** logo below */}
-      <div className="flex w-fit items-center gap-2">
+      <div onClick={()=>navigate("/")} className="flex w-fit cursor-pointer items-center gap-2">
         <div className="flex size-[40px] items-center justify-center rounded-[6px] bg-nightGreen text-gold">
           <RiBookOpenLine size={20} className="" />
         </div>
@@ -143,9 +143,9 @@ export default function Header() {
           <a href="#educators" className="">
             <li className="cursor-pointer hover:text-nightGreen">Educators</li>
           </a>
-          <a href="#contact" className="">
+          <Link to="/contact" className="">
             <li className="cursor-pointer hover:text-nightGreen">Contact</li>
-          </a>
+          </Link>
         </ul>
       </div>
 
@@ -201,7 +201,7 @@ export default function Header() {
       ) : (
         <div className=" w-fit">
           <button onClick={()=>navigate("/signin")} className="h-[40px] rounded-[6px] bg-gold px-[20px] font-popins text-[14px] font-semibold text-strongNightGreen">
-            Apply now
+            login now
           </button>
         </div>
       )}

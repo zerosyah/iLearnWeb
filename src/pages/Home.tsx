@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import { FaArrowRight, FaUsers } from "react-icons/fa";
 import hero from "../assets/Heros/hero.jpg";
-import { LuQuote, LuSparkles, LuTrophy } from "react-icons/lu";
+import { LuQuote, LuSparkles } from "react-icons/lu";
 import digitalClass from "../assets/programs/digitalClass.jpg";
 import schoolComputer from "../assets/programs/school-computer.jpg";
 import schoolLibrary from "../assets/programs/school-library.jpg";
@@ -13,10 +13,12 @@ import {
 } from "../Constants/EventLayout.json";
 import { FaGraduationCap } from "react-icons/fa6";
 import { RiBookOpenLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 //import {} from "../as"
 
 export default function Home() {
+  const navigate = useNavigate();
   return (
     <section className="scroll-container relative mx-auto flex h-screen min-h-0 w-full flex-col overflow-y-auto bg-white lg:max-w-[1152px]">
       <div className="sticky top-0 z-50 w-full bg-white">
@@ -37,12 +39,12 @@ export default function Home() {
             supported end to end by the iLearn platform.
           </p>
           <div className="my-[28px] flex items-center  gap-5">
-            <button className="flex h-[40px] items-center gap-3 rounded-[6px] bg-gold px-[20px] font-popins text-[14px] font-semibold text-strongNightGreen shadow-sm">
+            <button onClick={()=> navigate("/register")} className="flex h-[40px] items-center gap-3 rounded-[6px] bg-gold px-[20px] font-popins text-[14px] font-semibold text-strongNightGreen shadow-sm">
               Apply now <FaArrowRight size={20} />
             </button>
-            <button className="flex h-[40px] items-center gap-3 rounded-[6px] border bg-white px-[20px] font-popins text-[14px] font-semibold text-strongNightGreen shadow-sm">
+            <a href="#programs"  className="flex h-[40px] items-center gap-3 rounded-[6px] border bg-white px-[20px] font-popins text-[14px] font-semibold text-strongNightGreen shadow-sm">
               Explore Programs
-            </button>
+            </a>
           </div>
         </div>
 
@@ -343,13 +345,57 @@ export default function Home() {
       </section>
       <section className="border-b border-borderGray bg-white px-[16px] py-[24px] md:px-[24px] lg:px-0">
         <h3 className="font-popins text-[11px] font-semibold uppercase leading-none tracking-[0.3em] text-gold">
+          Study pathways
+        </h3>
+        <h1 className="mt-3 font-bebasNeue text-[30px] leading-none text-nightGreen lg:text-[36px]">
+          Departments & pathways
+        </h1>
+        <div className="mt-4 flex flex-col items-center justify-between md:flex-row">
+          <p className="font-popins text-[14px] text-textGray">
+          Explore example subject combinations by grade and study pathway.
+        </p>
+        <button onClick={()=> navigate("/department")} className="flex items-center gap-4 rounded-[6px] border px-2 py-1 font-popins text-[14px] font-semibold text-ink shadow-sm shadow-textGray">Explore Departments <FaArrowRight size={14} /></button>
+        </div>
+        <div className="mt-5 grid grid-cols-1 gap-[16px] md:grid-cols-2 lg:grid-cols-4">
+          <div className="border-l-2 border-hoverGold bg-lightBlue p-[16px]">
+            <h1 className="font-bebasNeue text-[20px] leading-none">Grade 8</h1>
+            <h3 className="mt-2 font-popins text-[13px] font-semibold uppercase leading-none text-hoverGold">core</h3>
+            <p className="mt-3 font-popins text-[12px]">
+              Mathematics · English · IsiZulu · Life Orientation
+            </p>
+          </div>
+          <div className="border-l-2 border-hoverGold bg-lightBlue p-[16px]">
+            <h1 className="font-bebasNeue text-[20px] leading-none">Grade 9</h1>
+            <h3 className="mt-2 font-popins text-[13px] font-semibold uppercase leading-none text-hoverGold">core</h3>
+            <p className="mt-3 font-popins text-[12px]">
+              Mathematics · English · IsiZulu · Life Orientation
+            </p>
+          </div>
+          <div className="border-l-2 border-hoverGold bg-lightBlue p-[16px]">
+            <h1 className="font-bebasNeue text-[20px] leading-none">Grade 10</h1>
+            <h3 className="mt-2 font-popins text-[13px] font-semibold uppercase leading-none text-hoverGold">commerce</h3>
+            <p className="mt-3 font-popins text-[12px]">
+              Mathematics · English · IsiZulu · Accounting
+            </p>
+          </div>
+          <div className="border-l-2 border-hoverGold bg-lightBlue p-[16px]">
+            <h1 className="font-bebasNeue text-[20px] leading-none">Grade 10</h1>
+            <h3 className="mt-2 font-popins text-[13px] font-semibold uppercase leading-none text-hoverGold">General</h3>
+            <p className="mt-3 font-popins text-[12px]">
+              Mathematics Lit · English · IsiZulu · Geography
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="educators" className="border-b border-borderGray bg-white px-[16px] py-[24px] md:px-[24px] lg:px-0">
+        <h3 className="font-popins text-[11px] font-semibold uppercase leading-none tracking-[0.3em] text-gold">
           Announcements
         </h3>
         <div className="flex w-full items-center justify-between gap-2">
           <h1 className="mt-3 font-bebasNeue text-[30px] leading-none text-nightGreen lg:text-[36px]">
             Educators of the year
           </h1>
-          <LuTrophy size={32} className="text-gold" />
+          <button onClick={()=> navigate("/stuff")} className="flex items-center gap-4 rounded-[6px] border px-2 py-1 font-popins text-[14px] font-semibold text-ink shadow-sm shadow-textGray">Meet the staff <FaArrowRight size={14} /></button>
         </div>
         <p className="mt-4 font-popins text-[14px]">
           Celebrating the teachers behind our results.
@@ -469,10 +515,10 @@ export default function Home() {
       <section id="educators" className="border-b border-borderGray bg-white px-[16px] py-[24px] md:px-[24px] lg:px-0">
         <div className="flex flex-col items-center justify-center rounded-[6px] bg-nightGreen py-[48px]">
           <FaGraduationCap size={48} className="mx-auto text-gold" />
-          <h1 className="mt-3 font-bebasNeue text-[30px] leading-none text-white md:text-[48px] ">
+          <h1 className="mt-3 text-center font-bebasNeue text-[30px] leading-none text-white md:text-[48px] ">
             Ready to run your school on iLearn?
           </h1>
-          <p className="mt-3 font-popins text-[14px] leading-none text-white/60">
+          <p className="mt-3 text-center font-popins text-[14px] leading-none text-white/60">
             Admissions, learners, staff and results — one platform for the whole
             school.
           </p>
@@ -484,14 +530,14 @@ export default function Home() {
       <section id="contact" className="py-[16px]">
         <div className="flex items-center justify-between border-b border-borderGray py-[16px]">
           <div className="flex w-fit items-center gap-2">
-          <div className="flex size-[40px] items-center justify-center rounded-[6px] bg-nightGreen text-gold">
+          <div className="flex size-[40px] items-center justify-center rounded-[6px] bg-nightGreen text-center text-gold">
             <RiBookOpenLine size={20} className="" />
           </div>
           <div className="">
             <h1 className="font-bebasNeue text-[24px] leading-none text-nightGreen">
               Sompukeane
             </h1>
-            <h3 className="font-popins text-[11px] text-textGray">
+            <h3 className="text-center font-popins text-[11px] text-textGray">
               Better learners, brighter futures
             </h3>
           </div>

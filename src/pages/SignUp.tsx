@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextInput, Button } from "flowbite-react";
 import { HiMail, HiUser, HiLockClosed } from "react-icons/hi";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Header from "../components/Header";
+import { RootState } from "../redux/store";
 
 function SignUp() {
   const [formData, setFormData] = useState<object>({});
@@ -11,20 +11,21 @@ function SignUp() {
   const [error, setError] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const navigate = useNavigate();
-  const { currentUser } = useSelector((state: any) => state.user);
+  const { currentUser } = useSelector((state: RootState) => state.user);
   useEffect(() => {
     if (currentUser) {
       navigate("/dashboard?tab=dash");
     }
-  }, []);
+  }, [currentUser, navigate]);
 
   // onchange event handler
-  const handleChange = (e: any) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+  const handleChange = (e: React.FormEvent) => {
+    const target = e.target as HTMLInputElement
+    setFormData({ ...formData, [target.id]: target.value });
   };
 
   // onsubmit event handler
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       setLoading(true);
@@ -53,12 +54,12 @@ function SignUp() {
     }
   };
   return (
-    <div className="parent">
-      <Header />
-      <div className="main-child relative top-[80px] flex flex-col items-center gap-6 px-5 pb-[10px] pt-10 md:top-[20px] md:flex-row md:pt-20">
-        <div className="child w-full">
+    // eslint-disable-next-line tailwindcss/no-custom-classname
+    <div className="parent w-[1156px]">
+      <div className="relative top-[80px] flex flex-col items-center gap-6 px-5 pb-[10px] pt-10 md:top-[20px] md:flex-row md:pt-20">
+        <div className=" w-full">
           <div className="">
-            <h1 className="text-[28px] font-robot font-bold">Hello, Friend!</h1>
+            <h1 className="font-roboto text-[28px] font-bold">Hello, Friend!</h1>
           </div>
           <div className="">
             <p className="font-popins text-[16px]">
@@ -66,15 +67,15 @@ function SignUp() {
               your progress, and join class activities. It only takes a minute
               to get started.
             </p>
-            <p className="text-teal-600 font-popins text-[16px] ">
+            <p className="font-popins text-[16px] text-teal-600 ">
               have an account?{" "}
-              <Link to="/signin" className="text-blue-500 underline font-popins text-[16px] font-medium">
+              <Link to="/signin" className="font-popins text-[16px] font-medium text-blue-500 underline">
                 Sign in
               </Link>
             </p>
           </div>
         </div>
-        <div className="child flex w-full flex-col gap-4 md:px-10">
+        <div className="flex w-full flex-col gap-4 md:px-10">
           <h1 className="pb-2 text-center text-2xl font-bold uppercase">
             sign-UP
           </h1>
