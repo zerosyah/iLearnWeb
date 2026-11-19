@@ -31,16 +31,10 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/about" element={<About />} />
-        // department route
-        //stuff route
-        // search route
         <Route path="/search" element={<Search />} />
-        // register route
         <Route element={<PrivateRoute/>}>
           <Route path="/register" element={<FormalForm />} />
         </Route>
-        // contact route
-        // private profile route
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>

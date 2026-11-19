@@ -111,7 +111,7 @@ export default function Header() {
   //console.log(path.pathname);
 
   return (
-    <section className="sticky top-0 z-10 flex min-h-[64px] w-full items-center justify-between border-b border-borderGray bg-white px-[16px] md:px-0 lg:px-[00px]">
+    <section className="sticky top-0 z-10 flex min-h-[64px] w-full items-center justify-between border-b border-borderGray bg-white px-[16px] md:px-0 lg:px-[108px]">
       {/** logo below */}
       <div onClick={()=>navigate("/")} className="flex w-fit cursor-pointer items-center gap-2">
         <div className="flex size-[40px] items-center justify-center rounded-[6px] bg-nightGreen text-gold">

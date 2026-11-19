@@ -77,7 +77,7 @@ export default function DesktopLayout({ children }: { children?: React.ReactNode
         <DashSideBar />
       </div>
 
-      <div className="view-screen flex size-full min-h-0 overflow-y-scroll rounded-none">
+      <div className="view-screen scroll-container flex size-full min-h-0 overflow-y-scroll rounded-none">
         <div className="flex size-full min-h-full">{children}</div>
       </div>
     </div>

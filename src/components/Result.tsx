@@ -124,7 +124,7 @@ export default function Result() {
 
     try {
       const res = await fetch(
-        `https://mark.ilearn.club/data/student/marks/${formData.StudentId}/${formData.Grade}/${formData.StudentSubject}`,
+        `https://mark.apexegdestudios.co.za/data/student/marks/${formData.StudentId}/${formData.Grade}/${formData.StudentSubject}`,
         { credentials: "include" },
       );
       const data = await res.json();
@@ -200,8 +200,8 @@ export default function Result() {
           )}
 
           {!searching && student && display && found && (
-            <p className="cursor-pointer rounded-[6px] border border-borderGray !bg-default px-2 py-1 font-popins text-[14px] font-semibold uppercase text-strongNightGreen hover:border-hoverGold hover:bg-hoverGold hover:text-softWhite">
-              Preview · connected to learner records
+            <p className="flex cursor-pointer items-center gap-2 rounded-[6px] border border-defaultGreen !bg-default px-2 py-1 font-popins  text-[14px] font-semibold uppercase hover:border-hoverGold">
+              Preview · <p className="text-defaultGreen/70">connected to learner records</p>
             </p>
           )}
         </div>

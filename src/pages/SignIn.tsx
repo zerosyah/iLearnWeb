@@ -7,6 +7,7 @@ import {
   FaTwitter,
   FaWhatsapp,
   FaUserPlus,
+  FaHome,
 } from "react-icons/fa";
 import { LiaChevronDownSolid } from "react-icons/lia";
 import { useNavigate, Link } from "react-router-dom";
@@ -142,13 +143,11 @@ function SignIn() {
                 className="rounded-full font-popins text-[18px]"
                 gradientDuoTone={"purpleToBlue"}
                 onClick={() =>
-                  linkTree(
-                    "https://web.facebook.com/profile.php?id=100083533804483",
-                  )
+                  navigate("/")
                 }
                 //outline={true}
               >
-                Join Us
+                home
               </Button>
             </div>
           </div>
@@ -251,8 +250,13 @@ function SignIn() {
             className="size-full rounded-full object-cover"
           />
         </div>
-        <div className="absolute right-[10px] rounded-[10px] border bg-gradient-to-t from-purple-600 to-blue-600 p-[5px] text-white hover:from-cyan-600 hover:to-pink-600" onClick={() => navigate("/signup")}>
+        <div className="absolute right-[6px]">
+          <div className="absolute right-0 rounded-[10px] border bg-gradient-to-t from-purple-600 to-blue-600 p-[5px] text-white hover:from-cyan-600 hover:to-pink-600" onClick={() => navigate("/signup")}>
           <FaUserPlus size={20} />
+        </div>
+        <div className="absolute right-[40px] rounded-[10px] border bg-gradient-to-t from-cyan-400 to-blue-400 p-[5px] text-white hover:from-cyan-600 hover:to-pink-600" onClick={() => navigate("/")}>
+          <FaHome size={20} />
+        </div>
         </div>
         <div className="relative mb-[10px] flex h-fit flex-col items-center justify-center">
           <p className="font-popins text-[28px] font-semibold">iLearn-Web</p>
