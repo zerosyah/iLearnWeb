@@ -588,7 +588,7 @@ export default function Home() {
           </section>
         </div>
 
-        <div className="w-full border-b border-borderGray bg-lightBlue/60">
+        <div className="w-full border-b border-borderGray">
           <section
             id="educators"
             className=" mx-auto bg-white px-[16px] py-[56px] md:px-[24px] lg:max-w-[1152px] lg:px-0"
@@ -641,7 +641,7 @@ export default function Home() {
               </li>
             </ul>
           </div>
-          <p className="py-[8px] text-center font-popins text-[12px] text-textGray">
+          <p className="items-center py-[8px] text-center font-popins text-[12px] text-textGray">
             © 2026 Sompukwane Secondary School · Powered by iLearn
           </p>
         </section>
