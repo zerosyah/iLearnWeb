@@ -3,11 +3,12 @@ import Header from "../components/Header";
 //import SchoolInformationCard from "../components/SchoolInformationCard";
 import { FaArrowLeft } from "react-icons/fa";
 import { IoCallOutline, IoLocateOutline, IoMailOutline } from "react-icons/io5";
+import { RiBookOpenLine } from "react-icons/ri";
 export default function Contact() {
   return (
-    <section className="size-full bg-lightBlue/40">
+    <section className="flex h-screen min-h-0 w-full flex-col overflow-hidden bg-lightBlue/40">
       <Header />
-      <section className="scroll-container relative mx-auto flex h-screen min-h-0 w-full flex-col overflow-y-auto px-[16px] py-[40px] md:pt-[56px] lg:max-w-[1152px] lg:px-0 lg:pt-[64px]">
+      <section className="scroll-container relative mx-auto flex min-h-0 w-full flex-1 flex-col overflow-y-auto px-[16px] py-[40px] md:pt-[56px] lg:max-w-[1152px] lg:px-0 lg:pt-[64px]">
         <section className="mt-[10px]">
           <div className="flex cursor-pointer items-center gap-2.5 leading-none">
             <FaArrowLeft size={16} />
@@ -128,6 +129,45 @@ export default function Contact() {
               </div>
             </div>
           </div>
+        </section>
+        <div className="mt-[32px] w-fit rounded-[8px] border border-borderGray bg-white px-[12px] py-[6px] font-popins text-[14px] font-semibold ">
+          meet the staff
+        </div>
+        <section
+          id="footer"
+          className="mt-[20px] flex flex-col items-start border border-borderGray bg-white p-[16px]"
+        >
+          <div className="flex w-full items-start justify-between border-b pb-[8px]">
+            <div className="flex w-fit items-center gap-2">
+              <div className="flex size-[40px] items-center justify-center rounded-[6px] bg-nightGreen text-center text-gold">
+                <RiBookOpenLine size={20} className="" />
+              </div>
+              <div className="">
+                <h1 className="font-bebasNeue text-[24px] leading-none text-nightGreen">
+                  Sompukeane
+                </h1>
+                <h3 className="whitespace-nowrap text-center font-popins text-[11px] text-textGray">
+                  Better learners, brighter futures
+                </h3>
+              </div>
+            </div>
+            <ul className="flex flex-col items-center gap-1 md:flex-row lg:gap-4">
+              <a href="#about" className="">
+                <li className="cursor-pointer font-popins text-[12px] text-textGray hover:text-gold">
+                  About
+                </li>
+              </a>
+              <li className="cursor-pointer font-popins text-[12px] text-textGray hover:text-gold">
+                Privacy Policy
+              </li>
+              <li className="cursor-pointer font-popins text-[12px] text-textGray hover:text-gold">
+                Licensing
+              </li>
+            </ul>
+          </div>
+          <p className="items-center py-[8px] text-center font-popins text-[12px] text-textGray">
+            © 2026 Sompukwane Secondary School · Powered by iLearn
+          </p>
         </section>
       </section>
     </section>
